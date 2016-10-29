@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+	body{
+		font-family:Verdana; color:#666666;
+	}
+	a{
+		color:#666666; font-size:12px;
+		font-weight:bold; text-decoration:none;
+		text-align:center;
+	}
+	a:hover{
+		color:#06F; text-decoration:underline;
+	}		
+	h3{ color:#D00;	font-size:15px;	font-weight:bolder; text-align:center; margin:0;
+	}
+	h2{ color:#D00;	font-size:18px;	font-weight:900px; text-align:center; margin:10px;
+	}
+	p {	margin:0; padding:18px; 
+	}
+	.container{
+		height:700px; width:981px;
+		margin:0 auto 0 auto;
+	}
+	.header{
+		height:50px;width:981px;
+		margin:0 auto 0 auto;			
+	}
+	.tabs_main{
+		width:auto; height:24px;
+		background:url(css/images/stab.png) repeat-x;		
+	}
+	.tabs_sub{
+		width:auto; margin:0 18px; 
+	}
+	.tab_starter{
+		width:1px;height:24px; background-image:url(css/images/tab_starter.png); float:left;
+	}
+	.tab_bg{width:auto;height:24px;
+		background: url(css/images/tab_bg.png) repeat-x center; float:left;	
+	}
+	.tab_separator{
+		width:7px; height:24px;		
+		background:url(css/images/tab_separator.png) no-repeat;	float:left;
+	}
+	.tab_selected_starter{
+		width:6px;height:24px; background-image:url(css/images/tab_selected_l.png); float:left;
+	}
+	.tab_selected_bg{
+		width:auto;height:24px;
+		background:url(css/images/tab_selected_bg.png) repeat-x center; float:left;
+	}
+	.tab_selected_end{
+		width:6px; height:24px;		
+		background:url(css/images/tab_selected_r.png) no-repeat; float:left;
+	}
+	.tab_close_end{
+		width:10px; height:24px;		
+		background:url(css/images/close_corner.png) no-repeat;	float:left;
+	}
+	span{
+		padding:8px;	
+	}
+	#selected_color{
+		color: #06F;
+	}
+	.content_area{
+		margin-top:18px;
+		width:981px; height:auto;
+		background-color: #F6F6F6;						
+		font-size:12px;
+	}
+	.round_container{
+		width:981;
+		background-image:url(css/images/top_left.jpg), url(css/images/top_right.jpg), url(css/images/bottom_left.jpg), url(css/images/bottom_right.jpg);
+		background-repeat:no-repeat;
+		background-position:top left, top right, bottom left, bottom right;
+	}
+	.round_container_xsides{
+		width:981;
+		background-image:url(css/images/top_bar.jpg), url(css/images/botton_bar.jpg);
+		background-repeat:repeat-x;
+		background-position:top, bottom;
+	}
+	.round_container_ysides{
+		width:981;
+		background-image:url(css/images/left_bar.jpg), url(css/images/right_bar.png);
+		background-repeat:repeat-y;
+		background-position:left, right;
+	}		
+	.clear{
+		clear:both;
+	}

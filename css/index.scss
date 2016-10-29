@@ -1,0 +1,54 @@
+$band-color : #FF5722;
+$band-shade-color : #FFAB91;
+$input-border-radius : 5px;
+$border-shadow : #BF360C;
+$shadow-hover : #FF8F00;
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin shadow() {
+  @include border-radius();
+  display: inline-block;
+  position: relative;
+  -webkit-border-radius: $input-border-radius;
+  -moz-border-radius: $input-border-radius;
+  border-radius: $input-border-radius;
+  -moz-box-shadow: $border-shadow 3px 3px 10px inset;
+  -webkit-box-shadow: $border-shadow 3px 3px 10px inset;
+  box-shadow: $border-shadow 3px 3px 10px inset;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+#top_panel input:hover {
+  -moz-box-shadow: $shadow-hover 5px 5px 55px inset;
+  -webkit-box-shadow: $shadow-hover 5px 5px 55px inset;
+  box-shadow: $shadow-hover 5px 5px 55px inset;
+
+}
+
+@mixin border-radius($color : $band-shade-color) {
+  background-color: $color;
+  -webkit-border-radius: $input-border-radius;
+  -moz-border-radius: $input-border-radius;
+  border-radius: $input-border-radius;
+  outline: none;
+  border: 5px;
+  padding: 2px;
+}
+
+#main_cont {
+
+}
+
+#top_panel {
+  //background-color: $band-color;
+
+  input{
+      //@include shadow();
+  }
+}
