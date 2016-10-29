@@ -98,6 +98,7 @@
         $config['maintain_ratio'] = TRUE;
         $config['width']         = 200;
         $config['height']       = 200;
+        
 
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();

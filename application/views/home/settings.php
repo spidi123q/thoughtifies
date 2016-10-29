@@ -1,240 +1,4 @@
-<script>
 
-             // Shorthand for $( document ).ready()
-            $(function() {
-                //startup initilize
-              $('ul.tabs').tabs();
-              $('select').material_select();
-              /*--------------------------------------------------------------
-                  ajax tag post
-            ------------------------------------------------------------------*/
-
-                      $("#tag_submit_button").click(function(){
-                         var tag = $( "#tag_input" ).val();
-                        $.post("settings/1",
-                        {
-                            //name: "Donald Duck",
-                            data: tag,
-                        },
-                        function(data, status){
-                            //alert("Data: " + data + "\nStatus: " + status);
-                               //$('#loadingmessage').hide();
-                            //$("#toper" ).html( data );
-                            loadPage(4);
-
-                        })
-                            .done(function() {
-                             alert("done"  );
-                           })
-                           .fail(function() {
-                             alert( "error" );
-                           })
-                           .always(function() {
-                             alert( "finished" );
-                         });
-                    });
-              /*----------------------------------------------------------------*/
-
-              /*--------------------------------------------------------------
-                  ajax about me post
-            ------------------------------------------------------------------*/
-
-                      $("#aboutMeSubmit_button").click(function(){
-                         var val = $( "#aboutMeText_area" ).val();
-                        $.post("settings/2",
-                        {
-                            //name: "Donald Duck",
-                            data: val,
-                        },
-                        function(data, status){
-                            //alert("Data: " + data + "\nStatus: " + status);
-                               //$('#loadingmessage').hide();
-                            loadPage(4);
-
-
-                        })
-                           .done(function() {
-                            alert( "second success" );
-                          })
-                          .fail(function() {
-                            alert( "error" );
-                          })
-                          .always(function() {
-                            alert( "finished" );
-                        });
-
-                    });
-              /*----------------------------------------------------------------*/
-
-              /*--------------------------------------------------------------
-                  ajax profile photo remove button post
-            ------------------------------------------------------------------*/
-
-                      $("#deleteDP_button").click(function(){
-                         var val = $( "#aboutMeText_area" ).val();
-                        $.post("src/settings.php",
-                        {
-                            //name: "Donald Duck",
-                            deleteDP: "1",
-                        },
-                        function(data, status){
-                            //alert("Data: " + data + "\nStatus: " + status);
-                               //$('#loadingmessage').hide();
-                               $("#profilePicture img").attr("src","tpl/photo.jpg");
-                               var img = '<img src="tpl/photo.jpg">';
-                            //$("#profilePicture img" ).html( img );
-
-
-                        })
-                           .done(function() {
-                            alert( "second success" );
-                          })
-                          .fail(function() {
-                            alert( "error" );
-                          })
-                          .always(function() {
-                            alert( "finished" );
-                        });
-
-                    });
-              /*----------------------------------------------------------------*/
-
-              /*--------------------------------------------------------------
-                  ajax profile photo update post
-              ------------------------------------------------------------------*/
-              $( "#dp_upload" ).on( "submit", function( event ) {
-                  event.preventDefault();
-                  console.log( $( this ).serialize() );
-                  var formData = new FormData($(this)[0]);
-                  console.log(formData);
-                  $.ajax({
-                      url: 'settings/upload',
-                      type: 'POST',
-                      data: formData,
-                      async: false,
-                      cache: false,
-                      contentType: false,
-                      processData: false,
-                      success: function (returndata) {
-                          //$("#productFormOutput").html(returndata);
-                          alert(returndata);
-                      },
-                      error: function () {
-                          alert("error in ajax form submission");
-                      }
-                  });
-
-            });
-
-              /*----------------------------------------------------------------*/
-
-                /*--------------------------------------------------------------
-                    ajax friend preference  post
-                ------------------------------------------------------------------*/
-
-                $("#aboutPSubmit_button").click(function(){
-                   var val = $( "#aboutPText" ).val();
-                   alert(val);
-                  $.post("settings/3",
-                  {
-                      //name: "Donald Duck",
-                      data: val,
-                  },
-                  function(data, status){
-                      //alert("Data: " + data + "\nStatus: " + status);
-                         //$('#loadingmessage').hide();
-                      loadPage(4);
-
-
-                  })
-                     .done(function() {
-                      alert( "second success" );
-                    })
-                    .fail(function() {
-                      alert( "error" );
-                    })
-                    .always(function() {
-                      alert( "finished" );
-                  });
-
-              });
-
-            /*----------------------------------------------------------------*/
-
-
-
-
-
-            });
-
-            /*--------------------------------------------------------------
-                ajax album image delete post
-            ------------------------------------------------------------------*/
-
-            function deleteAlbumImage(id,mem_id){
-
-              $.post("src/settings.php",
-              {
-                  //name: "Donald Duck",
-                  mem_id: mem_id,
-                  image : id,
-              },
-              function(data, status){
-                  //alert("Data: " + data + "\nStatus: " + status);
-                     //$('#loadingmessage').hide();
-                     var td = "#album_"+mem_id+id;
-                     $(td ).html( "" );
-
-              })
-                  .done(function() {
-                   //alert( "second success" );
-                 })
-                 .fail(function() {
-                   alert( "error" );
-                 })
-                 .always(function() {
-                   //alert( "finished" );
-               });
-
-            }
-            /*----------------------------------------------------------------*/
-
-            /*--------------------------------------------------------------
-                ajax friend age post
-            ------------------------------------------------------------------*/
-
-                    function friendAgePost(){
-                         var lage = $( "#friend_age_form #l_age" ).val();
-                         var hage = $( "#friend_age_form #h_age" ).val();
-
-                        $.post("src/settings.php",
-                        {
-                            l_age : lage,
-                            h_age : hage,
-                            pAge  : 1,
-
-                        },
-                        function(data, status){
-                            //alert("Data: " + data + "\nStatus: " + status);
-                               //$('#loadingmessage').hide();
-                            //$("#profilePicture img" ).html( img );
-
-
-                        })
-                           .done(function() {
-                            alert( "second success" );
-                          })
-                          .fail(function() {
-                            alert( "error" );
-                          })
-                          .always(function() {
-                            alert( "finished" );
-                        });
-
-
-                    }
-            /*----------------------------------------------------------------*/
-</script>
  <div class="row">
    <div class="col-xs-2">
 
@@ -551,3 +315,245 @@
    </div>
  </div>
  </div>
+ <script>
+
+              // Shorthand for $( document ).ready()
+             $(function() {
+                 //startup initilize
+               $('ul.tabs').tabs();
+               $('select').material_select();
+               /*--------------------------------------------------------------
+                   ajax tag post
+             ------------------------------------------------------------------*/
+
+                       $("#tag_submit_button").click(function(){
+                          var tag = $( "#tag_input" ).val();
+                         $.post("settings/1",
+                         {
+                             //name: "Donald Duck",
+                             data: tag,
+                         },
+                         function(data, status){
+                             //alert("Data: " + data + "\nStatus: " + status);
+                                //$('#loadingmessage').hide();
+                             //$("#toper" ).html( data );
+                             loadPage(4);
+
+                         })
+                             .done(function() {
+                              alert("done"  );
+                            })
+                            .fail(function() {
+                              alert( "error" );
+                            })
+                            .always(function() {
+                              alert( "finished" );
+                          });
+                     });
+               /*----------------------------------------------------------------*/
+
+               /*--------------------------------------------------------------
+                   ajax about me post
+             ------------------------------------------------------------------*/
+
+                       $("#aboutMeSubmit_button").click(function(){
+                          var val = $( "#aboutMeText_area" ).val();
+                         $.post("settings/2",
+                         {
+                             //name: "Donald Duck",
+                             data: val,
+                         },
+                         function(data, status){
+                             //alert("Data: " + data + "\nStatus: " + status);
+                                //$('#loadingmessage').hide();
+                             loadPage(4);
+
+
+                         })
+                            .done(function() {
+                             alert( "second success" );
+                           })
+                           .fail(function() {
+                             alert( "error" );
+                           })
+                           .always(function() {
+                             alert( "finished" );
+                         });
+
+                     });
+               /*----------------------------------------------------------------*/
+
+               /*--------------------------------------------------------------
+                   ajax profile photo remove button post
+             ------------------------------------------------------------------*/
+
+                       $("#deleteDP_button").click(function(){
+                          var val = $( "#aboutMeText_area" ).val();
+                         $.post("src/settings.php",
+                         {
+                             //name: "Donald Duck",
+                             deleteDP: "1",
+                         },
+                         function(data, status){
+                             //alert("Data: " + data + "\nStatus: " + status);
+                                //$('#loadingmessage').hide();
+                                $("#profilePicture img").attr("src","tpl/photo.jpg");
+                                var img = '<img src="tpl/photo.jpg">';
+                             //$("#profilePicture img" ).html( img );
+
+
+                         })
+                            .done(function() {
+                             alert( "second success" );
+                           })
+                           .fail(function() {
+                             alert( "error" );
+                           })
+                           .always(function() {
+                             alert( "finished" );
+                         });
+
+                     });
+               /*----------------------------------------------------------------*/
+
+               /*--------------------------------------------------------------
+                   ajax profile photo update post
+               ------------------------------------------------------------------*/
+               $( "#dp_upload" ).on( "submit", function( event ) {
+                   event.preventDefault();
+                   console.log( $( this ).serialize() );
+                   var formData = new FormData($(this)[0]);
+                   console.log(formData);
+                   $.ajax({
+                       url: 'settings/upload',
+                       type: 'POST',
+                       data: formData,
+                       async: false,
+                       cache: false,
+                       contentType: false,
+                       processData: false,
+                       success: function (returndata) {
+                           //$("#productFormOutput").html(returndata);
+                           if (returndata == 1) {
+                               $('#myModal').modal('toggle');
+                           } else {
+                               alert(returndata)
+                           }
+
+                       },
+                       error: function () {
+                           alert("error in ajax form submission");
+                       }
+                   });
+
+             });
+
+               /*----------------------------------------------------------------*/
+
+                 /*--------------------------------------------------------------
+                     ajax friend preference  post
+                 ------------------------------------------------------------------*/
+
+                 $("#aboutPSubmit_button").click(function(){
+                    var val = $( "#aboutPText" ).val();
+                    alert(val);
+                   $.post("settings/3",
+                   {
+                       //name: "Donald Duck",
+                       data: val,
+                   },
+                   function(data, status){
+                       //alert("Data: " + data + "\nStatus: " + status);
+                          //$('#loadingmessage').hide();
+                       loadPage(4);
+
+
+                   })
+                      .done(function() {
+                       alert( "second success" );
+                     })
+                     .fail(function() {
+                       alert( "error" );
+                     })
+                     .always(function() {
+                       alert( "finished" );
+                   });
+
+               });
+
+             /*----------------------------------------------------------------*/
+
+
+
+
+
+             });
+
+             /*--------------------------------------------------------------
+                 ajax album image delete post
+             ------------------------------------------------------------------*/
+
+             function deleteAlbumImage(id,mem_id){
+
+               $.post("src/settings.php",
+               {
+                   //name: "Donald Duck",
+                   mem_id: mem_id,
+                   image : id,
+               },
+               function(data, status){
+                   //alert("Data: " + data + "\nStatus: " + status);
+                      //$('#loadingmessage').hide();
+                      var td = "#album_"+mem_id+id;
+                      $(td ).html( "" );
+
+               })
+                   .done(function() {
+                    //alert( "second success" );
+                  })
+                  .fail(function() {
+                    alert( "error" );
+                  })
+                  .always(function() {
+                    //alert( "finished" );
+                });
+
+             }
+             /*----------------------------------------------------------------*/
+
+             /*--------------------------------------------------------------
+                 ajax friend age post
+             ------------------------------------------------------------------*/
+
+                     function friendAgePost(){
+                          var lage = $( "#friend_age_form #l_age" ).val();
+                          var hage = $( "#friend_age_form #h_age" ).val();
+
+                         $.post("src/settings.php",
+                         {
+                             l_age : lage,
+                             h_age : hage,
+                             pAge  : 1,
+
+                         },
+                         function(data, status){
+                             //alert("Data: " + data + "\nStatus: " + status);
+                                //$('#loadingmessage').hide();
+                             //$("#profilePicture img" ).html( img );
+
+
+                         })
+                            .done(function() {
+                             alert( "second success" );
+                           })
+                           .fail(function() {
+                             alert( "error" );
+                           })
+                           .always(function() {
+                             alert( "finished" );
+                         });
+
+
+                     }
+             /*----------------------------------------------------------------*/
+ </script>

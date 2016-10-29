@@ -170,9 +170,11 @@
       public function doUpload()    {
                 $config['upload_path']          = 'images/userimages';
                $config['allowed_types']        = 'gif|jpg|png';
-               $config['max_size']             = 100;
-               $config['max_width']            = 1024;
-               $config['max_height']           = 768;
+               $config['max_size']             = 2000;
+               $config['max_width']            = 3000;
+               $config['max_height']           = 3000;
+               $config['file_name']       =  $this->session->SESS_MEMBER_ID;
+               $config['overwrite']       = TRUE;
 
                $this->load->library('upload', $config);
 
@@ -184,9 +186,24 @@
                }
                else
                {
-                       $data = array('upload_data' => $this->upload->data());
 
-                       echo "uploadeded";
+                       $qry = "UPDATE member SET profileExt=? WHERE mem_id=?";
+
+                       if ($this->db->query($qry, array($this->upload->data('image_type'), $this->session->SESS_MEMBER_ID))) {
+                         $config['image_library'] = 'gd2';
+                         $config['source_image'] = $this->upload->data('full_path');
+                         $config['create_thumb'] = TRUE;
+                         $config['maintain_ratio'] = TRUE;
+                         $config['width']         = 200;
+                         $config['height']       = 200;
+
+
+                         $this->load->library('image_lib', $config);
+                         $this->image_lib->resize();
+                         echo "1";
+                       }
+
+
                }
       }
 
