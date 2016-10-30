@@ -24,9 +24,9 @@
          </div>
          <div class="col-sm-4">
            <div id="profilePicture">
-             <img src="<?php echo $dp_thumb?>" alt="" />
+             <img src="<?php echo $this->session->SESS_USERIMAGES.$picture; ?>" alt="" />
 
-                        <br/><button id="deleteDP_button">remove picture</button>
+                        <br/><button class="waves-effect waves-light btn" id="deleteDP_button">remove picture</button>
                         <br> <button type="button" class="waves-effect waves-light btn" data-toggle="modal" data-target="#myModal">Upload </button>
                            <button type="button" class="waves-effect waves-light btn" data-toggle="modal" data-target="#albumModal">Album </button>
                       </br>
@@ -388,22 +388,12 @@
              ------------------------------------------------------------------*/
 
                        $("#deleteDP_button").click(function(){
-                          var val = $( "#aboutMeText_area" ).val();
-                         $.post("src/settings.php",
-                         {
-                             //name: "Donald Duck",
-                             deleteDP: "1",
-                         },
-                         function(data, status){
-                             //alert("Data: " + data + "\nStatus: " + status);
-                                //$('#loadingmessage').hide();
-                                $("#profilePicture img").attr("src","tpl/photo.jpg");
-                                var img = '<img src="tpl/photo.jpg">';
-                             //$("#profilePicture img" ).html( img );
-
-
-                         })
-                            .done(function() {
+                         var jqxhr = $.get( "settings/4", function(data) {
+                           if (data) {
+                             loadPage(4);
+                           }
+                          })
+                           .done(function() {
                              alert( "second success" );
                            })
                            .fail(function() {
@@ -411,7 +401,7 @@
                            })
                            .always(function() {
                              alert( "finished" );
-                         });
+                           });
 
                      });
                /*----------------------------------------------------------------*/
@@ -435,7 +425,11 @@
                        success: function (returndata) {
                            //$("#productFormOutput").html(returndata);
                            if (returndata == 1) {
-                               $('#myModal').modal('toggle');
+                                $('#myModal').modal('toggle');
+                               loadPage(4);
+                               $( "body div:last-child" ).removeClass( "modal-backdrop" );
+                               //alert("hg");
+
                            } else {
                                alert(returndata)
                            }
@@ -443,6 +437,9 @@
                        },
                        error: function () {
                            alert("error in ajax form submission");
+                       },
+                       done: function () {
+                         alert("don");
                        }
                    });
 

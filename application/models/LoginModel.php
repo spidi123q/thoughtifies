@@ -21,7 +21,7 @@
                 'SESS_MEMBER_ID' => $row->mem_id,
                 'SESS_FIRST_NAME' =>$row->fname,
                 'SESS_LAST_NAME' => $row->lname,
-                'SESS_PROEXT' => $row->profileExt,
+                'SESS_USERIMAGES' => base_url().'images/userimages/',
               );
 
 

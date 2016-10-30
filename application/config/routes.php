@@ -58,3 +58,4 @@ $route['home']='Login/loadHome';
 $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';
 $route['(:any)/settings/upload']='Login/doUpload';
+$route['(:any)/msg/load']='Login/displayMessages';

@@ -13,7 +13,9 @@
 	<script src="<?php echo base_url() ;?>js/jquery-2.1.4.min.js"></script>
 
 	<script src="<?php echo base_url(); ?>bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url();?>js/myscript.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.css">
+	<script src="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/node_modules/responsive-toolkit/dist/bootstrap-toolkit.min.js"></script>
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	 <!--
 	 <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.teal-red.min.css" />
@@ -27,7 +29,7 @@
 
 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>css/main.css">
-	
+
 
 
 

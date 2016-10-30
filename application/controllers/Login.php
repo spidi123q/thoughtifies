@@ -3,8 +3,9 @@
 
      function __construct() {
         parent::__construct();
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(array('form', 'url','file'));
         $this->load->model('SessionModel');
+        $this->load->model('MessageModel');
 
      }
 
@@ -25,7 +26,8 @@
 
         }
         private function pageMessages()     {
-        echo "gdfg";
+            $data = array('listMessengers' => $this->MessageModel->listMessengers(), );
+            $this->load->view('home/messages.php',$data);
 
         }
        private function pageInterest()     {
@@ -160,7 +162,7 @@
           $this->SessionModel->changeAboutPartner($data);
         }
         elseif ($value == 4) {
-          $this->pageSettings();
+            echo  ($this->SessionModel->deleteDP())?1:0;
         }
         else {
           echo "invalid  selection";
@@ -173,8 +175,7 @@
                $config['max_size']             = 2000;
                $config['max_width']            = 3000;
                $config['max_height']           = 3000;
-               $config['file_name']       =  $this->session->SESS_MEMBER_ID;
-               $config['overwrite']       = TRUE;
+               $config['encrypt_name']       = TRUE;
 
                $this->load->library('upload', $config);
 
@@ -187,9 +188,9 @@
                else
                {
 
-                       $qry = "UPDATE member SET profileExt=? WHERE mem_id=?";
+                       $qry = "UPDATE member SET picture=? WHERE mem_id=?";
 
-                       if ($this->db->query($qry, array($this->upload->data('image_type'), $this->session->SESS_MEMBER_ID))) {
+                       if ($this->db->query($qry, array($this->upload->data('file_name'), $this->session->SESS_MEMBER_ID))) {
                          $config['image_library'] = 'gd2';
                          $config['source_image'] = $this->upload->data('full_path');
                          $config['create_thumb'] = TRUE;
@@ -205,6 +206,12 @@
 
 
                }
+      }
+
+      public function displayMessages()    {
+        $id = $this->input->post('id');
+        echo $this->MessageModel->displayMessages($id);
+
       }
 
    }

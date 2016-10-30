@@ -18,6 +18,7 @@
           return $imageURL;
         }
       }
+
 //-----------------public method--------------------------------------
       public function recentVisitors()      {
         $content = '<div class="table-responsive"><table class="table"><tr>';
@@ -90,27 +91,7 @@
       }
 
       public function settings()      {
-
-        $dpUrl = $this->pathToDP($this->session->SESS_PROEXT,$this->session->SESS_MEMBER_ID);
-        $config['image_library'] = 'gd2';
-        $config['source_image'] = $dpUrl;
-        $config['create_thumb'] = TRUE;
-        $config['maintain_ratio'] = TRUE;
-        $config['width']         = 200;
-        $config['height']       = 200;
-        
-
-        $this->load->library('image_lib', $config);
-        $this->image_lib->resize();
-        $dpURLThumb;
-        //echo $this->image_lib->display_errors();
-        if ($this->session->SESS_PROEXT == NULL) {
-          $dpURLThumb = base_url()."images/photo_thumb.jpg";
-        }
-        else {
-          $dpURLThumb = base_url()."images/userimages/".$this->session->SESS_MEMBER_ID."_thumb.".$this->session->SESS_PROEXT;
-        }
-        $baseData = array('dp_thumb' => $dpURLThumb,
+        $baseData = array('dp_thumb' => '',
         );
         $qry = "SELECT * FROM mDetails WHERE mem_id = ?";
         $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID));
@@ -125,7 +106,9 @@
         $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID));
         if ($result) {
           foreach ($result->result_array() as $row){
-            $baseData = array_replace($baseData, $row);
+            $baseData = array_replace($baseData,$row );
+            //$baseData = array_replace($baseData,array('picture' => base_url()."images/userimages/".$row->picture ) );
+
           }
 
         }
@@ -165,6 +148,22 @@
           echo "failed";
         }
 
+      }
+      public function deleteDP()      {
+        $qry = "SELECT picture FROM member WHERE mem_id=?";
+        $result = $this->db->query($qry,array($this->session->SESS_MEMBER_ID));
+        if($result){
+          $row = $result->row();
+          $qry = "UPDATE member SET picture='photo.jpg' WHERE mem_id=?";
+          $result = $this->db->query($qry,array($this->session->SESS_MEMBER_ID));
+          if ($result) {
+            return delete_files($this->session->SESS_USERIMAGES.$row->picture);
+          }else {
+            return false;
+          }
+        }else {
+          return false;
+        }
       }
 
 
