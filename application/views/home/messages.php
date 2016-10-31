@@ -21,7 +21,7 @@
 -->
 
 <div class="row">
-  <div class="col-xs-3">
+  <div id="users_list" class="col-xs-3" style="overflow-y: scroll;height:100%">
     <div id="list_users" class="ui fluid vertical steps" >
       <div class="completed step">
         <i class="truck icon"></i>
@@ -30,10 +30,144 @@
           <div class="description">Choose your shipping options</div>
         </div>
       </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+      <div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>
+
         <?php echo $listMessengers; ?>
     </div>
   </div>
-  <div class="col-xs-9 device-lg visible-lg" id="messages" >
+  <div class="col-xs-9" id="messages" >
     <p>
       <table>
         <tr>
@@ -137,9 +271,24 @@ function loadUserMsg(mem_id){
     $(document).ready(function() {
 
         // Executes only in XS breakpoint
-        if(viewport.is('xs')) {
-            // ...
-            alert("xs");
+        $( ".completed" ).bind( "click", function() {
+
+          if(viewport.is('<=xs')) {
+
+
+              $('#users_list').removeClass('col-xs-12');
+              $('#users_list').hide();
+              $('#messages').addClass('col-xs-12');
+              $('#messages').show();
+          }
+
+          });
+        if(viewport.is('<=xs')) {
+
+            $('#messages').removeClass('col-xs-9');
+            $('#messages').hide();
+            $('#users_list').removeClass('col-xs-3');
+            $('#users_list').addClass('col-xs-12');
         }
 
         // Executes in SM, MD and LG breakpoints
@@ -155,9 +304,8 @@ function loadUserMsg(mem_id){
         // Execute code each time window size changes
         $(window).resize(
             viewport.changed(function() {
-                if(viewport.is('xs')) {
-                    // ...
-                    alert("xs");
+                if(viewport.is('<=xs')) {
+
                 }
             })
         );

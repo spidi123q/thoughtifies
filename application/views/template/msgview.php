@@ -1,13 +1,16 @@
 
-	<div style="text-align:{align}">
-		<tr>
-			<td>
-				<h3 style="text-align:{align}">
-					<a  class="{fname}">{fname}</a>
-				</h3>
-					{message}<br/>
-					{date}<br/>
-					<br/>
-			</td>
-		</tr>
-</div>
+<table>
+        <tr>
+          <td class="col-xs-1">
+            {fname}
+					</td>
+          <td class="col-xs-11">
+            <div class="inline field">
+              <div class="ui {align} {label_type} label">
+								{message}<br/>
+								{date}
+              </div>
+            </div>
+          </td>
+        </tr>
+</table>

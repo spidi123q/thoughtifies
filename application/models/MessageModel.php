@@ -86,10 +86,16 @@
                 foreach ($result->result_array() as $row) {
                   $row = array_replace($row,$user);
                   if ($row['sender'] == $this->session->SESS_MEMBER_ID) {
-                    $row = array_replace($row,array('align' => 'left',
-                    'fname' => $this->session->SESS_FIRST_NAME,) );
+                    $row = array_replace($row,array(
+                      'align' => 'right',
+                      'label_type' => '',
+                      'fname' => '',
+                       ) );
                   } else {
-                    $row = array_replace($row,array('align' => 'right'));
+                    $row = array_replace($row,array(
+                      'align' => 'left',
+                      'label_type' => 'pointing',
+                    ));
                   }
 
                   $content .= $this->parser->parse('template/msgview.php', $row,TRUE);
