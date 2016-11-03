@@ -46,7 +46,17 @@
             $content .= $this->parser->parse('template/msg_list_view.php', $rw,TRUE);
 
           }
+          for($i=0;$i<50;$i++)
+          $content .= '<div class="completed step">
+        <i class="truck icon"></i>
+        <div class="content">
+          <div class="title">Shipping</div>
+          <div class="description">Choose your shipping options</div>
+        </div>
+      </div>';
           return $content.'</td></table>';
+
+
 
 
 
@@ -106,6 +116,16 @@
               }
 
 
+      }
+
+      public function sentMessage($data)      {
+          $info = array(
+          'sender' => $this->session->SESS_MEMBER_ID,
+          'receiver' => $data['receiver'],
+          'message' => "{$data['msg']}" ,
+          );
+           $this->db->set('date_time', 'NOW()', FALSE);
+          return $this->db->insert('myMessages',$info);
       }
 
 

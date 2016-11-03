@@ -13,9 +13,9 @@
               </button>
 
 							<ul id="mainmenu" class="dropdown-content" aria-labelledby="dropdownMenu1">
-							<li><a data-page="0">Home</a></li>
-							<li><a data-page="1">Search</a></li>
-							<li><a data-page="2">Messages</a></li>
+							<li><a href="p/0" data-page="0">Home</a></li>
+							<li><a href="p/1" data-page="1">Search</a></li>
+							<li><a href="p/2" data-page="2">Messages</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a data-page="3">Interest</a></li>
 							<li><a data-page="4">Settings</a></li>
@@ -123,6 +123,7 @@
 					}, interval);
 
 						$("#mainmenu li a").click(function(){
+							event.preventDefault();
 						// remove previously added selectedLi
 						$('.selectedLi').removeClass('selectedLi');
 						// add class `selectedLi`
@@ -265,6 +266,7 @@
 
 				function loadPage(selText){
 					 var url ="p/"+selText;
+
 					$.post(url,
 					{
 							//name: "Donald Duck",
@@ -276,6 +278,9 @@
 							$("#toper" ).html( data );
 
 					});
+					if(url!=window.location){
+						window.history.pushState({path:url},'',"page_"+selText);
+					}
 				}
 
 				/*----------------------------------------------------------*/

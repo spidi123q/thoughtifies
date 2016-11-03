@@ -59,3 +59,5 @@ $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';
 $route['(:any)/settings/upload']='Login/doUpload';
 $route['(:any)/msg/load']='Login/displayMessages';
+$route['(:any)/msg/sent']='Login/sentMessage';
+$route['(:any)/msg/f/(:num)']='Login/f/$2';

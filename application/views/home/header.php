@@ -5,6 +5,31 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<script src="<?php echo base_url(); ?>js/pace.min.js"></script>
+	<style media="screen">
+				.pace {
+			-webkit-pointer-events: none;
+			pointer-events: none;
+
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+			}
+
+			.pace-inactive {
+			display: none;
+			}
+
+			.pace .pace-progress {
+			background: #fe0e0e;
+			position: fixed;
+			z-index: 2000;
+			top: 0;
+			right: 100%;
+			width: 100%;
+			height: 2px;
+			}
+	</style>
 	<link href="<?php echo base_url(); ?>bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -16,6 +41,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.css">
 	<script src="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/node_modules/responsive-toolkit/dist/bootstrap-toolkit.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/node_modules/jscroll/jquery.jscroll.min.js"></script>
+
 	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	 <!--
 	 <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.teal-red.min.css" />

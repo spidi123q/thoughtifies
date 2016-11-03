@@ -10,6 +10,7 @@
      }
 
      /*******private functions**********/
+
         private function pageHome()     {
 
           $recentVisitors = $this->SessionModel->recentVisitors();
@@ -26,7 +27,8 @@
 
         }
         private function pageMessages()     {
-            $data = array('listMessengers' => $this->MessageModel->listMessengers(), );
+            $data = array('listMessengers' => $this->MessageModel->listMessengers(),
+            );
             $this->load->view('home/messages.php',$data);
 
         }
@@ -210,9 +212,36 @@
 
       public function displayMessages()    {
         $id = $this->input->post('id');
+        for($i=0;$i<50;$i++)
         echo $this->MessageModel->displayMessages($id);
 
       }
+
+      public function sentMessage()    {
+        $data = array(
+          'receiver' => $this->input->post('receiver'),
+          'msg' => $this->input->post('msg'),
+        );
+        echo $this->MessageModel->sentMessage($data);
+
+      }
+      public function f($p)
+      {
+        echo 'page no : '+$p;
+        $p += 10;
+        $content = '';
+        $content .= '<div class="completed step">
+      <i class="truck icon"></i>
+      <div class="content">
+        <div class="title">Shipping</div>
+        <div class="description">Choose your shipping options</div>
+      </div>
+    </div>';
+        echo  $content.'<a class="jscoll" href="msg/f/'.$p.'">
+loafd
+        </a>';
+      }
+
 
    }
 
