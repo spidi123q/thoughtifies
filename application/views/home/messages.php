@@ -4,7 +4,7 @@
     <div id="list_users" class="kk ui fluid vertical steps" style="overflow-y: scroll;height:100%">
         <?php echo $listMessengers; ?>
         <a class="jscoll" href="msg/f/0">
-        loafd
+loafd
         </a>
     </div>
 
@@ -14,7 +14,9 @@
       <table style="height:100%;">
         <tr>
           <td class="col-xs-1">
-            <div id="messages" style="height:100%;overflow-y: scroll;" >
+
+            <div id="messages" class="pp" style="height:100%;overflow-y: scroll;">
+
 
             </div>
           </td>
@@ -54,10 +56,144 @@
   </div>
 </div>
 <script>
-var msgCurUser
+var msgCurUser,s,countM;
+
+
+var MScroll = function (container) {
+    this.container = container;
+    console.log('old instance deleting');
+    this.end();
+    this.prevHeight = $(this.container)[0].scrollHeight;
+    console.log("pre"+this.prevHeight);
+    $(this.container).data("requestRunning",false);
+
+    $(this.container).bind('scroll');
+     console.log('instance created');
+     var cur = this;
+     $( this.container ).on( "click", ".msgpage", function() {
+       event.preventDefault();
+       console.log("binde");
+        cur.start();
+        $(this).hide();
+        cur.setScrollBar(cur);
+
+
+
+     });
+     //this.start();
+     //this.end();
+};
+
+MScroll.prototype.start = function () {
+  console.log('instance started');
+  cur = this;
+  $(this.container ).scroll(function() {
+
+    var pos = $(this).scrollTop();
+    console.log(pos);
+     cur.status = $(cur.container).data("requestRunning");
+    if(pos == 0){
+      //alert("end");
+
+        console.log("scroll pos :  "+pos);
+        cur.get();
+
+
+      //$(this).unbind('scroll');
+    //  $( cur.container ).scrollTop( 200 );
+
+  }else {
+
+  }
+
+  });
+};
+
+MScroll.prototype.end = function () {
+  $(this.container).unbind('scroll');
+  console.log('instance deletd');
+};
+
+MScroll.prototype.setScrollBar = function (obj) {
+           obj.curHeight = $(obj.container)[0].scrollHeight;
+           console.log("scrollHeight get : "+obj.curHeight);
+           var newPos = obj.curHeight -obj.prevHeight;
+           console.log("pre"+obj.prevHeight);
+           console.log("cur"+obj.curHeight);
+           $( obj.container ).scrollTop( 500 );
+           obj.prevHeight = obj.curHeight;
+};
+
+MScroll.prototype.get = function () {
+  $(this.container).data("requestRunning",true);
+  console.log('calling get');
+  var url = $( this.container+" .msgpage" ).first().attr( "href" );
+  console.log(this.container);
+  var container = this.container;
+  var cur = this;
+  var count = $('#messages').data('countmsg');
+  if (url != "") {
+    if (!this.status) {
+      console.log("get busy : "+this.status);
+      console.log("url not empty");
+            var jqxhr = $.post( url,{
+              id : msgCurUser,
+              count: count,
+            }, function(data) {
+                console.log('get successllll'+data);
+                data += $(container).html();
+                $(container).html(data);
+                //console.log('get success'+data);
+
+
+            })
+              .done(function() {
+
+                cur.setScrollBar(cur);
+
+              })
+              .fail(function() {
+                console.log('get error');
+              })
+              .always(function() {
+                $(container).data("requestRunning",false);
+              });
+
+
+    }else {
+      console.log("get busy : "+this.status);
+    }
+
+
+  }else {
+    console.log("url empty");
+    this.end();
+  }
+
+};
+
+
+  $( "#messages" ).on( "click", ".mscoll", function() {
+    event.preventDefault();
+
+  });
+
+
+
 $( function (){
 
   //listMsgUser();
+
+
+
+
+
+
+
+
+
+
+
   function a() {
     console.log("Loaded new images.");
   }
@@ -75,7 +211,7 @@ $(".kk").jscroll({
   $( ".completed" ).bind( "click", function() {
 
       var mem_id = $(this).data("id");
-      loadUserMsg(mem_id);
+      countMsg(mem_id);
       $('#list_users div').removeClass("active");
       $('#list_users div').addClass("completed");
       $(this).removeClass("completed");
@@ -84,12 +220,6 @@ $(".kk").jscroll({
     });
 
 
-    $( ".myclass" ).bind( "click", function(event) {
-            event.preventDefault();
-            alert("ggggggggg")
-
-
-      });
 
       $( "#msg_input_form" ).submit(function( event ) {
 
@@ -142,9 +272,35 @@ function listMsgUser(){
      .always(function() {
        //alert( "finished" );
    });
-   /*----------------------------------------------------------*/
+
 }
 
+ /*----------------------------------------------------------*/
+ function countMsg(mem_id){
+   /*----------------------------------------------------------*/
+   //initilize list_users
+   /*----------------------------------------------------------*/
+         var jqxhr = $.get( "msg/count/"+mem_id, function(data) {
+
+           console.log($('#messages').data('countmsg'));
+           $('#messages').attr('data-countmsg', data);
+           console.log($('#messages').data('countmsg'));
+
+      })
+        .done(function() {
+          //alert( "second success" );
+          loadUserMsg(mem_id);
+        })
+        .fail(function() {
+          //alert( "error  kkk" );
+        })
+        .always(function() {
+          //alert( "finished" );
+        });
+
+ }
+
+  /*----------------------------------------------------------*/
 
 /*----------------------------------------------------------
      load messages
@@ -152,12 +308,16 @@ function listMsgUser(){
 function loadUserMsg(mem_id){
 
   msgCurUser = mem_id;
-  $( "#message_tab div" ).first().addClass( "hidden-xs" );
 
-  $.post("msg/load",
+  var count = $('#messages').data('countmsg');
+  console.log("msg count : "+count);
+
+  $.post("msg/load/0",
   {
       //name: "Donald Duck",
       id: mem_id,
+      count: count,
+
   },
   function(data, status){
       //alert("Data: " + data + "\nStatus: " + status);
@@ -167,6 +327,11 @@ function loadUserMsg(mem_id){
   })
       .done(function() {
        //alert( "second success" );
+       s =  new MScroll("#messages");
+       var d = $('#messages');
+        d.scrollTop(d.prop("scrollHeight"));
+        var k = $("#messages").scrollTop();
+        //alert(k);
      })
      .fail(function() {
        //alert( "error" );

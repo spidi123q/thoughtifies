@@ -6,6 +6,7 @@
       }
 
       public function listMessengers()      {
+        $content = '<table><td>';
             $qry = "SELECT DISTINCT sender
             FROM (
 
@@ -38,7 +39,7 @@
             $this->session->SESS_MEMBER_ID,
           ));
 
-          $content = '<table><td>';
+
           foreach ($result->result() as $row){
             $qry = "SELECT mem_id,fname,lname,picture FROM member WHERE mem_id=?";
             $result2 = $this->db->query($qry, array($row->sender,));
@@ -62,9 +63,9 @@
 
           }
 
-      public function displayMessages($id)    {
+      public function displayMessages($data)    {
         $qry2 = "SELECT fname,picture FROM member WHERE mem_id=?";
-        $result = $this->db->query($qry2,array($id));
+        $result = $this->db->query($qry2,array($data['id']));
         $user = $result->row_array();
         $content = '';
         $qry = "SELECT *
@@ -84,36 +85,50 @@
                                 )
                     )
                 ORDER BY date_time DESC
-                LIMIT 0 , 88
+                LIMIT {$data['page']} , 5
                 )result ORDER BY result.date_time";
-          $result = $this->db->query($qry, array(
-                  $this->session->SESS_MEMBER_ID,
-                  $id,
-                  $id,
-                  $this->session->SESS_MEMBER_ID,
-                ));
-              if ($result) {
-                foreach ($result->result_array() as $row) {
-                  $row = array_replace($row,$user);
-                  if ($row['sender'] == $this->session->SESS_MEMBER_ID) {
-                    $row = array_replace($row,array(
-                      'align' => 'right',
-                      'label_type' => '',
-                      'fname' => '',
-                       ) );
-                  } else {
-                    $row = array_replace($row,array(
-                      'align' => 'left',
-                      'label_type' => 'pointing',
-                    ));
-                  }
+                echo $data['page'];
 
-                  $content .= $this->parser->parse('template/msgview.php', $row,TRUE);
+                $result = $this->db->query($qry, array(
+                        $this->session->SESS_MEMBER_ID,
+                        $data['id'],
+                        $data['id'],
+                        $this->session->SESS_MEMBER_ID,
+                      ));
+
+                    if ($result) {
+                      foreach ($result->result_array() as $row) {
+                        $row = array_replace($row,$user);
+                        if ($row['sender'] == $this->session->SESS_MEMBER_ID) {
+                          $row = array_replace($row,array(
+                            'align' => 'right',
+                            'label_type' => '',
+                            'fname' => '',
+                             ) );
+                        } else {
+                          $row = array_replace($row,array(
+                            'align' => 'left',
+                            'label_type' => 'pointing',
+                          ));
+                        }
+                        for($i=0;$i<5;$i++)
+                        $content .= $this->parser->parse('template/msgview.php', $row,TRUE);
 
 
-                }
-                return $content;
-              }
+                      }
+
+
+                      $data['page'] += 5;
+
+                      if ( ($data['count'] - $data['page']) > 0) {
+                        return '<a href="msg/load/'.$data['page'].'" class="msgpage">next</a>'.$content;
+                      }
+                      else {
+                        return '<a href="" class="msgpage">end</a>'.$content;
+                      }
+
+                    }
+
 
 
       }
@@ -126,6 +141,37 @@
           );
            $this->db->set('date_time', 'NOW()', FALSE);
           return $this->db->insert('myMessages',$info);
+      }
+
+      public function countMsg($id)      {
+        $qry = "SELECT COUNT(*) AS count
+                FROM (
+
+                SELECT *
+                FROM myMessages
+                    WHERE (
+                                (
+                                  receiver =  ?
+                                  AND sender =  ?
+                                )
+                        OR
+                                (
+                                receiver =  ?
+                                AND sender =  ?
+                                )
+                    )
+                ORDER BY date_time DESC
+                )result";
+          $result = $this->db->query($qry, array(
+                  $this->session->SESS_MEMBER_ID,
+                  $id,
+                  $id,
+                  $this->session->SESS_MEMBER_ID,
+                ));
+            if ($result) {
+              $row = $result->row();
+              return $row->count;
+            }
       }
 
 

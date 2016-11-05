@@ -210,10 +210,18 @@
                }
       }
 
-      public function displayMessages()    {
+      public function displayMessages($page)    {
         $id = $this->input->post('id');
-        for($i=0;$i<50;$i++)
-        echo $this->MessageModel->displayMessages($id);
+        $count = $this->input->post('count');
+        echo "page no : ".$page;
+        $data = array(
+          'id' => $id,
+          'count' => $count,
+          'page' => $page,
+
+      );
+        echo $this->MessageModel->displayMessages($data);
+
 
       }
 
@@ -228,7 +236,6 @@
       public function f($p)
       {
         echo 'page no : '+$p;
-        $p += 10;
         $content = '';
         $content .= '<div class="completed step">
       <i class="truck icon"></i>
@@ -237,9 +244,19 @@
         <div class="description">Choose your shipping options</div>
       </div>
     </div>';
+    $p +=10;
         echo  $content.'<a class="jscoll" href="msg/f/'.$p.'">
 loafd
         </a>';
+      }
+
+      public function countMsg($id)      {
+        echo $this->MessageModel->countMsg($id);
+      }
+
+      public function messagePagination($page)      {
+        echo $page;
+
       }
 
 

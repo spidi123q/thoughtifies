@@ -4,32 +4,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<script src="<?php echo base_url(); ?>js/pace.min.js"></script>
-	<style media="screen">
-				.pace {
-			-webkit-pointer-events: none;
-			pointer-events: none;
-
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			user-select: none;
-			}
-
-			.pace-inactive {
-			display: none;
-			}
-
-			.pace .pace-progress {
-			background: #fe0e0e;
-			position: fixed;
-			z-index: 2000;
-			top: 0;
-			right: 100%;
-			width: 100%;
-			height: 2px;
-			}
-	</style>
 	<link href="<?php echo base_url(); ?>bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
 
