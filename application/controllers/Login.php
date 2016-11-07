@@ -6,6 +6,7 @@
         $this->load->helper(array('form', 'url','file'));
         $this->load->model('SessionModel');
         $this->load->model('MessageModel');
+        $this->load->model('SearchModel');
 
      }
 
@@ -23,7 +24,7 @@
 
         }
         private function pageSearch()     {
-         echo "gdfg";
+         $this->load->view('home/search.php');
 
         }
         private function pageMessages()     {
@@ -233,31 +234,42 @@
         echo $this->MessageModel->sentMessage($data);
 
       }
-      public function f($p)
-      {
-        echo 'page no : '+$p;
-        $content = '';
-        $content .= '<div class="completed step">
-      <i class="truck icon"></i>
-      <div class="content">
-        <div class="title">Shipping</div>
-        <div class="description">Choose your shipping options</div>
-      </div>
-    </div>';
-    $p +=10;
-        echo  $content.'<a class="jscoll" href="msg/f/'.$p.'">
-loafd
-        </a>';
+      public function f($p)      {
+                echo 'page no : '+$p;
+                $content = '';
+                $content .= '<div class="completed step">
+              <i class="truck icon"></i>
+              <div class="content">
+                <div class="title">Shipping</div>
+                <div class="description">Choose your shipping options</div>
+              </div>
+            </div>';
+            $p +=10;
+                echo  $content.'<a class="jscoll" href="msg/f/'.$p.'">
+        loafd
+                </a>';
       }
 
       public function countMsg($id)      {
         echo $this->MessageModel->countMsg($id);
       }
 
-      public function messagePagination($page)      {
-        echo $page;
+      public function advancedSearch()      {
+        $pic = ( $this->input->post('photo') != NULL )?1:0;
+        $online = ( $this->input->post('online') != NULL )?1:0;
+        $data = array(
+          'l_age' => $this->input->post('l_age'),
+          'h_age' => $this->input->post('h_age'),
+          'photo' => $pic,
+          'online' => $online,
+          'keyword' => $this->input->post('keyword'),
+          'country' => $this->input->post('country'),
+        );
+
+          echo $this->SearchModel->advancedSearch($data);
 
       }
+
 
 
    }
