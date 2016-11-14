@@ -1,7 +1,35 @@
 
 
 
-<body>
+<body ng-app="myApp" ng-controller="mainCtrl">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<style media="screen">
+.virtualRepeatdemoInfiniteScroll #vertical-container {
+height: 292px;
+width: 100%;
+max-width: 400px; }
+
+.virtualRepeatdemoInfiniteScroll .repeated-item {
+border-bottom: 1px solid #ddd;
+box-sizing: border-box;
+height: 40px;
+padding-top: 10px; }
+
+.virtualRepeatdemoInfiniteScroll md-content {
+margin: 16px; }
+
+.virtualRepeatdemoInfiniteScroll md-virtual-repeat-container {
+border: solid 1px grey; }
+
+.virtualRepeatdemoInfiniteScroll .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
+padding-left: 16px; }
+
+</style>
 
 
 	<nav class="navbar navbar-ddefault navbar-fixed-top">
@@ -12,13 +40,13 @@
               <i class="material-icons">receipt</i>
               </button>
 
-							<ul id="mainmenu" class="dropdown-content" aria-labelledby="dropdownMenu1">
-							<li><a href="p/0" data-page="0">Home</a></li>
-							<li><a href="p/1" data-page="1">Search</a></li>
-							<li><a href="p/2" data-page="2">Messages</a></li>
+							<ul id="mainmenu" class="dropdown-content" aria-labelledby="dropdownMenu1" >
+							<li><a ng-click="loadPage(0)" data-page="0">Home</a></li>
+							<li><a ng-click="loadPage(1)" data-page="1">Search</a></li>
+							<li><a ng-click="loadPage(2)"  data-page="2">Messages</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a data-page="3">Interest</a></li>
-							<li><a data-page="4">Settings</a></li>
+							<li><a ng-click="loadPage(3)"  data-page="3">Interest</a></li>
+							<li><a ng-click="loadPage(4)"  data-page="4">Settings</a></li>
 							</ul>
 		 </div>
 
@@ -33,14 +61,18 @@
 	<div id="mySidenav-users">
 
 			<table class="table">
-				<td>
+				<tr>
+					<td>
 
-					<div class="table-responsive">
+						<div class="table-responsive">
+							<div id="online_list" class="ui middle aligned selection list">
 
-					</div>
-				</td>
+						 </div>
 
+						</div>
+					</td>
 
+				</tr>
 			</table>
 
 
@@ -67,26 +99,27 @@
 </div>
 
 <!-- Use any element to open the sidenav -->
-<span>
+
 			<button  id="chat_button" class="btn-floating btn-large waves-effect waves-light purple tooltipped" data-position="left" data-delay="50" data-tooltip="chat">
 		  <i class="material-icons mdl-badge mdl-badge--overlap">perm_contact_calendar</i>
 		</button>
-</span>
+
 
 
 
 
 <div class="row">
   <div class="col-xs-12">
-		<div id="toper">
-			<div id='loadingmessage' style='display:none'>
-  <img src='loadinggraphic.gif'/>loading
+		<div id="toper" ng-include="url">
 
-</div>
-
-		</div>
   </div>
+
+
+
 </div>
+
+</div>
+
 
 	<script>
 	  $('#myButton').on('click', function () {
@@ -99,7 +132,25 @@
 
 <script>
 
-				var msgUser,interval = 50000000;
+			var app = angular.module('myApp', ['ngSanitize','ngMaterial']);
+
+
+			app.controller('mainCtrl', function($scope, $timeout) {
+				$scope.url = "p/0";
+				$scope.loadPage = function (page){
+					$scope.url = "p/"+page;
+				};
+
+			});
+
+			app.controller('kunna', function($scope, $http,$compile,$templateCache) {
+console.log("ffffffffffffffff");
+			});
+
+
+
+
+				var msgUser,interval = 5000;
 
 				function closeNav(){
 					$("#chatSidenav").toggle('fast');
@@ -108,20 +159,24 @@
 
 
 
-				$(document).ready(function(){
+				$(document).ready(function($){
 					//startup
-					loadPage("0");
+
+					updateOnlineUsers();
+					listOnlineUsers();
+					//loadPage(0);
 					$("#chatSidenav").toggle();
 
 					/*----------------------*/
+					/*-------update online users---------*/
 					setInterval(function() {
 					//call $.ajax here
 					//SELECT * FROM `member` WHERE (NOW() - last_logout) BETWEEN 0 and 5
-				//	updateOnlineUsers();
-				//	listOnlineUsers();
+					updateOnlineUsers();
+					listOnlineUsers();
 
 					}, interval);
-
+/*-----------------------------------------------------*/
 						$("#mainmenu li a").click(function(){
 							event.preventDefault();
 						// remove previously added selectedLi
@@ -265,7 +320,11 @@
 
 
 				function loadPage(selText){
+					/*
 					 var url ="p/"+selText;
+
+
+
 
 					$.post(url,
 					{
@@ -275,12 +334,15 @@
 					function(data, status){
 							//alert("Data: " + data + "\nStatus: " + status);
 								 $('#loadingmessage').hide();
-							$("#toper" ).html( data );
+								 $("#toper" ).html( data );
+						});
+
 
 					});
 					if(url!=window.location){
 						window.history.pushState({path:url},'',"page_"+selText);
 					}
+*/
 				}
 
 				/*----------------------------------------------------------*/
@@ -288,14 +350,9 @@
 
 					//initilize online users
 					/*----------------------------------------------------------*/
-					$.post("src/class/class.online.php",
-					{
-							//name: "Donald Duck",
-
-					},
+					$.get("online/id",
 					function(data, status){
-							//alert("Data: " + data + "\nStatus: " + status);
-								 //$('#loadingmessage').hide();
+							console.log(data);
 
 					})
 							.done(function() {
@@ -315,15 +372,10 @@
 
 				//get online users
 				/*----------------------------------------------------------*/
-				$.post("src/class/class.online.php",
-				{
-						//name: "Donald Duck",
-						chat_list : "1",
-						mem_id: '',
-				},
+				$.post("online/2",
 				function(data, status){
 						//alert("Data: " + data + "\nStatus: " + status);
-							 $('#mySidenav-users').html(data);
+							 $('#online_list').html(data);
 
 
 				})

@@ -304,9 +304,26 @@
         </div>
       </div>
       </form>
-
 </div>
+<div class="row">
+
+  <div id="search_result" class="wrapper col-xs-12">
+
+
+  </div>
+
+  <p>Name : <input type="text" ng-model="name"></p>
+<h1>Hello {{name}}</h1>
+</div>
+
+
 <script>
+
+app.controller('kunna', function($scope, $http) {
+  console.log("kunna created");
+});
+
+
 function dataGet ( element, key ) {
 	return element.getAttribute('data-' + key);
 }
@@ -341,6 +358,7 @@ function createSlider ( slider ) {
 
 
 $(document).ready(function() {
+
  $('select').material_select();
  $( "form" ).on( "submit", function( event ) {
   event.preventDefault();
@@ -351,16 +369,25 @@ $(document).ready(function() {
   data = $( this ).serialize()+data;
   console.log(data);
 
-    $.ajax({
-     type: 'POST',
-     url: $(this).attr('action'),
-     data: data,
-     success: function(data){
-        console.log(data);
+        $.ajax({
+         type: 'POST',
+         url: $(this).attr('action'),
+         data: data,
+         success: function(data){
+            //console.log(data);
+            $('#search_result').html(data);
+         }
+        });
+      });
 
-     }
+      $('.kkk').jscroll({
+        autoTrigger: true,
+        debug : true,
+        contentSelector: '.kkk > *',
     });
-});
+
+
+
 
 });
 </script>

@@ -1,6 +1,8 @@
 <?php
    class MessageModel extends CI_Model {
 
+
+
       function __construct() {
          parent::__construct();
       }
@@ -172,6 +174,27 @@
               $row = $result->row();
               return $row->count;
             }
+      }
+
+      public function updateOnlineUsers()      {
+         $data = array(
+                'mem_id' => $this->session->SESS_MEMBER_ID,
+                  );
+        $this->db->replace('user_online', $data);
+      }
+
+      public function listOnlineUsers()      {
+
+        $result = $this->db->get('member_online');
+        if ($result) {
+          if ($result->num_rows() == 0) {
+            echo "no users online";
+          }else {
+            foreach ($result->result() as $row) {
+                echo $this->parser->parse('template/online_list.php', $row,TRUE);
+            }
+          }
+        }
       }
 
 

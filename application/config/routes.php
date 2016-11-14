@@ -64,3 +64,5 @@ $route['(:any)/msg/count/(:num)']='Login/countMsg/$2';
 $route['(:any)/msg/f/(:num)']='Login/f/$2';
 $route['(:any)/msg/page/(:num)']='Login/messagePagination/$2';
 $route['(:any)/search/adv']='Login/advancedSearch';
+$route['(:any)/online/id']='Login/updateOnlineUsers';
+$route['(:any)/online/2']='Login/listOnlineUsers';

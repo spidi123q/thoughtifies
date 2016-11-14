@@ -200,12 +200,6 @@ $( function (){
 
 
 
-$(".kk").jscroll({
-   debug : true,
-   nextSelector: ".jscoll" ,
-   padding : 0,
-   callback : a,
- });
 
 
   $( ".completed" ).bind( "click", function() {
@@ -243,6 +237,14 @@ $(".kk").jscroll({
         $( "#result" ).empty().append( content );
       });
     });
+
+    $("#list_users").jscroll({
+       debug : true,
+       nextSelector: ".jscoll" ,
+       padding : 0,
+       callback : a,
+     });
+
 
 
 });

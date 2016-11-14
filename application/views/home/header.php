@@ -14,8 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.css">
 	<script src="<?php echo base_url(); ?>js/Semantic-UI-CSS-master/semantic.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/node_modules/responsive-toolkit/dist/bootstrap-toolkit.min.js"></script>
-	<script src="<?php echo base_url(); ?>js/node_modules/jscroll/jquery.jscroll.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/node_modules/jscroll/jquery.jscroll.js"></script>
+	<script src="<?php echo base_url(); ?>js/node_modules/angular/angular.js"></script>
 	<script src="<?php echo base_url(); ?>node_modules/nouislider/distribute/nouislider.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+	 <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
+
 
 
 

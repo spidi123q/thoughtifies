@@ -1,9 +1,5 @@
 body{
   overflow-x: hidden;
-  img{
-    max-width: 150px;
-    max-height: 150px;
-  }
 
 }
 
@@ -28,9 +24,9 @@ body{
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
-    width: 150px; /* 0 width - change this with JavaScript */
+    width: 200px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 998; /* Stay on top */
     top: 0;
     left: 0;
     background-color: white; /* Black*/
@@ -82,9 +78,13 @@ body{
   right:  25px;
   bottom: 25px;
   box-shadow: 0px 8px 8px grey;
-  background-color: #C51162
+  background-color: #C51162;
 }
 
 #mySidenav-users{
   padding: 8px 0px 8px 8px;
+}
+
+#online_list{
+
 }

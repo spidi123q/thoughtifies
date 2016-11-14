@@ -24,7 +24,7 @@
          </div>
          <div class="col-sm-4">
            <div id="profilePicture">
-             <img src="<?php echo $this->session->SESS_USERIMAGES.$picture; ?>" alt="" />
+             <img src="<?php echo $this->session->SESS_USERIMAGES.$picture.'_thumb.jpg'; ?>" alt="" />
 
                         <br/><button class="waves-effect waves-light btn" id="deleteDP_button">remove picture</button>
                         <br> <button type="button" class="waves-effect waves-light btn" data-toggle="modal" data-target="#myModal">Upload </button>

@@ -23,6 +23,30 @@
 
 
         }
+
+        private function convertToJPEG($data)      {
+
+          $fileType = $data->data('file_type');
+          $allowedType = array('image/jpeg', 'image/pjpeg');
+          if ( !in_array($fileType,$allowedType)) {
+            echo "not jpg";
+            $png = array('image/png',  'image/x-png');
+            if (in_array($fileType,$png)) {
+                echo " png";
+                $image = imagecreatefrompng ($data->data('full_path') );
+                $newFile = $data->data('file_path').$data->data('raw_name').'.jpg';
+                 imagejpeg($image,$newFile,100);
+                 echo $data->data('full_path');
+                  if (unlink($data->data('full_path'))) {
+                    //echo "deleted";
+                    return true;;
+                  }
+                  else {
+                    return false;
+                  }
+            }
+          }
+        }
         private function pageSearch()     {
          $this->load->view('home/search.php');
 
@@ -191,11 +215,15 @@
                else
                {
 
+                 $this->convertToJPEG($this->upload);
+                 $newFile = $this->upload->data('file_path').$this->upload->data('raw_name').'.jpg';
+
+
                        $qry = "UPDATE member SET picture=? WHERE mem_id=?";
 
-                       if ($this->db->query($qry, array($this->upload->data('file_name'), $this->session->SESS_MEMBER_ID))) {
+                       if ($this->db->query($qry, array($this->upload->data('raw_name'), $this->session->SESS_MEMBER_ID))) {
                          $config['image_library'] = 'gd2';
-                         $config['source_image'] = $this->upload->data('full_path');
+                         $config['source_image'] = $newFile;
                          $config['create_thumb'] = TRUE;
                          $config['maintain_ratio'] = TRUE;
                          $config['width']         = 200;
@@ -220,7 +248,7 @@
           'count' => $count,
           'page' => $page,
 
-      );
+          );
         echo $this->MessageModel->displayMessages($data);
 
 
@@ -234,6 +262,7 @@
         echo $this->MessageModel->sentMessage($data);
 
       }
+
       public function f($p)      {
                 echo 'page no : '+$p;
                 $content = '';
@@ -266,9 +295,21 @@
           'country' => $this->input->post('country'),
         );
 
-          echo $this->SearchModel->advancedSearch($data);
+        $this->SearchModel->advancedSearch($data);
+
+            //echo $this->SearchModel->advancedSearchPagination(3);
 
       }
+
+      public function updateOnlineUsers()      {
+        $this->MessageModel->updateOnlineUsers();
+      }
+
+      public function listOnlineUsers()      {
+        $this->MessageModel->listOnlineUsers();
+      }
+
+
 
 
 
