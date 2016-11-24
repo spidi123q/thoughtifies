@@ -1,427 +1,108 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/demo/css/style.css" type="text/css"/>
+</head>
+<body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden">
+  <div id="splash" ng-cloak ng-hide="bootscreen">
+        <h2>Loading</h2>
+     </div>
+
+	<md-toolbar style="z-index:999; position: fixed;box-shadow: 0px 5px 5px grey;">
+				<div class="md-toolbar-tools">
+							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
+																	ng-class="menu.selectedMode" class="md-fling md-raised md-fab-top-left">
+								 <md-fab-trigger>
+									 <md-button aria-label="menu" class="md-fab md-warn">
+										 <i class="material-icons">dashboard</i>
+									 </md-button>
+								 </md-fab-trigger>
+
+								 <md-fab-actions>
+                   <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini">
+									 </md-button>
+									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini">
+										 <i class="material-icons">message</i>
+									 </md-button>
+									 <md-button  href="#/request" aria-label="Facebook" class="md-fab md-raised md-mini">
+										 <md-icon md-svg-src="" aria-label="Facebook"></md-icon>
+									 </md-button>
+									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini">
+										 <md-icon md-svg-src="" aria-label="Google Hangout"></md-icon>
+									 </md-button>
+								 </md-fab-actions>
+							 </md-fab-speed-dial>
+					<span flex></span>
+
+				</div>
+			</md-toolbar>
+
+       <md-content layout-padding >
+      <div layout="row" style="height: 100%;" ng-cloak>
+        <section layout="row" flex >
+
+     <md-sidenav flex class="md-sidenav-left" md-component-id="left"
+                 md-disable-backdrop md-whiteframe="4">
+
+       <md-toolbar class="md-theme-indigo">
+         <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+       </md-toolbar>
+
+       <md-content layout-margin  >
+         <p >
+           This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+         </p>
+         <md-button ng-click="closeLeft()" class="md-accent">
+           Close this Sidenav
+         </md-button>
+            </md-content>
+     </md-sidenav>
 
 
-
-<body ng-app="myApp" ng-controller="mainCtrl">
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-<style media="screen">
-.virtualRepeatdemoInfiniteScroll #vertical-container {
-height: 292px;
-width: 100%;
-max-width: 400px; }
-
-.virtualRepeatdemoInfiniteScroll .repeated-item {
-border-bottom: 1px solid #ddd;
-box-sizing: border-box;
-height: 40px;
-padding-top: 10px; }
-
-.virtualRepeatdemoInfiniteScroll md-content {
-margin: 16px; }
-
-.virtualRepeatdemoInfiniteScroll md-virtual-repeat-container {
-border: solid 1px grey; }
-
-.virtualRepeatdemoInfiniteScroll .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
-padding-left: 16px; }
-
-</style>
-
-
-	<nav class="navbar navbar-ddefault navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-			<div class="dropdown">
-							<button class="dropdown-button btn btn-default dropdown-toggle btn-floating btn-large waves-effect waves-light red" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-activates='mainmenu'>
-              <i class="material-icons">receipt</i>
-              </button>
-
-							<ul id="mainmenu" class="dropdown-content" aria-labelledby="dropdownMenu1" >
-							<li><a ng-click="loadPage(0)" data-page="0">Home</a></li>
-							<li><a ng-click="loadPage(1)" data-page="1">Search</a></li>
-							<li><a ng-click="loadPage(2)"  data-page="2">Messages</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a ng-click="loadPage(3)"  data-page="3">Interest</a></li>
-							<li><a ng-click="loadPage(4)"  data-page="4">Settings</a></li>
-							</ul>
-		 </div>
-
-			</div>
-		</div>
-	</nav>
-
-<br><br><br><br>
-
-<div id="chatSidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br/>
-	<div id="mySidenav-users">
-
-			<table class="table">
-				<tr>
-					<td>
-
-						<div class="table-responsive">
-							<div id="online_list" class="ui middle aligned selection list">
-
-						 </div>
-
-						</div>
-					</td>
-
-				</tr>
-			</table>
-
-
-	</div>
-</div>
-
-
-<!-- Chat Modal -->
-<div id="chatModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div id="chatModal_data" class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
+   <div style="outline: none;
+       border: 0;" flex layout-padding ng-click="bodyClick()">
+<br><br>
+    <div ng-view layout-align="center center">
     </div>
 
   </div>
 </div>
 
-<!-- Use any element to open the sidenav -->
-
-			<button  id="chat_button" class="btn-floating btn-large waves-effect waves-light purple tooltipped" data-position="left" data-delay="50" data-tooltip="chat">
-		  <i class="material-icons mdl-badge mdl-badge--overlap">perm_contact_calendar</i>
-		</button>
 
 
 
 
+						</div>
+ </md-content>
 
-<div class="row">
-  <div class="col-xs-12">
-		<div id="toper" ng-include="url">
-
-  </div>
-
-
-
-</div>
-
-</div>
+  <md-button ng-click="toggleLeft()" style="position: fixed;
+    z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
+           <i class="material-icons ">perm_contact_calendar</i>
+   </md-button>
 
 
-	<script>
-	  $('#myButton').on('click', function () {
-	    var $btn = $(this).button('loading')
-	    // business logic...
-	    $btn.button('reset')
-	  })
-	</script>
+
+
+
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+  <script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
+  	<script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </body>
-
-<script>
-
-			var app = angular.module('myApp', ['ngSanitize','ngMaterial']);
-
-
-			app.controller('mainCtrl', function($scope, $timeout) {
-				$scope.url = "p/0";
-				$scope.loadPage = function (page){
-					$scope.url = "p/"+page;
-				};
-
-			});
-
-			app.controller('kunna', function($scope, $http,$compile,$templateCache) {
-console.log("ffffffffffffffff");
-			});
-
-
-
-
-				var msgUser,interval = 5000;
-
-				function closeNav(){
-					$("#chatSidenav").toggle('fast');
-				}``
-
-
-
-
-				$(document).ready(function($){
-					//startup
-
-					updateOnlineUsers();
-					listOnlineUsers();
-					//loadPage(0);
-					$("#chatSidenav").toggle();
-
-					/*----------------------*/
-					/*-------update online users---------*/
-					setInterval(function() {
-					//call $.ajax here
-					//SELECT * FROM `member` WHERE (NOW() - last_logout) BETWEEN 0 and 5
-					updateOnlineUsers();
-					listOnlineUsers();
-
-					}, interval);
-/*-----------------------------------------------------*/
-						$("#mainmenu li a").click(function(){
-							event.preventDefault();
-						// remove previously added selectedLi
-						$('.selectedLi').removeClass('selectedLi');
-						// add class `selectedLi`
-						$(this).addClass('selectedLi');
-						 $('#loadingmessage').show();
-						var selText = $(this).data('page');///User selected value...****
-						//alert(selText);
-						loadPage(selText);
-						$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+
-						' <span class="caret"></span>');
-						});
-
-
-				});
-
-
-				$(document).ready(function() {
-					var win = $(window);
-					//alert(win.scrollWidth);
-
-					// Each time the user scrolls
-					win.scroll(function() {
-							// End of the document reached?
-							if ($(document).height() - win.height() == win.scrollTop()) {
-									$('#loading').show();
-
-									// Uncomment this AJAX call to test it
-									/*
-									$.ajax({
-											url: 'get-post.php',
-											dataType: 'html',
-											success: function(html) {
-													$('#posts').append(html);
-													$('#loading').hide();
-											}
-									});
-									*/
-
-									$('#posts').append('jjjjjjjjjjjjjj');
-									$('#loading').hide();
-							}
-					});
-
-				/*	$('body').on('click', '#bodyPart', function () {
-							 alert("yeahhhh!!! but this doesn't work for me :(");
-					});*/
-
-					/*--------------------------------------------------------------
-							ajax message update post
-					------------------------------------------------------------------*/
-					$( "body" ).on( "submit",' #message_sent_form', function( event ) {
-					event.preventDefault();
-							console.log( $( this ).serialize() );
-							var formData = new FormData($(this)[0]);
-							//alert(formData);
-							console.log(formData);
-							$.ajax({
-									url: 'src/msgview.php',
-									type: 'POST',
-									data: formData,
-									async: false,
-									cache: false,
-									contentType: false,
-									processData: false,
-									success: function (returndata) {
-											//$("#productFormOutput").html(returndata);
-											//alert(returndata);
-											listMsgUser();
-											loadUserMsg(msgUser);
-									},
-									error: function () {
-											alert("error in ajax form submission");
-									}
-							});
-
-				});
-
-					/*----------------------------------------------------------------*/
-
-					/*--------------------------------------------------------------
-							ajax settings DOB update post
-					------------------------------------------------------------------*/
-					$( "body" ).on( "submit",'#DOB', function( event ) {
-					event.preventDefault();
-							console.log( $( this ).serialize() );
-							var formData = new FormData($(this)[0]);
-							//alert(formData);
-							//console.log(formData);
-
-							$.ajax({
-									url: 'src/settings.php',
-									type: 'POST',
-									data: formData,
-									async: false,
-									cache: false,
-									contentType: false,
-									processData: false,
-									success: function (returndata) {
-											//$("#productFormOutput").html(returndata);
-											//alert(returndata);
-
-									},
-									error: function () {
-											alert("error in ajax form submission");
-									}
-							});
-
-				});
-
-					/*----------------------------------------------------------------*/
-
-					/*---------------------chat button----------------*/
-					$("#chat_button").click(function(){
-							$("#chatSidenav").toggle("fast");
-					});
-					 $(".button-collapse").sideNav();
-				/*------------------------------------------------------------*/
-
-				/*------------------------open chat box----------------*/
-				$( "#mySidenav-users" ).on( "click",".user_chip", function() {
-					var username = $(this).data("username");
-
-					loadUserMsg(username);
-					setInterval(function() {
-
-						loadUserMsg(username);
-					}, interval);
-
-				});
-				/*------------------------------------------------------------*/
-
-
-
-
-
-
-			});
-
-
-
-				function loadPage(selText){
-					/*
-					 var url ="p/"+selText;
-
-
-
-
-					$.post(url,
-					{
-							//name: "Donald Duck",
-							sel: selText
-					},
-					function(data, status){
-							//alert("Data: " + data + "\nStatus: " + status);
-								 $('#loadingmessage').hide();
-								 $("#toper" ).html( data );
-						});
-
-
-					});
-					if(url!=window.location){
-						window.history.pushState({path:url},'',"page_"+selText);
-					}
-*/
-				}
-
-				/*----------------------------------------------------------*/
-				function updateOnlineUsers(){
-
-					//initilize online users
-					/*----------------------------------------------------------*/
-					$.get("online/id",
-					function(data, status){
-							console.log(data);
-
-					})
-							.done(function() {
-							 //alert( "second success" );
-						 })
-						 .fail(function() {
-							 alert( "error" );
-						 })
-						 .always(function() {
-							 //alert( "finished" );
-					 });
-
-				}
-			/*----------------------------------------------------------*/
-			/*----------------------------------------------------------*/
-			function listOnlineUsers(){
-
-				//get online users
-				/*----------------------------------------------------------*/
-				$.post("online/2",
-				function(data, status){
-						//alert("Data: " + data + "\nStatus: " + status);
-							 $('#online_list').html(data);
-
-
-				})
-						.done(function() {
-						 //alert( "second success" );
-					 })
-					 .fail(function() {
-						 alert( "error" );
-					 })
-					 .always(function() {
-						 //alert( "finished" );
-				 });
-
-			}
-			/*----------------------------------------------------------*/
-
-			/*----------------------------------------------------------
-					 load user chat messages
-			----------------------------------------------------------*/
-			function loadUserMsg(username){
-
-				$.post("src/sel_select.php",
-				{
-						//name: "Donald Duck",
-						userid: username,
-				},
-				function(data, status){
-						//alert("Data: " + data + "\nStatus: " + status);
-							 //$('#loadingmessage').hide();
-						$("#chatModal_data" ).html( data );
-
-				})
-						.done(function() {
-						 //alert( "second success" );
-					 })
-					 .fail(function() {
-						 alert( "error" );
-					 })
-					 .always(function() {
-						 //alert( "finished" );
-				 });
-
-			}
-
-			 /*----------------------------------------------------------*/
-
-</script>
-
 </html>

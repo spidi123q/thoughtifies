@@ -84,12 +84,13 @@
 
          $v = $this->LoginModel->login($data);
          if ($v) {
-           //echo "gdf";
-           $this->load->view('home/header');
            $this->load->view('home/index');
          }
          else {
-           echo "fail";
+           //echo "fail";
+            redirect('', 'refresh');
+            //index_page();
+
          }
 
       }
@@ -242,7 +243,6 @@
       public function displayMessages($page)    {
         $id = $this->input->post('id');
         $count = $this->input->post('count');
-        echo "page no : ".$page;
         $data = array(
           'id' => $id,
           'count' => $count,
