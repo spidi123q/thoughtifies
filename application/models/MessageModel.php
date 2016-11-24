@@ -89,7 +89,6 @@
                 ORDER BY date_time DESC
                 LIMIT {$data['page']} , 5
                 )result ORDER BY result.date_time";
-                echo $data['page'];
 
                 $result = $this->db->query($qry, array(
                         $this->session->SESS_MEMBER_ID,
@@ -97,6 +96,8 @@
                         $data['id'],
                         $this->session->SESS_MEMBER_ID,
                       ));
+                $temp = $result->result();
+                return json_encode($temp);
 
                     if ($result) {
                       foreach ($result->result_array() as $row) {
