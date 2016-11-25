@@ -1,16 +1,17 @@
 <div layout="row">
 
-    <div flex >
+    <div flex ng-controller="debug" >
       <md-content  flex="70" layout="row">
         <md-content flex ui-scroll-viewport>
 			<ul>
 				<div ui-scroll="item in listMessengers">
-          <div >
-            {{item}}
-          </div>
-
-
-  </div>
+            <md-list-item class="md-3-line" ng-click="null">
+               <img ng-src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" class="md-avatar" alt="" />
+               <div class="md-list-item-text" layout="column">
+                 {{item.fname}}
+               </div>
+         </md-list-item>
+        </div>
 			</ul>
 
 

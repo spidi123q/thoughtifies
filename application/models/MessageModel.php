@@ -7,6 +7,12 @@
          parent::__construct();
       }
 
+      public function temp()      {
+        # code...
+        $query = $this->db->get('member');
+        echo json_encode($query->result());
+      }
+
       public function listMessengers()      {
         $content = '<table><td>';
             $qry = "SELECT DISTINCT sender

@@ -265,12 +265,19 @@
 
       public function f($p)      {
 
-          $data = array('suraj' => "sfsdf",
-          'gdfg' => "sfsdf",
-          'rrrr' => "sfsdf",
+          $data = array('count' => 500,
         );
-        echo json_encode($data);
+        if ($p != 6)
+        $this->MessageModel->temp();
+        else
+          echo json_encode($data);
 
+
+
+      }
+
+      function countMsgU()      {
+        # code...
       }
 
       public function countMsg($id)      {

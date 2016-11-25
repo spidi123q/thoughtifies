@@ -36,33 +36,66 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
       var big = -1;
       var page = [];
+
+      var getCount = function (big) {
+        var deferred = $q.defer();
+        if (big == 0) {
+
+              $http({
+                method: 'GET',
+                url: 'msg/f/'+6,
+              }).then(function successCallback(response) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  console.log(response.data);
+                  max = response.data.count;
+                  deferred.resolve(response);
+
+                }, function errorCallback(response) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+                   deferred.reject({ message: "Really bad" });
+                });
+
+        }else {
+          deferred.resolve({ message: "no http needed" });
+        }
+        return deferred.promise;
+
+      };
       var setBig = function(index){
 
       var deferred = $q.defer();
 
         if(index > big){
           big = index;
+          getCount(big).then(function () {
+            $http({
+              method: 'GET',
+              url: 'msg/f/'+big,
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log(response.data);
+                for (var i = 0; i < response.data.length; i++) {
+                  page.push(response.data[i]);
+                }
 
-          $http({
-            method: 'GET',
-            url: 'msg/f/6'
-          }).then(function successCallback(response) {
-              // this callback will be called asynchronously
-              // when the response is available
-              console.log(response.data);
-              for(var i = 0; i< 10;i++)
-              page.push(response.data);
-              deferred.resolve(response);
+                deferred.resolve(response);
 
-            }, function errorCallback(response) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-               deferred.reject({ message: "Really bad" });
-            });
+              }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                 deferred.reject({ message: "Really bad" });
+              });
+          });
+
+
+
 
         }
         else {
-          deferred.resolve("5");
+          deferred.resolve({ message: "no http needed" });
         }
         return deferred.promise;
       };
@@ -80,21 +113,14 @@ console.log("cll");
                 // promise was fullfilled (regardless of outcome)
                 // checks for information will be peformed here
                 var result2 = [];
-
-                console.log("kunna");
                 for (var i = index; i <= index + count - 1; i++) {
-                  console.log("index: "+index);
-                  console.log("i = "+i);
+                  //console.log("index: "+index);
+                  //console.log("i = "+i);
                  if(i < 0 || i > max) {
                               continue;
                           }
-                  //console.log(page);
-                  //alert(page[i]);
-                  if (page[i] === '') {
-                      alert(8);
-                  }else {
-                  }
-                  result2.push("fdgd"+page[i]);
+                          //console.log(page);
+                  result2.push(page[i]);
                 }
                 success(result2);
 
@@ -120,7 +146,13 @@ console.log("cll");
 app.controller('DemoCtrl', function() {
 
 });
-
+app.controller('debug', ['$scope', '$log', function($scope, $log) {
+   $scope.greetings = ["Hello", "Bonjour", "Guten tag"];
+   console.log("debug created");
+   $scope.log = function(message) {
+     $log.debug(message);
+   }
+ }]);
 
 
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log) {
