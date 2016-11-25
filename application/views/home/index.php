@@ -13,7 +13,7 @@
 	<md-toolbar style="z-index:999; position: fixed;box-shadow: 0px 5px 5px grey;">
 				<div class="md-toolbar-tools">
 							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
-																	ng-class="menu.selectedMode" class="md-fling md-raised md-fab-top-left">
+																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
 								 <md-fab-trigger>
 									 <md-button aria-label="menu" class="md-fab md-warn">
 										 <i class="material-icons">dashboard</i>
@@ -105,4 +105,22 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </body>
+<style media="screen">
+.fabSpeedDialdemoBasicUsage .text-capitalize {
+text-transform: capitalize; }
+
+.fabSpeedDialdemoBasicUsage .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
+background-color: #000 !important; }
+
+.fabSpeedDialdemoBasicUsage p.note {
+font-size: 1.2rem; }
+
+.fabSpeedDialdemoBasicUsage .lock-size {
+min-width: 300px;
+min-height: 300px;
+width: 300px;
+height: 300px;
+margin-left: auto;
+margin-right: auto; }
+</style>
 </html>

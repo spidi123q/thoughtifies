@@ -20,27 +20,95 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/request',{template:'This is the fs Route'})
                 .when('/profile',{template:'This is the profile Route'})
                 .otherwise({redirectTo:'/'});
-            }]);
+}]);
 
-app.factory('listMessengers', ['$log', '$timeout',
-		function (console, $timeout) {
+app.factory('getMsgUsers',['$log', '$timeout','$http','$q',
+ function(console, $timeout,$http,$q) {
+
+}]);
+
+
+
+app.factory('listMessengers', ['$log', '$timeout','$http','$q',
+		function (console, $timeout,$http,$q) {
+
+      var max = 1000;
+
+      var big = -1;
+      var page = [];
+      var setBig = function(index){
+
+      var deferred = $q.defer();
+
+        if(index > big){
+          big = index;
+
+          $http({
+            method: 'GET',
+            url: 'msg/f/6'
+          }).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+              console.log(response.data);
+              for(var i = 0; i< 10;i++)
+              page.push(response.data);
+              deferred.resolve(response);
+
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+               deferred.reject({ message: "Really bad" });
+            });
+
+        }
+        else {
+          deferred.resolve("5");
+        }
+        return deferred.promise;
+      };
+
+
 
 			var get = function (index, count, success) {
 
-
-        var max = 100;
+console.log("cll");
 				$timeout(function () {
-					var result = [];
+
           index = index-1;
-					for (var i = index; i <= index + count - 1; i++) {
-            console.log("index: "+index);
-					 if(i < 0 || i > max) {
-                        continue;
-                    }
-						result.push("item #" + i);
-					}
-					success(result);
-				}, 100);
+          setBig(index).then(
+            function (result) {
+                // promise was fullfilled (regardless of outcome)
+                // checks for information will be peformed here
+                var result2 = [];
+
+                console.log("kunna");
+                for (var i = index; i <= index + count - 1; i++) {
+                  console.log("index: "+index);
+                  console.log("i = "+i);
+                 if(i < 0 || i > max) {
+                              continue;
+                          }
+                  //console.log(page);
+                  //alert(page[i]);
+                  if (page[i] === '') {
+                      alert(8);
+                  }else {
+                  }
+                  result2.push("fdgd"+page[i]);
+                }
+                success(result2);
+
+            },
+            function (error) {
+                // handle errors here
+                console.log(error.statusText);
+            }
+        );
+
+
+
+				},100);
+
 			};
 
 			return {

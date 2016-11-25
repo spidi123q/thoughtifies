@@ -264,19 +264,13 @@
       }
 
       public function f($p)      {
-                echo 'page no : '+$p;
-                $content = '';
-                $content .= '<div class="completed step">
-              <i class="truck icon"></i>
-              <div class="content">
-                <div class="title">Shipping</div>
-                <div class="description">Choose your shipping options</div>
-              </div>
-            </div>';
-            $p +=10;
-                echo  $content.'<a class="jscoll" href="msg/f/'.$p.'">
-        loafd
-                </a>';
+
+          $data = array('suraj' => "sfsdf",
+          'gdfg' => "sfsdf",
+          'rrrr' => "sfsdf",
+        );
+        echo json_encode($data);
+
       }
 
       public function countMsg($id)      {
