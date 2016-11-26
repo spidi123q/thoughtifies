@@ -1,5 +1,15 @@
 
 var app = angular.module('BlankApp', ['ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite']);
+
+app.directive('myCustomer', function() {
+  return {
+    restrict: 'E',
+    template: '<h1>fdsfs</h1>',
+  };
+});
+
+
+
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('teal',{
@@ -18,9 +28,11 @@ app.config(['$routeProvider', function($routeProvider){
                   templateUrl:'p/2',
                 })
                 .when('/request',{template:'This is the fs Route'})
-                .when('/profile',{template:'This is the profile Route'})
+                .when('/profile',{templateUrl:'p/4'})
                 .otherwise({redirectTo:'/'});
 }]);
+
+
 
 app.factory('getMsgUsers',['$log', '$timeout','$http','$q',
  function(console, $timeout,$http,$q) {
@@ -104,7 +116,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 			var get = function (index, count, success) {
 
-console.log("cll");
+        console.log("cll");
 				$timeout(function () {
 
           index = index-1;
@@ -138,7 +150,10 @@ console.log("cll");
 			};
 
 			return {
-				get: get
+				get: get,
+        test : function () {
+          return max;
+        }
 			};
 		}
 	]);
@@ -146,12 +161,143 @@ console.log("cll");
 app.controller('DemoCtrl', function() {
 
 });
-app.controller('debug', ['$scope', '$log', function($scope, $log) {
+app.controller('Settings', ['$scope','$http',function($scope,$http) {
+
+          console.log("seetigs");
+          $scope.settingsData = {
+            tabs : {
+              profile  : {
+                name : "Profile",
+                info  : {
+                  aboutme : {
+                    name: "ABOUT ME",
+                    icon: "flaticons/svg/curriculum.svg"
+                  },
+                  mypre : {
+                    name: "MY PREFRENCES",
+                    icon  : "flaticons/svg/color-palatte.svg"
+                  },
+                  gender : {
+                    name: "GENDER",
+                  },
+                  bday : {
+                    name: "BIRTHDAY",
+                    icon: "flaticons/svg/birthday-cake.svg"
+                  },
+                  email : {
+                    name: "EMAIL",
+                    icon: "flaticons/svg/note.svg"
+                  },
+                  ph : {
+                    name: "PHONE",
+                    icon: "flaticons/svg/phone-book.svg"
+                  },
+                  country : {
+                    name: "COUNTRY",
+                  },
+                },
+              },
+              photos  : {
+                name  : "Photos",
+              },
+              settings  : {
+                name  : "Settings",
+              },
+            }
+
+          };
+          $http({
+            method: 'GET',
+            url: 'settings/get/0',
+          }).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+              $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
+              $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+              $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
+              $scope.settingsData.tabs.profile.info.email.data = response.data.email;
+              $scope.settingsData.tabs.profile.info.ph.data = response.data.contact;
+              $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
+              $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
+
+              console.log(response.data);
+              if (response.data.gender == 'M') {
+                $scope.settingsData.tabs.profile.info.gender.data = "Male";
+                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
+              }else {
+                $scope.settingsData.tabs.profile.info.gender.data = "Female";
+                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/femenine.svg";
+              }
+
+
+
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+
+            });
+
+            $scope.openMenu = function($mdOpenMenu, ev) {
+              $mdOpenMenu(ev);
+            };
+            $scope.phones = [
+     {
+       type: 'Home',
+       number: '(555) 251-1234',
+       options: {
+         icon: 'communication:phone'
+       }
+     },
+     {
+       type: 'Cell',
+       number: '(555) 786-9841',
+       options: {
+         icon: 'communication:phone',
+         avatarIcon: true
+       }
+     },
+     {
+       type: 'Office',
+       number: '(555) 314-1592',
+       options: {
+         face : imagePath
+       }
+     },
+     {
+       type: 'Offset',
+       number: '(555) 192-2010',
+       options: {
+         offset: true,
+         actionIcon: 'communication:phone'
+       }
+     }
+   ];
+  var imagePath = "";
+
+
+
+
+}]);
+app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $log,listMessengers) {
    $scope.greetings = ["Hello", "Bonjour", "Guten tag"];
-   console.log("debug created");
-   $scope.log = function(message) {
-     $log.debug(message);
+   console.log("fgdfgdfffffff");
+   $scope.log = function() {
+     listMessengers.test();
    }
+   $scope.jj = listMessengers;
+
+   $scope.msgUserListAdapter = {
+     remain: true
+   };
+
+
+
+   $scope.removeFromList1 = function() {
+     console.log("del");
+     return $scope.msgUserListAdapter.reload(0);
+   };
+
+
  }]);
 
 

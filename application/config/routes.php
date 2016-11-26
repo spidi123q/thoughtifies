@@ -57,6 +57,7 @@ $route['data/2']='Login/createAccount';
 $route['home']='Login/loadHome';
 $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';
+$route['(:any)/settings/get/0']='Login/getMyDetails';
 $route['(:any)/settings/upload']='Login/doUpload';
 $route['(:any)/msg/load/(:num)']='Login/displayMessages/$2';
 $route['(:any)/msg/sent']='Login/sentMessage';

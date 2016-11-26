@@ -62,8 +62,7 @@
 
        }
       private function pageSettings()     {
-        $data =  $this->SessionModel->settings();
-        $this->load->view('home/settings',$data);
+        $this->load->view('home/settings');
 
       }
 
@@ -276,9 +275,7 @@
 
       }
 
-      function countMsgU()      {
-        # code...
-      }
+
 
       public function countMsg($id)      {
         echo $this->MessageModel->countMsg($id);
@@ -308,6 +305,11 @@
 
       public function listOnlineUsers()      {
         $this->MessageModel->listOnlineUsers();
+      }
+
+      public function getMyDetails()      {
+          $this->SessionModel->getDetails($this->session->SESS_MEMBER_ID);
+
       }
 
 

@@ -90,29 +90,13 @@
 
       }
 
-      public function settings()      {
-        $baseData = array('dp_thumb' => '',
-        );
-        $qry = "SELECT * FROM mDetails WHERE mem_id = ?";
-        $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID));
-        if ($result) {
-          foreach ($result->result_array() as $row){
-            $baseData = array_replace($baseData, $row);
-          }
+      public function getDetails($id)      {
 
-
-        }
-        $qry = "SELECT * FROM member WHERE mem_id=?";
-        $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID));
-        if ($result) {
-          foreach ($result->result_array() as $row){
-            $baseData = array_replace($baseData,$row );
-            //$baseData = array_replace($baseData,array('picture' => base_url()."images/userimages/".$row->picture ) );
-
-          }
-
-        }
-        return $baseData;
+        $query = $this->db->get_where('member_details', array('mem_id' => $id) );
+        $data  = $query->row_array();
+        $this->load->library('country_iso');
+        $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+        echo json_encode($data);
 
       }
 
