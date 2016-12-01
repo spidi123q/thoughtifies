@@ -1,11 +1,11 @@
-<div layout="row" ng-controller="debug">
+<md-content layout="row" ng-controller="debug">
 
     <div flex  >
       <md-content  flex="70" layout="row">
         <md-content flex ui-scroll-viewport>
 			<ul>
 				<div ui-scroll="item in jj" adapter="msgUserListAdapter">
-            <md-list-item class="md-3-line" ng-click="null">
+            <md-list-item class="md-3-line" ng-click="selectMsgUser(item.mem_id)">
                <img ng-src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" class="md-avatar" alt="" />
                <div class="md-list-item-text" layout="column">
                  {{item.fname}}
@@ -19,11 +19,25 @@
       </md-content>
 <br>
   </div>
+        <div ng-controller="msgController" layout="column" flex="50">
+              <md-content layout="row" flex="60">
+                    <md-content flex ui-scroll-viewport >
+                          <ul>
+                            <div ui-scroll="item in datasource">
+                              *{{item}}*
+                            </div>
+                          </ul>
+                    </md-content>
+            </md-content>
+            <div layout="row" flex>
+              <textarea flex="70">
+              </textarea>
+            </div>
+            <div layout="row" flex="20">
+              <md-button class="md-warn">send</md-button>
+            </div>
 
-  <div flex="60" hide-xs>
-    fffffffffffffffff
-<button ng-click="removeFromList1()" type="button" name="button">ggggggggggggg</button>
+        </div>
 
 
-  </div>
-</div>
+</md-content>

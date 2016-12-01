@@ -100,39 +100,32 @@
 
       }
 
-      public function changeTag($value)    {
-        $qry = "INSERT INTO mDetails(mem_id,tag) VALUES(?,?) ON DUPLICATE KEY UPDATE tag=?";
-        $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID,"$value","$value"));
+      public function changeName($data)    {
+        $response = array(
+          'sel' => 1,
+          'status' => true,
+        );
+
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+        $result = $this->db->update('member',$data);
         if ($result) {
-          echo "updated";
+          $response['status'] = true;
+
         }
         else {
-          echo "failed";
+          $response['status'] = false;
         }
+        echo json_encode($response);
+      }
 
+      public function changeTag($value)    {
       }
       public function changeAboutMe($value)    {
-        $qry = "INSERT INTO mDetails(mem_id,about_me) VALUES(?,?) ON DUPLICATE KEY UPDATE about_me=?";
-        $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID,"$value","$value"));
-        if ($result) {
-          echo "updated";
-        }
-        else {
-          echo "failed";
-        }
-
       }
       public function changeAboutPartner($value)    {
-        $qry = "INSERT INTO mDetails(mem_id,about_partner) VALUES(?,?) ON DUPLICATE KEY UPDATE about_partner=?";
-        $result = $this->db->query($qry, array($this->session->SESS_MEMBER_ID,"$value","$value"));
-        if ($result) {
-          echo "updated";
-        }
-        else {
-          echo "failed";
-        }
-
       }
+
+
       public function deleteDP()      {
         $qry = "SELECT picture FROM member WHERE mem_id=?";
         $result = $this->db->query($qry,array($this->session->SESS_MEMBER_ID));

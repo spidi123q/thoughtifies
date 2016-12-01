@@ -146,10 +146,9 @@
           $info = array(
           'sender' => $this->session->SESS_MEMBER_ID,
           'receiver' => $data['receiver'],
-          'message' => "{$data['msg']}" ,
+          'message' => "{$data['message']}" ,
           );
-           $this->db->set('date_time', 'NOW()', FALSE);
-          return $this->db->insert('myMessages',$info);
+          //echo  $this->db->insert('myMessages',$info);
       }
 
       public function countMsg($id)      {
@@ -192,15 +191,9 @@
 
       public function listOnlineUsers()      {
 
-        $result = $this->db->get('member_online');
-        if ($result) {
-          if ($result->num_rows() == 0) {
-            echo "no users online";
-          }else {
-            foreach ($result->result() as $row) {
-                echo $this->parser->parse('template/online_list.php', $row,TRUE);
-            }
-          }
+        $query = $this->db->get('member_online');
+        if ($query) {
+          echo  json_encode($query->result());
         }
       }
 

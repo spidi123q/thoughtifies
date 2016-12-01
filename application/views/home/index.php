@@ -39,7 +39,7 @@
 				</div>
 			</md-toolbar>
 
-       <md-content layout-padding >
+       <md-content ng-controller="chatInit" layout-padding >
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 
@@ -51,28 +51,37 @@
        </md-toolbar>
 
        <md-content layout-margin  >
-         <p >
-           This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
-         </p>
-         <md-button ng-click="closeLeft()" class="md-accent">
-           Close this Sidenav
-         </md-button>
+         <md-list flex>
+         <md-subheader class="md-no-sticky">
+           <md-button ng-click="closeLeft()" class="md-accent">
+             Close this Sidenav
+           </md-button>
+         </md-subheader>
+         <md-list-item class="md-3-line" ng-repeat="user in list[0]" ng-click="null">
+           <img ng-src="" class="md-avatar" alt="{{user.fname}}" />
+           <div class="md-list-item-text" layout="column">
+             <h3>{{ user.fname }} {{user.lname}}</h3>
+           </div>
+         </md-list-item>
+       </md-list>
+
             </md-content>
      </md-sidenav>
 
 
    <div style="outline: none;
-       border: 0;" flex layout-padding ng-click="bodyClick()">
+       border: 0;" flex layout-padding>
 <br><br>
+<!--
+<md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
+         <i class="material-icons ">perm_contact_calendar</i>
+ </md-button>-->
     <div ng-view layout-align="center center">
+
     </div>
 
   </div>
 </div>
-
-
-
-
 
 						</div>
  </md-content>
@@ -88,12 +97,15 @@
 
 
 
+
+
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+    <script src="https://cdn.rawgit.com/AngularClass/angular-websocket/v2.0.0/dist/angular-websocket.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
   	<script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
 

@@ -1,4 +1,5 @@
 <?php
+
    class Login extends CI_Controller {
 
      function __construct() {
@@ -11,6 +12,13 @@
      }
 
      /*******private functions**********/
+
+     private function getPHPInput()  {
+       $temp = json_decode(file_get_contents("php://input"));
+       $array = get_object_vars($temp);
+       return $array;
+       //return get_object_vars($temp);
+     }
 
         private function pageHome()     {
 
@@ -52,9 +60,7 @@
 
         }
         private function pageMessages()     {
-            $data = array('listMessengers' => $this->MessageModel->listMessengers(),
-            );
-            $this->load->view('home/messages.php',$data);
+            $this->load->view('home/messages.php');
 
         }
        private function pageInterest()     {
@@ -176,7 +182,6 @@
 
 
         if ($value == 1) {
-
           $data = $this->input->post('data');
           $this->SessionModel->changeTag($data);
         }
@@ -191,6 +196,15 @@
         elseif ($value == 4) {
             echo  ($this->SessionModel->deleteDP())?1:0;
         }
+        elseif ($value == 5) {
+          //$temp = json_decode(file_get_contents("php://input"));
+          //print_r($temp);
+          //$data = get_object_vars($temp);
+          $data = $this->getPHPInput();
+          //print_r($data);
+          $this->SessionModel->changeName($data);
+        }
+
         else {
           echo "invalid  selection";
         }
@@ -254,11 +268,11 @@
       }
 
       public function sentMessage()    {
-        $data = array(
-          'receiver' => $this->input->post('receiver'),
-          'msg' => $this->input->post('msg'),
-        );
-        echo $this->MessageModel->sentMessage($data);
+
+        $data =  $this->input->post() ;
+        print_r($data);
+        //$this->MessageModel->sentMessage($data);
+
 
       }
 
@@ -299,9 +313,6 @@
 
       }
 
-      public function updateOnlineUsers()      {
-        $this->MessageModel->updateOnlineUsers();
-      }
 
       public function listOnlineUsers()      {
         $this->MessageModel->listOnlineUsers();
@@ -309,8 +320,31 @@
 
       public function getMyDetails()      {
           $this->SessionModel->getDetails($this->session->SESS_MEMBER_ID);
-
       }
+
+      public function getDialog($sel)      {
+        if($sel == 1)
+          $this->load->view('template/dialog/settings_edit.php');
+      }
+
+      public function getDialogContent($sel)      {
+
+          if($sel == 1)
+            $this->load->view('template/dialog/content/change_name.php');
+          else if($sel == 3)
+                $this->load->view('template/dialog/content/change_aboutme.php');
+          else if($sel == 4)
+              $this->load->view('template/dialog/content/change_mypre.php');
+          else if($sel == 6)
+            $this->load->view('template/dialog/content/change_bday.php');
+        }
+
+        public function getMyInfo()        {
+          $data = array('mem_id' => $this->session->SESS_MEMBER_ID, );
+          echo json_encode($data);
+        }
+
+
 
 
 
