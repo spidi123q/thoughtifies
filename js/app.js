@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket']);
+var app = angular.module('BlankApp', ['ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload']);
 
 app.directive('myCustomer', function() {
   return {
@@ -314,7 +314,8 @@ app.controller('chatInit', function($scope,$http,MyWebSocket) {
       }
     };
 });
-app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$mdDialog) {
+app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function($scope,$http,$mdDialog,FileUploader) {
+
 
           console.log("seetigs");
           $scope.settingsData = {
@@ -332,6 +333,10 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
                   },
                   gender : {
                     name: "GENDER",
+                    value:  {
+                      male : "MALE",
+                      female : "FEMALE"
+                    },
                   },
                   bday : {
                     name: "BIRTHDAY",
@@ -362,6 +367,12 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
             config: true,
 
           };
+
+
+
+
+
+
           $http({
             method: 'GET',
             url: 'settings/get/0',
@@ -416,37 +427,138 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
   };
   $scope.getDialog = function(ev,sel) {
 
-    for (var i = 1; i < 10; i++) {
+    var openModal = function () {
+            $mdDialog.show({
+              controller: DialogController,
+              templateUrl: 'dialog/1',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+              bindToController  : true,
+              locals : {
+                settingsData  : $scope.settingsData,
+              },
+              fullscreen: false // Only for -xs, -sm breakpoints.
+            })
+            .then(function(answer) {
+              $scope.status = 'You said the information was .';
+            }, function() {
+              $scope.status = 'You cancelled the dialog.';
+            });
+      };
+
+    var preFetch = function (sel) {
+      if (sel == 9) {
+
+        $http({
+            method: 'GET',
+            url: 'list/countries',
+
+          }).then(function successCallback(response) {
+            $scope.settingsData.countries = response.data;
+            console.log(response.data);
+            openModal();
+
+            }, function errorCallback(response) {
+
+            });
+
+
+      }else {
+        openModal();
+      }
+    };
+
+    for (var i = 0; i < 10; i++) {
       if(sel === i){
         $scope.settingsData.dialog.url = "dialog/content/"+i;
+        $scope.settingsData.click = i;
+        preFetch(i);
         break;
       }
     }
 
 
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'dialog/1',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      bindToController  : true,
-      locals : {
-        settingsData  : $scope.settingsData,
-      },
-      fullscreen: false // Only for -xs, -sm breakpoints.
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was .';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-  };
+
+    };
 
       function DialogController($scope, $mdDialog,settingsData) {
         $scope.settingsData = settingsData;
         $scope.settingsData.dialog.progress = true;
         $scope.user = angular.copy(settingsData);
+        $scope.user.bday  = new Date();
+        $scope.myImage='';
+          $scope.myCroppedImage='';
+        $scope.upload = {
+          progress : true,
+        };
+        var uploader = $scope.uploader = new FileUploader({
+          url: 'settings/upload',
+          autoUpload: true,
+        });
+        // FILTERS
+
+          uploader.filters.push({
+              name: 'customFilter',
+              fn: function(item /*{File|FileLikeObject}*/, options) {
+                  return this.queue.length < 10;
+              }
+          });
+
+          // CALLBACKS
+
+          uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+              console.info('onWhenAddingFileFailed', item, filter, options);
+          };
+          uploader.onAfterAddingFile = function(fileItem) {
+              console.info('onAfterAddingFile', fileItem);
+          };
+          uploader.onAfterAddingAll = function(addedFileItems) {
+              //console.info('onAfterAddingAll', addedFileItems);
+              console.log($scope.uploader.queue[0]._file);
+          };
+          uploader.onBeforeUploadItem = function(item) {
+              console.info('onBeforeUploadItem', item);
+              $scope.upload.progress = false;
+
+          };
+          uploader.onProgressItem = function(fileItem, progress) {
+              console.info('onProgressItem', fileItem, progress);
+
+          };
+          uploader.onProgressAll = function(progress) {
+              console.info('onProgressAll', progress);
+              $scope.upload.status = progress;
+          };
+          uploader.onSuccessItem = function(fileItem, response, status, headers) {
+              console.info('onSuccessItem', fileItem, response, status, headers);
+              $scope.upload.progress = true;
+
+          };
+          uploader.onErrorItem = function(fileItem, response, status, headers) {
+              console.info('onErrorItem', fileItem, response, status, headers);
+          };
+          uploader.onCancelItem = function(fileItem, response, status, headers) {
+              console.info('onCancelItem', fileItem, response, status, headers);
+          };
+          uploader.onCompleteItem = function(fileItem, response, status, headers) {
+              //console.info('onCompleteItem', fileItem, response, status, headers);
+              $scope.myImage= "data:image/jpeg;base64,"+response;
+          };
+          uploader.onCompleteAll = function() {
+              console.info('onCompleteAll');
+          };
+
+          console.info('uploader', uploader);
+
+
+
+
+
+
+
+
+
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -457,6 +569,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
 
         $scope.submit = function(sel) {
           $scope.settingsData.dialog.progress = false;
+          $scope.settingsData.dialog.type = "indeterminate";
           if(sel == 1){
             $http({
                 method: 'POST',
@@ -466,7 +579,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
                   lname : $scope.user.lname,
                 }),
 
-            }).then(function successCallback(response) {
+              }).then(function successCallback(response) {
                     //console.log(response.data);
                     if (response.data.status) {
                       $scope.settingsData.fname = $scope.user.fname;
@@ -479,6 +592,101 @@ app.controller('Settings', ['$scope','$http','$mdDialog',function($scope,$http,$
                   $scope.settingsData.dialog.progress = true;
 
                 });
+          }
+          else if (sel == 5) {
+
+            var gender;
+            var info = settingsData.tabs.profile.info.gender.value;
+            if ($scope.user.gender == info.male) {
+                gender = "M";
+            }else {
+              gender = "F";
+            }
+
+            $http({
+                method: 'POST',
+                url: 'settings/6',
+                data: JSON.stringify({
+                  gender : gender,
+                }),
+
+              }).then(function successCallback(response) {
+                    console.log(response.data);
+                    if (response.data.status) {
+
+                      if (gender === "M") {
+                        $scope.settingsData.tabs.profile.info.gender.data = "Male";
+                        $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
+                      }else {
+                        $scope.settingsData.tabs.profile.info.gender.data = "Female";
+                        $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/femenine.svg";
+                      }
+
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+
+                    }
+                }, function errorCallback(response) {
+                      console.log(response);
+                });
+
+          }
+          else if (sel == 6) {
+
+            var data = {
+              yy  : $scope.user.bday.getFullYear(),
+              mm  : $scope.user.bday.getMonth()+1,
+              dd  : $scope.user.bday.getDate(),
+            };
+
+
+
+            $http({
+                method: 'POST',
+                url: 'settings/7',
+                data: data,
+
+              }).then(function successCallback(response) {
+                    console.log(response.data);
+                    if (response.data.status) {
+
+
+
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+
+                    }
+                }, function errorCallback(response) {
+                      console.log(response);
+                });
+
+
+          }
+          else if (sel == 9) {
+
+
+            $http({
+                method: 'POST',
+                url: 'settings/8',
+                data: {
+                  country : $scope.user.tabs.profile.info.country.data,
+                },
+
+              }).then(function successCallback(response) {
+                    console.log(response.data);
+                    if (response.data.status) {
+
+
+
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+
+                    }
+                }, function errorCallback(response) {
+                      console.log(response);
+                });
+
+
           }
 
 

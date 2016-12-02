@@ -12,7 +12,7 @@
       <md-button ng-click="cancel()">
        CANCEL
       </md-button>
-      <md-button class="md-warn" ng-click="submit(1)">
+      <md-button class="md-warn" ng-click="submit(settingsData.click)">
         UPDATE
       </md-button>
     </md-dialog-actions>

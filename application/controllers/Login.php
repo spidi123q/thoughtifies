@@ -197,12 +197,23 @@
             echo  ($this->SessionModel->deleteDP())?1:0;
         }
         elseif ($value == 5) {
-          //$temp = json_decode(file_get_contents("php://input"));
-          //print_r($temp);
-          //$data = get_object_vars($temp);
           $data = $this->getPHPInput();
-          //print_r($data);
           $this->SessionModel->changeName($data);
+        }
+        elseif ($value == 6) {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->SessionModel->changeGender($data);
+        }
+        elseif ($value == 7) {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->SessionModel->changeBday($data);
+        }
+        elseif ($value == 8) {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->SessionModel->changeCountry($data);
         }
 
         else {
@@ -220,7 +231,7 @@
 
                $this->load->library('upload', $config);
 
-               if ( ! $this->upload->do_upload('userfile'))
+               if ( ! $this->upload->do_upload('file'))
                {
                        $error = array('error' => $this->upload->display_errors());
 
@@ -246,7 +257,9 @@
 
                          $this->load->library('image_lib', $config);
                          $this->image_lib->resize();
-                         echo "1";
+                         $im = file_get_contents($this->upload->data('full_path'));
+                         $imdata = base64_encode($im);
+                         echo $imdata;
                        }
 
 
@@ -328,20 +341,31 @@
       }
 
       public function getDialogContent($sel)      {
-
-          if($sel == 1)
+          if ($sel == 0) {
+            $this->load->view('template/dialog/content/change_dp.php');
+          }
+          else if($sel == 1)
             $this->load->view('template/dialog/content/change_name.php');
           else if($sel == 3)
                 $this->load->view('template/dialog/content/change_aboutme.php');
           else if($sel == 4)
               $this->load->view('template/dialog/content/change_mypre.php');
+          else if($sel == 5)
+              $this->load->view('template/dialog/content/change_gender.php');
           else if($sel == 6)
             $this->load->view('template/dialog/content/change_bday.php');
+          else if($sel == 9)
+            $this->load->view('template/dialog/content/change_country.php');
         }
 
         public function getMyInfo()        {
           $data = array('mem_id' => $this->session->SESS_MEMBER_ID, );
           echo json_encode($data);
+        }
+
+        public function getCountriesList()        {
+            $this->load->library('country_iso');
+            echo json_encode($this->country_iso->countries);
         }
 
 

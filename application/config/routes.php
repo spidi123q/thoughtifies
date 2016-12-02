@@ -70,3 +70,4 @@ $route['(:any)/online/2']='Login/listOnlineUsers';
 $route['(:any)/dialog/(:num)']='Login/getDialog/$2';
 $route['(:any)/dialog/content/(:num)']='Login/getDialogContent/$2';
 $route['(:any)/info/1']='Login/getMyInfo';
+$route['(:any)/list/countries']='Login/getCountriesList';

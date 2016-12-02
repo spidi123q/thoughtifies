@@ -124,6 +124,58 @@
       }
       public function changeAboutPartner($value)    {
       }
+      public function changeGender($data)    {
+
+        $response = array(
+          'sel' => 1,
+          'status' => true,
+        );
+          $this->db->set($data);
+          $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+          $result = $this->db->update('member');
+          if ($result) {
+            $response['status'] = true;
+          }else {
+            $response['status'] = false;
+          }
+          echo json_encode($response);
+      }
+      public function changeBday($data)    {
+
+        $response = array(
+          'sel' => 1,
+          'status' => true,
+        );
+          $this->db->set($data);
+          $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+          $result = $this->db->update('member');
+          if ($result) {
+            $response['status'] = true;
+          }else {
+            $response['status'] = false;
+          }
+          echo json_encode($response);
+      }
+
+      public function changeCountry($data)    {
+         $this->load->library('country_iso');
+         $cont = array_flip($this->country_iso->countries);
+         $data->country = $cont["$data->country"];
+         $response = array(
+           'sel' => 1,
+           'status' => true,
+         );
+           $this->db->set($data);
+           $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+           $result = $this->db->update('member');
+           if ($result) {
+             $response['status'] = true;
+           }else {
+             $response['status'] = false;
+           }
+           echo json_encode($response);
+
+      }
 
 
       public function deleteDP()      {

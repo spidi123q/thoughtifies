@@ -1,6 +1,13 @@
 <div layout="column" ng-controller="Settings">
   <div flex="35" layout="row"  layout-align="center center">
         <div layout="row">
+          <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
+
+            <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">
+              <i class="material-icons">create</i>
+            </md-button>
+
+          </div>
           <img flex="40" md-whiteframe="3" height="150" width="200"   alt="" src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" alt="">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
