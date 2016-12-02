@@ -269,9 +269,9 @@
 
       public function sentMessage()    {
 
-        $data =  $this->input->post() ;
-        print_r($data);
-        //$this->MessageModel->sentMessage($data);
+        $data = $this->input->raw_input_stream;
+        $data = json_decode($data);
+        $this->MessageModel->sentMessage($data);
 
 
       }

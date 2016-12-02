@@ -30,11 +30,11 @@
                     </md-content>
             </md-content>
             <div layout="row" flex>
-              <textarea flex="70">
+              <textarea ng-model="msg" flex="70">
               </textarea>
             </div>
             <div layout="row" flex="20">
-              <md-button class="md-warn">send</md-button>
+              <md-button class="md-warn" ng-click="sendMsg()">send</md-button>
             </div>
 
         </div>

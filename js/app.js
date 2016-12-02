@@ -43,11 +43,15 @@ app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
       socket = $websocket('ws://localhost:8887');
+      var protoSent = {
+        init : "7000",
+        newmsg  : "7001",
+      };
 
       var init = function () {
         var info = {
           data  : mem_id,
-          header  : "7000",
+          header  : protoSent.init,
         };
         socket.send(info);
       };
@@ -80,6 +84,7 @@ app.factory('MyWebSocket', function($websocket,$http) {
         mem_id  : mem_id,
         response  : response,
         socket  :socket,
+        protoSent : protoSent,
       };
 
       return methods;
@@ -104,7 +109,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  console.log(response.data);
+                  //console.log(response.data);
                   max = response.data.count;
                   deferred.resolve(response);
 
@@ -133,7 +138,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                console.log(response.data);
+              //  console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
                   page.push(response.data[i]);
                 }
@@ -204,8 +209,12 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 	]);
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout', function ($scope, console, $timeout) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket', function ($scope,console, $timeout,$http,MyWebSocket) {
 			var datasource = {};
+      console.log($scope.chat);
+      MyWebSocket.socket.onMessage(function (message) {
+        console.log(message);
+      });
 
 			datasource.get = function (index, count, success) {
 				$timeout(function () {
@@ -221,13 +230,46 @@ app.controller('msgController', [
 			};
 
 			$scope.datasource = datasource;
+      $scope.sendMsg = function () {
+          var data = {
+            receiver : $scope.msgUser,
+            message : $scope.msg
+          };
+          $scope.myuser = angular.copy($scope.msgUser);
+          //console.log(data);
+            $http({
+              method: 'POST',
+              url: 'msg/sent',
+              data: data,
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                if (response.data === "1") {
+                  var data = {
+                    code : MyWebSocket.protoSent.newmsg,
+                    data: $scope.myuser,
+                  };
+                  taskList(data);
+                }
+              }, function errorCallback(response) {
 
-			$scope.delay = false;
-			$timeout(function() {
-				$scope.delay = true;
-			}, 500);
+              });
+		};
 
-		}
+    var taskList = function (data) {
+
+        if (data.code === MyWebSocket.protoSent.newmsg) {
+            console.log("message send success");
+            var info = {
+              header: MyWebSocket.protoSent.newmsg,
+              data: data.data,
+            };
+            MyWebSocket.socket.send(info);
+
+        }
+
+    };
+
+  }
 	]);
 
 app.controller('DemoCtrl', function() {

@@ -145,10 +145,10 @@
       public function sentMessage($data)      {
           $info = array(
           'sender' => $this->session->SESS_MEMBER_ID,
-          'receiver' => $data['receiver'],
-          'message' => "{$data['message']}" ,
+          'receiver' => $data->receiver,
+          'message' => "{$data->message}" ,
           );
-          //echo  $this->db->insert('myMessages',$info);
+          echo  $this->db->insert('myMessages',$info);
       }
 
       public function countMsg($id)      {
