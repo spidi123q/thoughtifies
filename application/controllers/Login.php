@@ -309,18 +309,15 @@
       }
 
       public function advancedSearch()      {
-        $pic = ( $this->input->post('photo') != NULL )?1:0;
-        $online = ( $this->input->post('online') != NULL )?1:0;
-        $data = array(
-          'l_age' => $this->input->post('l_age'),
-          'h_age' => $this->input->post('h_age'),
-          'photo' => $pic,
-          'online' => $online,
-          'keyword' => $this->input->post('keyword'),
-          'country' => $this->input->post('country'),
-        );
 
-        $this->SearchModel->advancedSearch($data);
+        $data = $this->input->raw_input_stream;
+        $data = json_decode($data);
+        $data->online = ($data->online == "")?0:1;
+        $data->photo = ($data->photo == "")?0:1;
+
+        //print_r($data);
+        //$this->SearchModel->advancedSearch($data);
+        //echo $this->SearchModel->t();
 
             //echo $this->SearchModel->advancedSearchPagination(3);
 
@@ -338,6 +335,8 @@
       public function getDialog($sel)      {
         if($sel == 1)
           $this->load->view('template/dialog/settings_edit.php');
+        else if ($sel == 2)
+          $this->load->view('template/dialog/chat_box.php');
       }
 
       public function getDialogContent($sel)      {

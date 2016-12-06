@@ -10,7 +10,7 @@
         <h2>Loading</h2>
      </div>
 
-	<md-toolbar style="z-index:999; position: fixed;box-shadow: 0px 5px 5px grey;">
+	<md-toolbar style="z-index:500; position: fixed;box-shadow: 0px 5px 5px grey;">
 				<div class="md-toolbar-tools">
 							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
 																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
@@ -22,6 +22,9 @@
 
 								 <md-fab-actions>
                    <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini">
+									 </md-button>
+                   <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini">
+										 <i class="material-icons">message</i>
 									 </md-button>
 									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini">
 										 <i class="material-icons">message</i>
@@ -39,12 +42,12 @@
 				</div>
 			</md-toolbar>
 
-       <md-content ng-controller="chatInit" layout-padding >
+       <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport>
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 
      <md-sidenav flex class="md-sidenav-left" md-component-id="left"
-                 md-disable-backdrop md-whiteframe="4">
+                 md-whiteframe="4">
 
        <md-toolbar class="md-theme-indigo">
          <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
@@ -57,10 +60,10 @@
              Close this Sidenav
            </md-button>
          </md-subheader>
-         <md-list-item class="md-3-line" ng-repeat="user in list[0]" ng-click="null">
+         <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced()">
            <img ng-src="" class="md-avatar" alt="{{user.fname}}" />
            <div class="md-list-item-text" layout="column">
-             <h3>{{ user.fname }} {{user.lname}}</h3>
+             <p>{{ user.fname }} {{user.lname}}</p>
            </div>
          </md-list-item>
        </md-list>
@@ -76,7 +79,7 @@
 <md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
          <i class="material-icons ">perm_contact_calendar</i>
  </md-button>-->
-    <div ng-view layout-align="center center">
+    <div ng-view layout-align="center center" >
 
     </div>
 
@@ -86,7 +89,7 @@
 						</div>
  </md-content>
 
-  <md-button ng-click="toggleLeft()" style="position: fixed;
+  <md-button ng-hide="chatButton.chat.isOpen" ng-click="chatButton.toggleLeft()" style="position: fixed;
     z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
            <i class="material-icons ">perm_contact_calendar</i>
    </md-button>
@@ -110,6 +113,7 @@
   <script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
   <script src="<?php echo base_url(); ?>js/angular-file-upload.js"></script>
   <script src="<?php echo base_url(); ?>js/ngImgCrop-master/compile/unminified/ng-img-crop.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
@@ -117,6 +121,7 @@
   <!-- Your application bootstrap  -->
   <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.css"/>
 </body>
 <style media="screen">
 .fabSpeedDialdemoBasicUsage .text-capitalize {

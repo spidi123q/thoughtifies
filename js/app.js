@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload']);
 
 app.directive('myCustomer', function() {
   return {
@@ -24,6 +24,9 @@ app.config(function($mdThemingProvider) {
 app.config(['$routeProvider', function($routeProvider){
                 $routeProvider
                 .when('/',{templateUrl:'p/0'})
+                .when('/search',{
+                  templateUrl:'p/1',
+                })
                 .when('/messages',{
                   templateUrl:'p/2',
                 })
@@ -34,8 +37,53 @@ app.config(['$routeProvider', function($routeProvider){
 
 
 
-app.factory('getMsgUsers',['$log', '$timeout','$http','$q',
- function(console, $timeout,$http,$q) {
+app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
+
+  var chat = {};
+  chat.isOpen = false;
+  var menu = {};
+  menu.isOpen = false;
+  menu.selectedMode = 'md-scale';
+  var toggleLeft = buildToggler('left');
+  var toggleRight = buildToggler('right');
+  var closeLeft = buildToggler('left');
+  var closeRight = buildToggler('right');
+  var bodyClick = function () {
+
+    if ($mdSidenav('left').isOpen()) {
+      console.log("open");
+      closeLeft();
+    }
+  };
+
+  function buildClose (componentId) {
+     // Component lookup should always be available since we are not using `ng-if`
+     $mdSidenav(componentId).close()
+       .then(function () {
+
+       });
+   }
+
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      };
+    }
+
+    chat.hideButton = function () {
+      chat.isOpen = true;
+    };
+    chat.showButton = function () {
+      chat.isOpen = false;
+    };
+
+    return  {
+      chat: chat,
+      menu  : menu,
+      toggleLeft  : toggleLeft,
+    };
+
+
 
 }]);
 
@@ -275,13 +323,151 @@ app.controller('msgController', [
 app.controller('DemoCtrl', function() {
 
 });
+app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$timeout,$http,$q) {
+    console.log("search activated");
+    var big = -1;
+
+
+
+          $http({
+              method: 'GET',
+              url: 'list/countries',
+
+            }).then(function successCallback(response) {
+              $scope.countries = response.data;
+              //console.log(response.data);
+              }, function errorCallback(response) {
+
+              });
+
+          $scope.slider = {
+              min: 20,
+              max: 50,
+              options: {
+                floor: 10,
+                ceil: 130,
+                onChange: function () {
+                    $scope.startSearch();
+                },
+              }
+            };
+            $scope.searchData ={
+              title:  {
+                country : "Country",
+                keyword : "Keyword"
+              },
+              data: {
+                country : "Any",
+                photo : false,
+                online: false,
+                keyword:  "",
+              }
+            };
+
+            var datasource = {};
+            var max = -1;
+
+      			datasource.get = function (index, count, success) {
+      				$timeout(function () {
+      					var result = [];
+                index = index-1;
+                setBig(index);
+      					for (var i = index; i <= index + count - 1; i++) {
+                  //console.log(index);
+                  if(i < 0 || i > max) {
+                              continue;
+                          }
+      						result.push("item #" + i);
+      					}
+      					success(result);
+      				}, 100);
+      			};
+
+      			$scope.datasource = datasource;
+
+      			$scope.delay = false;
+      			$timeout(function() {
+      				$scope.delay = true;
+      			}, 500);
+
+
+            $scope.adapter = {
+              remain: true
+            };
+            $scope.startSearch = function (val) {
+               val = typeof val !== 'undefined' ? val : 0;
+              $scope.searchData.data.h_age = $scope.slider.max;
+              $scope.searchData.data.l_age = $scope.slider.min;
+              //console.log($scope.searchData.data);
+              max = 100;
+              $http({
+                  method: 'POST',
+                  url: 'search/adv',
+                  data: $scope.searchData.data,
+
+                }).then(function successCallback(response) {
+                  console.log(response.data);
+                  }, function errorCallback(response) {
+
+                  });
+                  if (val === 0) {
+                    return $scope.adapter.reload();
+                  }
+
+            };
+
+              $scope.startSearch(1);
+              var setBig = function(index){
+
+              var deferred = $q.defer();
+
+                if(index > big){
+                  big = index;
+                  /*
+                  getCount(big).then(function () {
+                    $http({
+                      method: 'GET',
+                      url: 'msg/f/'+big,
+                    }).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                      //  console.log(response.data);
+                      console.log(response.data);
+                        for (var i = 0; i < response.data.length; i++) {
+                          //page.push(response.data[i]);
+                        }
+
+                        deferred.resolve(response);
+
+                      }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                         deferred.reject({ message: "Really bad" });
+                      });
+                  });
+      */
+                      console.log(big);
+
+
+                }
+                else {
+                  deferred.resolve({ message: "no http needed" });
+                }
+                return deferred.promise;
+              };
+
+
+
+}]);
+
 app.controller('chatBox', [
 		'$scope', '$log', '$timeout','$http', function ($scope, console, $timeout,$http) {
 
 
 		}
 	]);
-app.controller('chatInit', function($scope,$http,MyWebSocket) {
+
+app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav) {
     $scope.chat = MyWebSocket;
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
@@ -313,7 +499,47 @@ app.controller('chatInit', function($scope,$http,MyWebSocket) {
 
       }
     };
+
+    $scope.showAdvanced = function(ev) {
+      var chatButton = chatSidenav.chat;
+      chatButton.hideButton();
+
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: 'dialog/2',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          locals : {
+            chatButton  : chatButton,
+          },
+          fullscreen: true // Only for -xs, -sm breakpoints.
+        })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+      };
+
+      function DialogController($scope, $mdDialog,chatButton) {
+          $scope.hide = function() {
+            $mdDialog.hide();
+            chatButton.showButton();
+          };
+
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+            chatButton.showButton();
+          };
+
+          $scope.answer = function(answer) {
+            $scope.hide();
+          };
+      }
 });
+
 app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function($scope,$http,$mdDialog,FileUploader) {
 
 
@@ -699,6 +925,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 
 }]);
+
 app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $log,listMessengers) {
    $scope.greetings = ["Hello", "Bonjour", "Guten tag"];
    console.log("fgdfgdfffffff");
@@ -725,45 +952,15 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
 
  }]);
 
-
-app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log) {
+app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
   $scope.bootscreen = false;
-  $scope.menu = {};
-  $scope.menu.isOpen = false;
-  $scope.menu.selectedMode = 'md-scale';
-  $scope.toggleLeft = buildToggler('left');
-  $scope.toggleRight = buildToggler('right');
-  $scope.closeLeft = buildToggler('left');
-  $scope.closeRight = buildToggler('right');
-  $scope.bodyClick = function () {
-
-    if ($mdSidenav('left').isOpen()) {
-      console.log("open");
-      $scope.closeLeft();
-    }
-  };
+  $scope.chatButton = chatSidenav;
   $scope.jsonToURL = function (data) {
     var str = Object.keys(data).map(function(key){
         return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
     }).join('&');
     return str;
   };
-
-
-  function buildClose (componentId) {
-     // Component lookup should always be available since we are not using `ng-if`
-     $mdSidenav(componentId).close()
-       .then(function () {
-         $log.debug("close "+componentId+" is done");
-       });
-   }
-
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
-    }
-
   $scope.bootscreen = true;
 
   });
