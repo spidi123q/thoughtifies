@@ -42,7 +42,7 @@
 				</div>
 			</md-toolbar>
 
-       <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport>
+   <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport>
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 
@@ -60,7 +60,7 @@
              Close this Sidenav
            </md-button>
          </md-subheader>
-         <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced()">
+         <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user.mem_id)">
            <img ng-src="" class="md-avatar" alt="{{user.fname}}" />
            <div class="md-list-item-text" layout="column">
              <p>{{ user.fname }} {{user.lname}}</p>
@@ -113,6 +113,7 @@
   <script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
   <script src="<?php echo base_url(); ?>js/angular-file-upload.js"></script>
   <script src="<?php echo base_url(); ?>js/ngImgCrop-master/compile/unminified/ng-img-crop.js"></script>
+  <script src="<?php echo base_url(); ?>js/chatbox.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
 
   <!-- Angular Material Library -->

@@ -94,6 +94,7 @@ app.factory('MyWebSocket', function($websocket,$http) {
       var protoSent = {
         init : "7000",
         newmsg  : "7001",
+        sendmsg  : "7002",
       };
 
       var init = function () {
@@ -461,7 +462,9 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 }]);
 
 app.controller('chatBox', [
-		'$scope', '$log', '$timeout','$http', function ($scope, console, $timeout,$http) {
+		'$scope', '$log', '$timeout','$http','$location', '$anchorScroll', function ($scope, console, $timeout,$http,$location, $anchorScroll) {
+      //$scope.gotoBottom();
+
 
 
 		}
@@ -469,6 +472,9 @@ app.controller('chatBox', [
 
 app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav) {
     $scope.chat = MyWebSocket;
+    $scope.chatMessages = [];
+    var msgMap = new Map();
+
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
         //console.log(msg.header);
@@ -499,8 +505,24 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
       }
     };
+    var checkUser = function (mem_id) {
 
-    $scope.showAdvanced = function(ev) {
+      if (!msgMap.has(mem_id)) {
+        msgMap.set(mem_id,[]);
+      }
+
+    };
+    var insertMapData = function (mem_id,obj) {
+      var temp = msgMap.get(mem_id);
+
+    };
+
+    $scope.showAdvanced = function(ev,mem_id) {
+      checkUser(mem_id);
+      insertMapData(mem_id,{});
+      console.log(msgMap);
+
+      $scope.chatMessages.push("111sdas");
       var chatButton = chatSidenav.chat;
       chatButton.hideButton();
 
@@ -509,9 +531,14 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           templateUrl: 'dialog/2',
           parent: angular.element(document.body),
           targetEvent: ev,
-          clickOutsideToClose:true,
+          clickOutsideToClose:false,
           locals : {
             chatButton  : chatButton,
+            data  : {
+              messages  : msgMap.get(mem_id),
+              receiver  : mem_id,
+              websocket  : $scope.chat,
+            },
           },
           fullscreen: true // Only for -xs, -sm breakpoints.
         })
@@ -523,7 +550,13 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
         });
       };
 
-      function DialogController($scope, $mdDialog,chatButton) {
+      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout) {
+          $scope.messages = data.messages;
+          $scope.receiver = data.receiver;
+          $scope.myvar = [1,2,3,4,5,6,7];
+          var socket = data.websocket.socket;
+          var protoSent = data.websocket.protoSent;
+          console.log($scope.messages);
           $scope.hide = function() {
             $mdDialog.hide();
             chatButton.showButton();
@@ -537,6 +570,33 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.answer = function(answer) {
             $scope.hide();
           };
+          $scope.gotoBottom = function() {
+            // set the location.hash to the id of
+            // the element you wish to scroll to.
+            $location.hash('bottom');
+
+            // call $anchorScroll()
+            $anchorScroll();
+          };
+
+          $scope.k = function (msg) {
+            //console.log($scope.messages);
+            $scope.gotoBottom();
+            console.log(msg);
+            var data = {
+              message  : msg,
+              receiver : $scope.receiver,
+            };
+            $scope.messages.push(data);
+            var info = {
+              header  : protoSent.sendmsg,
+              data: JSON.stringify(data),
+            };
+            console.log(info);
+            socket.send(info);
+
+          };
+
       }
 });
 

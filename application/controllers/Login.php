@@ -366,6 +366,10 @@
             $this->load->library('country_iso');
             echo json_encode($this->country_iso->countries);
         }
+        public function getChatBox()        {
+          # code...
+          $this->load->view('template/chatbox.php');
+        }
 
 
 
