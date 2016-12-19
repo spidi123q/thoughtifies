@@ -86,7 +86,7 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
 
 }]);
-
+ //1
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
