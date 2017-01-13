@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="simple">
+  <head>
+    <title>Simple</title>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../angular-contenteditable.js"></script>
+    <script>
+angular.module('simple', ['contenteditable'])
+  .controller('Ctrl', function($scope) {
+    $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
+  })
+angular.bootstrap(document, ['simple'])
+    </script>
+  </head>
+  <body>
+    <div ng-controller="Ctrl">
+      <label>Model (non-editable):</label>
+      <pre id="output">{{ model }}</pre>
+      <hr>
+      <label>Contenteditable View (1):</label>
+      <div id="input" contenteditable ng-model="model"></div>
+      <hr>
+      <label>Contenteditable View (2):</label>
+      <div id="input2" contenteditable="true" ng-model="model"></div>
+      <hr>
+      <label>Contenteditable View (3):</label>
+      <div id="input3" contenteditable="TRUE" ng-model="model"></div>
+      <hr>
+      <label>non-contenteditable View:</label>
+      <div id="non-editable" contenteditable="false" ng-model="model"></div>
+      <hr>
+      <label>Input (edit verbatim)</label>
+      <input ng-model="model" style="width:100%">
+      <hr>
+      <label>Contenteditable without Model</label>
+      <div contenteditable>Edit me - I don't affect anything</div>
+    </div>
+  </body>
+</html>

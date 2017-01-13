@@ -1,11 +1,55 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable']);
 
 app.directive('myCustomer', function() {
   return {
     restrict: 'E',
     template: '<h1>fdsfs</h1>',
   };
+});
+app.directive('emojiInput', function ($timeout) {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function ($scope, $el, $attr, ngModel) {
+            $.emojiarea.path = 'https://s3-us-west-1.amazonaws.com/dboskovic/jquery-emojiarea-master/packs/basic';
+            $.emojiarea.icons = {
+                ':smile:': 'smile.png',
+                ':angry:': 'angry.png',
+                ':flushed:': 'flushed.png',
+                ':neckbeard:': 'neckbeard.png',
+                 ':laughing:': 'laughing.png'
+            };
+            var options = $scope.$eval($attr.emojiInput);
+            var $wysiwyg = $($el[0]).emojiarea(options);
+            $wysiwyg.on('change', function () {
+                ngModel.$setViewValue($wysiwyg.val());
+                $scope.$apply();
+            });
+            ngModel.$formatters.push(function (data) {
+                // emojiarea doesn't have a proper destroy :( so we have to remove and rebuild
+                $wysiwyg.siblings('.emoji-wysiwyg-editor, .emoji-button').remove();
+                $timeout(function () {
+                    $wysiwyg.emojiarea(options);
+                }, 0);
+                return data;
+            });
+        }
+    };
+});
+app.directive('objectEdit', function() {
+    return {
+        restrict: 'A',
+        require: '^ngModel',
+        link: function(scope, element, attrs, ngModel) {
+          scope.$watch(
+            function() {
+                return ngModel.$modelValue;
+            }, function(modelValue) {
+              	ngModel.$modelValue = '';
+            }, true);
+        }
+    };
 });
 
 
@@ -265,6 +309,7 @@ app.controller('msgController', [
         console.log(message);
       });
 
+
 			datasource.get = function (index, count, success) {
 				$timeout(function () {
 					var result = [];
@@ -473,6 +518,7 @@ app.controller('chatBox', [
 app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav) {
     $scope.chat = MyWebSocket;
     $scope.chatMessages = [];
+
     var msgMap = new Map();
 
     $scope.chat.socket.onMessage(function(message) {
@@ -522,6 +568,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       insertMapData(mem_id,{});
       console.log(msgMap);
 
+
       $scope.chatMessages.push("111sdas");
       var chatButton = chatSidenav.chat;
       chatButton.hideButton();
@@ -550,12 +597,18 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
         });
       };
 
+
       function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout) {
           $scope.messages = data.messages;
           $scope.receiver = data.receiver;
           $scope.myvar = [1,2,3,4,5,6,7];
           var socket = data.websocket.socket;
           var protoSent = data.websocket.protoSent;
+          $scope.emojiView = true;
+          $scope.msgView = !$scope.emojiView;
+          $scope.kunna = "dialog/content/1";
+          $scope.msg= "hhhhh";
+
           console.log($scope.messages);
           $scope.hide = function() {
             $mdDialog.hide();
@@ -581,8 +634,10 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
           $scope.k = function (msg) {
             //console.log($scope.messages);
-            $scope.gotoBottom();
-            console.log(msg);
+
+            //msg = emojione.unicodeToImage(msg);
+            //$scope.msg = '<h3>Using linky filter in HTML</h3>';
+            console.log($scope.msg);
             var data = {
               message  : msg,
               receiver : $scope.receiver,
@@ -596,6 +651,10 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             socket.send(info);
 
           };
+          $scope.emojiButton = function () {
+              $scope.emojiView = !$scope.emojiView;
+              $scope.msgView = !$scope.msgView;
+          };
 
       }
 });
@@ -604,6 +663,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 
           console.log("seetigs");
+          console.log("kkk");
           $scope.settingsData = {
             tabs : {
               profile  : {
@@ -1022,5 +1082,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
+
+
 
   });

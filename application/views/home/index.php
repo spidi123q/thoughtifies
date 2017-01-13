@@ -42,6 +42,7 @@
 				</div>
 			</md-toolbar>
 
+
    <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport>
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
@@ -56,7 +57,7 @@
        <md-content layout-margin  >
          <md-list flex>
          <md-subheader class="md-no-sticky">
-           <md-button ng-click="closeLeft()" class="md-accent">
+           <md-button ng-click="clickToOpen()" class="md-accent">
              Close this Sidenav
            </md-button>
          </md-subheader>
@@ -113,16 +114,27 @@
   <script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
   <script src="<?php echo base_url(); ?>js/angular-file-upload.js"></script>
   <script src="<?php echo base_url(); ?>js/ngImgCrop-master/compile/unminified/ng-img-crop.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
   <script src="<?php echo base_url(); ?>js/chatbox.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-popover/dist/angular-popover.css">
+  <script src="<?php echo base_url(); ?>node_modules/ng-popover/dist/angular-popover.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/angular-popover-master/ngpopover.css">
+  <script src="<?php echo base_url(); ?>node_modules/angular-popover-master/dist/js/ngPopover.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="<?php echo base_url() ;?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+
 
   <!-- Your application bootstrap  -->
+      <script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.css"/>
+
 </body>
 <style media="screen">
 .fabSpeedDialdemoBasicUsage .text-capitalize {
