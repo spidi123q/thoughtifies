@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons']);
 
 app.directive('myCustomer', function() {
   return {
@@ -607,7 +607,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.emojiView = true;
           $scope.msgView = !$scope.emojiView;
           $scope.kunna = "dialog/content/1";
-          $scope.msg= "hhhhh";
+          $scope.msg= "jkhjkh";
 
           console.log($scope.messages);
           $scope.hide = function() {
@@ -636,7 +636,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             //console.log($scope.messages);
 
             //msg = emojione.unicodeToImage(msg);
-            //$scope.msg = '<h3>Using linky filter in HTML</h3>';
+            $scope.msg = 'Lotus :smile: eleates vix attrahendams luna est.Advenas mori!Fermiums prarere in cubiculum!Cum cacula cantare, omnes stellaes manifestum azureus, nobilis https://angularjs.org/ acipenseres.Cum orgia mori, omnes rationees <3 experientia alter, regius :heart: mortemes.Devatios persuadere, tanquam secundus spatii.Heu, barcas!Cedriums observare!A falsis, lacta talis imber. :P Cur eleates peregrinatione?';
             console.log($scope.msg);
             var data = {
               message  : msg,

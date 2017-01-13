@@ -26,7 +26,7 @@
           </div>
         </div>
         <div  contenteditable="true"
-              ng-model="msg"
+            ng-bind-html="msg | emoticons:{linkTarget:'_blank'}"
               style="bottom: 0;max-height: 150px; overflow-y: scroll;">
         </div>
       </div>

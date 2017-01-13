@@ -120,6 +120,10 @@
   <script src="<?php echo base_url(); ?>node_modules/ng-popover/dist/angular-popover.js"></script>
   <link rel="stylesheet" href="<?php echo base_url();?>node_modules/angular-popover-master/ngpopover.css">
   <script src="<?php echo base_url(); ?>node_modules/angular-popover-master/dist/js/ngPopover.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
+  <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
