@@ -1,6 +1,6 @@
-<md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox" style="width:50%;">
+<md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox">
 
-  <md-dialog-content scroll-glue  style="max-height:70%;">
+  <md-dialog-content scroll-glue>
       <div class="main" >
         <div>
           <div class="md-dialog-content"  ng-hide="msgView" >
@@ -20,13 +20,15 @@
               </md-list>
 
           </div>
-          <div ng-hide="emojiView">
-            emoooooji
-            <ng-include src="kunna"></ng-include>
+          <div ng-hide="emojiView" style="overflow-y: scroll;">
+              <span ng-repeat="item in emojilist">
+                <span ng-bind-html="item"></span>
+              </span>
+
           </div>
         </div>
         <div  contenteditable="true"
-            ng-bind-html="msg | emoticons:{linkTarget:'_blank'}"
+        ng-model="msg"
               style="bottom: 0;max-height: 150px; overflow-y: scroll;">
         </div>
       </div>
@@ -37,15 +39,15 @@
 
 
 
-  <md-dialog-actions flex layout="row">
-    <md-button flex="10"  ng-click="cancel()">
+  <md-dialog-actions>
+    <md-button   ng-click="cancel()">
      close
     </md-button>
 
     <button ng-click="emojiButton()">
    Click me!
    </button>
-    <md-button flex="10"  ng-click="k(msg)">
+    <md-button   ng-click="k(msg)">
      sent
     </md-button>
 

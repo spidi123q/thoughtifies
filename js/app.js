@@ -598,7 +598,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       };
 
 
-      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout) {
+      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout,$http,$sce) {
           $scope.messages = data.messages;
           $scope.receiver = data.receiver;
           $scope.myvar = [1,2,3,4,5,6,7];
@@ -636,7 +636,14 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             //console.log($scope.messages);
 
             //msg = emojione.unicodeToImage(msg);
-            $scope.msg = 'Lotus :smile: eleates vix attrahendams luna est.Advenas mori!Fermiums prarere in cubiculum!Cum cacula cantare, omnes stellaes manifestum azureus, nobilis https://angularjs.org/ acipenseres.Cum orgia mori, omnes rationees <3 experientia alter, regius :heart: mortemes.Devatios persuadere, tanquam secundus spatii.Heu, barcas!Cedriums observare!A falsis, lacta talis imber. :P Cur eleates peregrinatione?';
+            var x = twemoji.convert.fromCodePoint('1F1F7');
+            x +=  twemoji.convert.fromCodePoint('1F1FC');
+            console.log(x);
+            $scope.msg = twemoji.parse(x,{
+              size  : 16,
+              folder: 'svg',
+              ext: '.svg'
+            });
             console.log($scope.msg);
             var data = {
               message  : msg,
@@ -655,6 +662,37 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               $scope.emojiView = !$scope.emojiView;
               $scope.msgView = !$scope.msgView;
           };
+
+          $scope.emojilist = [];
+
+          var makeEmoji = function (item, index) {
+              var list_code = item.list_code.split(/\s*\b\s*/);
+              var uni = '';
+              list_code.forEach(function(item, index) {
+                uni += twemoji.convert.fromCodePoint(item);
+              });
+
+              uni = twemoji.parse(uni);
+              uni = $sce.trustAsHtml(uni);
+              console.log(uni);
+              $scope.emojilist.push(uni);
+              //console.log($scope.emojilist);
+          };
+
+          var listEmoji = function (index) {
+            $http({
+              method: 'GET',
+              url: 'msg/emoji/'+index,
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                response.data.forEach(makeEmoji);
+                listEmoji(index+10);
+              }, function errorCallback(response) {
+
+              });
+          };
+          listEmoji(0);
+
 
       }
 });
@@ -1082,6 +1120,9 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
+  var test = "1F1F7";
+  var r = test.split(/\s*\b\s*/);
+  console.log(r);
 
 
 

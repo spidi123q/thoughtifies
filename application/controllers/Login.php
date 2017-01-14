@@ -371,6 +371,11 @@
           $this->load->view('template/chatbox.php');
         }
 
+        public function listEmoji($index)      {
+          $this->MessageModel->listEmoji($index);
+        }
+        
+
 
 
 

@@ -123,6 +123,7 @@
   <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
   <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>

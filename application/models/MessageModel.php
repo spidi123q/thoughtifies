@@ -197,6 +197,12 @@
         }
       }
 
+      public function listEmoji($index)      {
+        $query = $this->db->get('emoji_db',10,$index);
+        //echo $this->db->get_compiled_select('emoji_db');
+        echo json_encode($query->result()) ;
+      }
+
 
    }
 ?>
