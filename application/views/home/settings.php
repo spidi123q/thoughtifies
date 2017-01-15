@@ -16,15 +16,25 @@
                   <i class="material-icons">create</i>
                 </md-button>
               </div>
-              <div layout="row">
-                <h5>{{settingsData.tag}}</h5>
-                <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
-                  <i class="material-icons">create</i>
-                </md-button>
+              <div layout="row"  layout-xs="column">
+                  <h5>{{settingsData.tag}}dddddddddd ddd dddd ddddddddddd</h5>
+                  <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
+                    <i class="material-icons">create</i>
+                  </md-button>
+                <div ng-if="!settingsData.config">
+                  <md-button class="md-warn">add</md-button>
+                  <md-button href="http://google.com"
+                    title="Launch Google.com in new window"
+                    target="_blank"
+                    ng-disabled="true"
+                    aria-label="Google.com"
+                    class="md-icon-button launch" >
+                 <md-icon md-svg-icon="img/icons/launch.svg"></md-icon>s
+               </md-button>
+                </div>
               </div>
           </div>
         </div>
-
 
   </div>
   <div flex ng-cloak>
