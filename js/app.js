@@ -7,51 +7,6 @@ app.directive('myCustomer', function() {
     template: '<h1>fdsfs</h1>',
   };
 });
-app.directive('emojiInput', function ($timeout) {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function ($scope, $el, $attr, ngModel) {
-            $.emojiarea.path = 'https://s3-us-west-1.amazonaws.com/dboskovic/jquery-emojiarea-master/packs/basic';
-            $.emojiarea.icons = {
-                ':smile:': 'smile.png',
-                ':angry:': 'angry.png',
-                ':flushed:': 'flushed.png',
-                ':neckbeard:': 'neckbeard.png',
-                 ':laughing:': 'laughing.png'
-            };
-            var options = $scope.$eval($attr.emojiInput);
-            var $wysiwyg = $($el[0]).emojiarea(options);
-            $wysiwyg.on('change', function () {
-                ngModel.$setViewValue($wysiwyg.val());
-                $scope.$apply();
-            });
-            ngModel.$formatters.push(function (data) {
-                // emojiarea doesn't have a proper destroy :( so we have to remove and rebuild
-                $wysiwyg.siblings('.emoji-wysiwyg-editor, .emoji-button').remove();
-                $timeout(function () {
-                    $wysiwyg.emojiarea(options);
-                }, 0);
-                return data;
-            });
-        }
-    };
-});
-app.directive('objectEdit', function() {
-    return {
-        restrict: 'A',
-        require: '^ngModel',
-        link: function(scope, element, attrs, ngModel) {
-          scope.$watch(
-            function() {
-                return ngModel.$modelValue;
-            }, function(modelValue) {
-              	ngModel.$modelValue = '';
-            }, true);
-        }
-    };
-});
-
 
 
 app.config(function($mdThemingProvider) {
@@ -74,8 +29,16 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/messages',{
                   templateUrl:'p/2',
                 })
-                .when('/request',{template:'This is the fs Route'})
-                .when('/profile',{templateUrl:'p/4'})
+                .when('/users/:uid',{
+                  templateUrl:'p/4',
+                  controller : "Users"
+
+                })
+                .when('/request',{template:'This is the fs Route',})
+                .when('/profile',{
+                  templateUrl:'p/4',
+                  controller : "Settings"
+                })
                 .otherwise({redirectTo:'/'});
 }]);
 
@@ -763,6 +726,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
           }).then(function successCallback(response) {
               // this callback will be called asynchronously
               // when the response is available
+
               $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
               $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
               $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
@@ -1077,6 +1041,104 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
         };
       }
+
+
+
+
+
+}]);
+
+app.controller('Users', ['$scope','$http','$mdDialog','FileUploader','$routeParams',function($scope,$http,$mdDialog,FileUploader,$routeParams) {
+
+
+          console.log("Users");
+          console.log($routeParams.uid);
+          $scope.settingsData = {
+            tabs : {
+              profile  : {
+                name : "Profile",
+                info  : {
+                  aboutme : {
+                    name: "ABOUT ME",
+                    icon: "flaticons/svg/curriculum.svg"
+                  },
+                  mypre : {
+                    name: "MY PREFRENCES",
+                    icon  : "flaticons/svg/color-palatte.svg"
+                  },
+                  gender : {
+                    name: "GENDER",
+                    value:  {
+                      male : "MALE",
+                      female : "FEMALE"
+                    },
+                  },
+                  bday : {
+                    name: "BIRTHDAY",
+                    icon: "flaticons/svg/birthday-cake.svg"
+                  },
+                  email : {
+                    name: "EMAIL",
+                    icon: "flaticons/svg/note.svg"
+                  },
+                  ph : {
+                    name: "PHONE",
+                    icon: "flaticons/svg/phone-book.svg"
+                  },
+                  country : {
+                    name: "COUNTRY",
+                  },
+                },
+              },
+              photos  : {
+                name  : "Photos",
+              },
+            },
+            config: false,
+
+          };
+
+
+
+
+
+
+          $http({
+            method: 'GET',
+            url: 'users/'+$routeParams.uid,
+          }).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+console.log(response.data);
+              $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
+              $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+              $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
+              $scope.settingsData.tabs.profile.info.email.data = response.data.email;
+              $scope.settingsData.tabs.profile.info.ph.data = response.data.contact;
+              $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
+              $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
+              $scope.settingsData.fname = response.data.fname;
+              $scope.settingsData.lname = response.data.lname;
+              $scope.settingsData.tag = response.data.tag;
+
+              console.log(response.data);
+              if (response.data.gender == 'M') {
+                $scope.settingsData.tabs.profile.info.gender.data = "Male";
+                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
+              }else {
+                $scope.settingsData.tabs.profile.info.gender.data = "Female";
+                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/femenine.svg";
+              }
+
+
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+
+            });
+
+
+
 
 
 

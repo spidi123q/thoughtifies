@@ -1,4 +1,4 @@
-<div layout="column" ng-controller="Settings">
+<div layout="column">
   <div flex="35" layout="row"  layout-align="center center">
         <div layout="row">
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">

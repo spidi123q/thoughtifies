@@ -374,7 +374,11 @@
         public function listEmoji($index)      {
           $this->MessageModel->listEmoji($index);
         }
-        
+
+        public function getUserDetails($value)   {
+          $this->SessionModel->getDetails($value);
+        }
+
 
 
 
