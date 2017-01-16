@@ -199,8 +199,44 @@
 
       public function listEmoji($index)      {
         $query = $this->db->get('emoji_db',10,$index);
-        //echo $this->db->get_compiled_select('emoji_db');
         echo json_encode($query->result()) ;
+      }
+
+      public function getMessages($id)    {
+        $query = $this->db->select('*')->from('myMessages')
+                    ->group_start()
+                      ->group_start()
+                              ->group_start()
+                                ->where('sender','a')
+                                ->where('receiver','b')
+                              ->group_end()
+                              ->or_group_start()
+                                      ->where('receiver', 'a')
+                                      ->where('sender', 'b')
+                              ->group_end()
+                      ->group_end()
+                      ->where("date_time >=","c")
+                   ->group_end()
+            ->get_compiled_select();
+            echo $query;
+      }
+      public function getMessagesInit($id)    {
+        $query = $this->db->select('*')->from('myMessages')
+                    ->group_start()
+                      ->group_start()
+                              ->group_start()
+                                ->where('sender','a')
+                                ->where('receiver','b')
+                              ->group_end()
+                              ->or_group_start()
+                                      ->where('receiver', 'a')
+                                      ->where('sender', 'b')
+                              ->group_end()
+                      ->group_end()
+                      ->where("date_time >=c")
+                   ->group_end()
+            ->get_compiled_select();
+            echo $query;
       }
 
 

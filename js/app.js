@@ -104,6 +104,8 @@ app.factory('MyWebSocket', function($websocket,$http) {
         sendmsg  : "7002",
       };
 
+
+
       var init = function () {
         var info = {
           data  : mem_id,
@@ -132,6 +134,11 @@ app.factory('MyWebSocket', function($websocket,$http) {
       });
       socket.onError(function () {
         console.log("connection error");
+
+      });
+
+      socket.onMessage(function () {
+        console.log("newmsg");
 
       });
 
@@ -486,7 +493,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
-        //console.log(msg.header);
+        console.log(msg);
         taskList(msg);
     });
     $scope.list = [];
@@ -513,6 +520,16 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           });
 
       }
+      else if (data.header == "8002") {
+        console.log("at 8002");
+          var msg = JSON.parse(data.data);
+          console.log(msg);
+          checkUser(msg.sender.toString());
+         //msgMap.get(parseInt(msg.sender)).push(msg);
+           msgMap.get(msg.sender.toString()).push(msg);
+          console.log("after msg sent"+msgMap.get(msg.sender));
+
+      }
     };
     var checkUser = function (mem_id) {
 
@@ -528,11 +545,13 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
     $scope.showAdvanced = function(ev,mem_id) {
       checkUser(mem_id);
-      insertMapData(mem_id,{});
       console.log(msgMap);
+      var x = msgMap.get(mem_id);
+
+      console.log("content");
+      console.log(x);
 
 
-      $scope.chatMessages.push("111sdas");
       var chatButton = chatSidenav.chat;
       chatButton.hideButton();
 
@@ -550,7 +569,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               websocket  : $scope.chat,
             },
           },
-          fullscreen: true // Only for -xs, -sm breakpoints.
+          fullscreen: false // Only for -xs, -sm breakpoints.
         })
         .then(function(answer) {
           $scope.status = 'You said the information was "' + answer + '".';
@@ -563,6 +582,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
       function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout,$http,$sce) {
           $scope.messages = data.messages;
+          console.log($scope.messages);
           $scope.receiver = data.receiver;
           $scope.myvar = [1,2,3,4,5,6,7];
           var socket = data.websocket.socket;
@@ -572,7 +592,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.kunna = "dialog/content/1";
           $scope.msg= "jkhjkh";
 
-          console.log($scope.messages);
+          //console.log($scope.messages);
           $scope.hide = function() {
             $mdDialog.hide();
             chatButton.showButton();
@@ -594,31 +614,33 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             // call $anchorScroll()
             $anchorScroll();
           };
+          $scope.change = function () {
+            console.log("dfg");
+          };
+          $scope.dpDisplay = function(data){
+            if (data.receiver == SESS_MEMBER_ID) {
+              return false;
+            }
+            else {
+              return true;
+            }
+          };
 
-          $scope.k = function (msg) {
-            //console.log($scope.messages);
+          $scope.send = function (msg) {
 
-            //msg = emojione.unicodeToImage(msg);
-            var x = twemoji.convert.fromCodePoint('1F1F7');
-            x +=  twemoji.convert.fromCodePoint('1F1FC');
-            console.log(x);
-            $scope.msg = twemoji.parse(x,{
-              size  : 16,
-              folder: 'svg',
-              ext: '.svg'
-            });
-            console.log($scope.msg);
             var data = {
               message  : msg,
               receiver : $scope.receiver,
             };
+
             $scope.messages.push(data);
             var info = {
               header  : protoSent.sendmsg,
               data: JSON.stringify(data),
             };
-            console.log(info);
+            //console.log(info);
             socket.send(info);
+            $scope.msg = '';
 
           };
           $scope.emojiButton = function () {
@@ -637,7 +659,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
               uni = twemoji.parse(uni);
               uni = $sce.trustAsHtml(uni);
-              console.log(uni);
+              //console.log(uni);
               $scope.emojilist.push(uni);
               //console.log($scope.emojilist);
           };
@@ -1182,9 +1204,6 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
-  var test = "1F1F7";
-  var r = test.split(/\s*\b\s*/);
-  console.log(r);
 
 
 

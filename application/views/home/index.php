@@ -123,7 +123,10 @@
   <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
   <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
+  <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
+  <script>
+    var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
+  </script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
@@ -135,10 +138,11 @@
 
 
   <!-- Your application bootstrap  -->
-      <script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.css"/>
+
 
 </body>
 <style media="screen">

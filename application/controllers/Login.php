@@ -27,7 +27,8 @@
           $data = array('recentVisitors' => $recentVisitors,
           'newUsers' => $newUsers,
          );
-           $this->load->view('home/homepage',$data);
+           //$this->load->view('home/homepage',$data);
+           echo "haaaai";
 
 
         }
@@ -89,7 +90,8 @@
 
          $v = $this->LoginModel->login($data);
          if ($v) {
-           $this->load->view('home/index');
+           $data = array('mem_id' => $this->session->SESS_MEMBER_ID, );
+           $this->load->view('home/index',$data);
          }
          else {
            //echo "fail";
@@ -147,14 +149,11 @@
 
       }
 
-      public function loadHome()      {
-        $this->load->view('home/index');
-      }
 
       public function pageSelection($value)      {
 
         if($value == 0){
-          $this->pageHome();
+          //$this->pageHome();
         }
         elseif ($value == 1) {
           $this->pageSearch();
@@ -377,6 +376,10 @@
 
         public function getUserDetails($value)   {
           $this->SessionModel->getDetails($value);
+        }
+
+        public function getMessages()   {
+          $this->MessageModel->getMessages("55");
         }
 
 

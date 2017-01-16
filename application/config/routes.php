@@ -62,6 +62,7 @@ $route['(:any)/settings/upload']='Login/doUpload';
 $route['(:any)/msg/load/(:num)']='Login/displayMessages/$2';
 $route['(:any)/msg/sent']='Login/sentMessage';
 $route['(:any)/msg/count/(:num)']='Login/countMsg/$2';
+$route['(:any)/msg/get']='Login/getMessages';
 $route['(:any)/msg/f/(:num)']='Login/f/$2';
 $route['(:any)/msg/page/(:num)']='Login/messagePagination/$2';
 $route['(:any)/msg/emoji/(:num)']='Login/listEmoji/$2';
