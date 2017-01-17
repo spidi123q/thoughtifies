@@ -379,7 +379,11 @@
         }
 
         public function getMessages()   {
-          $this->MessageModel->getMessages("55");
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->MessageModel->getMessages($data);
+          //echo "string";
+
         }
 
 

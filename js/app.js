@@ -272,24 +272,66 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 	]);
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket', function ($scope,console, $timeout,$http,MyWebSocket) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q', function ($scope,console, $timeout,$http,MyWebSocket,$q) {
 			var datasource = {};
+      var big  = -1,max = 11;
+      var page  = [];
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
       });
 
 
+      var setBig = function(index){
+        var deferred = $q.defer();
+        index = index*(-1);
+        if (index > big) {
+          big = index;
+          var offset = big-9;
+          //console.log("big = "+offset);
+          $http({
+            method: 'POST',
+            url: 'msg/get',
+            data: {
+              offset : offset,
+              user: 34,
+            },
+          }).then(function successCallback(response) {
+              //console.log(response.data);
+              response.data.forEach(function (item,index) {
+                page.push(item);
+                deferred.resolve(page);
+              });
+
+
+            }, function errorCallback(response) {
+                deferred.resolve(page);
+            });
+
+        }else {
+          deferred.resolve("ddd");
+        }
+        return deferred.promise;
+      };
 			datasource.get = function (index, count, success) {
+
 				$timeout(function () {
-					var result = [];
-					for (var i = index; i <= index + count - 1; i++) {
-            if(i > 0) {
-                        continue;
-                    }
-						result.push("item #" + i);
-					}
-					success(result);
+					setBig(index).then(function (responce) {
+            //console.log(responce);
+            var result = [];
+  					for (var i = index; i <= index + count - 1; i++) {
+  setBig(index);
+              if(i > 0 || (i*-1) >= max) {
+                          continue;
+                      }
+                      //console.log(i);
+  						    result.push(page[i*-1]);
+  					}
+  					success(result);
+					},    function (error) {
+                  // handle errors here
+                  console.log(error.statusText);
+              });
 				}, 100);
 			};
 

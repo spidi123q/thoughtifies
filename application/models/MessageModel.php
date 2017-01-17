@@ -202,25 +202,27 @@
         echo json_encode($query->result()) ;
       }
 
-      public function getMessages($id)    {
+      public function getMessages($data)    {
         $query = $this->db->select('*')->from('myMessages')
                     ->group_start()
                       ->group_start()
                               ->group_start()
-                                ->where('sender','a')
-                                ->where('receiver','b')
+                                ->where('sender',$this->session->SESS_MEMBER_ID)
+                                ->where('receiver',$data->user)
                               ->group_end()
                               ->or_group_start()
-                                      ->where('receiver', 'a')
-                                      ->where('sender', 'b')
+                                      ->where('receiver', $this->session->SESS_MEMBER_ID)
+                                      ->where('sender',$data->user)
                               ->group_end()
                       ->group_end()
-                      ->where("date_time >=","c")
+                      //->where("date_time >=","c")
                    ->group_end()
-            ->get_compiled_select();
-            echo $query;
+                   ->limit(10,$data->offset)
+            ->get();
+            echo json_encode($query->result());
       }
       public function getMessagesInit($id)    {
+        $date;
         $query = $this->db->select('*')->from('myMessages')
                     ->group_start()
                       ->group_start()
@@ -233,7 +235,7 @@
                                       ->where('sender', 'b')
                               ->group_end()
                       ->group_end()
-                      ->where("date_time >=c")
+                      ->where("date_time >=",$date)
                    ->group_end()
             ->get_compiled_select();
             echo $query;
