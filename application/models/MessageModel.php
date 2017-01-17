@@ -151,35 +151,23 @@
           echo  $this->db->insert('myMessages',$info);
       }
 
-      public function countMsg($id)      {
-        $qry = "SELECT COUNT(*) AS count
-                FROM (
+      public function countMsg($data)      {
+        $query = $this->db->select('COUNT(*) AS count')->from('myMessages')
+                    ->group_start()
+                      ->group_start()
+                              ->group_start()
+                                ->where('sender',$this->session->SESS_MEMBER_ID)
+                                ->where('receiver',$data)
+                              ->group_end()
+                              ->or_group_start()
+                                      ->where('receiver', $this->session->SESS_MEMBER_ID)
+                                      ->where('sender',$data)
+                              ->group_end()
+                      ->group_end()
+                   ->group_end()
+            ->get();
+            echo json_encode($query->row());
 
-                SELECT *
-                FROM myMessages
-                    WHERE (
-                                (
-                                  receiver =  ?
-                                  AND sender =  ?
-                                )
-                        OR
-                                (
-                                receiver =  ?
-                                AND sender =  ?
-                                )
-                    )
-                ORDER BY date_time DESC
-                )result";
-          $result = $this->db->query($qry, array(
-                  $this->session->SESS_MEMBER_ID,
-                  $id,
-                  $id,
-                  $this->session->SESS_MEMBER_ID,
-                ));
-            if ($result) {
-              $row = $result->row();
-              return $row->count;
-            }
       }
 
       public function updateOnlineUsers()      {

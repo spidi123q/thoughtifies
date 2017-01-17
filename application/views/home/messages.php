@@ -22,11 +22,16 @@
         <div ng-controller="msgController" layout="column" flex="50">
               <md-content layout="row" flex="60">
                     <md-content flex ui-scroll-viewport >
-                          <ul>
-                            <div ui-scroll="item in datasource">
-                              *{{item}}*
-                            </div>
-                          </ul>
+                          <md-list>
+                                <md-list-item class="md-long-text"  ui-scroll="item in datasource"  >
+                                <img ng-hide="dpDisplay.get(item)" ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?20" class="md-avatar" alt="{{todos[0].who}}" />
+                                <div class="md-list-item-text">
+                                  <h3>{{ todos[0].who }}</h3>
+                                  <p ng-bind-html="item.message">
+                                  </p>
+                                </div>
+                              </md-list-item>
+                            </md-list>
                     </md-content>
             </md-content>
             <div layout="row" flex>

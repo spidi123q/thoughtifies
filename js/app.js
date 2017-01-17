@@ -93,7 +93,21 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
 
 }]);
- //1
+
+app.factory('dpDisplay', function() {
+        var dpDisplay = function(data){
+          if (data.receiver == SESS_MEMBER_ID) {
+            return false;
+          }
+          else {
+            return true;
+          }
+        };
+        return{
+          get : dpDisplay,
+        };
+    });
+
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
@@ -272,41 +286,69 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 	]);
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q', function ($scope,console, $timeout,$http,MyWebSocket,$q) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay) {
 			var datasource = {};
-      var big  = -1,max = 11;
+      var big  = -1,max = 0;
       var page  = [];
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
       });
 
+      var getCount = function (big) {
+        var deferred = $q.defer();
+        if (big === 0) {
 
+              $http({
+                method: 'GET',
+                url: 'msg/count/'+34,
+              }).then(function successCallback(response) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  console.log(response.data);
+                  max = response.data.count;
+                  deferred.resolve(response);
+
+                }, function errorCallback(response) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+                  console.log("count err");
+                   deferred.reject({ message: "Really bad" });
+                });
+
+        }else {
+          deferred.resolve({ message: "no http needed" });
+        }
+        return deferred.promise;
+
+      };
       var setBig = function(index){
         var deferred = $q.defer();
         index = index*(-1);
         if (index > big) {
           big = index;
           var offset = big-9;
-          //console.log("big = "+offset);
-          $http({
-            method: 'POST',
-            url: 'msg/get',
-            data: {
-              offset : offset,
-              user: 34,
-            },
-          }).then(function successCallback(response) {
-              //console.log(response.data);
-              response.data.forEach(function (item,index) {
-                page.push(item);
-                deferred.resolve(page);
+          getCount(offset).then(function (result) {
+            //console.log(result);
+            $http({
+              method: 'POST',
+              url: 'msg/get',
+              data: {
+                offset : offset,
+                user: 34,
+              },
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                response.data.forEach(function (item,index) {
+                  page.push(item);
+                  deferred.resolve(page);
+                });
+
+
+              }, function errorCallback(response) {
+                  deferred.resolve(page);
               });
-
-
-            }, function errorCallback(response) {
-                deferred.resolve(page);
-            });
+          });
 
         }else {
           deferred.resolve("ddd");

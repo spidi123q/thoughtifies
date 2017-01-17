@@ -385,6 +385,10 @@
           //echo "string";
 
         }
+        public function countMessages($data)   {
+          $this->MessageModel->countMsg($data);
+
+        }
 
 
 
