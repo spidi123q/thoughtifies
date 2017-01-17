@@ -627,7 +627,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           };
 
           $scope.send = function (msg) {
-
+            $scope.msg = msg;
             var data = {
               message  : msg,
               receiver : $scope.receiver,
@@ -639,13 +639,21 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               data: JSON.stringify(data),
             };
             //console.log(info);
+            $scope.msg = null;
             socket.send(info);
-            $scope.msg = '';
+
 
           };
           $scope.emojiButton = function () {
               $scope.emojiView = !$scope.emojiView;
               $scope.msgView = !$scope.msgView;
+          };
+          $scope.checkIfEnterKeyWasPressed = function($event,scope){
+            var keyCode = $event.which || $event.keyCode;
+            if (keyCode === 13) {
+              $scope.send(scope.msg);
+              scope.msg = '';
+            }
           };
 
           $scope.emojilist = [];

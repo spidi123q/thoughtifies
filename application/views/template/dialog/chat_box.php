@@ -27,6 +27,7 @@
           </md-content>
           <div  contenteditable="true"
           ng-model="msg" ng-change="change()"
+          ng-keypress="checkIfEnterKeyWasPressed($event,this)"
                 style="bottom: 0;max-height: 150px; overflow-y: scroll;">
           </div>
 
@@ -44,7 +45,7 @@
     <button ng-click="emojiButton()">
    Click me!
    </button>
-    <md-button   ng-click="send(msg)">
+    <md-button   ng-click="send(msg);msg=''">
      sent
     </md-button>
 
