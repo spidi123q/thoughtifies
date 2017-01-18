@@ -75,3 +75,7 @@ $route['(:any)/info/1']='Login/getMyInfo';
 $route['(:any)/list/countries']='Login/getCountriesList';
 $route['(:any)/chatbox']='Login/getChatBox';
 $route['(:any)/users/(:any)']='Login/getUserDetails/$2';
+$route['(:any)/users/request/(:any)']='Login/addFriend/$2';
+$route['(:any)/users/cancel/(:any)']='Login/removeFriend/$2';
+$route['(:any)/users/frnd/status/(:any)']='Login/getFriendshipStatus/$2';
+$route['(:any)/element/0']='Login/getFriendPanel';

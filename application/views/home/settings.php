@@ -1,5 +1,5 @@
 <div layout="column">
-  <div flex="35" layout="row"  layout-align="center center">
+  <div flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
         <div layout="row">
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
@@ -21,22 +21,16 @@
                   <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
                     <i class="material-icons">create</i>
                   </md-button>
-                <div ng-if="!settingsData.config">
-                  <md-button class="md-warn">add</md-button>
-                  <md-button href="http://google.com"
-                    title="Launch Google.com in new window"
-                    target="_blank"
-                    ng-disabled="true"
-                    aria-label="Google.com"
-                    class="md-icon-button launch" >
-                 <md-icon md-svg-icon="img/icons/launch.svg"></md-icon>s
-               </md-button>
-                </div>
+
               </div>
           </div>
         </div>
 
-  </div>
+        <div ng-if="!settingsData.config">
+          <div friendpanel>
+          </div>
+        </div>
+  </div><br>
   <div flex ng-cloak>
     <md-content>
       <md-tabs md-dynamic-height md-border-bottom>

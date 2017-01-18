@@ -21,14 +21,7 @@
      }
 
         private function pageHome()     {
-
-          $recentVisitors = $this->SessionModel->recentVisitors();
-          $newUsers = $this->SessionModel->newUsers();
-          $data = array('recentVisitors' => $recentVisitors,
-          'newUsers' => $newUsers,
-         );
-           //$this->load->view('home/homepage',$data);
-           echo "haaaai";
+           $this->load->view('home/homepage');
 
 
         }
@@ -153,7 +146,7 @@
       public function pageSelection($value)      {
 
         if($value == 0){
-          //$this->pageHome();
+          $this->pageHome();
         }
         elseif ($value == 1) {
           $this->pageSearch();
@@ -265,19 +258,7 @@
                }
       }
 
-      public function displayMessages($page)    {
-        $id = $this->input->post('id');
-        $count = $this->input->post('count');
-        $data = array(
-          'id' => $id,
-          'count' => $count,
-          'page' => $page,
 
-          );
-        echo $this->MessageModel->displayMessages($data);
-
-
-      }
 
       public function sentMessage()    {
 
@@ -366,8 +347,10 @@
             echo json_encode($this->country_iso->countries);
         }
         public function getChatBox()        {
-          # code...
           $this->load->view('template/chatbox.php');
+        }
+        public function getFriendPanel()        {
+          $this->load->view('template/friendpanel.php');
         }
 
         public function listEmoji($index)      {
@@ -387,7 +370,17 @@
         }
         public function countMessages($data)   {
           $this->MessageModel->countMsg($data);
+        }
 
+        public function addFriend($value)      {
+          $this->SessionModel->addFriend($value);
+        }
+        public function removeFriend($value)      {
+          $this->SessionModel->removeFriend($value);
+        }
+
+        public function getFriendshipStatus($value)      {
+          $this->SessionModel->getFriendshipStatus($value);
         }
 
 

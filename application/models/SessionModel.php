@@ -20,75 +20,9 @@
       }
 
 //-----------------public method--------------------------------------
-      public function recentVisitors()      {
-        $content = '<div class="table-responsive"><table class="table"><tr>';
-        $qry =" SELECT DISTINCT visitor_id, member.*
-                FROM profile_vistors, member
-                WHERE profile_vistors.mem_id ={$this->session->SESS_MEMBER_ID}
-                AND member.mem_id = visitor_id
-                AND username NOT
-                IN (
-
-                SELECT sender
-                FROM blocked
-                UNION SELECT receiver
-                FROM blocked
-                )
-                ORDER BY visit_date DESC
-                LIMIT 0 , 10";
-        $result = $this->db->query($qry);
-        if ($result->num_rows() > 0) {
-          foreach ($result->result() as $row) {
-
-            $dp = base_url().$this->pathToDP($row->profileExt,$this->session->SESS_MEMBER_ID);
-
-            $data = array(
-            'profileURL' => $this->session->SESS_MEMBER_ID,
-            'photoURL' => $dp,
-            'name' => $row->fname.' '.$row->lname,
-            );
-            $content .= '<td>'.$this->parser->parse('template/visitor_view.php', $data,TRUE).'</td>';
-          }
-          return $content.'</tr></table></div>';
-        } else {
-          return "no visitors";
-        }
-      }
-
-      public function newUsers()      {
-                $content = '<div class="table-responsive"><table class="table"><tr>';
-                $qry =" SELECT *
-                        FROM  `member`
-                        WHERE username NOT
-                        IN (
-
-                        SELECT sender
-                        FROM blocked
-                        UNION SELECT receiver
-                        FROM blocked
-                        )
-                        ORDER BY join_date DESC
-                        LIMIT 0 , 10";
-                $result = $this->db->query($qry);
-                if ($result->num_rows() > 0) {
-                  foreach ($result->result() as $row) {
-
-                    $dp = base_url().$this->pathToDP($row->profileExt,$this->session->SESS_MEMBER_ID);
-
-                    $data = array(
-                    'profileURL' => $this->session->SESS_MEMBER_ID,
-                    'photoURL' => $dp,
-                    'name' => $row->fname.' '.$row->lname,
-                    );
-                    $content .= '<td>'.$this->parser->parse('template/visitor_view.php', $data,TRUE).'</td>';
-                  }
-                  return $content.'</tr></table></div>';
-                } else {
-                  return "no visitors";
-                }
 
 
-      }
+
 
       public function getDetails($id)      {
 
@@ -193,6 +127,38 @@
         }else {
           return false;
         }
+      }
+
+      public function addFriend($data)   {
+          $data = array(
+          'sender' => $this->session->SESS_MEMBER_ID,
+          'receiver' => $data,
+          'status' => 0
+          );
+          $this->db->set('date_time', 'NOW()', FALSE);
+          echo $this->db->insert('friendship', $data);
+      }
+
+      public function removeFriend($data)   {
+          $data = array(
+          'sender' => $this->session->SESS_MEMBER_ID,
+          'receiver' => $data,
+          );
+          echo $this->db->delete('friendship', $data);
+      }
+
+      public function getFriendshipStatus($value)      {
+        $data = array('sender' => $this->session->SESS_MEMBER_ID,
+         'receiver' => $value);
+        $query = $this->db->select('status')->from('friendship')
+                            ->where($data)->get();
+        if ($query->num_rows() > 0) {
+          $val = $query->row();
+          echo $val->status;
+        }else {
+          echo "-1";
+        }
+
       }
 
 

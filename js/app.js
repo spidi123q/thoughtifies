@@ -8,6 +8,13 @@ app.directive('myCustomer', function() {
   };
 });
 
+app.directive('friendpanel', function () {
+    return {
+        templateUrl:'element/0',
+    };
+});
+
+
 
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
@@ -1162,7 +1169,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 }]);
 
-app.controller('Users', ['$scope','$http','$mdDialog','FileUploader','$routeParams',function($scope,$http,$mdDialog,FileUploader,$routeParams) {
+app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($scope,$http,$mdDialog,$routeParams) {
 
 
           console.log("Users");
@@ -1212,10 +1219,24 @@ app.controller('Users', ['$scope','$http','$mdDialog','FileUploader','$routePara
 
           };
 
+          $scope.buttons = {
+            request : {
+              icon : "add",
+              val : -1,
+              progress : false,
+            },
+            message : "message",
+            block : {
+              icon : "block",
+              val : -1,
+            }
+          };
 
 
-
-
+          $scope.openMenu = function($mdOpenMenu, ev) {
+            originatorEv = ev;
+            $mdOpenMenu(ev);
+          };
 
           $http({
             method: 'GET',
@@ -1223,7 +1244,7 @@ app.controller('Users', ['$scope','$http','$mdDialog','FileUploader','$routePara
           }).then(function successCallback(response) {
               // this callback will be called asynchronously
               // when the response is available
-console.log(response.data);
+              console.log(response.data);
               $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
               $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
               $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
@@ -1246,10 +1267,54 @@ console.log(response.data);
 
 
             }, function errorCallback(response) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
 
             });
+
+            $http({
+              method: 'GET',
+              url: 'users/frnd/status/'+$routeParams.uid,
+            }).then(function successCallback(response) {
+                  console.log(response.data+"rnd");
+                  if (response.data === "0") {
+                    $scope.buttons.request.icon = "close";
+                    $scope.buttons.request.val = 0;
+                  }
+              }, function errorCallback(response) {
+
+              });
+
+            $scope.requestButton = function () {
+
+              $scope.buttons.request.progress = true;
+                if ($scope.buttons.request.val == -1) {
+                  $http({
+                    method: 'GET',
+                    url: 'users/request/'+$routeParams.uid,
+                  }).then(function successCallback(response) {
+                        $scope.buttons.request.progress = false;
+                        if (response.data == "1") {
+                          $scope.buttons.request.icon = "close";
+                          $scope.buttons.request.val = 0;
+                        }
+                    }, function errorCallback(response) {
+
+                    });
+                }else {
+                  $http({
+                    method: 'GET',
+                    url: 'users/cancel/'+$routeParams.uid,
+                  }).then(function successCallback(response) {
+                      $scope.buttons.request.progress = false;
+                      if (response.data == "1") {
+                        $scope.buttons.request.icon = "add";
+                        $scope.buttons.request.val = -1;
+                      }
+
+                    }, function errorCallback(response) {
+
+                    });
+                }
+            };
 
 
 
