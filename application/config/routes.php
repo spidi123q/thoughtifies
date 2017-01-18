@@ -78,4 +78,4 @@ $route['(:any)/users/(:any)']='Login/getUserDetails/$2';
 $route['(:any)/users/request/(:any)']='Login/addFriend/$2';
 $route['(:any)/users/cancel/(:any)']='Login/removeFriend/$2';
 $route['(:any)/users/frnd/status/(:any)']='Login/getFriendshipStatus/$2';
-$route['(:any)/element/0']='Login/getFriendPanel';
+$route['(:any)/element/(:num)']='Login/getElement/$2';

@@ -8,7 +8,8 @@
             </md-button>
 
           </div>
-          <img flex="40" md-whiteframe="3" height="150" width="200"   alt="" src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" alt="">
+          <img flex="40" md-whiteframe="3"   alt="" src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" alt="" style="max-width: 150;
+    max-height: 150;">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
                 <h3>{{settingsData.fname}} {{settingsData.lname}}</h3>
@@ -25,10 +26,11 @@
               </div>
           </div>
         </div>
-
+<br>
         <div ng-if="!settingsData.config">
-          <div friendpanel>
-          </div>
+          <section md-whiteframe="1" layout="row" layout-align="center center">
+            <friendpanel uid="uid"></friendpanel>
+          </section>
         </div>
   </div><br>
   <div flex ng-cloak>
@@ -39,7 +41,7 @@
             <div layout="column"  flex-sm="80"  flex-gt-sm="50">
                     <md-list>
                       <md-list-item  class="md-3-line" ng-repeat="item in settingsData.tabs.profile.info" >
-                        <img ng-src="<?php echo base_url(); ?>images/{{item.icon}}" class="md-avatar" alt="{{item.who}}">
+                        <img ng-src="<?php echo base_url(); ?>images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             {{item.name}}

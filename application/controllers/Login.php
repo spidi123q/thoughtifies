@@ -349,8 +349,11 @@
         public function getChatBox()        {
           $this->load->view('template/chatbox.php');
         }
-        public function getFriendPanel()        {
-          $this->load->view('template/friendpanel.php');
+        public function getElement($value)        {
+          if($value == 0)
+            $this->load->view('template/friendpanel.php');
+          if($value == 1)
+              $this->load->view('template/usercard.php');
         }
 
         public function listEmoji($index)      {

@@ -1,18 +1,6 @@
 
 var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons']);
 
-app.directive('myCustomer', function() {
-  return {
-    restrict: 'E',
-    template: '<h1>fdsfs</h1>',
-  };
-});
-
-app.directive('friendpanel', function () {
-    return {
-        templateUrl:'element/0',
-    };
-});
 
 
 
@@ -114,6 +102,90 @@ app.factory('dpDisplay', function() {
           get : dpDisplay,
         };
     });
+
+    app.factory('friendPanelActions', function($http) {
+            var buttons = {
+              request : {
+                icon : "add",
+                val : -1,
+                progress : false,
+              },
+              message : "message",
+              block : {
+                icon : "block",
+                val : -1,
+              },
+            };
+
+            var openMenu = function($mdOpenMenu, ev) {
+              originatorEv = ev;
+              $mdOpenMenu(ev);
+            };
+
+           var init = function() {
+             $http({
+               method: 'GET',
+               url: 'users/frnd/status/'+buttons.uid,
+             }).then(function successCallback(response) {
+                   console.log(response.data+"rnd");
+                   if (response.data === "0") {
+                     buttons.request.icon = "close";
+                     buttons.request.val = 0;
+                   }
+               }, function errorCallback(response) {
+
+               });
+           };
+
+            var requestButton = function () {
+
+              buttons.request.progress = true;
+                if (buttons.request.val == -1) {
+                  $http({
+                    method: 'GET',
+                    url: 'users/request/'+buttons.uid,
+                  }).then(function successCallback(response) {
+                        buttons.request.progress = false;
+                        if (response.data == "1") {
+                          buttons.request.icon = "close";
+                          buttons.request.val = 0;
+                        }
+                    }, function errorCallback(response) {
+
+                    });
+                }else {
+                  $http({
+                    method: 'GET',
+                    url: 'users/cancel/'+buttons.uid,
+                  }).then(function successCallback(response) {
+                      buttons.request.progress = false;
+                      if (response.data == "1") {
+                        buttons.request.icon = "add";
+                        buttons.request.val = -1;
+                      }
+
+                    }, function errorCallback(response) {
+
+                    });
+                }
+            };
+
+            buttons.openMenu = openMenu;
+            buttons.requestButton = requestButton;
+
+            var setUser = function (uid) {
+              buttons.uid = uid;
+            };
+            var actions = function () {
+              return buttons;
+            };
+            return{
+              setUser : setUser,
+              actions : actions,
+              init : init,
+            };
+
+        });
 
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
@@ -291,6 +363,30 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 			};
 		}
 	]);
+  app.directive('friendpanel', function () {
+      return {
+          restrict: 'E',
+          scope : {
+            uid : '=uid'
+          },
+          controller: ['$scope','friendPanelActions', function ($scope,friendPanelActions) {
+                  $scope.actions = friendPanelActions.actions();
+                  $scope.actions.uid = $scope.uid;
+                  friendPanelActions.init();
+              }],
+          templateUrl:'element/0',
+      };
+  });
+  app.directive('usercard', function () {
+      return {
+          restrict: 'E',
+          scope: {
+            actions: '=actions',
+            info: '=info'
+          },
+          templateUrl:'element/1',
+      };
+  });
 
 app.controller('msgController', [
 		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay) {
@@ -1169,11 +1265,12 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 }]);
 
-app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($scope,$http,$mdDialog,$routeParams) {
+app.controller('Users', ['$scope','$http','$mdDialog','$routeParams','friendPanelActions',function($scope,$http,$mdDialog,$routeParams,friendPanelActions) {
 
 
           console.log("Users");
           console.log($routeParams.uid);
+          $scope.uid = $routeParams.uid;
           $scope.settingsData = {
             tabs : {
               profile  : {
@@ -1219,24 +1316,7 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
 
           };
 
-          $scope.buttons = {
-            request : {
-              icon : "add",
-              val : -1,
-              progress : false,
-            },
-            message : "message",
-            block : {
-              icon : "block",
-              val : -1,
-            }
-          };
 
-
-          $scope.openMenu = function($mdOpenMenu, ev) {
-            originatorEv = ev;
-            $mdOpenMenu(ev);
-          };
 
           $http({
             method: 'GET',
@@ -1270,51 +1350,7 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
 
             });
 
-            $http({
-              method: 'GET',
-              url: 'users/frnd/status/'+$routeParams.uid,
-            }).then(function successCallback(response) {
-                  console.log(response.data+"rnd");
-                  if (response.data === "0") {
-                    $scope.buttons.request.icon = "close";
-                    $scope.buttons.request.val = 0;
-                  }
-              }, function errorCallback(response) {
 
-              });
-
-            $scope.requestButton = function () {
-
-              $scope.buttons.request.progress = true;
-                if ($scope.buttons.request.val == -1) {
-                  $http({
-                    method: 'GET',
-                    url: 'users/request/'+$routeParams.uid,
-                  }).then(function successCallback(response) {
-                        $scope.buttons.request.progress = false;
-                        if (response.data == "1") {
-                          $scope.buttons.request.icon = "close";
-                          $scope.buttons.request.val = 0;
-                        }
-                    }, function errorCallback(response) {
-
-                    });
-                }else {
-                  $http({
-                    method: 'GET',
-                    url: 'users/cancel/'+$routeParams.uid,
-                  }).then(function successCallback(response) {
-                      $scope.buttons.request.progress = false;
-                      if (response.data == "1") {
-                        $scope.buttons.request.icon = "add";
-                        $scope.buttons.request.val = -1;
-                      }
-
-                    }, function errorCallback(response) {
-
-                    });
-                }
-            };
 
 
 
@@ -1362,6 +1398,20 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
   };
   $scope.bootscreen = true;
 
-
+  $scope.buttons = {
+    request : {
+      icon : "add",
+      val : -1,
+      progress : false,
+    },
+    message : "message",
+    block : {
+      icon : "block",
+      val : -1,
+    }
+  };
+  $scope.k = {
+    d : "fffff"
+  };
 
   });
