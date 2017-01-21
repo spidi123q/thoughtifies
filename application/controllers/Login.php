@@ -296,7 +296,7 @@
         $data->photo = ($data->photo == "")?0:1;
 
         //print_r($data);
-        //$this->SearchModel->advancedSearch($data);
+        $this->SearchModel->advancedSearch($data);
         //echo $this->SearchModel->t();
 
             //echo $this->SearchModel->advancedSearchPagination(3);

@@ -15,8 +15,8 @@
 
 
         $obj = array(
-          'yy >=' => date("Y") - $data->l_age,
-          'yy <=' => date("Y") - $data->h_age,
+          'yy <=' => date("Y") - $data->l_age,
+          'yy >=' => date("Y") - $data->h_age,
         );
         if ($data->photo == 1) {
           $obj['picture !='] = 'photo';
@@ -48,8 +48,10 @@
 
         }
         $this->advQry = $this->db;
-        $this->db->limit(10,0);
-        $advQry = $this->db->get_compiled_select('member_details');
+        $this->db->limit(10,$data->offset);
+        //$advQry = $this->db->get_compiled_select('member_details');
+        $advQry = $this->db->get('member_details');
+        echo json_encode($advQry->result());
 
         /*$result = $this->db->get('member_details');
         $content = '';
@@ -78,29 +80,7 @@
 
       }
 
-      public function advancedSearchPagination($page)      {
-        $this->advQry->limit(10,$page);
-        $result = $this->advQry->get('member_details');
-        if ($result) {
-          echo "donlop";
 
-          if ($result->num_rows() == 0) {
-
-            echo "no matched profile";
-
-          }else {
-
-              foreach ($result->result() as $row) {
-              echo $this->parser->parse('template/profile_card.php', $row,TRUE);
-
-            }
-          }
-
-        }else {
-          echo "ffffffffffffffffffffffffff";
-        }
-        # code...
-      }
 
 
    }

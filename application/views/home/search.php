@@ -43,7 +43,7 @@
           <div flex  >
                 <ul>
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
-                    *{{item}}*
+                    <usercard info="item"></usercard>
                   </div>
                 </ul>
           </div>

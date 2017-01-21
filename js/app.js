@@ -381,7 +381,6 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
       return {
           restrict: 'E',
           scope: {
-            actions: '=actions',
             info: '=info'
           },
           templateUrl:'element/1',
@@ -528,7 +527,7 @@ app.controller('DemoCtrl', function() {
 });
 app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$timeout,$http,$q) {
     console.log("search activated");
-    var big = -1;
+    var big = -1,page = [];
 
 
 
@@ -574,24 +573,25 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
       				$timeout(function () {
       					var result = [];
                 index = index-1;
-                setBig(index);
-      					for (var i = index; i <= index + count - 1; i++) {
-                  //console.log(index);
-                  if(i < 0 || i > max) {
-                              continue;
-                          }
-      						result.push("item #" + i);
-      					}
-      					success(result);
+                setBig(index).then(function (response) {
+                  for (var i = index; i <= index + count - 1; i++) {
+                    //console.log(index);
+                    if(i < 0 || i > max) {
+                                continue;
+                            }
+        						result.push(page[i]);
+        					}
+        					success(result);
+                },function (error) {
+                  console.log(error);
+                });
+
       				}, 100);
       			};
 
       			$scope.datasource = datasource;
 
-      			$scope.delay = false;
-      			$timeout(function() {
-      				$scope.delay = true;
-      			}, 500);
+
 
 
             $scope.adapter = {
@@ -599,57 +599,47 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
             };
             $scope.startSearch = function (val) {
                val = typeof val !== 'undefined' ? val : 0;
-              $scope.searchData.data.h_age = $scope.slider.max;
-              $scope.searchData.data.l_age = $scope.slider.min;
-              //console.log($scope.searchData.data);
-              max = 100;
-              $http({
-                  method: 'POST',
-                  url: 'search/adv',
-                  data: $scope.searchData.data,
-
-                }).then(function successCallback(response) {
-                  console.log(response.data);
-                  }, function errorCallback(response) {
-
-                  });
                   if (val === 0) {
+                    big = -1;
                     return $scope.adapter.reload();
                   }
 
             };
 
               $scope.startSearch(1);
+              var getCount = function (big) {
+                  var deferred = $q.defer();
+                  deferred.resolve({ message: "no http needed" });
+                  return deferred.promise;
+              };
               var setBig = function(index){
 
               var deferred = $q.defer();
 
                 if(index > big){
                   big = index;
-                  /*
-                  getCount(big).then(function () {
+                  console.log(big);
+
+
+                    $scope.searchData.data.h_age = $scope.slider.max;
+                    $scope.searchData.data.l_age = $scope.slider.min;
+                    $scope.searchData.data.offset = big;
+                    //console.log($scope.searchData.data);
+                    max =100;
                     $http({
-                      method: 'GET',
-                      url: 'msg/f/'+big,
-                    }).then(function successCallback(response) {
-                        // this callback will be called asynchronously
-                        // when the response is available
-                      //  console.log(response.data);
-                      console.log(response.data);
-                        for (var i = 0; i < response.data.length; i++) {
-                          //page.push(response.data[i]);
-                        }
+                        method: 'POST',
+                        url: 'search/adv',
+                        data: $scope.searchData.data,
 
+                      }).then(function successCallback(response) {
+                        //console.log(response.data);
+                        response.data.forEach(function (item,index) {
+                          page.push(item);
+                        });
                         deferred.resolve(response);
-
-                      }, function errorCallback(response) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                         deferred.reject({ message: "Really bad" });
-                      });
-                  });
-      */
-                      console.log(big);
+                        }, function errorCallback(response) {
+                          deferred.reject({ message: "Really bad" });
+                        });
 
 
                 }
@@ -1411,7 +1401,8 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     }
   };
   $scope.k = {
-    d : "fffff"
+    fname : "suraj",
+    mem_id : "888"
   };
 
   });
