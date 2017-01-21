@@ -103,89 +103,6 @@ app.factory('dpDisplay', function() {
         };
     });
 
-    app.factory('friendPanelActions', function($http) {
-            var buttons = {
-              request : {
-                icon : "add",
-                val : -1,
-                progress : false,
-              },
-              message : "message",
-              block : {
-                icon : "block",
-                val : -1,
-              },
-            };
-
-            var openMenu = function($mdOpenMenu, ev) {
-              originatorEv = ev;
-              $mdOpenMenu(ev);
-            };
-
-           var init = function() {
-             $http({
-               method: 'GET',
-               url: 'users/frnd/status/'+buttons.uid,
-             }).then(function successCallback(response) {
-                   console.log(response.data+"rnd");
-                   if (response.data === "0") {
-                     buttons.request.icon = "close";
-                     buttons.request.val = 0;
-                   }
-               }, function errorCallback(response) {
-
-               });
-           };
-
-            var requestButton = function () {
-
-              buttons.request.progress = true;
-                if (buttons.request.val == -1) {
-                  $http({
-                    method: 'GET',
-                    url: 'users/request/'+buttons.uid,
-                  }).then(function successCallback(response) {
-                        buttons.request.progress = false;
-                        if (response.data == "1") {
-                          buttons.request.icon = "close";
-                          buttons.request.val = 0;
-                        }
-                    }, function errorCallback(response) {
-
-                    });
-                }else {
-                  $http({
-                    method: 'GET',
-                    url: 'users/cancel/'+buttons.uid,
-                  }).then(function successCallback(response) {
-                      buttons.request.progress = false;
-                      if (response.data == "1") {
-                        buttons.request.icon = "add";
-                        buttons.request.val = -1;
-                      }
-
-                    }, function errorCallback(response) {
-
-                    });
-                }
-            };
-
-            buttons.openMenu = openMenu;
-            buttons.requestButton = requestButton;
-
-            var setUser = function (uid) {
-              buttons.uid = uid;
-            };
-            var actions = function () {
-              return buttons;
-            };
-            return{
-              setUser : setUser,
-              actions : actions,
-              init : init,
-            };
-
-        });
 
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
@@ -1323,7 +1240,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 }]);
 
-app.controller('Users', ['$scope','$http','$mdDialog','$routeParams','friendPanelActions',function($scope,$http,$mdDialog,$routeParams,friendPanelActions) {
+app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($scope,$http,$mdDialog,$routeParams) {
 
 
           console.log("Users");
