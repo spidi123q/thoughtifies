@@ -601,6 +601,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                val = typeof val !== 'undefined' ? val : 0;
                   if (val === 0) {
                     big = -1;
+                    page = [];
                     return $scope.adapter.reload();
                   }
 
