@@ -2,7 +2,9 @@
 <md-card>
     <md-card-title>
       <md-card-title-text>
+        <a href="#/users/{{info.mem_id}}">
         <span class="md-headline">{{info.fname}} {{info.lname}}</span>
+      </a>
       </md-card-title-text>
 
 

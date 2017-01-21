@@ -369,10 +369,77 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           scope : {
             uid : '=uid'
           },
-          controller: ['$scope','friendPanelActions', function ($scope,friendPanelActions) {
-                  $scope.actions = friendPanelActions.actions();
-                  $scope.actions.uid = $scope.uid;
-                  friendPanelActions.init();
+          controller: ['$scope','$http', function ($scope,$http) {
+            $scope.buttons = {
+              request : {
+                icon : "add",
+                val : -1,
+                progress : false,
+              },
+              message : "message",
+              block : {
+                icon : "block",
+                val : -1,
+              },
+            };
+
+            var openMenu = function($mdOpenMenu, ev) {
+              originatorEv = ev;
+              $mdOpenMenu(ev);
+            };
+
+           var init = function() {
+             $http({
+               method: 'GET',
+               url: 'users/frnd/status/'+$scope.uid,
+             }).then(function successCallback(response) {
+                   console.log(response.data+"rnd");
+                   if (response.data === "0") {
+                     $scope.buttons.request.icon = "close";
+                     $scope.buttons.request.val = 0;
+                   }
+               }, function errorCallback(response) {
+
+               });
+           };
+           init();
+
+            var requestButton = function () {
+
+              $scope.buttons.request.progress = true;
+                if ($scope.buttons.request.val == -1) {
+                  $http({
+                    method: 'GET',
+                    url: 'users/request/'+$scope.uid,
+                  }).then(function successCallback(response) {
+                        $scope.buttons.request.progress = false;
+                        if (response.data == "1") {
+                          $scope.buttons.request.icon = "close";
+                          $scope.buttons.request.val = 0;
+                        }
+                    }, function errorCallback(response) {
+
+                    });
+                }else {
+                  $http({
+                    method: 'GET',
+                    url: 'users/cancel/'+$scope.uid,
+                  }).then(function successCallback(response) {
+                      $scope.buttons.request.progress = false;
+                      if (response.data == "1") {
+                        $scope.buttons.request.icon = "add";
+                        $scope.buttons.request.val = -1;
+                      }
+
+                    }, function errorCallback(response) {
+
+                    });
+                }
+            };
+
+            $scope.buttons.openMenu = openMenu;
+            $scope.buttons.requestButton = requestButton;
+            $scope.actions = $scope.buttons;
               }],
           templateUrl:'element/0',
       };
