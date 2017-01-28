@@ -13,12 +13,7 @@
 
      /*******private functions**********/
 
-     private function getPHPInput()  {
-       $temp = json_decode(file_get_contents("php://input"));
-       $array = get_object_vars($temp);
-       return $array;
-       //return get_object_vars($temp);
-     }
+
 
         private function pageHome()     {
            $this->load->view('home/homepage');
@@ -26,29 +21,7 @@
 
         }
 
-        private function convertToJPEG($data)      {
 
-          $fileType = $data->data('file_type');
-          $allowedType = array('image/jpeg', 'image/pjpeg');
-          if ( !in_array($fileType,$allowedType)) {
-            echo "not jpg";
-            $png = array('image/png',  'image/x-png');
-            if (in_array($fileType,$png)) {
-                echo " png";
-                $image = imagecreatefrompng ($data->data('full_path') );
-                $newFile = $data->data('file_path').$data->data('raw_name').'.jpg';
-                 imagejpeg($image,$newFile,100);
-                 echo $data->data('full_path');
-                  if (unlink($data->data('full_path'))) {
-                    //echo "deleted";
-                    return true;;
-                  }
-                  else {
-                    return false;
-                  }
-            }
-          }
-        }
         private function pageSearch()     {
          $this->load->view('home/search.php');
 
@@ -213,49 +186,11 @@
         }
       }
 
-      public function doUpload()    {
-                $config['upload_path']          = 'images/userimages';
-               $config['allowed_types']        = 'gif|jpg|png';
-               $config['max_size']             = 2000;
-               $config['max_width']            = 3000;
-               $config['max_height']           = 3000;
-               $config['encrypt_name']       = TRUE;
-
-               $this->load->library('upload', $config);
-
-               if ( ! $this->upload->do_upload('file'))
-               {
-                       $error = array('error' => $this->upload->display_errors());
-
-                       print_r($error);
-               }
-               else
-               {
-
-                 $this->convertToJPEG($this->upload);
-                 $newFile = $this->upload->data('file_path').$this->upload->data('raw_name').'.jpg';
-
-
-                       $qry = "UPDATE member SET picture=? WHERE mem_id=?";
-
-                       if ($this->db->query($qry, array($this->upload->data('raw_name'), $this->session->SESS_MEMBER_ID))) {
-                         $config['image_library'] = 'gd2';
-                         $config['source_image'] = $newFile;
-                         $config['create_thumb'] = TRUE;
-                         $config['maintain_ratio'] = TRUE;
-                         $config['width']         = 200;
-                         $config['height']       = 200;
-
-
-                         $this->load->library('image_lib', $config);
-                         $this->image_lib->resize();
-                         $im = file_get_contents($this->upload->data('full_path'));
-                         $imdata = base64_encode($im);
-                         echo $imdata;
-                       }
-
-
-               }
+      public function dpUpload()    {
+               $this->SessionModel->dpUpload();
+      }
+      public function postImageUpload()    {
+               $this->SessionModel->postImageUpload();
       }
 
 
@@ -358,8 +293,10 @@
         public function getElement($value)        {
           if($value == 0)
             $this->load->view('template/friendpanel.php');
-          if($value == 1)
+          else if($value == 1)
               $this->load->view('template/usercard.php');
+          else if($value == 2)
+              $this->load->view('template/postcard.php');
         }
 
         public function listEmoji($index)      {

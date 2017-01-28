@@ -48,7 +48,9 @@
           md-items="item in ctrl.querySearch(ctrl.searchText)"
           md-item-text="item.display"
           md-min-length="0"
-          placeholder="Search for anything">
+          placeholder="Search for anything"
+          style="background-color:#4DB6AC"
+          >
         <md-item-template>
           <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
         </md-item-template>
@@ -57,6 +59,7 @@
           <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
         </md-not-found>
       </md-autocomplete>
+      <span flex-sm="30" flex-gt-sm="25"></span>
 
 				</div>
 			</md-toolbar>

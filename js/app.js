@@ -56,6 +56,238 @@ app.config(function($mdIconProvider) {
       .defaultIconSet('img/icons/sets/core-icons.svg', 24);
   });
 
+  app.directive('friendpanel', function () {
+      return {
+          restrict: 'E',
+          scope : {
+            uid : '=uid'
+          },
+          controller: ['$scope','$http', function ($scope,$http) {
+            $scope.buttons = {
+              request : {
+                icon : "add",
+                val : -1,
+                progress : false,
+              },
+              message : "message",
+              block : {
+                icon : "block",
+                val : -1,
+              },
+            };
+
+            var openMenu = function($mdOpenMenu, ev) {
+              originatorEv = ev;
+              $mdOpenMenu(ev);
+            };
+
+           var init = function() {
+             $http({
+               method: 'GET',
+               url: 'users/frnd/status/'+$scope.uid,
+             }).then(function successCallback(response) {
+                   console.log(response.data+"rnd");
+                   if (response.data === "0") {
+                     $scope.buttons.request.icon = "close";
+                     $scope.buttons.request.val = 0;
+                   }
+               }, function errorCallback(response) {
+
+               });
+           };
+           init();
+
+            var requestButton = function () {
+
+              $scope.buttons.request.progress = true;
+                if ($scope.buttons.request.val == -1) {
+                  $http({
+                    method: 'GET',
+                    url: 'users/request/'+$scope.uid,
+                  }).then(function successCallback(response) {
+                        $scope.buttons.request.progress = false;
+                        if (response.data == "1") {
+                          $scope.buttons.request.icon = "close";
+                          $scope.buttons.request.val = 0;
+                        }
+                    }, function errorCallback(response) {
+
+                    });
+                }else {
+                  $http({
+                    method: 'GET',
+                    url: 'users/cancel/'+$scope.uid,
+                  }).then(function successCallback(response) {
+                      $scope.buttons.request.progress = false;
+                      if (response.data == "1") {
+                        $scope.buttons.request.icon = "add";
+                        $scope.buttons.request.val = -1;
+                      }
+
+                    }, function errorCallback(response) {
+
+                    });
+                }
+            };
+
+            $scope.buttons.openMenu = openMenu;
+            $scope.buttons.requestButton = requestButton;
+            $scope.actions = $scope.buttons;
+              }],
+          templateUrl:'element/0',
+      };
+  });
+
+  app.directive('usercard', function () {
+      return {
+          restrict: 'E',
+          scope: {
+            info: '=info'
+          },
+          templateUrl:'element/1',
+      };
+  });
+  app.directive('postcard', function () {
+      return {
+          restrict: 'E',
+          scope : {
+            uid : '=uid'
+          },
+          controller: ['$scope','$http','FileUploader', function ($scope,$http,FileUploader) {
+                $scope.shadow = {};
+                var placeholder = "Share your thoughts";
+                $scope.upload = {
+                  progress : true,
+                };
+                $scope.focus = function functionName() {
+                  console.log("focus");
+                  if ($scope.data === placeholder) {
+                    $scope.data = "";
+                  }
+                  $scope.shadow = {
+                     "box-shadow" : "0px 0px 30px #888888",
+                  };
+                };
+                $scope.unfocus = function functionName($event) {
+                  console.log("unfocus");
+                  if ($scope.data === "") {
+                    $scope.data = placeholder;
+                  }
+                  $scope.shadow = {};
+                };
+                $scope.data = placeholder;
+                var uploader = $scope.uploader = new FileUploader({
+                  url: 'home/upload',
+                  autoUpload: true,
+                });
+                uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+                    console.info('onWhenAddingFileFailed', item, filter, options);
+                };
+                uploader.onAfterAddingFile = function(fileItem) {
+                    console.info('onAfterAddingFile', fileItem);
+                };
+                uploader.onAfterAddingAll = function(addedFileItems) {
+                    //console.info('onAfterAddingAll', addedFileItems);
+                };
+                uploader.onBeforeUploadItem = function(item) {
+                    console.info('onBeforeUploadItem', item);
+                    $scope.upload.progress = false;
+
+                };
+                uploader.onProgressItem = function(fileItem, progress) {
+                    console.info('onProgressItem', fileItem, progress);
+
+                };
+                uploader.onProgressAll = function(progress) {
+                    console.info('onProgressAll', progress);
+                    $scope.upload.status = progress;
+                };
+                uploader.onSuccessItem = function(fileItem, response, status, headers) {
+                    console.info('onSuccessItem', fileItem, response, status, headers);
+                    $scope.upload.progress = true;
+
+                };
+                uploader.onErrorItem = function(fileItem, response, status, headers) {
+                    console.info('onErrorItem', fileItem, response, status, headers);
+                };
+                uploader.onCancelItem = function(fileItem, response, status, headers) {
+                    console.info('onCancelItem', fileItem, response, status, headers);
+                };
+                uploader.onCompleteItem = function(fileItem, response, status, headers) {
+                    //console.info('onCompleteItem', fileItem, response, status, headers);
+                };
+                uploader.onCompleteAll = function() {
+                    console.info('onCompleteAll');
+                };
+
+
+        }],
+          templateUrl:'element/2',
+      };
+  });
+  app.directive('elastic', [
+    '$timeout',
+    function($timeout) {
+        return {
+            restrict: 'A',
+            link: function($scope, element) {
+                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
+                var resize = function() {
+                    element[0].style.height = $scope.initialHeight;
+                    element[0].style.height = "" + element[0].scrollHeight + "px";
+                };
+                element.on("input change", resize);
+                $timeout(resize, 0);
+            }
+        };
+    }
+]);
+
+app.directive('ngThumb', ['$window', function($window) {
+        var helper = {
+            support: !!($window.FileReader && $window.CanvasRenderingContext2D),
+            isFile: function(item) {
+                return angular.isObject(item) && item instanceof $window.File;
+            },
+            isImage: function(file) {
+                var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        };
+
+        return {
+            restrict: 'A',
+            template: '<canvas/>',
+            link: function(scope, element, attributes) {
+                if (!helper.support) return;
+
+                var params = scope.$eval(attributes.ngThumb);
+
+                if (!helper.isFile(params.file)) return;
+                if (!helper.isImage(params.file)) return;
+
+                var canvas = element.find('canvas');
+                var reader = new FileReader();
+
+                reader.onload = onLoadFile;
+                reader.readAsDataURL(params.file);
+
+                function onLoadFile(event) {
+                    var img = new Image();
+                    img.onload = onLoadImage;
+                    img.src = event.target.result;
+                }
+
+                function onLoadImage() {
+                    var width = params.width || this.width / this.height * params.height;
+                    var height = params.height || this.height / this.width * params.width;
+                    canvas.attr({ width: width, height: height });
+                    canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+                }
+            }
+        };
+    }]);
+
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
   var chat = {};
@@ -297,113 +529,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 			};
 		}
 	]);
-  app.directive('friendpanel', function () {
-      return {
-          restrict: 'E',
-          scope : {
-            uid : '=uid'
-          },
-          controller: ['$scope','$http', function ($scope,$http) {
-            $scope.buttons = {
-              request : {
-                icon : "add",
-                val : -1,
-                progress : false,
-              },
-              message : "message",
-              block : {
-                icon : "block",
-                val : -1,
-              },
-            };
 
-            var openMenu = function($mdOpenMenu, ev) {
-              originatorEv = ev;
-              $mdOpenMenu(ev);
-            };
-
-           var init = function() {
-             $http({
-               method: 'GET',
-               url: 'users/frnd/status/'+$scope.uid,
-             }).then(function successCallback(response) {
-                   console.log(response.data+"rnd");
-                   if (response.data === "0") {
-                     $scope.buttons.request.icon = "close";
-                     $scope.buttons.request.val = 0;
-                   }
-               }, function errorCallback(response) {
-
-               });
-           };
-           init();
-
-            var requestButton = function () {
-
-              $scope.buttons.request.progress = true;
-                if ($scope.buttons.request.val == -1) {
-                  $http({
-                    method: 'GET',
-                    url: 'users/request/'+$scope.uid,
-                  }).then(function successCallback(response) {
-                        $scope.buttons.request.progress = false;
-                        if (response.data == "1") {
-                          $scope.buttons.request.icon = "close";
-                          $scope.buttons.request.val = 0;
-                        }
-                    }, function errorCallback(response) {
-
-                    });
-                }else {
-                  $http({
-                    method: 'GET',
-                    url: 'users/cancel/'+$scope.uid,
-                  }).then(function successCallback(response) {
-                      $scope.buttons.request.progress = false;
-                      if (response.data == "1") {
-                        $scope.buttons.request.icon = "add";
-                        $scope.buttons.request.val = -1;
-                      }
-
-                    }, function errorCallback(response) {
-
-                    });
-                }
-            };
-
-            $scope.buttons.openMenu = openMenu;
-            $scope.buttons.requestButton = requestButton;
-            $scope.actions = $scope.buttons;
-              }],
-          templateUrl:'element/0',
-      };
-  });
-  app.directive('usercard', function () {
-      return {
-          restrict: 'E',
-          scope: {
-            info: '=info'
-          },
-          templateUrl:'element/1',
-      };
-  });
-  app.directive('elastic', [
-    '$timeout',
-    function($timeout) {
-        return {
-            restrict: 'A',
-            link: function($scope, element) {
-                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
-                var resize = function() {
-                    element[0].style.height = $scope.initialHeight;
-                    element[0].style.height = "" + element[0].scrollHeight + "px";
-                };
-                element.on("input change", resize);
-                $timeout(resize, 0);
-            }
-        };
-    }
-]);
 
 app.controller('msgController', [
 		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay) {
@@ -1441,17 +1567,6 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
   };
   $scope.bootscreen = true;
 
-  $scope.k = "20";
-  $scope.shadow = {};
-  $scope.focus = function functionName() {
-    console.log("focus");
-    $scope.shadow = {
-       "box-shadow" : "0px 0px 30px #888888",
-    };
-  };
-  $scope.unfocus = function functionName($event) {
-    console.log("unfocus");
-    $scope.shadow = {};
-  };
+
 
   });
