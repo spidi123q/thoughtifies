@@ -387,6 +387,23 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           templateUrl:'element/1',
       };
   });
+  app.directive('elastic', [
+    '$timeout',
+    function($timeout) {
+        return {
+            restrict: 'A',
+            link: function($scope, element) {
+                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
+                var resize = function() {
+                    element[0].style.height = $scope.initialHeight;
+                    element[0].style.height = "" + element[0].scrollHeight + "px";
+                };
+                element.on("input change", resize);
+                $timeout(resize, 0);
+            }
+        };
+    }
+]);
 
 app.controller('msgController', [
 		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay) {
@@ -1424,21 +1441,17 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
   };
   $scope.bootscreen = true;
 
-  $scope.buttons = {
-    request : {
-      icon : "add",
-      val : -1,
-      progress : false,
-    },
-    message : "message",
-    block : {
-      icon : "block",
-      val : -1,
-    }
+  $scope.k = "20";
+  $scope.shadow = {};
+  $scope.focus = function functionName() {
+    console.log("focus");
+    $scope.shadow = {
+       "box-shadow" : "0px 0px 30px #888888",
+    };
   };
-  $scope.k = {
-    fname : "suraj",
-    mem_id : "888"
+  $scope.unfocus = function functionName($event) {
+    console.log("unfocus");
+    $scope.shadow = {};
   };
 
   });
