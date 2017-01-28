@@ -67,6 +67,7 @@ $route['(:any)/msg/f/(:num)']='Login/f/$2';
 $route['(:any)/msg/page/(:num)']='Login/messagePagination/$2';
 $route['(:any)/msg/emoji/(:num)']='Login/listEmoji/$2';
 $route['(:any)/search/adv']='Login/advancedSearch';
+$route['(:any)/search/adv/count']='Login/advancedSearchCount';
 $route['(:any)/online/id']='Login/updateOnlineUsers';
 $route['(:any)/online/2']='Login/listOnlineUsers';
 $route['(:any)/dialog/(:num)']='Login/getDialog/$2';

@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons','jkAngularRatingStars']);
 
 
 
@@ -37,7 +37,24 @@ app.config(['$routeProvider', function($routeProvider){
                 .otherwise({redirectTo:'/'});
 }]);
 
+app.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'http://127.0.0.1/**'
+  ]);
 
+  // The blacklist overrides the whitelist so the open redirect here is blocked.
+  $sceDelegateProvider.resourceUrlBlacklist([
+    'http://myapp.example.com/clickThru**'
+  ]);
+});
+app.config(function($mdIconProvider) {
+    $mdIconProvider
+      .iconSet('social', 'http://127.0.0.1/code/images/angular-logo.svg', 24)
+      .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+  });
 
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
@@ -448,7 +465,7 @@ app.controller('msgController', [
             //console.log(responce);
             var result = [];
   					for (var i = index; i <= index + count - 1; i++) {
-  setBig(index);
+  //setBig(index);
               if(i > 0 || (i*-1) >= max) {
                           continue;
                       }
@@ -552,22 +569,94 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 
             var datasource = {};
             var max = -1;
+            var getCount = function (big) {
+              var deferred = $q.defer();
+              if (big === 0) {
+
+                    $http({
+                      method: 'POST',
+                      url: 'search/adv/count',
+                      data: $scope.searchData.data,
+                    }).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        console.log(response.data);
+                        max = response.data.count;
+                        deferred.resolve(response);
+
+                      }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log("count err");
+                         deferred.reject({ message: "Really bad" });
+                      });
+
+              }else {
+                deferred.resolve({ message: "no http needed" });
+              }
+              return deferred.promise;
+
+            };
+            var setBig = function(index){
+
+              var deferred = $q.defer();
+              index2 = index-1;
+
+              if(index2 > big){
+                big = index2;
+                console.log(big);
+
+
+
+                  $scope.searchData.data.h_age = $scope.slider.max;
+                  $scope.searchData.data.l_age = $scope.slider.min;
+                  $scope.searchData.data.offset = big;
+                  //console.log($scope.searchData.data);
+                  //max =100;
+                  getCount(big).then(function (response) {
+                    $http({
+                        method: 'POST',
+                        url: 'search/adv',
+                        data: $scope.searchData.data,
+
+                      }).then(function successCallback(response) {
+                        //console.log(response.data);
+                        response.data.forEach(function (item,index3) {
+                          page.push(item);
+
+                        });
+                          deferred.resolve(response);
+                        }, function errorCallback(response) {
+                          deferred.reject({ message: "Really bad" });
+                        });
+                  });
+
+
+
+              }
+              else {
+                deferred.resolve({ message: "no http needed" });
+              }
+              return deferred.promise;
+            };
 
       			datasource.get = function (index, count, success) {
       				$timeout(function () {
-      					var result = [];
-                index = index-1;
+
+
                 setBig(index).then(function (response) {
+                  var result = [];
                   for (var i = index; i <= index + count - 1; i++) {
-                    //console.log(index);
+
                     if(i < 0 || i > max) {
                                 continue;
                             }
+                            console.log("page : "+i);
         						result.push(page[i]);
         					}
         					success(result);
                 },function (error) {
-                  console.log(error);
+                  console.log(error.statusText);
                 });
 
       				}, 100);
@@ -582,6 +671,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
               remain: true
             };
             $scope.startSearch = function (val) {
+
                val = typeof val !== 'undefined' ? val : 0;
                   if (val === 0) {
                     big = -1;
@@ -592,47 +682,8 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
             };
 
               $scope.startSearch(1);
-              var getCount = function (big) {
-                  var deferred = $q.defer();
-                  deferred.resolve({ message: "no http needed" });
-                  return deferred.promise;
-              };
-              var setBig = function(index){
-
-              var deferred = $q.defer();
-
-                if(index > big){
-                  big = index;
-                  console.log(big);
 
 
-                    $scope.searchData.data.h_age = $scope.slider.max;
-                    $scope.searchData.data.l_age = $scope.slider.min;
-                    $scope.searchData.data.offset = big;
-                    //console.log($scope.searchData.data);
-                    max =100;
-                    $http({
-                        method: 'POST',
-                        url: 'search/adv',
-                        data: $scope.searchData.data,
-
-                      }).then(function successCallback(response) {
-                        //console.log(response.data);
-                        response.data.forEach(function (item,index) {
-                          page.push(item);
-                        });
-                        deferred.resolve(response);
-                        }, function errorCallback(response) {
-                          deferred.reject({ message: "Really bad" });
-                        });
-
-
-                }
-                else {
-                  deferred.resolve({ message: "no http needed" });
-                }
-                return deferred.promise;
-              };
 
 
 

@@ -43,7 +43,8 @@
           <div flex  >
                 <ul>
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
-                    <usercard info="item"></usercard>
+                   <usercard info="item"></usercard>
+
                   </div>
                 </ul>
           </div>

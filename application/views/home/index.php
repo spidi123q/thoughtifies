@@ -37,7 +37,26 @@
 									 </md-button>
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
-					<span flex></span>
+
+          <md-autocomplete flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Search for anything">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{ctrl.searchText}}" were found.
+          <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+        </md-not-found>
+      </md-autocomplete>
 
 				</div>
 			</md-toolbar>
@@ -80,7 +99,7 @@
 <md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
          <i class="material-icons ">perm_contact_calendar</i>
  </md-button>-->
-    <div ng-view layout-align="center center" >
+    <div ng-view layout-align="center center">
 
     </div>
 
@@ -123,6 +142,9 @@
   <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
   <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <link href="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.css" rel="stylesheet" type="text/css" />
+  <script src="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";

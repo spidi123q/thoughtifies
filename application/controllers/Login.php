@@ -297,9 +297,15 @@
 
         //print_r($data);
         $this->SearchModel->advancedSearch($data);
-        //echo $this->SearchModel->t();
 
-            //echo $this->SearchModel->advancedSearchPagination(3);
+      }
+      public function advancedSearchCount()      {
+
+        $data = $this->input->raw_input_stream;
+        $data = json_decode($data);
+        $data->online = ($data->online == "")?0:1;
+        $data->photo = ($data->photo == "")?0:1;
+        $this->SearchModel->advancedSearchCount($data);
 
       }
 
