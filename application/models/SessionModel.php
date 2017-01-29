@@ -269,6 +269,28 @@
 
       }
 
+      public function getFriendRequestList($value)      {
+        $qry = "SELECT member_details.* FROM `friendship`,member_details
+        WHERE friendship.receiver=?
+        AND friendship.status=?
+        AND friendship.sender=member_details.mem_id
+        LIMIT ?,10";
+        $result = $this->db->query($qry, array(
+        intval($this->session->SESS_MEMBER_ID), 0, intval($value)));
+        echo json_encode($result->result());
+      }
+
+      public function getFriendRequestCount()      {
+        $qry = "SELECT COUNT(*) AS count FROM `friendship`,member_details
+        WHERE friendship.receiver=?
+        AND friendship.status=?
+        AND friendship.sender=member_details.mem_id";
+        $result = $this->db->query($qry, array(
+        intval($this->session->SESS_MEMBER_ID), 0
+        ));
+        echo json_encode($result->row());
+      }
+
 
 
 

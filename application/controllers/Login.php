@@ -296,6 +296,8 @@
               $this->load->view('template/usercard.php');
           else if($value == 2)
               $this->load->view('template/postcard.php');
+          else if($value == 3)
+              $this->load->view('template/friend_request_card.php');
         }
 
         public function listEmoji($index)      {
@@ -332,8 +334,17 @@
           $data = $this->input->raw_input_stream;
           $data = json_decode($data);
           $this->SessionModel->insertPost($data);
-          //print_r($data);
+        }
 
+        public function getFriendRequestList($value)      {
+          $this->SessionModel->getFriendRequestList($value);
+        }
+        public function getFriendRequestCount()      {
+          $this->SessionModel->getFriendRequestCount();
+        }
+        public function friendRequestActions($value,$data)
+        {
+          echo $value.$data;
         }
 
 

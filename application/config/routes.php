@@ -82,3 +82,6 @@ $route['(:any)/users/frnd/status/(:any)']='Login/getFriendshipStatus/$2';
 $route['(:any)/element/(:num)']='Login/getElement/$2';
 $route['(:any)/home/upload']='Login/postImageUpload';
 $route['(:any)/home/post']='Login/insertPost';
+$route['(:any)/req/frnd/(:num)']='Login/getFriendRequestList/$2';
+$route['(:any)/req/frnd/count']='Login/getFriendRequestCount';
+$route['(:any)/req/frnd/action/(:num)/(:num)']='Login/friendRequestActions/$2/$3';

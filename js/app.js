@@ -264,6 +264,12 @@ app.config(function($mdIconProvider) {
           templateUrl:'element/2',
       };
   });
+  app.directive('friendRequestCard', function () {
+      return {
+          restrict: 'E',
+          templateUrl:'element/3',
+      };
+  });
   app.directive('elastic', [
     '$timeout',
     function($timeout) {
@@ -1595,18 +1601,18 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
 
  }]);
 
- app.controller('Request', function ($scope,$timeout,$q) {
+ app.controller('Request', function ($scope,$timeout,$q,$http) {
 
          var datasource = {};
-         var max = 500,big =-1;
+         var big =-1,max = -1;
+         var page = [];
          var getCount = function (big) {
            var deferred = $q.defer();
            if (big === 0) {
-                  /*
+
                  $http({
-                   method: 'POST',
-                   url: 'search/adv/count',
-                   data: $scope.searchData.data,
+                   method: 'GET',
+                   url: 'req/frnd/count',
                  }).then(function successCallback(response) {
                      // this callback will be called asynchronously
                      // when the response is available
@@ -1620,8 +1626,6 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
                      console.log("count err");
                       deferred.reject({ message: "Really bad" });
                    });
-                   */
-                   deferred.resolve({ message: "no http needed" });
 
            }else {
              deferred.resolve({ message: "no http needed" });
@@ -1639,27 +1643,19 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
              console.log(big);
 
                getCount(big).then(function (response) {
-/*
                  $http({
-                     method: 'POST',
-                     url: 'search/adv',
-                     data: $scope.searchData.data,
-
+                     method: 'GET',
+                     url: 'req/frnd/'+big,
                    }).then(function successCallback(response) {
-                     //console.log(response.data);
+                     console.log(response.data);
                      response.data.forEach(function (item,index3) {
                        page.push(item);
-
                      });
                        deferred.resolve(response);
                      }, function errorCallback(response) {
                        deferred.reject({ message: "Really bad" });
-                     });*/
-                     deferred.resolve({ message: "Really bad" });
+                     });
                });
-
-
-
            }
            else {
              deferred.resolve({ message: "no http needed" });
@@ -1675,11 +1671,11 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
                var result = [];
                for (var i = index; i <= index + count - 1; i++) {
 
-                 if(i < 0 || i > max) {
+                 if(i < 0 || i >= max) {
                              continue;
                          }
                          //console.log("page : "+i);
-                 result.push("item "+i);
+                 result.push(page[i]);
                }
                success(result);
              },function (error) {
@@ -1690,13 +1686,46 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
          };
 
          $scope.datasource = datasource;
-
-
-
-
          $scope.adapter = {
            remain: true
          };
+
+         $scope.k = function () {
+           console.log("ck");
+           $scope.adapter.reload();
+         };
+         $scope.accept = function (user) {
+           $http({
+               method: 'GET',
+               url: 'req/frnd/action/0/'+user.mem_id,
+             }).then(function successCallback(response) {
+                 //console.log(response);
+                var a = page.indexOf(user);
+                 console.log("index : "+a);
+                 max--;
+                 page.splice(a, 1);
+                 $scope.adapter.reload();
+               //  $scope.adapter.applyUpdates(0,[]);
+
+
+
+               }, function errorCallback(response) {
+                 // called asynchronously if an error occurs
+                 // or server returns response with an error status.
+               });
+         };
+         $scope.reject = function (mem_id) {
+           $http({
+               method: 'GET',
+               url: 'req/frnd/action/1/'+mem_id,
+             }).then(function successCallback(response) {
+                 console.log(response);
+               }, function errorCallback(response) {
+                 // called asynchronously if an error occurs
+                 // or server returns response with an error status.
+               });
+         };
+
    });
 
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
