@@ -81,3 +81,4 @@ $route['(:any)/users/cancel/(:any)']='Login/removeFriend/$2';
 $route['(:any)/users/frnd/status/(:any)']='Login/getFriendshipStatus/$2';
 $route['(:any)/element/(:num)']='Login/getElement/$2';
 $route['(:any)/home/upload']='Login/postImageUpload';
+$route['(:any)/home/post']='Login/insertPost';

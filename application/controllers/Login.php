@@ -30,9 +30,8 @@
             $this->load->view('home/messages.php');
 
         }
-       private function pageInterest()     {
-         echo "gdfg";
-
+       private function pageRequests()     {
+         $this->load->view('home/requests.php');
        }
       private function pageSettings()     {
         $this->load->view('home/settings');
@@ -128,7 +127,7 @@
           $this->pageMessages();
         }
         elseif ($value == 3) {
-          $this->pageInterest();
+          $this->pageRequests();
         }
         elseif ($value == 4) {
           $this->pageSettings();
@@ -327,6 +326,14 @@
 
         public function getFriendshipStatus($value)      {
           $this->SessionModel->getFriendshipStatus($value);
+        }
+
+        public function insertPost()   {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->SessionModel->insertPost($data);
+          //print_r($data);
+
         }
 
 

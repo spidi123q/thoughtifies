@@ -14,7 +14,7 @@
             <div ng-repeat="item in uploader.queue">
                 <span layout="column">
                   <div  ng-thumb="{ file: item._file, height: 100 }"></div>
-                  <md-progress-linear ng-hide="upload.progress" md-mode="determinate" value="{{upload.status}}"></md-progress-linear>
+                  <md-progress-linear ng-hide="upload.progress" md-mode="determinate" value="{{upload.status}}" class="md-warn"></md-progress-linear>
                 </span>
             </div>
 
@@ -30,7 +30,7 @@
             </label>
           </span>
           <span layout="row" layout-align="end center">
-            <md-button class="md-warn">post</md-button>
+            <md-button ng-click="post()" ng-disabled="upload.button" class="md-warn">post</md-button>
           </span>
         </span>
 

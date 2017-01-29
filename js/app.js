@@ -29,7 +29,9 @@ app.config(['$routeProvider', function($routeProvider){
                   controller : "Users"
 
                 })
-                .when('/request',{template:'This is the fs Route',})
+                .when('/request',{
+                  templateUrl:'p/3',
+                })
                 .when('/profile',{
                   templateUrl:'p/4',
                   controller : "Settings"
@@ -158,6 +160,10 @@ app.config(function($mdIconProvider) {
                 var placeholder = "Share your thoughts";
                 $scope.upload = {
                   progress : true,
+                  button : false,
+                  response : {
+                    file : false,
+                  }
                 };
                 $scope.focus = function functionName() {
                   console.log("focus");
@@ -180,6 +186,12 @@ app.config(function($mdIconProvider) {
                   url: 'home/upload',
                   autoUpload: true,
                 });
+                uploader.filters.push({
+                    name: 'customFilter',
+                    fn: function(item /*{File|FileLikeObject}*/, options) {
+                        return this.queue.length < 1;
+                    }
+                });
                 uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
                     console.info('onWhenAddingFileFailed', item, filter, options);
                 };
@@ -192,6 +204,7 @@ app.config(function($mdIconProvider) {
                 uploader.onBeforeUploadItem = function(item) {
                     console.info('onBeforeUploadItem', item);
                     $scope.upload.progress = false;
+                    $scope.upload.button = true;
 
                 };
                 uploader.onProgressItem = function(fileItem, progress) {
@@ -205,6 +218,11 @@ app.config(function($mdIconProvider) {
                 uploader.onSuccessItem = function(fileItem, response, status, headers) {
                     console.info('onSuccessItem', fileItem, response, status, headers);
                     $scope.upload.progress = true;
+                    $scope.upload.button = false;
+                    if (response.status) {
+                      $scope.upload.response = response;
+                    }
+
 
                 };
                 uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -218,6 +236,27 @@ app.config(function($mdIconProvider) {
                 };
                 uploader.onCompleteAll = function() {
                     console.info('onCompleteAll');
+                };
+                $scope.post = function () {
+
+                          $http({
+                          method: 'POST',
+                          url: 'home/post',
+                          data : {
+                            content : $scope.data,
+                            upload : $scope.upload.response,
+                          },
+                          }).then(function successCallback(response) {
+                            console.log(response);
+                            if (response.data === "1") {
+                                uploader.clearQueue();
+                                $scope.data = placeholder;
+                            }
+
+                          }, function errorCallback(response) {
+
+                          });
+
                 };
 
 
@@ -1555,6 +1594,110 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
 
 
  }]);
+
+ app.controller('Request', function ($scope,$timeout,$q) {
+
+         var datasource = {};
+         var max = 500,big =-1;
+         var getCount = function (big) {
+           var deferred = $q.defer();
+           if (big === 0) {
+                  /*
+                 $http({
+                   method: 'POST',
+                   url: 'search/adv/count',
+                   data: $scope.searchData.data,
+                 }).then(function successCallback(response) {
+                     // this callback will be called asynchronously
+                     // when the response is available
+                     console.log(response.data);
+                     max = response.data.count;
+                     deferred.resolve(response);
+
+                   }, function errorCallback(response) {
+                     // called asynchronously if an error occurs
+                     // or server returns response with an error status.
+                     console.log("count err");
+                      deferred.reject({ message: "Really bad" });
+                   });
+                   */
+                   deferred.resolve({ message: "no http needed" });
+
+           }else {
+             deferred.resolve({ message: "no http needed" });
+           }
+           return deferred.promise;
+
+         };
+         var setBig = function(index){
+
+           var deferred = $q.defer();
+           index2 = index-1;
+
+           if(index2 > big){
+             big = index2;
+             console.log(big);
+
+               getCount(big).then(function (response) {
+/*
+                 $http({
+                     method: 'POST',
+                     url: 'search/adv',
+                     data: $scope.searchData.data,
+
+                   }).then(function successCallback(response) {
+                     //console.log(response.data);
+                     response.data.forEach(function (item,index3) {
+                       page.push(item);
+
+                     });
+                       deferred.resolve(response);
+                     }, function errorCallback(response) {
+                       deferred.reject({ message: "Really bad" });
+                     });*/
+                     deferred.resolve({ message: "Really bad" });
+               });
+
+
+
+           }
+           else {
+             deferred.resolve({ message: "no http needed" });
+           }
+           return deferred.promise;
+         };
+
+         datasource.get = function (index, count, success) {
+           $timeout(function () {
+
+
+             setBig(index).then(function (response) {
+               var result = [];
+               for (var i = index; i <= index + count - 1; i++) {
+
+                 if(i < 0 || i > max) {
+                             continue;
+                         }
+                         //console.log("page : "+i);
+                 result.push("item "+i);
+               }
+               success(result);
+             },function (error) {
+               console.log(error.statusText);
+             });
+
+           }, 100);
+         };
+
+         $scope.datasource = datasource;
+
+
+
+
+         $scope.adapter = {
+           remain: true
+         };
+   });
 
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
   $scope.bootscreen = false;

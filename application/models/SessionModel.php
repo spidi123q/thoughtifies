@@ -63,7 +63,9 @@
               $conversion = $this->convertToJPEG($this->upload);
               if ($conversion) {
                 $newFile = $this->upload->data('raw_name');
-                $response = array('file' => $newFile );
+                $response = array('file' => $newFile,
+                  "status" => true,
+                );
                 echo json_encode($response);
               }
 
@@ -239,6 +241,30 @@
           echo $val->status;
         }else {
           echo "-1";
+        }
+
+      }
+
+      public function insertPost($data)    {
+        $info = array('mem_id' => $this->session->SESS_MEMBER_ID,
+        'content' => $data->content,
+        );
+        $this->db->trans_start();
+        $this->db->set('date_time', 'NOW()', FALSE);
+        $this->db->insert('posts', $info);
+        $query = $this->db->query('SELECT LAST_INSERT_ID() as post_id');
+        $file = $data->upload->file;
+        if ( !($file == "") ) {
+          $this->db->insert('post_images', array(
+            'post_id' => $query->row()->post_id,
+            'image' => $file,
+          ));
+        }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === TRUE){
+          echo "1";
+        }else {
+          echo "0";
         }
 
       }
