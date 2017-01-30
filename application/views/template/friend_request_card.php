@@ -12,7 +12,7 @@
 
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click="reject(user.mem_id)" class="md-primary md-icon-button">
+          <md-button ng-click="reject(user)" class="md-primary md-icon-button">
             <i class="material-icons">clear</i>
           </md-button>
           <md-button class="md-warn md-icon-button" ng-click="accept(user)">

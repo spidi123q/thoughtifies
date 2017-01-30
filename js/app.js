@@ -1700,29 +1700,25 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
                url: 'req/frnd/action/0/'+user.mem_id,
              }).then(function successCallback(response) {
                  //console.log(response);
-                var a = page.indexOf(user);
-                 console.log("index : "+a);
+                 var index = page.indexOf(user);
                  max--;
-                 page.splice(a, 1);
+                 page.splice(index, 1);
                  $scope.adapter.reload();
-               //  $scope.adapter.applyUpdates(0,[]);
-
-
 
                }, function errorCallback(response) {
-                 // called asynchronously if an error occurs
-                 // or server returns response with an error status.
                });
          };
-         $scope.reject = function (mem_id) {
+         $scope.reject = function (user) {
            $http({
                method: 'GET',
-               url: 'req/frnd/action/1/'+mem_id,
+               url: 'req/frnd/action/1/'+user.mem_id,
              }).then(function successCallback(response) {
                  console.log(response);
+                 var index = page.indexOf(user);
+                 max--;
+                 page.splice(index, 1);
+                 $scope.adapter.reload();
                }, function errorCallback(response) {
-                 // called asynchronously if an error occurs
-                 // or server returns response with an error status.
                });
          };
 

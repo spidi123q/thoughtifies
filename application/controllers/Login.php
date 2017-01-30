@@ -342,9 +342,8 @@
         public function getFriendRequestCount()      {
           $this->SessionModel->getFriendRequestCount();
         }
-        public function friendRequestActions($value,$data)
-        {
-          echo $value.$data;
+        public function friendRequestActions($value,$id)   {
+          $this->SessionModel->friendRequestActions($value,$id);
         }
 
 

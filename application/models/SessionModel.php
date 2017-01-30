@@ -290,6 +290,19 @@
         ));
         echo json_encode($result->row());
       }
+      public function friendRequestActions($value,$id)   {
+          if ($value == "0") {
+            $this->db->set('status', 1);
+            $this->db->where('sender', $this->session->SESS_MEMBER_ID);
+            $this->db->where('receiver', $id);
+            $this->db->update('friendship');
+
+          }elseif ($value == "1") {
+            $this->db->where('sender', $this->session->SESS_MEMBER_ID);
+            $this->db->where('receiver', $id);
+            $this->db->delete('friendship');
+          }
+      }
 
 
 
