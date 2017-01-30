@@ -298,6 +298,8 @@
               $this->load->view('template/postcard.php');
           else if($value == 3)
               $this->load->view('template/friend_request_card.php');
+          else if($value == 4)
+              $this->load->view('template/post_view_card.php');
         }
 
         public function listEmoji($index)      {

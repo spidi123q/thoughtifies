@@ -270,6 +270,12 @@ app.config(function($mdIconProvider) {
           templateUrl:'element/3',
       };
   });
+  app.directive('postViewCard', function () {
+      return {
+          restrict: 'E',
+          templateUrl:'element/4',
+      };
+  });
   app.directive('elastic', [
     '$timeout',
     function($timeout) {
