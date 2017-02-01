@@ -49,7 +49,6 @@
           md-item-text="item.display"
           md-min-length="0"
           placeholder="Search for anything"
-          style="background-color:#4DB6AC"
           >
         <md-item-template>
           <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
@@ -60,7 +59,9 @@
         </md-not-found>
       </md-autocomplete>
       <span flex-sm="30" flex-gt-sm="25"></span>
-
+      <md-button class="md-icon-button" aria-label="Favorite">
+            <i class="material-icons">search</i>
+        </md-button>
 				</div>
 			</md-toolbar>
 

@@ -1729,6 +1729,100 @@ app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $lo
          };
 
    });
+app.controller('PostView', function ($scope, $timeout,$http,$q) {
+          var datasource = {};
+          var big =-1,max = 500;
+          var page = [];
+          var getCount = function (big) {
+            var deferred = $q.defer();
+            if (big === 0) {
+                /*
+                  $http({
+                    method: 'GET',
+                    url: 'req/frnd/count',
+                  }).then(function successCallback(response) {
+                      // this callback will be called asynchronously
+                      // when the response is available
+                      console.log(response.data);
+                      max = response.data.count;
+                      deferred.resolve(response);
+
+                    }, function errorCallback(response) {
+                      // called asynchronously if an error occurs
+                      // or server returns response with an error status.
+                      console.log("count err");
+                       deferred.reject({ message: "Really bad" });
+                    });
+                    */deferred.resolve({ message: " http needed" });
+
+            }else {
+              deferred.resolve({ message: "no http needed" });
+            }
+            return deferred.promise;
+
+          };
+          var setBig = function(index){
+
+            var deferred = $q.defer();
+            if ((index % 10) !== 0) {
+                //index--;
+            }
+
+            if(index > big){
+              big = (big === -1)? 0 : big+5;
+              //big = index;
+              console.log(big);
+
+                getCount(big).then(function (response) {
+                  /*
+                  $http({
+                      method: 'GET',
+                      url: 'req/frnd/'+big,
+                    }).then(function successCallback(response) {
+                      console.log(response.data);
+                      response.data.forEach(function (item,index3) {
+                        page.push(item);
+                      });
+                        deferred.resolve(response);
+                      }, function errorCallback(response) {
+                        deferred.reject({ message: "Really bad" });
+                      });
+                      */deferred.resolve({ message: " http needed" });
+                });
+            }
+            else {
+              deferred.resolve({ message: "no http needed" });
+            }
+            return deferred.promise;
+          };
+
+          datasource.get = function (index, count, success) {
+            $timeout(function () {
+
+                //console.log("index " +index);
+              setBig(index).then(function (response) {
+                var result = [];
+                for (var i = index; i <= index + count - 1; i++) {
+
+                  if(i < 0 || i >= max) {
+                              continue;
+                          }
+                          //console.log("page : "+i);
+                  result.push("item "+i);
+                }
+                success(result);
+              },function (error) {
+                console.log(error.statusText);
+              });
+
+            }, 100);
+          };
+
+          $scope.datasource = datasource;
+          $scope.adapter = {
+            remain: true
+          };
+});
 
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
   $scope.bootscreen = false;
@@ -1740,7 +1834,4 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
-
-
-
   });
