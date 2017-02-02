@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['data/1']='Login/loginUser';
 $route['data/2']='Login/createAccount';
+$route['data/3']='Login/loginUser2';
 $route['home']='Login/loadHome';
 $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';

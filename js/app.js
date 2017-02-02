@@ -1851,4 +1851,4 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
-  });
+});
