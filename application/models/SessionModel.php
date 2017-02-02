@@ -304,6 +304,49 @@
           }
       }
 
+      public function getPosts($offset)      {
+        $this->db->limit(10, $offset);
+        $query = $this->db->get("post_view");
+        $result = $query->result_array();
+        foreach ($result as $key => $row){
+          $this->db->select("rating");
+          $this->db->where( array(
+            'mem_id' => $this->session->SESS_MEMBER_ID,
+            'post_id' => $row['id'],
+          ));
+          $query = $this->db->get("rating");
+          $result2 = $query->row();
+          $result["$key"]["my_rating"] = isset($result2)?$result2->rating:null;
+        }
+        echo json_encode($result);
+      }
+
+      public function getPostsCount()      {
+        $this->db->select("COUNT(*) AS count");
+        $query = $this->db->get("post_view");
+        echo json_encode($query->row());
+      }
+
+      public function onRating($data)      {
+        $qry = "INSERT INTO rating
+                (mem_id, post_id, rating)
+              VALUES
+                (?, ?, ?)
+              ON DUPLICATE KEY UPDATE
+                rating = VALUES(rating)";
+          $this->db->query($qry,$data);
+
+      }
+
+      public function getMyRating($value)      {
+        $this->db->select("rating");
+        $query = $this->db->get_where('rating', array(
+          'mem_id' => $this->session->SESS_MEMBER_ID,
+          'post_id' => $value,
+        ));
+        echo json_encode($query->row());
+      }
+
 
 
 

@@ -85,3 +85,7 @@ $route['(:any)/home/post']='Login/insertPost';
 $route['(:any)/req/frnd/(:num)']='Login/getFriendRequestList/$2';
 $route['(:any)/req/frnd/count']='Login/getFriendRequestCount';
 $route['(:any)/req/frnd/action/(:num)/(:num)']='Login/friendRequestActions/$2/$3';
+$route['(:any)/post/onrating/(:num)/(:num)']='Login/onRating/$2/$3';
+$route['(:any)/post/count']='Login/getPostsCount';
+$route['(:any)/post/get/(:num)']='Login/getPosts/$2';
+$route['(:any)/rating/get/(:num)']='Login/getMyRating/$2';

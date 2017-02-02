@@ -9,8 +9,8 @@
   </div>
 </div>
 <br>
-<div layout="column" layout-align="center center" ng-controller="PostView">
+<div layout="column" layout-align="center center" ng-controller="PostView" >
   <div layout="column" ui-scroll="item in datasource" adapter="adapter on PostView" >
-      {{item}}
+    <post-view-card></post-view-card>
   </div>
 </div>

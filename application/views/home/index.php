@@ -66,7 +66,7 @@
 			</md-toolbar>
 
 
-   <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport>
+   <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport scroll-glue-top>
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 

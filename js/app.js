@@ -1736,10 +1736,9 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           var getCount = function (big) {
             var deferred = $q.defer();
             if (big === 0) {
-                /*
                   $http({
                     method: 'GET',
-                    url: 'req/frnd/count',
+                    url: 'post/count',
                   }).then(function successCallback(response) {
                       // this callback will be called asynchronously
                       // when the response is available
@@ -1753,7 +1752,6 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                       console.log("count err");
                        deferred.reject({ message: "Really bad" });
                     });
-                    */deferred.resolve({ message: " http needed" });
 
             }else {
               deferred.resolve({ message: "no http needed" });
@@ -1764,20 +1762,17 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           var setBig = function(index){
 
             var deferred = $q.defer();
-            if ((index % 10) !== 0) {
-                //index--;
-            }
 
             if(index > big){
-              big = (big === -1)? 0 : big+5;
+              big = (big === -1)? 0 : big+10;
               //big = index;
               console.log(big);
 
                 getCount(big).then(function (response) {
-                  /*
+
                   $http({
                       method: 'GET',
-                      url: 'req/frnd/'+big,
+                      url: 'post/get/'+big,
                     }).then(function successCallback(response) {
                       console.log(response.data);
                       response.data.forEach(function (item,index3) {
@@ -1787,7 +1782,6 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                       }, function errorCallback(response) {
                         deferred.reject({ message: "Really bad" });
                       });
-                      */deferred.resolve({ message: " http needed" });
                 });
             }
             else {
@@ -1808,7 +1802,8 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                               continue;
                           }
                           //console.log("page : "+i);
-                  result.push("item "+i);
+                 result.push(page[i]);
+                //result.push("page : "+i);
                 }
                 success(result);
               },function (error) {
@@ -1821,6 +1816,28 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           $scope.datasource = datasource;
           $scope.adapter = {
             remain: true
+          };
+          $scope.onRating = function(rating,id){
+            console.log(rating +" id "+id);
+            $http({
+                method: 'GET',
+                url: 'post/onrating/'+id+"/"+rating,
+              }).then(function successCallback(response) {
+                console.log(response.data);
+                }, function errorCallback(response) {
+
+                });
+          };
+          $scope.getMyRating = function (id) {
+            $http({
+                method: 'GET',
+                url: 'rating/get/'+id,
+              }).then(function successCallback(response) {
+                  console.log(response.data);
+                  //return response.data.rating;
+                }, function errorCallback(response) {
+
+                });
           };
 });
 
