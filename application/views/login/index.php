@@ -3,9 +3,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="577576396661-lbk5c1jku4va21c8qlqe66s7q8svm68f.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 </head>
 	<body ng-app="IndexApp" ng-controller="AppCtrl">
@@ -28,13 +25,13 @@
 									  <div class="col-sm-1"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" name="" type="submit">login</button></div>
 									</div>
 							</form>
-							<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
 <br>
 <fb:login-button
-scope="public_profile,email"
+scope="public_profile,email,user_birthday,user_friends,user_hometown"
 onlogin="checkLoginState();">
 </fb:login-button>
-		</div>
+
 
 		<div id="footer">
 		</div>
@@ -51,6 +48,8 @@ onlogin="checkLoginState();">
 		<!-- Angular Material Library -->
 		<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
 		<script>
 		  window.fbAsyncInit = function() {
 		    FB.init({
@@ -73,10 +72,12 @@ onlogin="checkLoginState();">
 		   function checkLoginState() {
 		  FB.getLoginStatus(function(response) {
 		     console.log(response);
-		     var url = '/me?fields=name,email';
+
+				 sentToken(response.authResponse.accessToken,4)
+		    /* var url = '/me?fields=name,email';
 		                    FB.api(url, function (response) {
 		                        console.log(response);
-		                    });
+		                    });*/
 
 		  });
 
@@ -85,46 +86,16 @@ onlogin="checkLoginState();">
 		}, {scope: 'email'});
 
 		}
-		</script>
-		<script>
-			function onSignIn(googleUser) {
-				// Useful data for your client-side scripts:
-				var profile = googleUser.getBasicProfile();
-				console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-				console.log('Full Name: ' + profile.getName());
-				console.log('Given Name: ' + profile.getGivenName());
-				console.log('Family Name: ' + profile.getFamilyName());
-				console.log("Image URL: " + profile.getImageUrl());
-				console.log("Email: " + profile.getEmail());
 
-				// The ID token you need to pass to your backend:
-				var id_token = googleUser.getAuthResponse().id_token;
-				var xhr = new XMLHttpRequest();
-				xhr.open('POST', 'data/3');
-				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				xhr.onload = function() {
-				  console.log('Signed in as: ' + xhr.responseText);
-				};
-				xhr.send('idtoken=' + id_token);
-
-				//console.log("ID Token: " + id_token);
+		function sentToken(id_token,type) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'data/'+type);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				console.log('Signed in as: ' + xhr.responseText);
 			};
-			angular.element(document).ready(function() {
-
-			  var appElement = document.querySelector('[ng-app=IndexApp]');
-			  var appScope = angular.element(appElement).scope();
-
-			  console.log('Traversing from appScope to controllerScope:', appScope.$$childHead);
-
-
-			  var controllerElement = document.querySelector('body');
-			   controllerScope = angular.element(controllerElement).scope();
-
-			  console.log('Directly from controllerScope:', controllerScope);
-
-			  controllerScope.$apply(function() {
-			  });
-			});
+			xhr.send('idtoken=' + id_token);
+		}
 		</script>
 	</body>
 </html>

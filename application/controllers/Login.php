@@ -8,6 +8,7 @@
         $this->load->model('SessionModel');
         $this->load->model('MessageModel');
         $this->load->model('SearchModel');
+        $this->load->model('LoginModel');
 
      }
 
@@ -44,9 +45,12 @@
          $this->load->view('login/index');
 
       }
+      public function t()
+      {
+        $this->load->view('a');
+      }
 
       public function loginUser()      {
-        $this->load->model('LoginModel');
 
         $data = array(
            'username' => $this->input->post('username'),
@@ -67,42 +71,11 @@
 
       }
 
-      public function loginUser2()      {
+      public function loginFacebook() {
+
         $id_token =  $this->input->post('idtoken');
-        $client = new Google_Client(['client_id' => '577576396661-lbk5c1jku4va21c8qlqe66s7q8svm68f.apps.googleusercontent.com']);
-        $payload = $client->verifyIdToken($id_token);
-        if ($payload) {
-          $userid = $payload['sub'];
-          // If request specified a G Suite domain:
-          //$domain = $payload['hd'];
-        //  print_r($payload) ;
-        } else {
-          // Invalid ID token
-          echo "invalid";
-        }
-        //$data = json_decode($data);
-        //print_r($data);
-        $fb = new \Facebook\Facebook([
-          'app_id' => '1789323091320402',
-          'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-          'default_graph_version' => 'v2.8',
-          //'default_access_token' => '{access-token}', // optional
-        ]);
-        $accessToken = new Facebook\Authentication\AccessToken('EAAZAbYT8ZCHlIBAHPi5mCEYnj19HTmcXiq806TPVnUDtMembG6nJuI6SXCAi4hCnqzIBevx0HamW00HQFYreyxY3Py4YdTDwqVFVBOz18rzJXsPgkWLWjxvUB0fDxyYFbMmib6C2Ce2HqVrvqszYLyKZAoLvqymZBxhZCwCEYJL8kJpw4alt8IeKtZBZCfeL1QZD');
-        try {
-           // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-           // If you provided a 'default_access_token', the '{access-token}' is optional.
-           $response = $fb->get('/me?fields=id', $accessToken);
-           print_r($response) ;
-          } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-           // When Graph returns an error
-           echo 'Graph returned an error: ' . $e->getMessage();
-           exit;
-          } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-           // When validation fails or other local issues
-           echo 'Facebook SDK returned an error: ' . $e->getMessage();
-           exit;
-          }
+        $this->LoginModel->loginFacebook($id_token);
+
       }
 
       public function createAccount()   {
