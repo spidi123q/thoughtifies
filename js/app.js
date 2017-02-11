@@ -78,6 +78,7 @@ app.config( [
                 icon : "add",
                 val : -1,
                 progress : false,
+                disabled : false,
               },
               message : "message",
               block : {
@@ -96,10 +97,14 @@ app.config( [
                method: 'GET',
                url: 'users/frnd/status/'+$scope.uid,
              }).then(function successCallback(response) {
-                   console.log(response.data+"rnd");
+                   //console.log(response.data);
                    if (response.data === "0") {
                      $scope.buttons.request.icon = "close";
                      $scope.buttons.request.val = 0;
+                   }
+                   else if (response.data === "1") {
+                     $scope.buttons.request.icon = "done";
+                     $scope.buttons.request.disabled = true;
                    }
                }, function errorCallback(response) {
 
@@ -591,7 +596,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav) {
 			var datasource = {};
       var big  = -1,max = 0;
       var page  = [];
@@ -599,6 +604,26 @@ app.controller('msgController', [
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
       });
+      $scope.log = function() {
+        listMessengers.test();
+      };
+      $scope.jj = listMessengers;
+
+
+
+      $scope.toggleLeft = buildToggleri('jam');
+       $scope.toggleRight = buildToggleri('right');
+
+       function buildToggleri(componentId) {
+         return function() {
+           $mdSidenav(componentId).toggle();
+         };
+       }
+
+      $scope.removeFromList1 = function() {
+        console.log("del");
+        return $scope.msgUserListAdapter.reload(0);
+      };
 
       var getCount = function (big) {
         var deferred = $q.defer();
@@ -606,7 +631,7 @@ app.controller('msgController', [
 
               $http({
                 method: 'GET',
-                url: 'msg/count/'+34,
+                url: 'msg/count/'+$scope.msgUser,
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
@@ -640,7 +665,7 @@ app.controller('msgController', [
               url: 'msg/get',
               data: {
                 offset : offset,
-                user: 34,
+                user: $scope.msgUser,
               },
             }).then(function successCallback(response) {
                 //console.log(response.data);
@@ -720,6 +745,21 @@ app.controller('msgController', [
 
         }
 
+    };
+    $scope.msgUserListAdapter = {
+      remain: true
+    };
+    $scope.msgUserAdapter = {
+      remain: true
+    };
+
+    $scope.selectMsgUser = function (user) {
+      $scope.msgUser = user;
+      big = -1;
+        $scope.msgUserAdapter.reload();
+
+        //$scope.msgUserListAdapter.reload();
+      //console.log($scope.msgUser);
     };
 
   }
@@ -1645,31 +1685,6 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
 
 }]);
 
-app.controller('debug', ['$scope', '$log','listMessengers', function($scope, $log,listMessengers) {
-   $scope.greetings = ["Hello", "Bonjour", "Guten tag"];
-   console.log("fgdfgdfffffff");
-   $scope.log = function() {
-     listMessengers.test();
-   };
-   $scope.jj = listMessengers;
-   $scope.selectMsgUser = function (user) {
-     $scope.msgUser = user;
-     console.log($scope.msgUser);
-   };
-
-   $scope.msgUserListAdapter = {
-     remain: true
-   };
-
-
-
-   $scope.removeFromList1 = function() {
-     console.log("del");
-     return $scope.msgUserListAdapter.reload(0);
-   };
-
-
- }]);
 
  app.controller('Request', function ($scope,$timeout,$q,$http) {
 
@@ -1915,4 +1930,5 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
+
 });

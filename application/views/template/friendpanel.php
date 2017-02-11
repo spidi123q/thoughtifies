@@ -1,5 +1,5 @@
 
-    <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="actions.requestButton()">
+    <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-disabled="actions.request.disabled" ng-click="actions.requestButton()">
       <i class="material-icons" ng-hide="actions.request.progress">{{actions.request.icon}}</i>
       <md-progress-circular md-mode="indeterminate" ng-hide="!actions.request.progress" md-diameter="20px">
       </md-progress-circular>
