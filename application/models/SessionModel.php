@@ -39,6 +39,20 @@
         }
       }
 
+      private function createThumb($imgUrl,$size,$picture)      {
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $imgUrl;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = FALSE;
+        $config['quality'] = 100;
+        $config['width']         = $size;
+        $config['height']       = $size;
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
+        $imgUrl = "images/userimages/".$picture.'_thumb.jpg';
+        return $imgUrl;
+      }
+
 //-----------------public method--------------------------------------
 
           public function postImageUpload()      {
@@ -112,6 +126,12 @@
 
         $query = $this->db->get_where('member_details', array('mem_id' => $id) );
         $data  = $query->row_array();
+        $imgUrl = "images/userimages/".$data['picture'].'.jpg';
+        $imgUrl =$this->createThumb($imgUrl,150,$data['picture']);
+        $im = file_get_contents($imgUrl);
+        $im = base64_encode($im);
+        $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+        $data['picture'] = $im;
         $this->load->library('country_iso');
         $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
         echo json_encode($data);
@@ -136,11 +156,56 @@
         echo json_encode($response);
       }
 
-      public function changeTag($value)    {
+      public function changeTag($data)    {
+        $response = array(
+          'sel' => 1,
+          'status' => true,
+        );
+
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+        $result = $this->db->update('member_details',$data);
+        if ($result) {
+          $response['status'] = true;
+
+        }
+        else {
+          $response['status'] = false;
+        }
+        echo json_encode($response);
       }
-      public function changeAboutMe($value)    {
+      public function changeAboutMe($data)    {
+        $response = array(
+          'sel' => 3,
+          'status' => true,
+        );
+
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+        $result = $this->db->update('member_details',$data);
+        if ($result) {
+          $response['status'] = true;
+
+        }
+        else {
+          $response['status'] = false;
+        }
+        echo json_encode($response);
       }
-      public function changeAboutPartner($value)    {
+      public function changeMyPreferences($data)    {
+        $response = array(
+          'sel' => 4,
+          'status' => true,
+        );
+
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+        $result = $this->db->update('member_details',$data);
+        if ($result) {
+          $response['status'] = true;
+
+        }
+        else {
+          $response['status'] = false;
+        }
+        echo json_encode($response);
       }
       public function changeGender($data)    {
 
@@ -180,7 +245,7 @@
          $cont = array_flip($this->country_iso->countries);
          $data->country = $cont["$data->country"];
          $response = array(
-           'sel' => 1,
+           'sel' => 8,
            'status' => true,
          );
            $this->db->set($data);
@@ -188,6 +253,7 @@
            $result = $this->db->update('member');
            if ($result) {
              $response['status'] = true;
+             $response['result'] = $data->country;
            }else {
              $response['status'] = false;
            }

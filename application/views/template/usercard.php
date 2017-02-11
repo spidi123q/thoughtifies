@@ -1,16 +1,14 @@
 
 <md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <a href="#/users/{{info.mem_id}}">
-        <span class="md-headline">{{info.fname}} {{info.lname}}</span>
-      </a>
-      </md-card-title-text>
-
-
-  </md-card-title>
-        <img ng-src="{{info.picture}}" class="md-card-image" alt="Washed Out">
-        <md-card-content>
+    <img ng-src="{{info.picture}}" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <a href="#/users/{{info.mem_id}}">
+          <span class="md-headline">{{info.fname}} {{info.lname}}</span>
+        </a>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
         <div layout="row"  layout-align="space-between center">
           <p>
             {{info.tag}}
@@ -20,6 +18,5 @@
             </friendpanel>
           </md-card-actions>
         </div>
-        </md-card-content>
-
-      </md-card>
+      </md-card-content>
+</md-card>

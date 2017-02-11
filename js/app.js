@@ -57,6 +57,14 @@ app.config(function($mdIconProvider) {
       .iconSet('social', 'http://127.0.0.1/code/images/angular-logo.svg', 24)
       .defaultIconSet('img/icons/sets/core-icons.svg', 24);
   });
+app.config( [
+    '$compileProvider',
+    function( $compileProvider )
+    {
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data: image\//);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+    }
+]);
 
   app.directive('friendpanel', function () {
       return {
@@ -1130,10 +1138,6 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
                     name: "EMAIL",
                     icon: "flaticons/svg/note.svg"
                   },
-                  ph : {
-                    name: "PHONE",
-                    icon: "flaticons/svg/phone-book.svg"
-                  },
                   country : {
                     name: "COUNTRY",
                   },
@@ -1168,12 +1172,12 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
               $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
               $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
               $scope.settingsData.tabs.profile.info.email.data = response.data.email;
-              $scope.settingsData.tabs.profile.info.ph.data = response.data.contact;
               $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
               $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
               $scope.settingsData.fname = response.data.fname;
               $scope.settingsData.lname = response.data.lname;
               $scope.settingsData.tag = response.data.tag;
+              $scope.settingsData.dp = response.data.picture;
 
               console.log(response.data);
               if (response.data.gender == 'M') {
@@ -1233,7 +1237,8 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
       };
 
     var preFetch = function (sel) {
-      if (sel == 9) {
+      console.log(sel);
+      if (sel == 8) {
 
         $http({
             method: 'GET',
@@ -1356,6 +1361,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
           $scope.settingsData.dialog.progress = false;
           $scope.settingsData.dialog.type = "indeterminate";
           if(sel == 1){
+            //change name
             $http({
                 method: 'POST',
                 url: 'settings/5',
@@ -1378,8 +1384,72 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
                 });
           }
-          else if (sel == 5) {
+          else if (sel === 2) {
+            //change tag
+            $http({
+                method: 'POST',
+                url: 'settings/1',
+                data: JSON.stringify({
+                  tag : $scope.user.tag,
+                }),
 
+              }).then(function successCallback(response) {
+                    //console.log(response.data);
+                    if (response.data.status) {
+                      $scope.settingsData.tag = $scope.user.tag;
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+                    }
+                }, function errorCallback(response) {
+                  console.log(response.data);
+                  $scope.settingsData.dialog.progress = true;
+                });
+          }
+          else if (sel === 3) {
+            //chnage about me
+            $http({
+                method: 'POST',
+                url: 'settings/2',
+                data: JSON.stringify({
+                  about_me : $scope.user.tabs.profile.info.aboutme.data,
+                }),
+
+              }).then(function successCallback(response) {
+                    //console.log(response.data);
+                    if (response.data.status) {
+                      $scope.settingsData.tabs.profile.info.aboutme.data = $scope.user.tabs.profile.info.aboutme.data;
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+                    }
+                }, function errorCallback(response) {
+                  console.log(response.data);
+                  $scope.settingsData.dialog.progress = true;
+                });
+
+          }
+          else if (sel === 4) {
+            //change my preference
+            $http({
+                method: 'POST',
+                url: 'settings/2',
+                data: JSON.stringify({
+                  about_me : $scope.user.tabs.profile.info.mypre.data,
+                }),
+
+              }).then(function successCallback(response) {
+                    //console.log(response.data);
+                    if (response.data.status) {
+                      $scope.settingsData.tabs.profile.info.mypre.data = $scope.user.tabs.profile.info.mypre.data;
+                      $scope.cancel();
+                      $scope.settingsData.dialog.progress = true;
+                    }
+                }, function errorCallback(response) {
+                  console.log(response.data);
+                  $scope.settingsData.dialog.progress = true;
+                });
+          }
+          else if (sel == 5) {
+            //change gender
             var gender;
             var info = settingsData.tabs.profile.info.gender.value;
             if ($scope.user.gender == info.male) {
@@ -1417,7 +1487,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
           }
           else if (sel == 6) {
-
+            //change dob
             var data = {
               yy  : $scope.user.bday.getFullYear(),
               mm  : $scope.user.bday.getMonth()+1,
@@ -1434,9 +1504,6 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
               }).then(function successCallback(response) {
                     console.log(response.data);
                     if (response.data.status) {
-
-
-
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
 
@@ -1447,8 +1514,11 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
 
 
           }
-          else if (sel == 9) {
-
+          else if (sel === 7) {
+          //  change mail
+          }
+          else if (sel == 8) {
+            //change country
 
             $http({
                 method: 'POST',
@@ -1460,9 +1530,8 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
               }).then(function successCallback(response) {
                     console.log(response.data);
                     if (response.data.status) {
-
-
-
+                      $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.result.toLowerCase()+".svg";
+                      $scope.settingsData.tabs.profile.info.country.data = $scope.user.tabs.profile.info.country.data;
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
 
@@ -1519,10 +1588,6 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
                     name: "EMAIL",
                     icon: "flaticons/svg/note.svg"
                   },
-                  ph : {
-                    name: "PHONE",
-                    icon: "flaticons/svg/phone-book.svg"
-                  },
                   country : {
                     name: "COUNTRY",
                   },
@@ -1549,7 +1614,6 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
               $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
               $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
               $scope.settingsData.tabs.profile.info.email.data = response.data.email;
-              $scope.settingsData.tabs.profile.info.ph.data = response.data.contact;
               $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
               $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
               $scope.settingsData.fname = response.data.fname;
