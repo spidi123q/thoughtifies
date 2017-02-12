@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.jqlite','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons','jkAngularRatingStars']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons','jkAngularRatingStars']);
 
 
 
@@ -371,6 +371,7 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
     }
   };
 
+
   function buildClose (componentId) {
      // Component lookup should always be available since we are not using `ng-if`
      $mdSidenav(componentId).close()
@@ -402,6 +403,54 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
 }]);
 
+app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
+
+    var emojilist = [],view = false;
+  var makeEmoji = function (item, index) {
+            var list_code = item.list_code.split(/\s*\b\s*/);
+            var uni = '';
+            list_code.forEach(function(item, index) {
+              uni += twemoji.convert.fromCodePoint(item);
+            });
+
+            uni = twemoji.parse(uni);
+          //  uni = $sce.trustAsHtml(uni);
+
+            emojilist.push(uni);
+
+
+              //this.emojilist.push(uni);
+
+
+            //console.log($scope.emojilist);
+        };
+
+        var listEmoji = function (index) {
+          $http({
+            method: 'GET',
+            url: 'msg/emoji/'+index,
+          }).then(function successCallback(response) {
+              //console.log(response.data);
+              response.data.forEach(makeEmoji);
+              if( index <= 1791)
+                listEmoji(index+10);
+
+            }, function errorCallback(response) {
+
+            });
+        };
+
+        var get = function () {
+          listEmoji(0);
+          return emojilist;
+        };
+
+        return {
+          get : get,
+        };
+
+}]);
+
 app.factory('dpDisplay', function() {
         var dpDisplay = function(data){
           if (data.receiver == SESS_MEMBER_ID) {
@@ -415,6 +464,7 @@ app.factory('dpDisplay', function() {
           get : dpDisplay,
         };
     });
+
 
 
 app.factory('MyWebSocket', function($websocket,$http) {
@@ -596,10 +646,11 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService) {
 			var datasource = {};
       var big  = -1,max = 0;
       var page  = [];
+      $scope.dpDisplay = dpDisplay;
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
@@ -608,17 +659,18 @@ app.controller('msgController', [
         listMessengers.test();
       };
       $scope.jj = listMessengers;
-
-
-
       $scope.toggleLeft = buildToggleri('jam');
-       $scope.toggleRight = buildToggleri('right');
+      $scope.toggleRight = buildToggleri('right');
 
        function buildToggleri(componentId) {
          return function() {
            $mdSidenav(componentId).toggle();
          };
        }
+       $mdSidenav('jam', true).then(function(instance) {
+          console.log("sidenav ready");
+          $scope.toggleLeft();
+        });
 
       $scope.removeFromList1 = function() {
         console.log("del");
@@ -708,6 +760,13 @@ app.controller('msgController', [
 			};
 
 			$scope.datasource = datasource;
+      $scope.msgUserListAdapter = {
+        remain: true
+      };
+      $scope.msgUserAdapter = {
+        remain: true
+      };
+
       $scope.sendMsg = function () {
           var data = {
             receiver : $scope.msgUser,
@@ -731,6 +790,8 @@ app.controller('msgController', [
               }, function errorCallback(response) {
 
               });
+              $scope.msgUserAdapter.append([data]);
+
 		};
 
     var taskList = function (data) {
@@ -746,24 +807,50 @@ app.controller('msgController', [
         }
 
     };
-    $scope.msgUserListAdapter = {
-      remain: true
-    };
-    $scope.msgUserAdapter = {
-      remain: true
-    };
 
     $scope.selectMsgUser = function (user) {
-      $scope.msgUser = user;
+      $scope.msgUser = user.mem_id;
+      console.log(user);
+      $scope.msgUserName = {
+        fname : user.fname,
+        lname : user.lname,
+      };
       big = -1;
-        $scope.msgUserAdapter.reload();
-
-        //$scope.msgUserListAdapter.reload();
-      //console.log($scope.msgUser);
+      $scope.msgUserAdapter.reload();
+      $scope.toggleLeft();
     };
+    $scope.bgList = function (val) {
+      if (val) {
+        return {
+          'background-color':'#80CBC4',
+
+        };
+      }
+      else {
+        return {
+          'background-color':'#E0F2F1',
+        };
+      }
+    };
+    $scope.emojilist = [];
+    $scope.view = false;
+    $scope.changeEmojiView = function () {
+
+        $scope.view = !$scope.view;
+        if ($scope.view && $scope.emojilist.length === 0) {
+          console.log("eee");
+          $scope.emojilist = EmojiService.get();
+        }else {
+
+          console.log("gg");
+        }
+    };
+
+
 
   }
 	]);
+
 
 app.controller('DemoCtrl', function() {
 

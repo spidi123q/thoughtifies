@@ -18,7 +18,7 @@
 
 
             </md-content>
-            <div ng-hide="emojiView" style="height:150px;overflow-y: scroll;" scroll-glue>
+            <div ng-hide="emojiView" style="height:150px;overflow-y: scroll;">
                 <span ng-repeat="item in emojilist">
                   <span ng-bind-html="item"></span>
                 </span>
