@@ -46,8 +46,8 @@
                             </md-list>
                     </md-content>
                     <div  ng-hide="!view"style="height:100%;">
-                        <span ng-repeat="item in emojilist">
-                          <span ng-bind-html="item"></span>
+                        <span ng-repeat="item in emojilist" style="width:32px;height:32px;">
+                          <span ng-bind-html="item" ></span>
                         </span>
                     </div>
             </md-content>

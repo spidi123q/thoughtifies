@@ -413,16 +413,13 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
               uni += twemoji.convert.fromCodePoint(item);
             });
 
-            uni = twemoji.parse(uni);
-          //  uni = $sce.trustAsHtml(uni);
-
+            uni = twemoji.parse(uni,  {
+              base: 'http://localhost/twemoji-gh-pages/',
+              ext : '.jpg',
+              size :20
+              });
             emojilist.push(uni);
 
-
-              //this.emojilist.push(uni);
-
-
-            //console.log($scope.emojilist);
         };
 
         var listEmoji = function (index) {
@@ -537,7 +534,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
       var getCount = function (big) {
         var deferred = $q.defer();
-        if (big == 0) {
+        if (big === 0) {
 
               $http({
                 method: 'GET',
