@@ -40,13 +40,13 @@
                                 <img  ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?20" class="md-avatar" alt="{{todos[0].who}}" />
                                 <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px; ">
                                   <h3>{{ todos[0].who }}</h3>
-                                  <h4 ng-bind-html="item.message" style="opacity : 0.54"></h4>
+                                  <h5 ng-bind-html="item.message" style="color:grey"></h5>
                                 </div>
                               </md-list-item>
                             </md-list>
                     </md-content>
                     <div  ng-hide="!view"style="height:100%;">
-                        <span ng-repeat="item in emojilist" style="width:32px;height:32px;">
+                        <span ng-repeat="item in emojilist" ng-click="onEmojiClick(item)" style="width:32px;height:32px;">
                           <span ng-bind-html="item" ></span>
                         </span>
                     </div>

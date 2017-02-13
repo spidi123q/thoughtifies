@@ -415,7 +415,7 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
 
             uni = twemoji.parse(uni,  {
               base: 'http://localhost/twemoji-gh-pages/',
-              ext : '.jpg',
+              ext : '.png',
               size :20
               });
             emojilist.push(uni);
@@ -647,6 +647,7 @@ app.controller('msgController', [
 			var datasource = {};
       var big  = -1,max = 0;
       var page  = [];
+      $scope.msg = '';
       $scope.dpDisplay = dpDisplay;
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
@@ -769,6 +770,7 @@ app.controller('msgController', [
             receiver : $scope.msgUser,
             message : $scope.msg
           };
+          console.log(data);
           $scope.myuser = angular.copy($scope.msgUser);
           //console.log(data);
             $http({
@@ -841,6 +843,9 @@ app.controller('msgController', [
 
           console.log("gg");
         }
+    };
+    $scope.onEmojiClick = function (item) {
+      $scope.msg += item;
     };
 
 

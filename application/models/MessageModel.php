@@ -79,6 +79,7 @@
           'receiver' => $data->receiver,
           'message' => "{$data->message}" ,
           );
+          $this->db->set('date_time','NOW()',FALSE);
           echo  $this->db->insert('myMessages',$info);
       }
 
@@ -136,6 +137,7 @@
                       ->group_end()
                       //->where("date_time >=","c")
                    ->group_end()
+                   ->order_by('date_time', 'DESC')
                    ->limit(10,$data->offset)
             ->get();
             echo json_encode($query->result());
