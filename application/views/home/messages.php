@@ -59,9 +59,12 @@
             </div>
             <div layout="row" >
               <span layout="row" layout-align="end center">
-                <md-button class="md-icon-button md-primary" aria-label="More" ng-click="changeEmojiView()">
-                    <i class="material-icons">tag_faces</i>
-                </md-button>
+                <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
+
+                 <md-button class="md-icon-button" aria-label="More">
+                       <i class="material-icons ">tag_faces</i>
+                     </md-button>
+               </md-switch>
               <!--  <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
                 <label for="input-file-id" class="md-icon-button">
                       <i class="material-icons">insert_photo</i>

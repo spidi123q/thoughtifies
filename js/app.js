@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons','jkAngularRatingStars']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','ngPopover','angular-popover','contenteditable','ngEmoticons','jkAngularRatingStars','linkify']);
 
 
 
@@ -65,7 +65,38 @@ app.config( [
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
+app.directive('hashtagify', ['$timeout', '$compile',
+    function($timeout, $compile) {
+        return {
+            restrict: 'A',
+            scope: {
+                uClick: '&userClick',
+                tClick: '&termClick'
+            },
+            link: function(scope, element, attrs) {
+                $timeout(function() {
+                    var html = element.html();
 
+                    if (html === '') {
+                        return false;
+                    }
+
+                    if (attrs.userClick) {
+                        html = html.replace(/(|\s)*@(\w+)/g, '$1<a ng-click="uClick({$event: $event})" class="hashtag">@$2</a>');
+                    }
+
+                    if (attrs.termClick) {
+                        html = html.replace(/(^|\s)*#(\w+)/g, '$1<a ng-click="tClick({$event: $event})" class="hashtag">#$2</a>');
+                    }
+
+                    element.html(html);
+
+                    $compile(element.contents())(scope);
+                }, 0);
+            }
+        };
+    }
+]);
   app.directive('friendpanel', function () {
       return {
           restrict: 'E',
@@ -168,9 +199,9 @@ app.config( [
           scope : {
             uid : '=uid'
           },
-          controller: ['$scope','$http','FileUploader', function ($scope,$http,FileUploader) {
+          controller: ['$scope','$http','FileUploader','linkify', function ($scope,$http,FileUploader,linkify) {
                 $scope.shadow = {};
-                var placeholder = "Share your thoughts";
+                var placeholder = "Share #sur your thoughts";
                 $scope.upload = {
                   progress : true,
                   button : false,
@@ -179,7 +210,7 @@ app.config( [
                   }
                 };
                 $scope.focus = function functionName() {
-                  console.log("focus");
+                  //console.log("focus");
                   if ($scope.data === placeholder) {
                     $scope.data = "";
                   }
@@ -188,7 +219,7 @@ app.config( [
                   };
                 };
                 $scope.unfocus = function functionName($event) {
-                  console.log("unfocus");
+                  //console.log("unfocus");
                   if ($scope.data === "") {
                     $scope.data = placeholder;
                   }
@@ -250,9 +281,15 @@ app.config( [
                 uploader.onCompleteAll = function() {
                     console.info('onCompleteAll');
                 };
+                var text = "@scottcorgan and http://github.com";
+
+                $scope.hashtagify = function () {
+                  console.log("s");
+                  //$scope.data.replace(/.*/,linkify.twitter($scope.data));
+                };
                 $scope.post = function () {
 
-                          $http({
+                      /*    $http({
                           method: 'POST',
                           url: 'home/post',
                           data : {
@@ -268,7 +305,26 @@ app.config( [
 
                           }, function errorCallback(response) {
 
-                          });
+                          });*/
+
+                           $scope.data = $scope.data.replace(/(^|\W)(#[a-z\d][\w-]*)/igm, '$1<a href="">$2</a>');
+
+
+                            // Twitter
+                            // Must use $sce.trustAsHtml() as of Angular 1.2.x
+
+
+                          function getHashTags(inputText) {
+                            var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
+                            var matches = [];
+                            var match;
+                            while ((match = regex.exec(inputText))) {
+                                matches.push(match[1]);
+                            }
+                            return matches;
+                        }
+
+                        console.log($scope.data);
 
                 };
 
@@ -571,7 +627,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-              //  console.log(response.data);
+                console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
                   page.push(response.data[i]);
                 }
@@ -790,6 +846,7 @@ app.controller('msgController', [
 
               });
               $scope.msgUserAdapter.append([data]);
+              $scope.msg = "";
 
 		};
 
@@ -835,7 +892,7 @@ app.controller('msgController', [
     $scope.view = false;
     $scope.changeEmojiView = function () {
 
-        $scope.view = !$scope.view;
+        //$scope.view = !$scope.view;
         if ($scope.view && $scope.emojilist.length === 0) {
           console.log("eee");
           $scope.emojilist = EmojiService.get();
@@ -845,7 +902,7 @@ app.controller('msgController', [
         }
     };
     $scope.onEmojiClick = function (item) {
-      $scope.msg += item;
+      $scope.msg += " "+item;
     };
 
 

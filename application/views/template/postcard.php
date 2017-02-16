@@ -1,10 +1,10 @@
-<md-whiteframe class="md-whiteframe-2dp" ng-style="shadow"   layout-align="center center" layout="row" style="background-color:white;" >
+<md-whiteframe  class="md-whiteframe-2dp" ng-style="shadow"   layout-align="center center" layout="row" style="background-color:white;" >
   <span layout="row" flex>
     <md-list class="md-dense" flex>
         <md-list-item class="md-2-line" >
           <img ng-src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text" layout="column">
-            <div contenteditable ng-model="data"
+            <div contenteditable ng-model="data" ng-change="post()"
             ng-focus="focus()"
             ng-blur="unfocus()"
             ></div>

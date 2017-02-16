@@ -148,11 +148,13 @@
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <link href="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.css" rel="stylesheet" type="text/css" />
   <script src="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
 
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
   </script>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
 

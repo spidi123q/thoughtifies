@@ -14,7 +14,7 @@
       }
 
       public function listMessengers()      {
-        $content = '<table><td>';
+
             $qry = "SELECT DISTINCT sender
             FROM (
 
@@ -46,28 +46,17 @@
             $this->session->SESS_MEMBER_ID,
             $this->session->SESS_MEMBER_ID,
           ));
-
-
-          foreach ($result->result() as $row){
-            $qry = "SELECT mem_id,fname,lname,picture FROM member WHERE mem_id=?";
-            $result2 = $this->db->query($qry, array($row->sender,));
-            $rw = $result2->row();
-            $content .= $this->parser->parse('template/msg_list_view.php', $rw,TRUE);
-
+          $listMemid = array( );
+          $senders =  $result->result_array();
+          foreach ($senders as $key ) {
+            array_push($listMemid,$key['sender']);
           }
-          for($i=0;$i<50;$i++)
-          $content .= '<div class="completed step">
-        <i class="truck icon"></i>
-        <div class="content">
-          <div class="title">Shipping</div>
-          <div class="description">Choose your shipping options</div>
-        </div>
-      </div>';
-          return $content.'</td></table>';
+          //print_r($listMemid);
 
-
-
-
+          $this->db->select('*')->from('member');
+          $this->db->where_in('mem_id', $listMemid);
+          $result = $this->db->get();
+          echo json_encode($result->result());
 
           }
 

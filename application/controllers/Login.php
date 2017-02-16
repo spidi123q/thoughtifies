@@ -24,15 +24,15 @@
 
 
         private function pageSearch()     {
-         $this->load->view('home/search');
+         $this->load->view('home/search.php');
 
         }
         private function pageMessages()     {
-            $this->load->view('home/messages');
+            $this->load->view('home/messages.php');
 
         }
        private function pageRequests()     {
-         $this->load->view('home/requests');
+         $this->load->view('home/requests.php');
        }
       private function pageSettings()     {
         $this->load->view('home/settings');
@@ -166,7 +166,7 @@
           $this->SessionModel->changeAboutMe($data);
         }
         elseif ($value == 3) {
-          $this->SessionModel->changeMyPreferences($data);
+          $this->SessionModel->changeAboutPartner($data);
         }
         elseif ($value == 4) {
             echo  ($this->SessionModel->deleteDP())?1:0;
@@ -178,9 +178,13 @@
           $this->SessionModel->changeGender($data);
         }
         elseif ($value == 7) {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
           $this->SessionModel->changeBday($data);
         }
         elseif ($value == 8) {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
           $this->SessionModel->changeCountry($data);
         }
 
@@ -209,7 +213,7 @@
 
       public function f($p)      {
 
-          $data = array('count' => 500,
+          $data = array('count' => 100,
         );
         if ($p != 6)
         $this->MessageModel->temp();
@@ -258,32 +262,32 @@
 
       public function getDialog($sel)      {
         if($sel == 1)
-          $this->load->view('template/dialog/settings_edit');
+          $this->load->view('template/dialog/settings_edit.php');
         else if ($sel == 2)
-          $this->load->view('template/dialog/chat_box');
+          $this->load->view('template/dialog/chat_box.php');
       }
 
       public function getDialogContent($sel)      {
           if ($sel == 0)
-            $this->load->view('template/dialog/content/change_dp');
+            $this->load->view('template/dialog/content/change_dp.php');
           else if($sel == 1)
-            $this->load->view('template/dialog/content/change_name');
+            $this->load->view('template/dialog/content/change_name.php');
           else if($sel == 2)
-            $this->load->view('template/dialog/content/change_tag');
+            $this->load->view('template/dialog/content/change_tag.php');
           else if($sel == 3)
-            $this->load->view('template/dialog/content/change_aboutme');
+            $this->load->view('template/dialog/content/change_aboutme.php');
           else if($sel == 4)
-            $this->load->view('template/dialog/content/change_mypre');
+            $this->load->view('template/dialog/content/change_mypre.php');
           else if($sel == 5)
-            $this->load->view('template/dialog/content/change_gender');
+            $this->load->view('template/dialog/content/change_gender.php');
           else if($sel == 6)
-            $this->load->view('template/dialog/content/change_bday');
+            $this->load->view('template/dialog/content/change_bday.php');
           else if($sel == 7)
-            $this->load->view('template/dialog/content/change_mail');
+            $this->load->view('template/dialog/content/change_mail.php');
           else if($sel == 8)
-            $this->load->view('template/dialog/content/change_country');
+            $this->load->view('template/dialog/content/change_phone.php');
           else if($sel == 9)
-            $this->load->view('template/dialog/content/change_country');
+            $this->load->view('template/dialog/content/change_country.php');
         }
 
         public function getMyInfo()        {
@@ -296,19 +300,19 @@
             echo json_encode($this->country_iso->countries);
         }
         public function getChatBox()        {
-          $this->load->view('template/chatbox');
+          $this->load->view('template/chatbox.php');
         }
         public function getElement($value)        {
           if($value == 0)
-            $this->load->view('template/friendpanel');
+            $this->load->view('template/friendpanel.php');
           else if($value == 1)
-              $this->load->view('template/usercard');
+              $this->load->view('template/usercard.php');
           else if($value == 2)
-              $this->load->view('template/postcard');
+              $this->load->view('template/postcard.php');
           else if($value == 3)
-              $this->load->view('template/friend_request_card');
+              $this->load->view('template/friend_request_card.php');
           else if($value == 4)
-              $this->load->view('template/post_view_card');
+              $this->load->view('template/post_view_card.php');
         }
 
         public function listEmoji($index)      {
