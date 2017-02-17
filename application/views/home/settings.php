@@ -1,5 +1,5 @@
-<div layout="column">
-  <div flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
+<div layout="column" ng-hide="hideProfile()">
+  <div  flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
         <div layout="row">
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
@@ -90,4 +90,7 @@
       </md-tabs>
     </md-content>
   </div>
+</div>
+<div ng-hide="!hideProfile()" layout="row" layout-align="center center">
+  <h1>Sorry,you cant view this profile</h1>
 </div>

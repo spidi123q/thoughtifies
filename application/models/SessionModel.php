@@ -134,18 +134,30 @@
 
 
       public function getDetails($id)      {
-
-        $query = $this->db->get_where('member_details', array('mem_id' => $id) );
-        $data  = $query->row_array();
-        $imgUrl = "images/userimages/".$data['picture'].'.jpg';
-        $imgUrl =$this->createThumb($imgUrl,150,$data['picture']);
-        $im = file_get_contents($imgUrl);
-        $im = base64_encode($im);
-        $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
-        $data['picture'] = $im;
-        $this->load->library('country_iso');
-        $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
-        echo json_encode($data);
+        $this->db->select('*');
+        $qry = "NOT EXISTS (SELECT receiver as users FROM blocked
+        where sender=$id
+        union
+        SELECT sender as users FROM blocked
+        where receiver=$id)";
+        if($id !== $this->session->SESS_MEMBER_ID)
+        $this->db->where($qry);
+        $this->db->where(array('mem_id' => $id));
+        $query = $this->db->get('member_details');
+        if ($query->num_rows() > 0) {
+          $data  = $query->row_array();
+          $imgUrl = "images/userimages/".$data['picture'].'.jpg';
+          $imgUrl =$this->createThumb($imgUrl,150,$data['picture']);
+          $im = file_get_contents($imgUrl);
+          $im = base64_encode($im);
+          $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+          $data['picture'] = $im;
+          $this->load->library('country_iso');
+          $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          echo json_encode($data);
+        }else {
+          echo "0";
+        }
 
       }
 

@@ -1944,10 +1944,14 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
               },
             },
             config: false,
+            blocked : false,
 
           };
 
-
+          $scope.hideProfile = function () {
+            console.log();
+            return !$scope.settingsData.config && $scope.settingsData.blocked;
+          };
 
           $http({
             method: 'GET',
@@ -1956,22 +1960,26 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
               // this callback will be called asynchronously
               // when the response is available
               console.log(response.data);
-              $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
-              $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
-              $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
-              $scope.settingsData.tabs.profile.info.email.data = response.data.email;
-              $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
-              $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
-              $scope.settingsData.fname = response.data.fname;
-              $scope.settingsData.lname = response.data.lname;
-              $scope.settingsData.tag = response.data.tag;
-              $scope.settingsData.dp = response.data.picture;
-              if (response.data.gender == 'M') {
-                $scope.settingsData.tabs.profile.info.gender.data = "Male";
-                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
+              if (response.data === "0") {
+                $scope.settingsData.blocked = true;
               }else {
-                $scope.settingsData.tabs.profile.info.gender.data = "Female";
-                $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/femenine.svg";
+                $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
+                $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+                $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
+                $scope.settingsData.tabs.profile.info.email.data = response.data.email;
+                $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
+                $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.country.toLowerCase()+".svg";
+                $scope.settingsData.fname = response.data.fname;
+                $scope.settingsData.lname = response.data.lname;
+                $scope.settingsData.tag = response.data.tag;
+                $scope.settingsData.dp = response.data.picture;
+                if (response.data.gender == 'M') {
+                  $scope.settingsData.tabs.profile.info.gender.data = "Male";
+                  $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
+                }else {
+                  $scope.settingsData.tabs.profile.info.gender.data = "Female";
+                  $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/femenine.svg";
+                }
               }
 
 
