@@ -93,3 +93,5 @@ $route['(:any)/post/onrating/(:num)/(:num)']='Login/onRating/$2/$3';
 $route['(:any)/post/count']='Login/getPostsCount';
 $route['(:any)/post/get/(:num)']='Login/getPosts/$2';
 $route['(:any)/rating/get/(:num)']='Login/getMyRating/$2';
+$route['(:any)/block/get']='Login/listBlockedUsers';
+$route['(:any)/block/cancel/(:num)']='Login/unBlock/$2';

@@ -448,6 +448,35 @@
         echo json_encode($query->row());
       }
 
+      public function listBlockedUsers()      {
+        $qry = "SELECT member.* FROM blocked,member
+        where sender=? and blocked.receiver=member.mem_id";
+        /*
+        union
+        SELECT member.* FROM member,blocked
+        where receiver=? and blocked.sender=member.mem_id;*/
+        $data = array($this->session->SESS_MEMBER_ID);
+        $result = $this->db->query($qry,$data);
+        $result = $result->result_array();
+        foreach ($result as $key => $row){
+          $imgUrl = "images/userimages/".$row['picture'].'.jpg';
+          $imgUrl =$this->createThumb($imgUrl,60,$row['picture']);
+          $im = file_get_contents($imgUrl);
+          $im = base64_encode($im);
+          $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+          $result["$key"]["picture"] = $im;
+        }
+        echo json_encode($result);
+      }
+
+      public function unblock($mem_id)      {
+        $data = array(
+        'sender' => $this->session->SESS_MEMBER_ID,
+        'receiver' => $mem_id,
+        );
+        echo $this->db->delete('blocked', $data);
+      }
+
 
 
 

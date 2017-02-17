@@ -352,6 +352,12 @@
         public function blockUser($value)      {
           $this->SessionModel->blockUser($value);
         }
+        public function listBlockedUsers()        {
+          $this->SessionModel->listBlockedUsers();
+        }
+        public function unBlock($data)        {
+          $this->SessionModel->unBlock($data);
+        }
 
         public function insertPost()   {
           $data = $this->input->raw_input_stream;

@@ -12,7 +12,10 @@ app.config(function($mdThemingProvider) {
       'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
       'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
     })
-    .accentPalette('deep-orange');
+    .accentPalette('deep-orange',{
+      'hue-1': '200',
+      'hue-2' : 'A700',
+    });
 });
 
 app.config(['$routeProvider', function($routeProvider){
@@ -1406,6 +1409,16 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
              );
         };
         function BlockController($scope, $mdDialog) {
+
+          $http({
+            method: 'GET',
+            url: 'block/get',
+          }).then(function successCallback(response) {
+              console.log(response.data);
+              $scope.userList = response.data;
+            }, function errorCallback(response) {
+
+            });
           $scope.hide = function() {
             $mdDialog.hide();
           };
@@ -1413,9 +1426,21 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
+          $scope.unBlock = function (item) {
+            $http({
+              method: 'GET',
+              url: 'block/cancel/'+item.mem_id,
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                if (response.data === "1") {
+                  var index = $scope.userList.indexOf(item);
+                  if (index > -1) {
+                        $scope.userList.splice(index, 1);
+                    }
+                }
+              }, function errorCallback(response) {
 
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+              });
           };
         }
 

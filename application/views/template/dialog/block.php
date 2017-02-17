@@ -4,17 +4,16 @@
     <md-dialog-content>
       <div class="md-dialog-content">
         <md-list>
-          <md-list-item  class="md-3-line" >
-            <img ng-src="<?php echo base_url(); ?>images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
+          <md-list-item  class="md-2-line"  ng-repeat="item in userList">
+            <img ng-src="{{item.picture}}" class="md-avatar" alt="{{item.who}}" >
             <div class="md-list-item-text">
+              <h3>{{item.fname}} {{item.lname}}</h3>
               <p>
-                {{item.name}}
-                <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,$index+3)" aria-label="call">
-                  <i class="material-icons">create</i>
+
+                <md-button  class="md-secondary md-icon-button md-warn md-hue-2" ng-click="unBlock(item)" aria-label="call">
+                  <i class="material-icons">close</i>
                 </md-button>
               </p>
-              <h3></h3>
-              <div>{{item.data}}</div>
 
             </div>
             <md-divider md-inset ng-if="!$last"></md-divider>
@@ -24,8 +23,8 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button ng-click="answer('useful')">
-        Useful
+      <md-button class="md-warn" ng-click="cancel()">
+        close
       </md-button>
     </md-dialog-actions>
   </form>
