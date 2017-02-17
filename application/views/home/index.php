@@ -146,7 +146,6 @@
   <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
   <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <link href="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.css" rel="stylesheet" type="text/css" />
   <script src="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
 
@@ -156,7 +155,7 @@
   </script>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/5.8.7/rzslider.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
@@ -170,22 +169,18 @@
 
 
 </body>
-<style media="screen">
-.fabSpeedDialdemoBasicUsage .text-capitalize {
-text-transform: capitalize; }
+<style>
+.jk-rating-stars-container .button {
+  cursor: pointer; }
+  .jk-rating-stars-container .button .material-icons {
+    font-size: 30px; }
 
-.fabSpeedDialdemoBasicUsage .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
-background-color: #000 !important; }
-
-.fabSpeedDialdemoBasicUsage p.note {
-font-size: 1.2rem; }
-
-.fabSpeedDialdemoBasicUsage .lock-size {
-min-width: 300px;
-min-height: 300px;
-width: 300px;
-height: 300px;
-margin-left: auto;
-margin-right: auto; }
+.jk-rating-stars-container .star-button {
+   }
+  .jk-rating-stars-container .star-button.star-on .material-icons {
+    color: #EE9A00; }
+  .jk-rating-stars-container .star-button.star-off .material-icons {
+    color: #ddd; }
 </style>
+
 </html>

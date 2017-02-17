@@ -7,6 +7,17 @@
          parent::__construct();
 
       }
+      private function convertHashtags($str){
+      	$regex = "/#+([a-zA-Z0-9_]+)/";
+        preg_match_all($regex, $str, $matches);
+        //print_r($matches[1]);
+      	$str = preg_replace($regex, '<a href="hashtag.php?tag=$1">$0</a>', $str);
+      	return(
+          array('data' => $str ,
+          'hashtags' => $matches[1],
+         )
+        );
+      }
       private function convertToJPEG($data)      {
 
         $fileType = $data->data('file_type');
@@ -311,7 +322,16 @@
 
       }
 
+      function convertLinks( $string ) {
+          return  preg_replace(
+              "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
+              "<a href='$1'>$2</a>",
+              $string);
+      }
+
       public function insertPost($data)    {
+        $hash = $this->convertHashtags($data->content);
+        $data->content = $hash['data'];
         $info = array('mem_id' => $this->session->SESS_MEMBER_ID,
         'content' => $data->content,
         );
@@ -319,10 +339,17 @@
         $this->db->set('date_time', 'NOW()', FALSE);
         $this->db->insert('posts', $info);
         $query = $this->db->query('SELECT LAST_INSERT_ID() as post_id');
+        $post_id  = $query->row()->post_id;
+        foreach ($hash['hashtags'] as $key) {
+          $this->db->insert('post_tags', array(
+            'post_id' => $post_id,
+            'hashtag' => $key,
+          ));
+        }
         $file = $data->upload->file;
         if ( !($file == "") ) {
           $this->db->insert('post_images', array(
-            'post_id' => $query->row()->post_id,
+            'post_id' => $post_id,
             'image' => $file,
           ));
         }
@@ -369,6 +396,14 @@
             $this->db->delete('friendship');
           }
       }
+      public function blockUser($id)  {
+        $data = array(
+        'sender' => $this->session->SESS_MEMBER_ID,
+        'receiver' => $id,
+        );
+        $this->db->set('date_time', 'NOW()', FALSE);
+        echo $this->db->insert('blocked', $data);
+      }
 
       public function getPosts($offset)      {
         $this->db->limit(10, $offset);
@@ -412,6 +447,7 @@
         ));
         echo json_encode($query->row());
       }
+
 
 
 

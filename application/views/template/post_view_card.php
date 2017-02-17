@@ -15,7 +15,7 @@
          <img ng-if="item.image !== null" ng-src="<?php echo base_url() ;?>images/userimages/posts/{{item.image}}.jpg" class="md-card-image" alt="Washed Out">
          <md-card-content>
            <p>
-             {{item.content}}
+             <span ng-bind-html="item.content" ></span>
            </p>
          </md-card-content>
          <md-card-actions layout="row" layout-align="start center">

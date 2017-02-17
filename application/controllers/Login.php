@@ -262,9 +262,11 @@
 
       public function getDialog($sel)      {
         if($sel == 1)
-          $this->load->view('template/dialog/settings_edit.php');
+          $this->load->view('template/dialog/settings_edit');
         else if ($sel == 2)
-          $this->load->view('template/dialog/chat_box.php');
+          $this->load->view('template/dialog/chat_box');
+        else if ($sel == 3)
+          $this->load->view('template/dialog/block');
       }
 
       public function getDialogContent($sel)      {
@@ -303,16 +305,19 @@
           $this->load->view('template/chatbox.php');
         }
         public function getElement($value)        {
-          if($value == 0)
-            $this->load->view('template/friendpanel.php');
+          if($value == 0){
+            $this->load->view('template/friendpanel');
+          }
           else if($value == 1)
-              $this->load->view('template/usercard.php');
+              $this->load->view('template/usercard');
           else if($value == 2)
-              $this->load->view('template/postcard.php');
+              $this->load->view('template/postcard');
           else if($value == 3)
-              $this->load->view('template/friend_request_card.php');
+              $this->load->view('template/friend_request_card');
           else if($value == 4)
-              $this->load->view('template/post_view_card.php');
+              $this->load->view('template/post_view_card');
+          else if($value == 5)
+              $this->load->view('template/rating-stars-directive');
         }
 
         public function listEmoji($index)      {
@@ -343,6 +348,9 @@
 
         public function getFriendshipStatus($value)      {
           $this->SessionModel->getFriendshipStatus($value);
+        }
+        public function blockUser($value)      {
+          $this->SessionModel->blockUser($value);
         }
 
         public function insertPost()   {

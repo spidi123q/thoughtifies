@@ -17,7 +17,9 @@ app.config(function($mdThemingProvider) {
 
 app.config(['$routeProvider', function($routeProvider){
                 $routeProvider
-                .when('/',{templateUrl:'p/0'})
+                .when('/',{
+                  templateUrl:'p/0'
+                })
                 .when('/search',{
                   templateUrl:'p/1',
                 })
@@ -103,7 +105,7 @@ app.directive('hashtagify', ['$timeout', '$compile',
           scope : {
             uid : '=uid'
           },
-          controller: ['$scope','$http', function ($scope,$http) {
+          controller: ['$scope','$http','$rootScope','$location', function ($scope,$http,$rootScope, $location) {
             $scope.buttons = {
               request : {
                 icon : "add",
@@ -176,8 +178,26 @@ app.directive('hashtagify', ['$timeout', '$compile',
                 }
             };
 
+            var blockButton = function () {
+              console.log("block");
+              $http({
+                method: 'GET',
+                url: 'users/block/'+$scope.uid,
+              }).then(function successCallback(response) {
+                  //$scope.buttons.request.progress = false;
+                  if (response.data == "1") {
+                    $location.path( "/" );
+                  }
+
+                }, function errorCallback(response) {
+
+                });
+
+            };
+
             $scope.buttons.openMenu = openMenu;
             $scope.buttons.requestButton = requestButton;
+            $scope.buttons.blockButton = blockButton;
             $scope.actions = $scope.buttons;
               }],
           templateUrl:'element/0',
@@ -289,7 +309,7 @@ app.directive('hashtagify', ['$timeout', '$compile',
                 };
                 $scope.post = function () {
 
-                      /*    $http({
+                        $http({
                           method: 'POST',
                           url: 'home/post',
                           data : {
@@ -305,9 +325,9 @@ app.directive('hashtagify', ['$timeout', '$compile',
 
                           }, function errorCallback(response) {
 
-                          });*/
+                          });
 
-                           $scope.data = $scope.data.replace(/(^|\W)(#[a-z\d][\w-]*)/igm, '$1<a href="">$2</a>');
+                          // $scope.data = $scope.data.replace(/(^|\W)(#[a-z\d][\w-]*)/igm, '$1<a href="">$2</a>');
 
 
                             // Twitter
@@ -324,7 +344,7 @@ app.directive('hashtagify', ['$timeout', '$compile',
                             return matches;
                         }
 
-                        console.log($scope.data);
+                        //console.log($scope.data);
 
                 };
 
@@ -1291,8 +1311,113 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       }
 });
 
-app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function($scope,$http,$mdDialog,FileUploader) {
+app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q',function($scope,$http,$mdDialog,FileUploader,$timeout,$q) {
+  var datasource = {};
+  var big =-1,max = 500;
+  var page = [];
+  var getCount = function (big) {
+    var deferred = $q.defer();
+    if (big === 0) {
+          $http({
+            method: 'GET',
+            url: 'post/count',
+          }).then(function successCallback(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+              console.log(response.data);
+              max = response.data.count;
+              deferred.resolve(response);
 
+            }, function errorCallback(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              console.log("count err");
+               deferred.reject({ message: "Really bad" });
+            });
+
+    }else {
+      deferred.resolve({ message: "no http needed" });
+    }
+    return deferred.promise;
+
+  };
+  var setBig = function(index){
+
+    var deferred = $q.defer();
+
+    if(index > big){
+      big = (big === -1)? 0 : big+10;
+      //big = index;
+      console.log(big);
+
+        getCount(big).then(function (response) {
+
+          $http({
+              method: 'GET',
+              url: 'post/get/'+big,
+            }).then(function successCallback(response) {
+              console.log(response.data);
+              response.data.forEach(function (item,index3) {
+                page.push(item);
+              });
+                deferred.resolve(response);
+              }, function errorCallback(response) {
+                deferred.reject({ message: "Really bad" });
+              });
+        });
+    }
+    else {
+      deferred.resolve({ message: "no http needed" });
+    }
+    return deferred.promise;
+  };
+
+			datasource.get = function (index, count, success) {
+				$timeout(function () {
+					var result = [];
+					for (var i = index; i <= index + count - 1; i++) {
+            if(i < 0 || i >= max) {
+                        continue;
+                    }
+						result.push("item #" + i);
+					}
+					success(result);
+				}, 100);
+			};
+
+			$scope.datasource = datasource;
+
+			$scope.delay = false;
+
+        $scope.adapter = {
+          remain: true
+        };
+        $scope.openFromLeft = function(ev) {
+             $mdDialog.show({
+                  controller: BlockController,
+                  templateUrl: 'dialog/3',
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose:true,
+                  openFrom : '#left',
+                  closeTo : angular.element(document.querySelector('#right')),
+                  //fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                }
+             );
+        };
+        function BlockController($scope, $mdDialog) {
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+
+          $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+          };
+        }
 
           console.log("seetigs");
           console.log("kkk");
@@ -1334,6 +1459,15 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
               },
               settings  : {
                 name  : "Settings",
+                info : {
+                  block : {
+                    name : "BLOCKED USERS",
+                    icon  : "flaticons/svg/lock.svg"
+                  },
+                  deac : {
+                    name : "DEACTIVATE",
+                  },
+                }
               },
             },
             dialog  : {
@@ -1341,6 +1475,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader',function
             config: true,
 
           };
+          console.log($scope.settingsData);
 
 
 
@@ -1805,8 +1940,7 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
               $scope.settingsData.fname = response.data.fname;
               $scope.settingsData.lname = response.data.lname;
               $scope.settingsData.tag = response.data.tag;
-
-              console.log(response.data);
+              $scope.settingsData.dp = response.data.picture;
               if (response.data.gender == 'M') {
                 $scope.settingsData.tabs.profile.info.gender.data = "Male";
                 $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";

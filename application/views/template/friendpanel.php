@@ -10,7 +10,7 @@
          </md-button>
          <md-menu-content>
            <md-menu-item>
-             <md-button ng-click="ctrl.redial($event)">
+             <md-button ng-click="actions.blockButton()">
                <i class="material-icons">{{actions.block.icon}}</i>
                Block
              </md-button>

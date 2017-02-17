@@ -4,7 +4,7 @@
         <md-list-item class="md-2-line" >
           <img ng-src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text" layout="column">
-            <div contenteditable ng-model="data" ng-change="post()"
+            <div contenteditable ng-model="data" 
             ng-focus="focus()"
             ng-blur="unfocus()"
             ></div>
