@@ -70,38 +70,6 @@ app.config( [
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
-app.directive('hashtagify', ['$timeout', '$compile',
-    function($timeout, $compile) {
-        return {
-            restrict: 'A',
-            scope: {
-                uClick: '&userClick',
-                tClick: '&termClick'
-            },
-            link: function(scope, element, attrs) {
-                $timeout(function() {
-                    var html = element.html();
-
-                    if (html === '') {
-                        return false;
-                    }
-
-                    if (attrs.userClick) {
-                        html = html.replace(/(|\s)*@(\w+)/g, '$1<a ng-click="uClick({$event: $event})" class="hashtag">@$2</a>');
-                    }
-
-                    if (attrs.termClick) {
-                        html = html.replace(/(^|\s)*#(\w+)/g, '$1<a ng-click="tClick({$event: $event})" class="hashtag">#$2</a>');
-                    }
-
-                    element.html(html);
-
-                    $compile(element.contents())(scope);
-                }, 0);
-            }
-        };
-    }
-]);
   app.directive('friendpanel', function () {
       return {
           restrict: 'E',
@@ -222,9 +190,9 @@ app.directive('hashtagify', ['$timeout', '$compile',
           scope : {
             uid : '=uid'
           },
-          controller: ['$scope','$http','FileUploader','linkify', function ($scope,$http,FileUploader,linkify) {
+          controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
                 $scope.shadow = {};
-                var placeholder = "Share #sur your thoughts";
+                var placeholder = "<span style='opacity:0.54'>Share your thoughts</span>";
                 $scope.upload = {
                   progress : true,
                   button : false,
@@ -247,6 +215,25 @@ app.directive('hashtagify', ['$timeout', '$compile',
                     $scope.data = placeholder;
                   }
                   $scope.shadow = {};
+                };
+                $scope.emojilist = [];
+                $scope.view = false;
+                $scope.changeEmojiView = function () {
+
+                    //$scope.view = !$scope.view;
+                    if ($scope.view && $scope.emojilist.length === 0) {
+                      console.log("eee");
+                      $scope.emojilist = EmojiService.get();
+                    }else {
+
+                      console.log("gg");
+                    }
+                };
+                $scope.onEmojiClick = function (item) {
+                  if ($scope.data === placeholder) {
+                    $scope.data = "";
+                  }
+                  $scope.data += " "+item;
                 };
                 $scope.data = placeholder;
                 var uploader = $scope.uploader = new FileUploader({

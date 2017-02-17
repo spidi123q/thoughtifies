@@ -4,7 +4,7 @@
         <md-list-item class="md-2-line" >
           <img ng-src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text" layout="column">
-            <div contenteditable ng-model="data" 
+            <div contenteditable ng-model="data"
             ng-focus="focus()"
             ng-blur="unfocus()"
             ></div>
@@ -20,10 +20,13 @@
 
         </div>
         <span layout="row" layout-align="space-between end">
-          <span layout="row" layout-align="end center">
-            <md-button class="md-icon-button md-primary" aria-label="More">
-                <i class="material-icons">tag_faces</i>
-            </md-button>
+          <span flex-offset="5" layout="row" layout-align="end center">
+            <md-switch  ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
+
+             <md-button class="md-icon-button" aria-label="More">
+                   <i class="material-icons ">tag_faces</i>
+                 </md-button>
+           </md-switch>
             <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
             <label for="input-file-id" class="md-icon-button">
                   <i class="material-icons">insert_photo</i>
@@ -33,6 +36,11 @@
             <md-button ng-click="post()" ng-disabled="upload.button" class="md-warn">post</md-button>
           </span>
         </span>
+        <md-content  ng-hide="!view"style="height:100%;">
+            <span ng-repeat="item in emojilist" ng-click="onEmojiClick(item)" style="width:32px;height:32px;">
+              <span ng-bind-html="item" ></span>
+            </span>
+        </md-content>
 
     </md-list>
 
