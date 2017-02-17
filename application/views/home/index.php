@@ -139,14 +139,8 @@
   <script src="<?php echo base_url(); ?>js/ngImgCrop-master/compile/unminified/ng-img-crop.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
   <script src="<?php echo base_url(); ?>js/chatbox.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-popover/dist/angular-popover.css">
-  <script src="<?php echo base_url(); ?>node_modules/ng-popover/dist/angular-popover.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/angular-popover-master/ngpopover.css">
-  <script src="<?php echo base_url(); ?>node_modules/angular-popover-master/dist/js/ngPopover.min.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url();?>node_modules/ng-emoticons/dist/ng-emoticons.min.css">
-  <script src="<?php echo base_url(); ?>node_modules/ng-emoticons/dist/ng-emoticons.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+  <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
 
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
