@@ -12,8 +12,37 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
+      public function listMessengersCount()      {
+              $qry = "SELECT count(*) AS count FROM (SELECT DISTINCT sender
+              FROM (
+              SELECT result.sender, result.date_time
+              FROM (
+              SELECT  sender, receiver, date_time
+              FROM myMessages
+              WHERE sender =  ?
+              OR receiver =  ?
+              )result
+              UNION SELECT result.receiver, result.date_time
+              FROM (
 
-      public function listMessengers()      {
+              SELECT  sender, receiver, date_time
+              FROM myMessages
+              WHERE sender =  ?
+              OR receiver =  ?
+              )result
+            )r WHERE sender !=  ?) count_table";
+
+            $result = $this->db->query($qry, array(
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+            ));
+            echo json_encode($result->row());
+      }
+
+      public function listMessengers($offset)      {
 
             $qry = "SELECT DISTINCT sender
             FROM (
@@ -37,7 +66,7 @@
             ORDER BY date_time DESC
             )result
             ORDER BY date_time DESC
-          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT 0,5";
+          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,5";
 
           $result = $this->db->query($qry, array(
             $this->session->SESS_MEMBER_ID,

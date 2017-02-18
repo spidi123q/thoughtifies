@@ -604,11 +604,11 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
               $http({
                 method: 'GET',
-                url: 'msg/f/'+6,
+                url: 'msg/users/count',
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  //console.log(response.data);
+                  console.log(response.data);
                   max = response.data.count;
                   deferred.resolve(response);
 
@@ -633,7 +633,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           getCount(big).then(function () {
             $http({
               method: 'GET',
-              url: 'msg/f/'+big,
+              url: 'msg/users/'+big,
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
@@ -677,7 +677,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
                 for (var i = index; i <= index + count - 1; i++) {
                   //console.log("index: "+index);
                   //console.log("i = "+i);
-                 if(i < 0 || i > max) {
+                 if(i < 0 || i >= max) {
                               continue;
                           }
                           //console.log(page);

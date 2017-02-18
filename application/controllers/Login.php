@@ -212,7 +212,6 @@
       }
 
       public function f($p)      {
-
           $data = array('count' => 100,
         );
         if ($p != 6)
@@ -220,11 +219,14 @@
         else
           echo json_encode($data);
 
-
-
+      }
+      public function getMsgUsers($offset) {
+        $this->MessageModel->listMessengers($offset);
       }
 
-
+      public function getMsgUsersCount() {
+        $this->MessageModel->listMessengersCount();
+      }
 
       public function countMsg($id)      {
         echo $this->MessageModel->countMsg($id);
