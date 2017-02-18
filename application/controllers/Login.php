@@ -374,11 +374,11 @@
         public function friendRequestActions($value,$id)   {
           $this->SessionModel->friendRequestActions($value,$id);
         }
-        public function getPosts($value)      {
-          $this->SessionModel->getPosts($value);
+        public function getPosts($value,$id='')      {
+            $this->SessionModel->getPosts($value,$id);
         }
-        public function getPostsCount()      {
-          $this->SessionModel->getPostsCount();
+        public function getPostsCount($id = '')      {
+            $this->SessionModel->getPostsCount($id);
         }
         public function onRating($id,$val)      {
           $data = array(

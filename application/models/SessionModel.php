@@ -417,7 +417,9 @@
         echo $this->db->insert('blocked', $data);
       }
 
-      public function getPosts($offset)      {
+      public function getPosts($offset,$id)      {
+        if($id !== '')
+          $this->db->where('mem_id',$id);
         $this->db->limit(10, $offset);
         $query = $this->db->get("post_view");
         $result = $query->result_array();
@@ -434,8 +436,10 @@
         echo json_encode($result);
       }
 
-      public function getPostsCount()      {
+      public function getPostsCount($id)      {
         $this->db->select("COUNT(*) AS count");
+        if($id !== '')
+          $this->db->where('mem_id',$id);
         $query = $this->db->get("post_view");
         echo json_encode($query->row());
       }

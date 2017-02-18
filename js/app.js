@@ -31,7 +31,7 @@ app.config(['$routeProvider', function($routeProvider){
                 })
                 .when('/users/:uid',{
                   templateUrl:'p/4',
-                  controller : "Users"
+                  controller : "UserController"
 
                 })
                 .when('/request',{
@@ -706,6 +706,105 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 			};
 		}
 	]);
+  app.factory('MyPosts', ['$log', '$timeout','$http','$q',
+  		function (console, $timeout,$http,$q) {
+
+        var datasource = {};
+        var big =-1,max = 0,user = SESS_MEMBER_ID;
+        var page = [];
+
+        var setUser = function (id) {
+          big = -1;
+          user = id;
+        };
+        var getCount = function (big) {
+          var deferred = $q.defer();
+          if (big === 0) {
+                $http({
+                  method: 'GET',
+                  url: 'post/count/'+user,
+                }).then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log(response.data);
+                    max = response.data.count;
+                    deferred.resolve(response);
+
+                  }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log("count err");
+                     deferred.reject({ message: "Really bad" });
+                  });
+
+          }else {
+            deferred.resolve({ message: "no http needed" });
+          }
+          return deferred.promise;
+
+        };
+        var setBig = function(index){
+
+          var deferred = $q.defer();
+
+          if(index > big){
+            big = (big === -1)? 0 : big+10;
+            //big = index;
+            console.log(big);
+
+              getCount(big).then(function (response) {
+
+                $http({
+                    method: 'GET',
+                    url: 'post/get/'+big+'/'+user,
+                  }).then(function successCallback(response) {
+                    console.log(response.data);
+                    response.data.forEach(function (item,index3) {
+                      page.push(item);
+                    });
+                      deferred.resolve(response);
+                    }, function errorCallback(response) {
+                      deferred.reject({ message: "Really bad" });
+                    });
+              });
+          }
+          else {
+            deferred.resolve({ message: "no http needed" });
+          }
+          return deferred.promise;
+        };
+
+  			var get = function (index, count, success) {
+
+          $timeout(function () {
+
+                //console.log("index " +index);
+              setBig(index).then(function (response) {
+                var result = [];
+                for (var i = index; i <= index + count - 1; i++) {
+
+                  if(i < 0 || i >= max) {
+                              continue;
+                          }
+                          //console.log("page : "+i);
+                 result.push(page[i]);
+                //result.push("page : "+i);
+                }
+                success(result);
+              },function (error) {
+                console.log(error.statusText);
+              });
+
+            }, 100);
+
+  			};
+
+  			return {
+  				get: get,
+          setUser : setUser,
+  			};
+  		}
+  	]);
 
 
 app.controller('msgController', [
@@ -1301,82 +1400,11 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       }
 });
 
-app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q',function($scope,$http,$mdDialog,FileUploader,$timeout,$q) {
-  var datasource = {};
-  var big =-1,max = 500;
-  var page = [];
-  var getCount = function (big) {
-    var deferred = $q.defer();
-    if (big === 0) {
-          $http({
-            method: 'GET',
-            url: 'post/count',
-          }).then(function successCallback(response) {
-              // this callback will be called asynchronously
-              // when the response is available
-              console.log(response.data);
-              max = response.data.count;
-              deferred.resolve(response);
-
-            }, function errorCallback(response) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-              console.log("count err");
-               deferred.reject({ message: "Really bad" });
-            });
-
-    }else {
-      deferred.resolve({ message: "no http needed" });
-    }
-    return deferred.promise;
-
-  };
-  var setBig = function(index){
-
-    var deferred = $q.defer();
-
-    if(index > big){
-      big = (big === -1)? 0 : big+10;
-      //big = index;
-      console.log(big);
-
-        getCount(big).then(function (response) {
-
-          $http({
-              method: 'GET',
-              url: 'post/get/'+big,
-            }).then(function successCallback(response) {
-              console.log(response.data);
-              response.data.forEach(function (item,index3) {
-                page.push(item);
-              });
-                deferred.resolve(response);
-              }, function errorCallback(response) {
-                deferred.reject({ message: "Really bad" });
-              });
-        });
-    }
-    else {
-      deferred.resolve({ message: "no http needed" });
-    }
-    return deferred.promise;
-  };
-
-			datasource.get = function (index, count, success) {
-				$timeout(function () {
-					var result = [];
-					for (var i = index; i <= index + count - 1; i++) {
-            if(i < 0 || i >= max) {
-                        continue;
-                    }
-						result.push("item #" + i);
-					}
-					success(result);
-				}, 100);
-			};
-
-			$scope.datasource = datasource;
-
+app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q','MyPosts',function($scope,$http,$mdDialog,FileUploader,$timeout,$q,MyPosts) {
+      var datasource = {};
+      var big =-1,max = 500;
+      var page = [];
+			$scope.datasource = MyPosts;
 			$scope.delay = false;
 
         $scope.adapter = {
@@ -1485,14 +1513,13 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
             dialog  : {
             },
             config: true,
+            post : false,
 
           };
-          console.log($scope.settingsData);
-
-
-
-
-
+          $scope.onSelectPosts = function () {
+            MyPosts.setUser(SESS_MEMBER_ID);
+            $scope.settingsData.post = true;
+          };
 
           $http({
             method: 'GET',
@@ -1887,12 +1914,13 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
 }]);
 
-app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($scope,$http,$mdDialog,$routeParams) {
+app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','MyPosts',function($scope,$http,$mdDialog,$routeParams,MyPosts) {
 
 
           console.log("Users");
           console.log($routeParams.uid);
           $scope.uid = $routeParams.uid;
+          $scope.datasource = MyPosts;
           $scope.settingsData = {
             tabs : {
               profile  : {
@@ -1932,7 +1960,12 @@ app.controller('Users', ['$scope','$http','$mdDialog','$routeParams',function($s
             },
             config: false,
             blocked : false,
-
+            post : false,
+          };
+          $scope.onSelectPosts = function () {
+            console.log("hi pro");
+            MyPosts.setUser($scope.uid);
+            $scope.settingsData.post = true;
           };
 
           $scope.hideProfile = function () {
