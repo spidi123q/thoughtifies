@@ -192,6 +192,7 @@ app.config( [
           },
           controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
                 $scope.shadow = {};
+                $scope.picture = SESS_USERIMAGE;
                 var placeholder = "<span style='opacity:0.54'>Share your thoughts</span>";
                 $scope.upload = {
                   progress : true,
@@ -418,6 +419,27 @@ app.directive('ngThumb', ['$window', function($window) {
         };
     }]);
 
+app.directive('imageFetch',function($http) {
+        return {
+            restrict: 'A',
+
+           link: function(scope, elem, attrs) {
+             console.log(attrs);
+             $http({
+               method: 'GET',
+               url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
+             }).then(function successCallback(response) {
+                 attrs.$set('ngSrc', response.data);
+
+               }, function errorCallback(response) {
+
+               });
+            //$compile(elem)(scope);
+          }
+            //template: '<img class="md-user-avatar" src="{{data}}"/>',
+        };
+    });
+
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
   var chat = {};
@@ -515,9 +537,18 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
 }]);
 
 app.factory('dpDisplay', function() {
+
         var dpDisplay = function(data){
           if (data.receiver == SESS_MEMBER_ID) {
             return false;
+          }
+          else {
+            return true;
+          }
+        };
+        var getDp = function(data){
+          if (data.receiver == SESS_MEMBER_ID) {
+            return SESS_USERIMAGE;
           }
           else {
             return true;
@@ -814,6 +845,7 @@ app.controller('msgController', [
       var page  = [];
       $scope.msg = '';
       $scope.dpDisplay = dpDisplay;
+      $scope.myDp = SESS_USERIMAGE;
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
@@ -979,6 +1011,7 @@ app.controller('msgController', [
       $scope.msgUserName = {
         fname : user.fname,
         lname : user.lname,
+        picture : user.picture,
       };
       big = -1;
       $scope.msgUserAdapter.reload();
@@ -1139,7 +1172,6 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 
       			datasource.get = function (index, count, success) {
       				$timeout(function () {
-
 
                 setBig(index).then(function (response) {
                   var result = [];

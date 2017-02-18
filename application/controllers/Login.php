@@ -59,7 +59,10 @@
 
          $v = $this->LoginModel->login($data);
          if ($v) {
-           $data = array('mem_id' => $this->session->SESS_MEMBER_ID, );
+           $data = array(
+             'mem_id' => $this->session->SESS_MEMBER_ID,
+             'picture' => $this->session->SESS_USERIMAGE,
+            );
            $this->load->view('home/index',$data);
          }
          else {
@@ -391,6 +394,10 @@
         }
         public function getMyRating($value)      {
           $this->SessionModel->getMyRating($value);
+        }
+
+        public function dpFetch($file,$size)  {
+          $this->SessionModel->dpFetch($file,$size);
         }
 
 

@@ -1,6 +1,6 @@
 
 <md-card>
-    <img ng-src="{{info.picture}}" class="md-card-image" alt="Washed Out">
+    <img image-fetch ng-src="{{info.picture}}" size="200" class="md-card-image" alt="Washed Out">
       <md-card-title>
         <md-card-title-text>
           <a href="#/users/{{info.mem_id}}">

@@ -146,6 +146,7 @@
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
+    var SESS_USERIMAGE = "<?php echo $picture; ?>";
   </script>
 
 

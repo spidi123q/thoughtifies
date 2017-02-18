@@ -2,7 +2,8 @@
   <md-card >
          <md-card-header>
            <md-card-avatar>
-             <img class="md-user-avatar" src="{{item.dp}}"/>
+            <!-- <image-fetch data="item.dp"></image-fetch>-->
+            <img class="md-user-avatar" image-fetch ng-src="{{item.dp}}" size="60"/>
            </md-card-avatar>
            <md-card-header-text>
              <span class="md-title">{{item.fname}} {{item.lname}}</span>

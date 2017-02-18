@@ -493,6 +493,14 @@
         echo $this->db->delete('blocked', $data);
       }
 
+      public function dpFetch($file,$size)      {
+        $imgUrl = "images/userimages/".$file.'.jpg';
+        $imgUrl =$this->createThumb($imgUrl,$size,$file);
+        $im = file_get_contents($imgUrl);
+        $im = base64_encode($im);
+        $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+        echo $im;
+      }
 
 
 

@@ -8,7 +8,7 @@
             </md-button>
 
           </div>
-          <img flex="40" md-whiteframe="3"   alt="" src="{{settingsData.dp}}" alt="" style="max-width: 150;
+          <img flex="40" md-whiteframe="3"   alt="" image-fetch ng-src="{{settingsData.dp}}" alt="" style="max-width: 150;
     max-height: 150;">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
