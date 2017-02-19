@@ -399,8 +399,25 @@
         public function dpFetch($file,$size)  {
           $this->SessionModel->dpFetch($file,$size);
         }
-        public function searchDictionary($value = '')   {
-          $this->SessionModel->searchDictionary($value);
+        public function searchDictionary($type,$data = '')   {
+          $result = array(
+            'type' => $type
+          );
+          if ($type === "0") {
+            $result['data'] = $this->SearchModel->searchHashtag($data);
+            echo json_encode($result);
+          }
+          else if($type === "1") {
+            $data = $this->input->raw_input_stream;
+            $data = json_decode($data);
+            $result['data'] = $this->SearchModel->searchByEmail($data->email);
+            echo json_encode($result);
+          }
+          else {
+            $result['data'] = $this->SearchModel->searchDictionary($data);
+            echo json_encode($result);
+          }
+
         }
 
 

@@ -2292,12 +2292,38 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
     self.isDisabled    = false;
 
     // list of `state` value/display objects
-    self.states        = loadAll();
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
 
     self.newState = newState;
+    var checkRegex = function (string) {
+      hash = /#+([a-zA-Z0-9_]+)/;
+      email = /^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm;
+      var isHash = hash.exec(string);
+      var isEmail = email.exec(string);
+      if (isHash !== null ) {
+        console.log("hash");
+        return {
+          type : '0',
+          data : isHash[1],
+        };
+      }
+      else if (isEmail !== null ) {
+        console.log("email");
+        return {
+          type : '1',
+          data : isEmail[0],
+        };
+      }
+      else {
+        console.log("no match");
+        return {
+          type : '2',
+          data : string,
+        };
+      }
+    };
 
     function newState(state) {
       alert("Sorry! You'll need to create a Constitution for " + state + " first!");
@@ -2312,16 +2338,40 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
      * remote dataservice call.
      */
     function querySearch (query) {
-      return $http({
-          method: 'GET',
-          url: 'search/tool/'+query,
-        }).then(function successCallback(response) {
-            console.log(response.data);
-            return response.data;
-          }, function errorCallback(response) {
-              return response;
-          });
+      var url;
+      info = checkRegex(query);
+      console.log(info);
+      if (info.type == '1') {
+        return $http({
+            method: 'POST',
+            url: 'search/tool/'+info.type,
+            data : {
+              email : info.data
+            }
+          }).then(function successCallback(response) {
+              console.log(response.data);
+              self.isEmail = (response.data.type === "1")? true :false;
+              return response.data.data;
+            }, function errorCallback(response) {
+                return response;
+            });
+      }else {
+        return $http({
+            method: 'GET',
+            url: 'search/tool/'+info.type+'/'+info.data,
+          }).then(function successCallback(response) {
+              console.log(response.data);
+              self.isHash = (response.data.type === "0")? true :false;
+              self.isEmail = (response.data.type === "1")? true :false;
+              self.isOther = (response.data.type === "2")? true :false;
+              return response.data.data;
+            }, function errorCallback(response) {
+                return response;
+            });
+      }
+
     }
+
 
     function searchTextChange(text) {
       $log.info('Text changed to ' + text);
@@ -2331,25 +2381,6 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
       $log.info('Item changed to ' + JSON.stringify(item));
     }
 
-    /**
-     * Build `states` list of key/value pairs
-     */
-    function loadAll() {
-      var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-              Wisconsin, Wyoming';
-
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
 
     /**
      * Create filter function for a query string

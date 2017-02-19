@@ -49,9 +49,23 @@
           md-item-text="item.word"
           md-min-length="0"
           placeholder="Search for anything"
+          md-menu-class="autocomplete-custom-template"
           >
         <md-item-template>
-          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.word}}</span>
+          <span ng-if="ctrl.isHash">
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">#{{item.hashtag}}</span>
+          </span>
+          <span ng-if="ctrl.isEmail" >
+            <md-list-item class="md-2-line" >
+              <img ng-src="{{item.picture}}" class="md-avatar" alt="{{item.fname}}" />
+              <div class="md-list-item-text" layout="column">
+                <p><span> {{item.fname}} {{item.lname}} </span></p>
+              </div>
+            </md-list-item>
+          </span>
+          <span ng-if="ctrl.isOther">
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.word}}</span>
+          </span>
         </md-item-template>
         <md-not-found>
           No states matching "{{ctrl.searchText}}" were found.
@@ -176,6 +190,24 @@
     color: #EE9A00; }
   .jk-rating-stars-container .star-button.star-off .material-icons {
     color: #ddd; }
+.autocomplete-custom-template li {
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal;
+}
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0;
+}
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2;
+}
+.autocomplete-custom-template .item-title md-icon {
+  height: 60px;
+  width: 60px;
+}
 </style>
 
 </html>
