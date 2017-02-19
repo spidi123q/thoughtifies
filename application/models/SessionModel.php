@@ -501,6 +501,14 @@
         $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
         echo $im;
       }
+      public function searchDictionary($value)   {
+        $this->db->distinct();
+        $this->db->select('word');
+        $this->db->like('word', $value);
+        $this->db->limit(10, 0);
+        $query = $this->db->get('dictionary');
+        echo json_encode($query->result());
+      }
 
 
 

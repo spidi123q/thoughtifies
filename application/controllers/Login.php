@@ -399,6 +399,9 @@
         public function dpFetch($file,$size)  {
           $this->SessionModel->dpFetch($file,$size);
         }
+        public function searchDictionary($value = '')   {
+          $this->SessionModel->searchDictionary($value);
+        }
 
 
 

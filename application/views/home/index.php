@@ -10,7 +10,7 @@
         <h2>Loading</h2>
      </div>
 
-	<md-toolbar style="z-index:500; position: fixed;box-shadow: 0px 5px 5px grey;">
+	<md-toolbar ng-controller="ToolbarController as ctrl" style="z-index:500; position: fixed;box-shadow: 0px 5px 5px grey;">
 				<div class="md-toolbar-tools">
 							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
 																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
@@ -46,12 +46,12 @@
           md-search-text="ctrl.searchText"
           md-selected-item-change="ctrl.selectedItemChange(item)"
           md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.display"
+          md-item-text="item.word"
           md-min-length="0"
           placeholder="Search for anything"
           >
         <md-item-template>
-          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.word}}</span>
         </md-item-template>
         <md-not-found>
           No states matching "{{ctrl.searchText}}" were found.
