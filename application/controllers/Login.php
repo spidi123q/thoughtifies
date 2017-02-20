@@ -18,25 +18,22 @@
 
         private function pageHome()     {
            $this->load->view('home/homepage');
-
-
         }
-
 
         private function pageSearch()     {
          $this->load->view('home/search.php');
-
         }
         private function pageMessages()     {
             $this->load->view('home/messages.php');
-
         }
        private function pageRequests()     {
          $this->load->view('home/requests.php');
        }
       private function pageSettings()     {
         $this->load->view('home/settings');
-
+      }
+      private function pageTBS()     {
+        $this->load->view('home/tbs');
       }
 
 
@@ -145,6 +142,9 @@
         }
         elseif ($value == 4) {
           $this->pageSettings();
+        }
+        elseif ($value == 5) {
+          $this->pageTBS();
         }
         else {
           echo "invalid page selection";
@@ -399,7 +399,7 @@
         public function dpFetch($file,$size)  {
           $this->SessionModel->dpFetch($file,$size);
         }
-        public function searchDictionary($type,$data = '')   {
+        public function searchToolBar($type,$data = '')   {
           $result = array(
             'type' => $type
           );
@@ -417,10 +417,14 @@
             $result['data'] = $this->SearchModel->searchDictionary($data);
             echo json_encode($result);
           }
-
         }
 
-
+        public function searchPostByHashtag($data,$offset)        {
+          $this->SearchModel->searchPostByHashtag($data,$offset);
+        }
+        public function searchPostByHashtagCount($data)        {
+          $this->SearchModel->searchPostByHashtagCount($data);
+        }
 
 
 

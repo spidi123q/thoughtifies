@@ -29,17 +29,19 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/messages',{
                   templateUrl:'p/2',
                 })
+                .when('/request',{
+                  templateUrl:'p/3',
+                })
                 .when('/users/:uid',{
                   templateUrl:'p/4',
                   controller : "UserController"
-
-                })
-                .when('/request',{
-                  templateUrl:'p/3',
                 })
                 .when('/profile',{
                   templateUrl:'p/4',
                   controller : "Settings"
+                })
+                .when('/tbs/:type/:data',{
+                  templateUrl:'p/5',
                 })
                 .otherwise({redirectTo:'/'});
 }]);
@@ -2284,7 +2286,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                 });
           };
 });
-app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,$http) {
+app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,$http,$rootScope, $location) {
 
     var self = this;
 
@@ -2295,8 +2297,8 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
     self.querySearch   = querySearch;
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
-
     self.newState = newState;
+
     var checkRegex = function (string) {
       hash = /#+([a-zA-Z0-9_]+)/;
       email = /^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm;
@@ -2304,6 +2306,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
       var isEmail = email.exec(string);
       if (isHash !== null ) {
         console.log("hash");
+        self.type = 'hash';
         return {
           type : '0',
           data : isHash[1],
@@ -2311,6 +2314,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
       }
       else if (isEmail !== null ) {
         console.log("email");
+        self.type = 'email';
         return {
           type : '1',
           data : isEmail[0],
@@ -2318,6 +2322,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
       }
       else {
         console.log("no match");
+        self.type = 'other';
         return {
           type : '2',
           data : string,
@@ -2350,7 +2355,9 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
             }
           }).then(function successCallback(response) {
               console.log(response.data);
+              self.isHash = (response.data.type === "0")? true :false;
               self.isEmail = (response.data.type === "1")? true :false;
+              self.isOther = (response.data.type === "2")? true :false;
               return response.data.data;
             }, function errorCallback(response) {
                 return response;
@@ -2378,7 +2385,13 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
     }
 
     function selectedItemChange(item) {
-      $log.info('Item changed to ' + JSON.stringify(item));
+      //$log.info('Item changed to ' + JSON.stringify(item));
+      if (self.type == 'email') {
+          $location.path( "/users/"+item.mem_id );
+      }
+      else if (self.type == 'hash') {
+          $location.path( "tbs/hash/"+item.label );
+      }
     }
 
 
@@ -2394,7 +2407,102 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
     }
 
 });
+app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q) {
+      console.log($routeParams.type);
+      console.log($routeParams.data);
+      var datasource = {};
+      var big =-1,max = 500;
+      var page = [];
+      var getCount = function (big) {
+        var deferred = $q.defer();
+        if (big === 0) {
+              $http({
+                method: 'GET',
+                url: 'tbs/'+$routeParams.type+'/count/'+$routeParams.data,
+              }).then(function successCallback(response) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                  console.log(response.data);
+                  max = response.data.count;
+                  deferred.resolve(response);
 
+                }, function errorCallback(response) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+                  console.log("count err");
+                   deferred.reject({ message: "Really bad" });
+                });
+
+        }else {
+          deferred.resolve({ message: "no http needed" });
+        }
+        return deferred.promise;
+
+      };
+      var setBig = function(index){
+
+        var deferred = $q.defer();
+
+        if(index > big){
+          big = (big === -1)? 0 : big+10;
+          //big = index;
+          console.log(big);
+
+            getCount(big).then(function (response) {
+
+              $http({
+                  method: 'GET',
+                  url: 'tbs/'+$routeParams.type+"/"+$routeParams.data+"/"+big,
+                }).then(function successCallback(response) {
+                  console.log(response.data);
+                  response.data.forEach(function (item,index3) {
+                    page.push(item);
+                  });
+                    deferred.resolve(response);
+                  }, function errorCallback(response) {
+                    deferred.reject({ message: "Really bad" });
+                  });
+            });
+        }
+        else {
+          deferred.resolve({ message: "no http needed" });
+        }
+        return deferred.promise;
+      };
+
+      datasource.get = function (index, count, success) {
+        $timeout(function () {
+
+            //console.log("index " +index);
+          setBig(index).then(function (response) {
+            var result = [];
+            for (var i = index; i <= index + count - 1; i++) {
+
+              if(i < 0 || i >= max) {
+                          continue;
+                      }
+                      //console.log("page : "+i);
+             result.push(page[i]);
+            //result.push("page : "+i);
+            }
+            success(result);
+          },function (error) {
+            console.log(error.statusText);
+          });
+
+        }, 100);
+      };
+
+      $scope.datasource = datasource;
+      $scope.adapter = {
+        remain: true
+      };
+      $scope.click = function () {
+        console.log('clcick');
+        $scope.adapter.reload();
+      };
+
+});
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
   $scope.bootscreen = false;
   $scope.chatButton = chatSidenav;
@@ -2405,6 +2513,5 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
-
 
 });

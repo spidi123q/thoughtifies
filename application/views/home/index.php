@@ -46,25 +46,25 @@
           md-search-text="ctrl.searchText"
           md-selected-item-change="ctrl.selectedItemChange(item)"
           md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.word"
+          md-item-text="item.label"
           md-min-length="0"
           placeholder="Search for anything"
           md-menu-class="autocomplete-custom-template"
           >
         <md-item-template>
           <span ng-if="ctrl.isHash">
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">#{{item.hashtag}}</span>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">#{{item.label}}</span>
           </span>
           <span ng-if="ctrl.isEmail" >
-            <md-list-item class="md-2-line" >
+            <md-list-item class="md-2-line">
               <img ng-src="{{item.picture}}" class="md-avatar" alt="{{item.fname}}" />
               <div class="md-list-item-text" layout="column">
-                <p><span> {{item.fname}} {{item.lname}} </span></p>
+                <p><span> {{item.label}}</span></p>
               </div>
             </md-list-item>
           </span>
           <span ng-if="ctrl.isOther">
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.word}}</span>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.label}}</span>
           </span>
         </md-item-template>
         <md-not-found>

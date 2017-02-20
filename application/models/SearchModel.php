@@ -120,7 +120,7 @@
       }
       public function searchDictionary($value)   {
         $this->db->distinct();
-        $this->db->select('word');
+        $this->db->select('word AS label');
         $this->db->like('word', $value,'after');
         $this->db->limit(10, 0);
         $query = $this->db->get('dictionary');
@@ -128,7 +128,7 @@
       }
       public function searchHashtag($value)   {
         $this->db->distinct();
-        $this->db->select('hashtag');
+        $this->db->select('hashtag AS label');
         $this->db->like('hashtag', $value,'after');
         $this->db->limit(10, 0);
         $query = $this->db->get('post_tags');
@@ -146,11 +146,30 @@
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
           $result["$key"]["picture"] = $im;
+          $result["$key"]["label"] = $row['fname']." ".$row['lname'];
         }
         return $result;
       }
 
-
+      public function searchPostByHashtag($data,$offset)        {
+        $this->db->distinct();
+        $this->db->select('post_view.*');
+        $this->db->from('post_tags');
+        $this->db->where('hashtag',$data);
+        $this->db->join('post_view', 'post_view.id = post_tags.post_id');
+        $this->db->limit(10, $offset);
+        //echo $this->db->get_compiled_select();
+        $query = $this->db->get();
+        echo json_encode($query->result());
+      }
+      public function searchPostByHashtagCount($data)        {
+        $this->db->distinct();
+        $this->db->select('COUNT(post_id) as count');
+        $this->db->from('post_tags');
+        $this->db->where('hashtag',$data);
+        $query = $this->db->get();
+        echo json_encode($query->row());
+      }
 
 
    }
