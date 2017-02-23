@@ -158,9 +158,20 @@
         $this->db->where('hashtag',$data);
         $this->db->join('post_view', 'post_view.id = post_tags.post_id');
         $this->db->limit(10, $offset);
-        //echo $this->db->get_compiled_select();
         $query = $this->db->get();
-        echo json_encode($query->result());
+        $result = $query->result_array();
+        foreach ($result as $key => $row){
+          $this->db->select("rating");
+          $this->db->where( array(
+            'mem_id' => $this->session->SESS_MEMBER_ID,
+            'post_id' => $row['id'],
+          ));
+          $query = $this->db->get("rating");
+          $result2 = $query->row();
+          $result["$key"]["my_rating"] = isset($result2)?$result2->rating:null;
+        }
+        echo json_encode($result);
+        //echo $this->db->get_compiled_select();
       }
       public function searchPostByHashtagCount($data)        {
         $this->db->distinct();

@@ -125,7 +125,12 @@
                 $qry = "UPDATE member SET picture=? WHERE mem_id=?";
 
                 if ($this->db->query($qry, array($this->upload->data('raw_name'), $this->session->SESS_MEMBER_ID))) {
-                  echo "1";
+                  $imgUrl = $newFile;
+                  $imgUrl =$this->createThumb($imgUrl,150,$this->upload->data('raw_name'));
+                  $im = file_get_contents($imgUrl);
+                  $im = base64_encode($im);
+                  $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+                  echo $im;
                 }
 
 
@@ -501,7 +506,7 @@
         $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
         echo $im;
       }
-      
+
 
 
 

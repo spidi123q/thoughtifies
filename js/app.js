@@ -1548,6 +1548,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
             },
             config: true,
             post : false,
+            dp : '',
 
           };
           $scope.onSelectPosts = function () {
@@ -1715,8 +1716,9 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               $scope.upload.status = progress;
           };
           uploader.onSuccessItem = function(fileItem, response, status, headers) {
-              console.info('onSuccessItem', fileItem, response, status, headers);
+              //console.info('onSuccessItem', fileItem, response, status, headers);
               $scope.upload.progress = true;
+              $scope.settingsData.dp = response;
 
           };
           uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -1726,8 +1728,8 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               console.info('onCancelItem', fileItem, response, status, headers);
           };
           uploader.onCompleteItem = function(fileItem, response, status, headers) {
-              //console.info('onCompleteItem', fileItem, response, status, headers);
-              $scope.myImage= "data:image/jpeg;base64,"+response;
+              //$mdDialog.cancel();
+
           };
           uploader.onCompleteAll = function() {
               console.info('onCompleteAll');
@@ -1754,6 +1756,11 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
         $scope.submit = function(sel) {
           $scope.settingsData.dialog.progress = false;
           $scope.settingsData.dialog.type = "indeterminate";
+          if (sel === 0) {
+            console.log("dp");
+            $scope.settingsData.dialog.progress = true;
+            console.log($scope.settingsData.dp);
+          }
           if(sel == 1){
             //change name
             $http({
@@ -2500,6 +2507,28 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
       $scope.click = function () {
         console.log('clcick');
         $scope.adapter.reload();
+      };
+      $scope.onRating = function(rating,id){
+        console.log(rating +" id "+id);
+        $http({
+            method: 'GET',
+            url: 'post/onrating/'+id+"/"+rating,
+          }).then(function successCallback(response) {
+            console.log(response.data);
+            }, function errorCallback(response) {
+
+            });
+      };
+      $scope.getMyRating = function (id) {
+        $http({
+            method: 'GET',
+            url: 'rating/get/'+id,
+          }).then(function successCallback(response) {
+              console.log(response.data);
+              //return response.data.rating;
+            }, function errorCallback(response) {
+
+            });
       };
 
 });
