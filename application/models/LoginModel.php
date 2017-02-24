@@ -171,7 +171,7 @@
 
 
 
-      public function t()      {
+      public function initFacebook()      {
         $id_token = $this->session->fb_access_token;
                 if (isset($id_token)) {
                   $this->loginFacebook();

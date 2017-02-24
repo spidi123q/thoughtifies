@@ -47,16 +47,11 @@
         $helper = $fb->getRedirectLoginHelper();
 
         $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://localhost/code/data/5', $permissions);
+        $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
         $u = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
         $data = array('fb' => $u, );
         $this->load->view('login/index',$data);
 
-      }
-      public function t()
-      {
-              //  echo "string";
-        $this->LoginModel->t();
       }
 
       public function loginUser()      {
@@ -84,9 +79,7 @@
       }
 
       public function loginFacebook() {
-        $id_token =  $this->input->post('idtoken');
-        $this->LoginModel->loginFacebook($id_token);
-
+        $this->LoginModel->initFacebook();
       }
 
       public function createAccount()   {
