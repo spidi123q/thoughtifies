@@ -13,18 +13,23 @@
         $this->load->library('country_iso');
         $cont = array_flip($this->country_iso->countries);
         $country = $cont["{$locNode['country']}"];
-  //  print_r($userNode) ;
+        //  print_r($userNode) ;
+        $tmpfname = tempnam("images/userimages", "fb");
+        $img = "$tmpfname.jpg";
+        file_put_contents($img, file_get_contents( $userNode->getPicture()['url'] ) );
+        $newFileName = basename($img, ".jpg");
         $info = array(
         'email' => $userNode->getEmail(),
         'fname' => $userNode->getFirstName(),
         'lname' => $userNode->getLastName(),
-        'picture' => $userNode->getPicture()['url'],
+        'picture' => $newFileName,
         'gender' => ($userNode->getGender() === "male")? 'M':'F',
         'dd' => $date->format('j'),
         'mm' => $date->format('n'),
         'yy' => $date->format('Y'),
         'country' => $country,
         );
+        //print_r($info);
         $this->db->trans_start();
         $this->db->set('join_date', 'NOW()', FALSE);
         $this->db->insert('member', $info);
@@ -34,14 +39,74 @@
           'id' => $userNode->getId(),
           'mem_id' => $mem_id,
         );
-        print_r($data);
+        //print_r($data);
         $this->db->insert('facebook_member', $data);
         $this->db->trans_complete();
         if ($this->db->trans_status() === TRUE){
-          echo "1";
+          //echo "1";
+          $fb_access_token = (string) $accessToken;
+          $this->session->set_userdata('fb_access_token', $fb_access_token);
+          $this->startSession($mem_id);
+
         }else {
           echo "0";
         }
+      }
+      private function startSession($mem_id)      {
+        $this->db->select('*');
+        $this->db->where('mem_id',$mem_id);
+        $query = $this->db->get('member');
+        $row = $query->row();
+        $data = array('SESS_USERNAME' => $row->username,
+         'SESS_MEMBER_ID' => $row->mem_id,
+         'SESS_FIRST_NAME' =>$row->fname,
+         'SESS_LAST_NAME' => $row->lname,
+         'SESS_USERIMAGE' => $row->picture,
+       );
+        $this->session->set_userdata($data);
+        $data = array(
+          'mem_id' => $this->session->SESS_MEMBER_ID,
+          'picture' =>  $this->session->SESS_USERIMAGE,
+         );
+        $this->load->view('home/index',$data);
+      }
+
+      private function loginFacebook()    {
+        $id_token = $this->session->fb_access_token;
+        $fb = new \Facebook\Facebook([
+          'app_id' => '1789323091320402',
+          'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+          'default_graph_version' => 'v2.8',
+          //'default_access_token' => '{access-token}', // optional
+        ]);
+        $accessToken = new Facebook\Authentication\AccessToken($id_token);
+        try {
+             // Get the \Facebook\GraphNodes\GraphUser object for the current user.
+             // If you provided a 'default_access_token', the '{access-token}' is optional.
+             $response = $fb->get('/me?fields=id,birthday,email,picture.type(large),gender,location,hometown,first_name,middle_name,last_name', $accessToken);
+             $userNode = $response->getGraphUser();
+             //print_r($userNode) ;
+             $this->db->select('mem_id');
+             $this->db->where('id',$userNode->getId());
+             $query = $this->db->get('facebook_member');
+            if ($query->num_rows() === 0) {
+              $this->createAccountFacebook($userNode,$fb,$accessToken);
+             }
+             else {
+               //echo "account exitst";
+               $result = $query->row();
+               $this->startSession($result->mem_id);
+
+             }
+          } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+           // When Graph returns an error
+           echo 'Graph returned an error: ' . $e->getMessage();
+           exit;
+          } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+           // When validation fails or other local issues
+           echo 'Facebook SDK returned an error: ' . $e->getMessage();
+           exit;
+          }
       }
 
       public function insert($data) {
@@ -104,58 +169,7 @@
 
       }
 
-      public function loginFacebook()    {
-        $id_token = $this->session->fb_access_token;
-        $fb = new \Facebook\Facebook([
-          'app_id' => '1789323091320402',
-          'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-          'default_graph_version' => 'v2.8',
-          //'default_access_token' => '{access-token}', // optional
-        ]);
-        $accessToken = new Facebook\Authentication\AccessToken($id_token);
-        try {
-             // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-             // If you provided a 'default_access_token', the '{access-token}' is optional.
-             $response = $fb->get('/me?fields=id,birthday,email,picture.type(large),gender,location,hometown,first_name,middle_name,last_name', $accessToken);
-             $userNode = $response->getGraphUser();
-             //print_r($userNode) ;
-             $this->db->select('mem_id');
-             $this->db->where('id',$userNode->getId());
-             $query = $this->db->get('facebook_member');
-            if ($query->num_rows() === 0) {
-              $this->createAccountFacebook($userNode,$fb,$accessToken);
-             }
-             else {
-               //echo "account exitst";
-               $result = $query->row();
-               $this->db->select('*');
-               $this->db->where('mem_id',$result->mem_id);
-               $query = $this->db->get('member');
-               $row = $query->row();
-               $data = array('SESS_USERNAME' => $row->username,
-                'SESS_MEMBER_ID' => $row->mem_id,
-                'SESS_FIRST_NAME' =>$row->fname,
-                'SESS_LAST_NAME' => $row->lname,
-                'SESS_USERIMAGE' => $row->picture,
-              );
-               $this->session->set_userdata($data);
-               $data = array(
-                 'mem_id' => $this->session->SESS_MEMBER_ID,
-                 'picture' => $this->session->SESS_USERIMAGE,
-                );
-               $this->load->view('home/index',$data);
 
-             }
-          } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-           // When Graph returns an error
-           echo 'Graph returned an error: ' . $e->getMessage();
-           exit;
-          } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-           // When validation fails or other local issues
-           echo 'Facebook SDK returned an error: ' . $e->getMessage();
-           exit;
-          }
-      }
 
       public function t()      {
         $id_token = $this->session->fb_access_token;

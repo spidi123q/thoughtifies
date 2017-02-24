@@ -46,9 +46,8 @@
 
         $helper = $fb->getRedirectLoginHelper();
 
-        $permissions = ['email']; // Optional permissions
+        $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown']; // Optional permissions
         $loginUrl = $helper->getLoginUrl('http://localhost/code/data/5', $permissions);
-
         $u = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
         $data = array('fb' => $u, );
         $this->load->view('login/index',$data);
