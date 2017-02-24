@@ -6,8 +6,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 </head>
 	<body ng-app="IndexApp" ng-controller="AppCtrl">
-		<div id="top_panel" class="row-fluid ">
-			<?php echo $fb ?>
+		<div class="title">
 							<form name="loginform" action="data/1" method="post">
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
@@ -23,31 +22,33 @@
 														    <label class="mdl-textfield__label" for="sample3">password</label>
 															</div>
 												  </div>
-									  <div class="col-sm-1"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" name="" type="submit">login</button></div>
+									  <div class="col-sm-1">
+											<button class="" name="" type="submit">login</button>
+										</div>
+										<?php echo $fb ?>
+
 									</div>
 							</form>
+						</div>
+						<div class="quotes">
+								<span>Playground of thoughts around world</span>
+								<span>Create & share thoughts</span>
+								<span>Privacy first! Thoughtifies don't track you</span>
+						</div>
+<video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
+  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+	<source src="<?php echo base_url(); ?>images/untitled.webm" type="video/webm">
 
-<br>
-<fb:login-button
-scope="public_profile,email,user_birthday,user_friends,user_hometown"
-onlogin="checkLoginState();">
-</fb:login-button>
+</video>
+
+
 
 
 		<div id="footer">
 		</div>
 		<!-- Angular Material requires Angular.js Libraries -->
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
-		<script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
-		<script src="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/dist/ui-scroll-jqlite.js"></script>
-		<script src="<?php echo base_url(); ?>js/index_app.js"></script>
-		<script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
+
 		<!-- Angular Material Library -->
-		<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 

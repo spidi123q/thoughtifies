@@ -1,31 +1,50 @@
-@import "https://fonts.googleapis.com/css?family=Open+Sans";
-.center-block {
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.title {
+  background-color: rgba(38, 166, 154, 0.5);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.37);
+  padding: 1px 5px 1px 5px;
   text-align: center;
-  padding: 25px 5px 25px 5px; }
+  padding: 1% 0% 0% 0%;
+  text-align: center;
+  padding: 2% 0% 0% 0%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 25px;
+  color: white; }
 
-#main_cont {
-  padding: 0px 0px 25px 0px; }
+.quotes {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4vmin;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
+  .quotes span {
+    display: block;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px; }
 
-#create_account_form {
-  background-image: url("../sass/img/bg.jpg");
-  padding: 10px 15px 10px 15px; }
-  #create_account_form #month-div {
-    padding: 15px; }
+video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: url("//demosthenes.info/assets/images/polina.jpg") no-repeat;
+  background-size: cover;
+  transition: 1s opacity; }
 
-#top_panel {
-  background-color: #26A69A;
-  box-shadow: 0px 5px 5px grey;
-  padding: 1px 5px 1px 5px; }
-  #top_panel .container-fluid {
-    text-align: center; }
-  #top_panel .col-sm-1 {
-    padding: 1% 0% 0% 0%; }
-  #top_panel .col-sm-7 {
-    text-align: center;
-    padding: 2% 0% 0% 0%;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 25px;
-    color: white; }
+.stopfade {
+  opacity: .5; }
 
 #footer {
   position: fixed;
@@ -33,7 +52,6 @@
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
   text-align: center; }
 
 /*# sourceMappingURL=index.css.map */

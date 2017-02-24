@@ -1,4 +1,4 @@
-$band-color : #FF5722;
+$band-color : #26A69A;
 $band-shade-color : #FFAB91;
 $input-border-radius : 5px;
 $border-shadow : #BF360C;
@@ -24,13 +24,61 @@ $shadow-hover : #FF8F00;
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
-#top_panel input:hover {
-  -moz-box-shadow: $shadow-hover 5px 5px 55px inset;
-  -webkit-box-shadow: $shadow-hover 5px 5px 55px inset;
-  box-shadow: $shadow-hover 5px 5px 55px inset;
 
+.title{
+  background-color: rgba(38, 166, 154, .5);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.37);
+  padding: 1px 5px 1px 5px;
+  text-align: center;
+  padding: 1% 0% 0% 0%;
+  text-align: center;
+  padding: 2% 0% 0% 0%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 25px;
+  color: white;
+}
+.quotes {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4vmin;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  span{
+    display: block;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+  }
 }
 
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+.stopfade {
+   opacity: .5;
+}
+#footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  //background-color: #efefef;
+  text-align: center;
+}
 @mixin border-radius($color : $band-shade-color) {
   background-color: $color;
   -webkit-border-radius: $input-border-radius;
@@ -43,12 +91,4 @@ $shadow-hover : #FF8F00;
 
 #main_cont {
 
-}
-
-#top_panel {
-  //background-color: $band-color;
-
-  input{
-      //@include shadow();
-  }
 }
