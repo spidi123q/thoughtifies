@@ -38,13 +38,26 @@
 
 
       public function index() {
+                $fb = new Facebook\Facebook([
+        'app_id' => '1789323091320402', // Replace {app-id} with your app id
+        'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+        'default_graph_version' => 'v2.8',
+        ]);
 
-         $this->load->view('login/index');
+        $helper = $fb->getRedirectLoginHelper();
+
+        $permissions = ['email']; // Optional permissions
+        $loginUrl = $helper->getLoginUrl('http://localhost/code/data/5', $permissions);
+
+        $u = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+        $data = array('fb' => $u, );
+        $this->load->view('login/index',$data);
 
       }
       public function t()
       {
-        $this->load->view('a');
+              //  echo "string";
+        $this->LoginModel->t();
       }
 
       public function loginUser()      {
@@ -72,7 +85,6 @@
       }
 
       public function loginFacebook() {
-
         $id_token =  $this->input->post('idtoken');
         $this->LoginModel->loginFacebook($id_token);
 

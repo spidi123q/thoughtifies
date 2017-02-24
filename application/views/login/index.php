@@ -7,6 +7,7 @@
 </head>
 	<body ng-app="IndexApp" ng-controller="AppCtrl">
 		<div id="top_panel" class="row-fluid ">
+			<?php echo $fb ?>
 							<form name="loginform" action="data/1" method="post">
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
@@ -50,52 +51,57 @@ onlogin="checkLoginState();">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
-		<script>
-		  window.fbAsyncInit = function() {
-		    FB.init({
-		      appId      : '1789323091320402',
-		      cookie     : true,
-		      xfbml      : true,
-		      version    : 'v2.8'
-		    });
-		    FB.AppEvents.logPageView();
-		  };
+		<!--<script>
+							  window.fbAsyncInit = function() {
+							    FB.init({
+							      appId      : '1789323091320402',
+							      cookie     : true,
+							      xfbml      : true,
+							      version    : 'v2.8'
+							    });
+							    FB.AppEvents.logPageView();
+							  };
 
-		  (function(d, s, id){
-		     var js, fjs = d.getElementsByTagName(s)[0];
-		     if (d.getElementById(id)) {return;}
-		     js = d.createElement(s); js.id = id;
-		     js.src = "//connect.facebook.net/en_US/sdk.js";
-		     fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
+							  (function(d, s, id){
+							     var js, fjs = d.getElementsByTagName(s)[0];
+							     if (d.getElementById(id)) {return;}
+							     js = d.createElement(s); js.id = id;
+							     js.src = "//connect.facebook.net/en_US/sdk.js";
+							     fjs.parentNode.insertBefore(js, fjs);
+							   }(document, 'script', 'facebook-jssdk'));
 
-		   function checkLoginState() {
-		  FB.getLoginStatus(function(response) {
-		     console.log(response);
+							   function checkLoginState() {
+							  FB.getLoginStatus(function(response) {
+							     console.log(response);
 
-				 sentToken(response.authResponse.accessToken,4)
-		    /* var url = '/me?fields=name,email';
-		                    FB.api(url, function (response) {
-		                        console.log(response);
-		                    });*/
+									 sentToken(response.authResponse.accessToken,4)
+							    /* var url = '/me?fields=name,email';
+							                    FB.api(url, function (response) {
+							                        console.log(response);
+							                    });*/
 
-		  });
+							  });
 
-		  FB.login(function(response) {
-		   console.log(response);
-		}, {scope: 'email'});
+								  FB.login(function(response) {
+								   console.log(response);
+								}, {scope: 'email'});
 
-		}
+								}
 
-		function sentToken(id_token,type) {
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'data/'+type);
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.onload = function() {
-				console.log('Signed in as: ' + xhr.responseText);
-			};
-			xhr.send('idtoken=' + id_token);
-		}
-		</script>
+							function sentToken(id_token,type) {
+								var xhr = new XMLHttpRequest();
+								xhr.open('POST', 'data/'+type);
+								xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+								xhr.onload = function() {
+									//console.log('Signed in as: ' + xhr.responseText);
+									//location.reload();
+									//window.location.assign = 'aaa';
+									//window.location.reload();
+									//document.write(xhr.responseText);
+					        //document.close();
+								};
+								xhr.send('idtoken=' + id_token);
+							}
+		</script> -->
 	</body>
 </html>
