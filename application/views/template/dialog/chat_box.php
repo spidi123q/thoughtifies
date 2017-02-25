@@ -1,4 +1,4 @@
-<md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox">
+<md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox" style="width:100%">
 
   <md-dialog-content style="overflow-y:hidden;">
           <md-content>
@@ -14,7 +14,7 @@
                     </md-list-item>
                   </md-list>
               </md-content>
-            <div ng-hide="emojiView" style="">
+            <div class="chat_dialog_content" ng-hide="emojiView">
                 <span ng-repeat="item in emojilist">
                   <span ng-bind-html="item"></span>
                 </span>
@@ -23,7 +23,7 @@
           </md-content>
           <div  contenteditable="true"
           ng-model="msg" ng-change="change()"
-          ng-keypress="checkIfEnterKeyWasPressed($event,this)"
+          ng-keypress="checkIfEnterKeyWasPressed($event,this)" md-whiteframe="4"
                 style="bottom: 0;max-height: 150px; overflow-y: scroll;">
           </div>
 
