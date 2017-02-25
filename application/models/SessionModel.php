@@ -507,6 +507,24 @@
         echo $im;
       }
 
+      public function getNotification()      {
+        $data = array( );
+        $this->db->select("COUNT(*) as count");
+        $this->db->where('type','message');
+        $query = $this->db->get('notification');
+        $data['message'] = $query->row()->count;
+        $this->db->select("COUNT(*) as count");
+        $this->db->where('type','rating');
+        $query = $this->db->get('notification');
+        $data['rating'] = $query->row()->count;
+        $this->db->select("COUNT(*) as count");
+        $this->db->where('type','friend_req');
+        $query = $this->db->get('notification');
+        $data['friend_req'] = $query->row()->count;
+        echo json_encode($data);
+
+      }
+
 
 
 

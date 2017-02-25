@@ -91,13 +91,13 @@ video {
   position: relative; }
 
 .badge1[data-badge]:after {
-  z-index: 500;
+  z-index: 5000;
   content: attr(data-badge);
   position: absolute;
   top: -10px;
   right: -10px;
   font-size: .7em;
-  background: green;
+  background: red;
   color: white;
   width: 18px;
   height: 18px;
@@ -105,5 +105,9 @@ video {
   line-height: 18px;
   border-radius: 50%;
   box-shadow: 0 0 1px #333; }
+
+.notification_icon {
+  height: 18px;
+  width: 18px; }
 
 /*# sourceMappingURL=index.css.map */

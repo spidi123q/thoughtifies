@@ -51,7 +51,8 @@ app.config(function($sceDelegateProvider) {
     // Allow same origin resource loads.
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
-    'http://127.0.0.1/**'
+    'http://127.0.0.1/**',
+    'http://localhost/**'
   ]);
 
   // The blacklist overrides the whitelist so the open redirect here is blocked.
@@ -209,7 +210,7 @@ app.config( [
                     $scope.data = "";
                   }
                   $scope.shadow = {
-                     "box-shadow" : "0px 0px 30px #888888",
+                     //"box-shadow" : "0px 0px 30px #888888",
                   };
                 };
                 $scope.unfocus = function functionName($event) {
@@ -426,7 +427,6 @@ app.directive('imageFetch',function($http) {
             restrict: 'A',
 
            link: function(scope, elem, attrs) {
-             console.log(attrs);
              $http({
                method: 'GET',
                url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
@@ -2530,6 +2530,23 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
 
             });
       };
+
+});
+app.controller('notiCtrl', function ($scope, $http,chatSidenav) {
+
+  $http({
+      method: 'GET',
+      url: 'noti/get',
+    }).then(function successCallback(response) {
+        console.log(response.data);
+        $scope.msgButton = parseInt( response.data.message);
+        $scope.globeButton = parseInt( response.data.rating);
+        $scope.handButton = parseInt( response.data.friend_req);
+        //return response.data.rating;
+      }, function errorCallback(response) {
+          
+      });
+
 
 });
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {

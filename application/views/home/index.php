@@ -89,24 +89,42 @@
 
      <md-sidenav flex class="md-sidenav-left" md-component-id="left" class="chatnav"
                  md-whiteframe="4">
-
        <md-toolbar class="md-theme-indigo">
          <h1 class="md-toolbar-tools badge1" data-badge="6"></h1>
        </md-toolbar>
+       <br><br>
+
        <md-content layout-margin  >
-         <md-list flex>
-           <md-button ng-click="clickToOpen()" class="md-accent badge1" data-badge="27">
-             Close this Sidenav
+         <div flex layout="row" layout-align="space-around" ng-controller="notiCtrl">
+           <div>
+             <md-button class="md-icon-button" aria-label="More">
+              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" style="overflow-y:hidden;">
+              <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
+            </md-button>
+           </div>
+           <div>
+             <md-button class="md-icon-button" aria-label="More">
+              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/handshake.svg" alt="">
+              <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
+            </md-button>
+           </div>
+           <div>
+             <md-button class="md-icon-button" aria-label="More">
+               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/earth-globe.svg" alt="">
+               <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
            </md-button>
+           </div>
+         </div>
+         <md-list flex>
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user.mem_id)">
              <img image-fetch ng-src="{{user.picture}}" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
              <div class="md-list-item-text" layout="column">
-               <p>{{ user.fname }} {{user.lname}}</p>
+               <p>{{ user.fname }} {{user.lname}}<span class="badge1" data-badge="5">9</span></p>
              </div>
            </md-list-item>
         </md-list>
+      </md-content>
 
-            </md-content>
      </md-sidenav>
 
 
@@ -129,7 +147,7 @@
 
   <md-button ng-hide="chatButton.chat.isOpen" ng-click="chatButton.toggleLeft()" style="position: fixed;
     z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
-           <i class="material-icons ">perm_contact_calendar</i>
+           <i class="material-icons " >perm_contact_calendar</i><span class="badge1" data-badge="8"></span>
    </md-button>
 
 

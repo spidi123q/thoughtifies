@@ -429,6 +429,9 @@
         public function searchPostByHashtagCount($data)        {
           $this->SearchModel->searchPostByHashtagCount($data);
         }
+        public function getNotification()      {
+          $this->SessionModel->getNotification();
+        }
 
 
 

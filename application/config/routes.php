@@ -104,3 +104,4 @@ $route['(:any)/block/cancel/(:num)']='Login/unBlock/$2';
 $route['(:any)/img/dp/(:any)/(:num)']='Login/dpFetch/$2/$3';
 $route['(:any)/tbs/hash/(:any)/(:num)']='Login/searchPostByHashtag/$2/$3';
 $route['(:any)/tbs/hash/count/(:any)']='Login/searchPostByHashtagCount/$2';
+$route['(:any)/noti/get']='Login/getNotification';
