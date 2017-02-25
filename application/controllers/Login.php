@@ -403,6 +403,9 @@
         public function dpFetch($file,$size)  {
           $this->SessionModel->dpFetch($file,$size);
         }
+        public function userDpFetch($id,$size)        {
+          $this->SessionModel->userDpFetch($id,$size);
+        }
         public function searchToolBar($type,$data = '')   {
           $result = array(
             'type' => $type

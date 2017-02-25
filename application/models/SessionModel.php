@@ -506,6 +506,13 @@
         $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
         echo $im;
       }
+      public function userDpFetch($id,$size)        {
+        $this->db->select('picture');
+        $this->db->where('mem_id',$id);
+        $query = $this->db->get('member');
+        $query = $query->row();
+        $this->dpFetch($query->picture,$size);
+      }
 
       public function getNotification()      {
         $data = array( );

@@ -1,31 +1,32 @@
-<md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox" style="width:100%">
+<md-dialog  aria-label="Mango (Fruit)" style="width:100%">
 
   <md-dialog-content style="overflow-y:hidden;">
           <md-content>
-            <md-content class="md-dialog-content chat_dialog_content"  ng-hide="msgView" scroll-glue>
+            <md-content class="md-dialog-content chat_dialog_content"  ng-hide="view" scroll-glue>
                 <md-list style="" >
-                      <md-list-item class="md-long-text"  ng-repeat="item in messages"  >
-                      <img ng-hide="dpDisplay(item)" ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?20" class="md-avatar" alt="{{todos[0].who}}" />
-                      <div class="md-list-item-text">
-                        <h3>{{ todos[0].who }}</h3>
-                        <p ng-bind-html="item.message">
-                        </p>
-                      </div>
-                    </md-list-item>
+                  <md-list-item class="md-long-text"  ng-repeat="item in messages"  style="padding: 10px; ">
+                    <img ng-click="setDp(item)" image-fetch  ng-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                  <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px; ">
+                    <h3>{{ todos[0].who }}</h3>
+                    <h5 ng-bind-html="item.message" style="color:grey"></h5>
+                  </div>
+                </md-list-item>
                   </md-list>
               </md-content>
-            <div class="chat_dialog_content" ng-hide="emojiView">
+            <md-content class="chat_dialog_content" ng-hide="!view">
                 <span ng-repeat="item in emojilist">
                   <span ng-bind-html="item"></span>
                 </span>
 
-            </div>
+            </md-content>
           </md-content>
-          <div  contenteditable="true"
-          ng-model="msg" ng-change="change()"
-          ng-keypress="checkIfEnterKeyWasPressed($event,this)" md-whiteframe="4"
-                style="bottom: 0;max-height: 150px; overflow-y: scroll;">
+          <div class="chat_dialog_box">
+            <div class="chat_dialog_contenteditable" md-whiteframe="4"  contenteditable="true"
+            ng-model="msg" ng-change="change()"
+            ng-keypress="checkIfEnterKeyWasPressed($event,this)">
+            </div>
           </div>
+
 
 
   </md-dialog-content>
@@ -37,10 +38,12 @@
     <md-button   ng-click="cancel()">
      close
     </md-button>
+   <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
-    <button ng-click="emojiButton()">
-   Click me!
-   </button>
+    <md-button class="md-icon-button" aria-label="More">
+          <i class="material-icons ">tag_faces</i>
+        </md-button>
+  </md-switch>
     <md-button   ng-click="send(msg);msg=''">
      sent
     </md-button>

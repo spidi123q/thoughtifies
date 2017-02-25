@@ -114,4 +114,18 @@ video {
   overflow-y: scroll;
   height: 50%; }
 
+.chat_dialog_box {
+  bottom: 0;
+  height: 7%;
+  max-height: 150px; }
+
+.chat_dialog_contenteditable {
+  justify-content: space-around;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-bottom: 25px;
+  width: 90%;
+  height: 90%;
+  overflow-y: scroll; }
+
 /*# sourceMappingURL=index.css.map */

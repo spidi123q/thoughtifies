@@ -441,7 +441,6 @@ app.directive('imageFetch',function($http) {
             //template: '<img class="md-user-avatar" src="{{data}}"/>',
         };
     });
-
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
   var chat = {};
@@ -538,26 +537,32 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
 
 }]);
 
-app.factory('dpDisplay', function() {
+app.factory('dpDisplay', function($http) {
 
         var dpDisplay = function(data){
-          if (data.receiver == SESS_MEMBER_ID) {
+          if (data == SESS_MEMBER_ID) {
+            console.log("false");
             return false;
           }
           else {
+            console.log("true");
             return true;
           }
         };
-        var getDp = function(data){
-          if (data.receiver == SESS_MEMBER_ID) {
-            return SESS_USERIMAGE;
-          }
-          else {
-            return true;
-          }
+        var getDp = function(id,size){
+          $http({
+            method: 'GET',
+            url: 'img/userdp/'+id+'/'+size,
+          }).then(function successCallback(response) {
+              //console.log(response.data);
+              return response.data;
+            }, function errorCallback(response) {
+
+            });
         };
         return{
           get : dpDisplay,
+          getDp : getDp,
         };
     });
 
@@ -846,8 +851,8 @@ app.controller('msgController', [
       var big  = -1,max = 0;
       var page  = [];
       $scope.msg = '';
-      $scope.dpDisplay = dpDisplay;
       $scope.myDp = SESS_USERIMAGE;
+      $scope.dpDisplay = dpDisplay;
       console.log($scope.chat);
       MyWebSocket.socket.onMessage(function (message) {
         console.log(message);
@@ -868,6 +873,7 @@ app.controller('msgController', [
           console.log("sidenav ready");
           $scope.toggleLeft();
         });
+
 
       $scope.removeFromList1 = function() {
         console.log("del");
@@ -1229,7 +1235,7 @@ app.controller('chatBox', [
 		}
 	]);
 
-app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav) {
+app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav,dpDisplay) {
     $scope.chat = MyWebSocket;
     $scope.chatMessages = [];
 
@@ -1287,7 +1293,8 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
     };
 
-    $scope.showAdvanced = function(ev,mem_id) {
+    $scope.showAdvanced = function(ev,user) {
+      var mem_id = user.mem_id;
       checkUser(mem_id);
       console.log(msgMap);
       var x = msgMap.get(mem_id);
@@ -1311,6 +1318,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               messages  : msgMap.get(mem_id),
               receiver  : mem_id,
               websocket  : $scope.chat,
+              picture : user.picture,
             },
           },
           fullscreen: false // Only for -xs, -sm breakpoints.
@@ -1324,10 +1332,11 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       };
 
 
-      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout,$http,$sce,EmojiService) {
+      function DialogController($scope, $mdDialog,chatButton,data,$http,EmojiService,dpDisplay) {
           $scope.messages = data.messages;
-          console.log($scope.messages);
+
           $scope.receiver = data.receiver;
+          console.log($scope.receiver);
           $scope.myvar = [1,2,3,4,5,6,7];
           var socket = data.websocket.socket;
           var protoSent = data.websocket.protoSent;
@@ -1335,6 +1344,19 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.msgView = !$scope.emojiView;
           $scope.kunna = "dialog/content/1";
           $scope.msg= "jkhjkh";
+          $scope.dpDisplay = dpDisplay;
+          $scope.setDp = function (item) {
+            item.receiver = item.receiver.toString();
+            console.log("haiiiiiiiiiiiiiiiiiii"+item.receiver);
+                if (item.receiver === SESS_MEMBER_ID) {
+                  console.log("itsme");
+                  return data.picture;
+                }
+                else {
+                  //console.log("fuck");
+                  return SESS_USERIMAGE;
+                }
+            };
 
           //console.log($scope.messages);
           $scope.hide = function() {
@@ -1350,25 +1372,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.answer = function(answer) {
             $scope.hide();
           };
-          $scope.gotoBottom = function() {
-            // set the location.hash to the id of
-            // the element you wish to scroll to.
-            $location.hash('bottom');
 
-            // call $anchorScroll()
-            $anchorScroll();
-          };
-          $scope.change = function () {
-            console.log("dfg");
-          };
-          $scope.dpDisplay = function(data){
-            if (data.receiver == SESS_MEMBER_ID) {
-              return false;
-            }
-            else {
-              return true;
-            }
-          };
 
           $scope.send = function (msg) {
             $scope.msg = msg;
@@ -1378,6 +1382,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             };
 
             $scope.messages.push(data);
+            console.log("sssssssssss"+JSON.stringify($scope.messages));
             var info = {
               header  : protoSent.sendmsg,
               data: JSON.stringify(data),
@@ -1398,11 +1403,29 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           };
           $scope.emojilist = [];
           $scope.view = false;
-          $scope.emojiButton = function () {
-              $scope.emojiView = !$scope.emojiView;
-              $scope.msgView = !$scope.msgView;
-              $scope.emojilist = EmojiService.get();
+          $scope.changeEmojiView = function () {
+             //$scope.view = !$scope.view;
+              if ( $scope.emojilist.length === 0) {
+                console.log("eee");
+                $scope.emojilist = EmojiService.get();
+              }else {
+                console.log("already loaded");
+              }
           };
+          $scope.bgList = function (val) {
+            if (val) {
+              return {
+                'background-color':'#80CBC4',
+
+              };
+            }
+            else {
+              return {
+                'background-color':'#E0F2F1',
+              };
+            }
+          };
+
 
 
 
