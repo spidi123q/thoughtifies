@@ -509,19 +509,33 @@
 
       public function getNotification()      {
         $data = array( );
+        //selecting messages
         $this->db->select("COUNT(*) as count");
         $this->db->where('type','message');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
         $query = $this->db->get('notification');
         $data['message'] = $query->row()->count;
+        //selecting ratings
         $this->db->select("COUNT(*) as count");
         $this->db->where('type','rating');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
         $query = $this->db->get('notification');
         $data['rating'] = $query->row()->count;
+        //selecting friend requests
         $this->db->select("COUNT(*) as count");
         $this->db->where('type','friend_req');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
         $query = $this->db->get('notification');
         $data['friend_req'] = $query->row()->count;
         echo json_encode($data);
+
+      }
+      public function setNotification($value)      {
+        $data = array(
+          'type' => $value,
+          'receiver' => $this->session->SESS_MEMBER_ID,
+        );
+        echo $this->db->delete('notification', $data);
 
       }
 

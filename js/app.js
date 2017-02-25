@@ -1324,7 +1324,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       };
 
 
-      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout,$http,$sce) {
+      function DialogController($scope, $mdDialog,chatButton,data,$location, $anchorScroll,$timeout,$http,$sce,EmojiService) {
           $scope.messages = data.messages;
           console.log($scope.messages);
           $scope.receiver = data.receiver;
@@ -1388,10 +1388,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
 
           };
-          $scope.emojiButton = function () {
-              $scope.emojiView = !$scope.emojiView;
-              $scope.msgView = !$scope.msgView;
-          };
+
           $scope.checkIfEnterKeyWasPressed = function($event,scope){
             var keyCode = $event.which || $event.keyCode;
             if (keyCode === 13) {
@@ -1399,36 +1396,15 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               scope.msg = '';
             }
           };
-
           $scope.emojilist = [];
-
-          var makeEmoji = function (item, index) {
-              var list_code = item.list_code.split(/\s*\b\s*/);
-              var uni = '';
-              list_code.forEach(function(item, index) {
-                uni += twemoji.convert.fromCodePoint(item);
-              });
-
-              uni = twemoji.parse(uni);
-              uni = $sce.trustAsHtml(uni);
-              //console.log(uni);
-              $scope.emojilist.push(uni);
-              //console.log($scope.emojilist);
+          $scope.view = false;
+          $scope.emojiButton = function () {
+              $scope.emojiView = !$scope.emojiView;
+              $scope.msgView = !$scope.msgView;
+              $scope.emojilist = EmojiService.get();
           };
 
-          var listEmoji = function (index) {
-            $http({
-              method: 'GET',
-              url: 'msg/emoji/'+index,
-            }).then(function successCallback(response) {
-                //console.log(response.data);
-                response.data.forEach(makeEmoji);
-                listEmoji(index+10);
-              }, function errorCallback(response) {
 
-              });
-          };
-          listEmoji(0);
 
 
       }
@@ -2544,8 +2520,32 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav) {
         $scope.handButton = parseInt( response.data.friend_req);
         //return response.data.rating;
       }, function errorCallback(response) {
-          
+
       });
+      $scope.onClick = function (type) {
+          //console.log(type);
+          $http({
+              method: 'GET',
+              url: 'noti/seen/'+type,
+            }).then(function successCallback(response) {
+                if (response.data === "1") {
+                  if (type === 'message') {
+                    $scope.msgButton = 0;
+                  }else if (type === 'rating') {
+                    $scope.globeButton = 0;
+                  }else if (type === 'friend_req') {
+                    $scope.handButton = 0;
+                  }else {
+                    console.log("invalid");
+                  }
+                }else {
+                  console.log("error");
+                }
+                //return response.data.rating;
+              }, function errorCallback(response) {
+
+              });
+      };
 
 
 });
@@ -2560,7 +2560,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
   };
   $scope.bootscreen = true;
   $scope.tbClass = ['hide_xs'];
-  $scope.searchButtonClass = ['show_xs']
+  $scope.searchButtonClass = ['show_xs'];
   $scope.searchButton = function () {
     console.log("ss");
     $scope.tbClass = [''];

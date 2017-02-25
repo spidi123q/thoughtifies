@@ -1,10 +1,9 @@
 <md-dialog  aria-label="Mango (Fruit)" ng-controller="chatBox">
 
-  <md-dialog-content >
+  <md-dialog-content style="overflow-y:hidden;">
           <md-content>
-          <md-content>
-            <md-content class="md-dialog-content"  ng-hide="msgView" >
-                <md-list style="max-height:250px;overflow-y: scroll;" scroll-glue>
+            <md-content class="md-dialog-content chat_dialog_content"  ng-hide="msgView" scroll-glue>
+                <md-list style="" >
                       <md-list-item class="md-long-text"  ng-repeat="item in messages"  >
                       <img ng-hide="dpDisplay(item)" ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?20" class="md-avatar" alt="{{todos[0].who}}" />
                       <div class="md-list-item-text">
@@ -15,10 +14,7 @@
                     </md-list-item>
                   </md-list>
               </md-content>
-
-
-            </md-content>
-            <div ng-hide="emojiView" style="height:150px;overflow-y: scroll;">
+            <div ng-hide="emojiView" style="">
                 <span ng-repeat="item in emojilist">
                   <span ng-bind-html="item"></span>
                 </span>

@@ -97,19 +97,19 @@
        <md-content layout-margin  >
          <div flex layout="row" layout-align="space-around" ng-controller="notiCtrl">
            <div>
-             <md-button class="md-icon-button" aria-label="More">
+             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('message')">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" style="overflow-y:hidden;">
               <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More">
+             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('friend_req')">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/handshake.svg" alt="">
               <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More">
+             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('rating')">
                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/earth-globe.svg" alt="">
                <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
            </md-button>

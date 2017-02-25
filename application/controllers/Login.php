@@ -432,6 +432,9 @@
         public function getNotification()      {
           $this->SessionModel->getNotification();
         }
+        public function setNotification($data)      {
+          $this->SessionModel->setNotification($data);
+        }
 
 
 
