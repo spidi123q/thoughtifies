@@ -10,7 +10,7 @@
         <h2>Loading</h2>
      </div>
 
-	<md-toolbar ng-controller="ToolbarController as ctrl" style="z-index:500; position: fixed;box-shadow: 0px 5px 5px grey;">
+	<md-toolbar ng-controller="ToolbarController as ctrl" class="main_toolbar">
 				<div class="md-toolbar-tools">
 							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
 																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
@@ -38,73 +38,73 @@
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
 
-          <md-autocomplete flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="ctrl.selectedItem"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-          md-search-text="ctrl.searchText"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.label"
-          md-min-length="0"
-          placeholder="Search for anything"
-          md-menu-class="autocomplete-custom-template"
-          >
-        <md-item-template>
-          <span ng-if="ctrl.isHash">
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">#{{item.label}}</span>
-          </span>
-          <span ng-if="ctrl.isEmail" >
-            <md-list-item class="md-2-line">
-              <img ng-src="{{item.picture}}" class="md-avatar" alt="{{item.fname}}" />
-              <div class="md-list-item-text" layout="column">
-                <p><span> {{item.label}}</span></p>
-              </div>
-            </md-list-item>
-          </span>
-          <span ng-if="ctrl.isOther">
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.label}}</span>
-          </span>
-        </md-item-template>
-        <md-not-found>
-          No states matching "{{ctrl.searchText}}" were found.
-          <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-        </md-not-found>
-      </md-autocomplete>
-      <span flex-sm="30" flex-gt-sm="25"></span>
-      <md-button class="md-icon-button" aria-label="Favorite">
-            <i class="material-icons">search</i>
-        </md-button>
-				</div>
-			</md-toolbar>
+                  <md-autocomplete ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
+                  ng-disabled="ctrl.isDisabled"
+                  md-no-cache="ctrl.noCache"
+                  md-selected-item="ctrl.selectedItem"
+                  md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                  md-search-text="ctrl.searchText"
+                  md-selected-item-change="ctrl.selectedItemChange(item)"
+                  md-items="item in ctrl.querySearch(ctrl.searchText)"
+                  md-item-text="item.label"
+                  md-min-length="0"
+                  placeholder="Search for anything"
+                  md-menu-class="autocomplete-custom-template"
+                  >
+                <md-item-template>
+                  <span ng-if="ctrl.isHash">
+                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">#{{item.label}}</span>
+                  </span>
+                  <span ng-if="ctrl.isEmail" >
+                    <md-list-item class="md-2-line">
+                      <img ng-src="{{item.picture}}" class="md-avatar" alt="{{item.fname}}" />
+                      <div class="md-list-item-text" layout="column">
+                        <p><span> {{item.label}}</span></p>
+                      </div>
+                    </md-list-item>
+                  </span>
+                  <span ng-if="ctrl.isOther">
+                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.label}}</span>
+                  </span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{ctrl.searchText}}" were found.
+                  <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+              </md-autocomplete>
+              <span ng-class="logoClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" style="padding-bottom:9px">
+                <img style="" src="<?php echo base_url(); ?>images/tho_small.png" />
+              </span>
+              <span flex-xs></span>
+              <md-button class="md-icon-button" aria-label="Favorite" ng-click="searchButton()" ng-class="searchButtonClass">
+                    <i class="material-icons">search</i>
+              </md-button>
+        				</div>
+        			</md-toolbar>
 
 
    <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport scroll-glue-top>
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 
-     <md-sidenav flex class="md-sidenav-left" md-component-id="left"
+     <md-sidenav flex class="md-sidenav-left" md-component-id="left" class="chatnav"
                  md-whiteframe="4">
 
        <md-toolbar class="md-theme-indigo">
-         <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+         <h1 class="md-toolbar-tools badge1" data-badge="6"></h1>
        </md-toolbar>
-
        <md-content layout-margin  >
          <md-list flex>
-         <md-subheader class="md-no-sticky">
-           <md-button ng-click="clickToOpen()" class="md-accent">
+           <md-button ng-click="clickToOpen()" class="md-accent badge1" data-badge="27">
              Close this Sidenav
            </md-button>
-         </md-subheader>
-         <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user.mem_id)">
-           <img ng-src="" class="md-avatar" alt="{{user.fname}}" />
-           <div class="md-list-item-text" layout="column">
-             <p>{{ user.fname }} {{user.lname}}</p>
-           </div>
-         </md-list-item>
-       </md-list>
+           <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user.mem_id)">
+             <img image-fetch ng-src="{{user.picture}}" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
+             <div class="md-list-item-text" layout="column">
+               <p>{{ user.fname }} {{user.lname}}</p>
+             </div>
+           </md-list-item>
+        </md-list>
 
             </md-content>
      </md-sidenav>
@@ -174,7 +174,7 @@
   <!-- Your application bootstrap  -->
   <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 
 
 </body>

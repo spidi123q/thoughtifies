@@ -1,30 +1,12 @@
 $band-color : #26A69A;
-$band-shade-color : #FFAB91;
-$input-border-radius : 5px;
-$border-shadow : #BF360C;
-$shadow-hover : #FF8F00;
+$screen-xs : 600px;
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+@media only screen and (max-width: 255px) {
+   img {
+    width: 100%;
+    height: auto;
+  }
 }
-
-@mixin shadow() {
-  @include border-radius();
-  display: inline-block;
-  position: relative;
-  -webkit-border-radius: $input-border-radius;
-  -moz-border-radius: $input-border-radius;
-  border-radius: $input-border-radius;
-  -moz-box-shadow: $border-shadow 3px 3px 10px inset;
-  -webkit-box-shadow: $border-shadow 3px 3px 10px inset;
-  box-shadow: $border-shadow 3px 3px 10px inset;
-  -webkit-transition: box-shadow 0.2s ease-in;
-  -moz-transition: box-shadow 0.2s ease-in;
-  transition: box-shadow 0.2s ease-in;
-}
-
 .title{
   background-color: rgba(38, 166, 154, .5);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.37);
@@ -36,14 +18,25 @@ $shadow-hover : #FF8F00;
   font-family: 'Open Sans', sans-serif;
   font-size: 25px;
   color: white;
+  padding-top: 15px;
+  img {
+    padding-bottom: 20px;
+  }
+  .fb_button {
+    padding-top: 35px;
+  }
 }
 .quotes {
-  font-family: 'Open Sans', sans-serif;
+  margin-top: 20%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+	font-variant: normal;
   font-size: 4vmin;
-  text-align: center;
-  font-weight: bold;
   color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  width: 500px;
+  //text-shadow: -1px 0 2px black, 0 1px 2px black, 1px 0 2px black, 0 -1px 2px black;
   span{
     display: block;
     padding-top: 5px;
@@ -70,6 +63,21 @@ video {
 .stopfade {
    opacity: .5;
 }
+.flex-container{
+
+  justify-content: space-around;
+  @media only screen and (min-width: $screen-xs) {
+    display: -webkit-flex;
+    display: flex;
+  }
+  @media only screen and (max-width: $screen-xs) {
+     img {
+      padding-top: 20px;
+    }
+  }
+
+}
+
 #footer {
   position: fixed;
   right: 0;
@@ -78,6 +86,9 @@ video {
   padding: 1rem;
   //background-color: #efefef;
   text-align: center;
+}
+.hide {
+  display:none;
 }
 @mixin border-radius($color : $band-shade-color) {
   background-color: $color;
@@ -88,7 +99,37 @@ video {
   border: 5px;
   padding: 2px;
 }
+.main_toolbar {
+  z-index:500;
+  position: fixed;
+  box-shadow: 0px 5px 5px grey;
+}
+.hide_xs {
+  @media only screen and (max-width: $screen-xs) {
+     display: none;
+  }
+}
+.show_xs {
+  @media only screen and (min-width: $screen-xs) {
+     display: none;
+  }
+}
 
-#main_cont {
-
+.badge1 {
+   position:relative;
+}
+.badge1[data-badge]:after {
+   z-index: 500;
+   content:attr(data-badge);
+   position:absolute;
+   top:-10px;
+   right:-10px;
+   font-size:.7em;
+   background:green;
+   color:white;
+   width:18px;height:18px;
+   text-align:center;
+   line-height:18px;
+   border-radius:50%;
+   box-shadow:0 0 1px #333;
 }

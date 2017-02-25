@@ -2542,5 +2542,13 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     return str;
   };
   $scope.bootscreen = true;
+  $scope.tbClass = ['hide_xs'];
+  $scope.searchButtonClass = ['show_xs']
+  $scope.searchButton = function () {
+    console.log("ss");
+    $scope.tbClass = [''];
+    $scope.logoClass = ['hide'];
+    $scope.searchButtonClass = ['hide'];
+  };
 
 });

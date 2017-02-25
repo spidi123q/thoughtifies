@@ -2,8 +2,8 @@
 
 <md-content layout="row" ng-controller="msgController" layout-align="center center" >
 
-  <md-sidenav  class="md-sidenav-left" md-component-id="jam"
-       ui-scroll-viewport md-whiteframe="4">
+  <md-sidenav class="md-sidenav-left" md-component-id="jam" md-disable-backdrop md-whiteframe="4"
+       ui-scroll-viewport >
 <!--
   <md-toolbar class="md-theme-indigo" layout="row">
   <h1 class="md-toolbar-tools">Disabled Backdrop</h1>

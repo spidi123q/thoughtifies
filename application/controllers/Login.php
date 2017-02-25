@@ -48,7 +48,7 @@
         $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown']; // Optional permissions
         $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
         $img = '<img src="'.base_url("images/fb_button.jpg").'" />';
-        $u = '<a href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
+        $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
         $data = array('fb' => $u, );
         $this->load->view('login/index',$data);
 

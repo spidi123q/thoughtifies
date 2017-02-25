@@ -3,11 +3,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 </head>
 	<body ng-app="IndexApp" ng-controller="AppCtrl">
-		<div class="title">
-							<form name="loginform" action="data/1" method="post">
+		<div class="title flex-container">
+							<form name="loginform" action="data/1" method="post" class="">
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -25,10 +25,12 @@
 									  <div class="col-sm-1">
 											<button class="" name="" type="submit">login</button>
 										</div>
-										<?php echo $fb ?>
-
 									</div>
 							</form>
+							<div>
+								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
+							</div>
+							<?php echo $fb ?>
 						</div>
 						<div class="quotes">
 								<span>Playground of thoughts around world</span>
@@ -50,7 +52,7 @@
 
 		<!-- Angular Material Library -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 
 		<!--<script>
 							  window.fbAsyncInit = function() {
