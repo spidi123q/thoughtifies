@@ -1,6 +1,6 @@
 
 
-<md-content layout="row" ng-controller="msgController" layout-align="center center" >
+<md-content layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
 
   <md-sidenav class="md-sidenav-left" md-component-id="jam" md-disable-backdrop md-whiteframe="4"
        ui-scroll-viewport >
@@ -25,7 +25,7 @@
 
 
 
-        <div  layout="column" flex="80">
+        <div  layout="column" flex="80" style="height:100%">
           <div layout="row" layout-align="end center">
             <span flex-offset="5">{{msgUserName.fname}} {{msgUserName.lname}}</span>
             <md-list-item flex-offset="5" ng-click="toggleLeft()" class="noright">
@@ -52,8 +52,9 @@
                         </span>
                     </div>
             </md-content>
-            <div layout="column">
-              <div contenteditable ng-model="msg" md-whiteframe="4"
+
+            <div layout="column" style="width:100%">
+              <div contenteditable ng-model="msg" md-whiteframe="4" style="width:100%;height:50px;"
               ng-focus="focus()"
               ng-blur="unfocus()"
               ></div>

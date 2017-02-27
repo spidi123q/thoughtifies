@@ -582,23 +582,14 @@ app.factory('MyWebSocket', function($websocket,$http) {
 
       var init = function () {
         var info = {
-          data  : mem_id,
+          data  : SESS_MEMBER_ID,
           header  : protoSent.init,
         };
         socket.send(info);
       };
+      init();
 
-      $http({
-        method: 'GET',
-        url: 'info/1',
-      }).then(function successCallback(response) {
-            //console.log(response.data.mem_id);
-            mem_id = response.data.mem_id;
-            init();
 
-        }, function errorCallback(response) {
-
-        });
 
 
 
