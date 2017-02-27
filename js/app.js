@@ -69,7 +69,7 @@ app.config( [
     '$compileProvider',
     function( $compileProvider )
     {
-        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data: image\//);
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:.*\//);
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
@@ -422,7 +422,7 @@ app.directive('ngThumb', ['$window', function($window) {
         };
     }]);
 
-app.directive('imageFetch',function($http) {
+app.directive('imageFetch',function($http,$sce) {
         return {
             restrict: 'A',
 
@@ -431,7 +431,11 @@ app.directive('imageFetch',function($http) {
                method: 'GET',
                url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
              }).then(function successCallback(response) {
-                 attrs.$set('ngSrc', response.data);
+                 //$sceDelegate.getTrusted($sce.HTML, response.data);
+                 //console.log(response);
+                 var temp = $sce.trustAsResourceUrl(response.data);
+                 console.log(temp);
+                 attrs.$set('ngSrc',temp);
 
                }, function errorCallback(response) {
 

@@ -2,7 +2,7 @@
   <span layout="row" flex>
     <md-list class="md-dense" flex>
         <md-list-item class="md-2-line" >
-          <img image-fetch ng-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
+          <img ng-csp image-fetch ng-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text" layout="column">
             <div contenteditable ng-model="data"
             ng-focus="focus()"
