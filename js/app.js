@@ -463,6 +463,15 @@ app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
                   if (message.header === protoRec.newmsg) {
                             if (notiService.getDialog.isOpen) {
                                   console.log("dialog open");
+                                  console.log(notiService.getDialog);
+                                  var data = JSON.parse(message.data);
+                                  console.log(data);
+                                  if (data.sender.toString() === notiService.getDialog.user.mem_id.toString()) {
+                                    console.log("current user");
+                                  }else {
+                                    console.log("non current user");
+                                    elem["0"].childNodes["0"].play();
+                                  }
                               }
                             else {
                               console.log("new message fuck");
@@ -1396,9 +1405,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.dpDisplay = dpDisplay;
           $scope.setDp = function (item) {
             item.receiver = item.receiver.toString();
-            console.log("haiiiiiiiiiiiiiiiiiii"+item.receiver);
                 if (item.receiver === SESS_MEMBER_ID) {
-                  console.log("itsme");
                   return data.picture;
                 }
                 else {

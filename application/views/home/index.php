@@ -195,7 +195,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 
-
 </body>
 <style>
 .jk-rating-stars-container .button {
