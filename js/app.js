@@ -104,7 +104,7 @@ app.config( [
                method: 'GET',
                url: 'users/frnd/status/'+$scope.uid,
              }).then(function successCallback(response) {
-                   //console.log(response.data);
+                   //
                    if (response.data === "0") {
                      $scope.buttons.request.icon = "close";
                      $scope.buttons.request.val = 0;
@@ -153,7 +153,7 @@ app.config( [
             };
 
             var blockButton = function () {
-              console.log("block");
+
               $http({
                 method: 'GET',
                 url: 'users/block/'+$scope.uid,
@@ -205,7 +205,7 @@ app.config( [
                   }
                 };
                 $scope.focus = function functionName() {
-                  //console.log("focus");
+                  //
                   if ($scope.data === placeholder) {
                     $scope.data = "";
                   }
@@ -214,7 +214,7 @@ app.config( [
                   };
                 };
                 $scope.unfocus = function functionName($event) {
-                  //console.log("unfocus");
+                  //
                   if ($scope.data === "") {
                     $scope.data = placeholder;
                   }
@@ -226,11 +226,11 @@ app.config( [
 
                     //$scope.view = !$scope.view;
                     if ($scope.view && $scope.emojilist.length === 0) {
-                      console.log("eee");
+
                       $scope.emojilist = EmojiService.get();
                     }else {
 
-                      console.log("gg");
+
                     }
                 };
                 $scope.onEmojiClick = function (item) {
@@ -298,7 +298,7 @@ app.config( [
                 var text = "@scottcorgan and http://github.com";
 
                 $scope.hashtagify = function () {
-                  console.log("s");
+
                   //$scope.data.replace(/.*/,linkify.twitter($scope.data));
                 };
                 $scope.post = function () {
@@ -311,7 +311,7 @@ app.config( [
                             upload : $scope.upload.response,
                           },
                           }).then(function successCallback(response) {
-                            console.log(response);
+
                             if (response.data === "1") {
                                 uploader.clearQueue();
                                 $scope.data = placeholder;
@@ -338,7 +338,7 @@ app.config( [
                             return matches;
                         }
 
-                        //console.log($scope.data);
+                        //
 
                 };
 
@@ -432,9 +432,9 @@ app.directive('imageFetch',function($http,$sce) {
                url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
              }).then(function successCallback(response) {
                  //$sceDelegate.getTrusted($sce.HTML, response.data);
-                 //console.log(response);
+                 //
                  var temp = $sce.trustAsResourceUrl(response.data);
-                 //console.log(temp);
+                 //
                  attrs.$set('ngSrc',temp);
 
                }, function errorCallback(response) {
@@ -451,35 +451,35 @@ app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
 
            link: function(scope, elem, attrs) {
 
-            console.log(elem["0"].childNodes["0"].autoplay);
+
             elem["0"].addEventListener("ended", function() {
-               console.log("playing");
+
                //elem["0"].childNodes["0"].play();
              }, true);
              var protoRec = MyWebSocket.protoRec;
-             console.log(protoRec);
+
             MyWebSocket.socket.onMessage(function (message) {
                  message = JSON.parse(message.data);
                   if (message.header === protoRec.newmsg) {
                             if (notiService.getDialog.isOpen) {
-                                  console.log("dialog open");
-                                  console.log(notiService.getDialog);
+
+
                                   var data = JSON.parse(message.data);
-                                  console.log(data);
+                                  
                                   if (data.sender.toString() === notiService.getDialog.user.mem_id.toString()) {
-                                    console.log("current user");
+
                                   }else {
-                                    console.log("non current user");
+
                                     elem["0"].childNodes["0"].play();
                                   }
                               }
                             else {
-                              console.log("new message fuck");
+
                               elem["0"].childNodes["0"].play();
                             }
                 }else {
-                  console.log(message);
-                  console.log("fuck");
+
+
                 }
                 //elem["0"].childNodes["0"].autoplay =true;
 
@@ -496,7 +496,7 @@ app.factory('notiService',function () {
   var setDialog = function (user,isOpen){
       dialog.isOpen = isOpen;
       dialog.user = user;
-      console.log(dialog.isOpen);
+
   };
   return {
     setDialog : setDialog,
@@ -517,7 +517,7 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
   var bodyClick = function () {
 
     if ($mdSidenav('left').isOpen()) {
-      console.log("open");
+
       closeLeft();
     }
   };
@@ -578,7 +578,7 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
             method: 'GET',
             url: 'msg/emoji/'+index,
           }).then(function successCallback(response) {
-              //console.log(response.data);
+              //
               response.data.forEach(makeEmoji);
               if( index <= 1791)
                 listEmoji(index+10);
@@ -603,11 +603,11 @@ app.factory('dpDisplay', function($http) {
 
         var dpDisplay = function(data){
           if (data == SESS_MEMBER_ID) {
-            console.log("false");
+
             return false;
           }
           else {
-            console.log("true");
+
             return true;
           }
         };
@@ -616,7 +616,7 @@ app.factory('dpDisplay', function($http) {
             method: 'GET',
             url: 'img/userdp/'+id+'/'+size,
           }).then(function successCallback(response) {
-              //console.log(response.data);
+              //
               return response.data;
             }, function errorCallback(response) {
 
@@ -659,16 +659,16 @@ app.factory('MyWebSocket', function($websocket,$http) {
 
 
       socket.onOpen(function () {
-        console.log("connection opened");
+
 
       });
       socket.onError(function () {
-        console.log("connection error");
+
 
       });
 
       socket.onMessage(function () {
-        console.log("newmsg");
+
 
       });
 
@@ -703,7 +703,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  console.log(response.data);
+
                   max = response.data.count;
                   deferred.resolve(response);
 
@@ -732,7 +732,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                console.log(response.data);
+
                 for (var i = 0; i < response.data.length; i++) {
                   page.push(response.data[i]);
                 }
@@ -760,7 +760,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 			var get = function (index, count, success) {
 
-        console.log("cll");
+
 				$timeout(function () {
 
           index = index-1;
@@ -770,12 +770,12 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
                 // checks for information will be peformed here
                 var result2 = [];
                 for (var i = index; i <= index + count - 1; i++) {
-                  //console.log("index: "+index);
-                  //console.log("i = "+i);
+                  //
+                  //
                  if(i < 0 || i >= max) {
                               continue;
                           }
-                          //console.log(page);
+                          //
                   result2.push(page[i]);
                 }
                 success(result2);
@@ -783,7 +783,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
             },
             function (error) {
                 // handle errors here
-                console.log(error.statusText);
+
             }
         );
 
@@ -821,14 +821,14 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
                 }).then(function successCallback(response) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log(response.data);
+
                     max = response.data.count;
                     deferred.resolve(response);
 
                   }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                    console.log("count err");
+
                      deferred.reject({ message: "Really bad" });
                   });
 
@@ -845,7 +845,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           if(index > big){
             big = (big === -1)? 0 : big+10;
             //big = index;
-            console.log(big);
+
 
               getCount(big).then(function (response) {
 
@@ -853,7 +853,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
                     method: 'GET',
                     url: 'post/get/'+big+'/'+user,
                   }).then(function successCallback(response) {
-                    console.log(response.data);
+
                     response.data.forEach(function (item,index3) {
                       page.push(item);
                     });
@@ -873,7 +873,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
           $timeout(function () {
 
-                //console.log("index " +index);
+                //
               setBig(index).then(function (response) {
                 var result = [];
                 for (var i = index; i <= index + count - 1; i++) {
@@ -881,13 +881,13 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
                   if(i < 0 || i >= max) {
                               continue;
                           }
-                          //console.log("page : "+i);
+                          //
                  result.push(page[i]);
                 //result.push("page : "+i);
                 }
                 success(result);
               },function (error) {
-                console.log(error.statusText);
+
               });
 
             }, 100);
@@ -910,9 +910,9 @@ app.controller('msgController', [
       $scope.msg = '';
       $scope.myDp = SESS_USERIMAGE;
       $scope.dpDisplay = dpDisplay;
-      console.log($scope.chat);
+
       MyWebSocket.socket.onMessage(function (message) {
-        console.log(message);
+
       });
       $scope.log = function() {
         listMessengers.test();
@@ -927,13 +927,13 @@ app.controller('msgController', [
          };
        }
        $mdSidenav('jam', true).then(function(instance) {
-          console.log("sidenav ready");
+
           $scope.toggleLeft();
         });
 
 
       $scope.removeFromList1 = function() {
-        console.log("del");
+
         return $scope.msgUserListAdapter.reload(0);
       };
 
@@ -947,14 +947,14 @@ app.controller('msgController', [
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  console.log(response.data);
+
                   max = response.data.count;
                   deferred.resolve(response);
 
                 }, function errorCallback(response) {
                   // called asynchronously if an error occurs
                   // or server returns response with an error status.
-                  console.log("count err");
+
                    deferred.reject({ message: "Really bad" });
                 });
 
@@ -971,7 +971,7 @@ app.controller('msgController', [
           big = index;
           var offset = big-9;
           getCount(offset).then(function (result) {
-            //console.log(result);
+            //
             $http({
               method: 'POST',
               url: 'msg/get',
@@ -980,7 +980,7 @@ app.controller('msgController', [
                 user: $scope.msgUser,
               },
             }).then(function successCallback(response) {
-                //console.log(response.data);
+                //
                 response.data.forEach(function (item,index) {
                   page.push(item);
                   deferred.resolve(page);
@@ -1001,20 +1001,20 @@ app.controller('msgController', [
 
 				$timeout(function () {
 					setBig(index).then(function (responce) {
-            //console.log(responce);
+            //
             var result = [];
   					for (var i = index; i <= index + count - 1; i++) {
   //setBig(index);
               if(i > 0 || (i*-1) >= max) {
                           continue;
                       }
-                      //console.log(i);
+                      //
   						    result.push(page[i*-1]);
   					}
   					success(result);
 					},    function (error) {
                   // handle errors here
-                  console.log(error.statusText);
+
               });
 				}, 100);
 			};
@@ -1032,15 +1032,15 @@ app.controller('msgController', [
             receiver : $scope.msgUser,
             message : $scope.msg
           };
-          console.log(data);
+
           $scope.myuser = angular.copy($scope.msgUser);
-          //console.log(data);
+          //
             $http({
               method: 'POST',
               url: 'msg/sent',
               data: data,
             }).then(function successCallback(response) {
-                //console.log(response.data);
+                //
                 if (response.data === "1") {
                   var data = {
                     code : MyWebSocket.protoSent.newmsg,
@@ -1059,7 +1059,7 @@ app.controller('msgController', [
     var taskList = function (data) {
 
         if (data.code === MyWebSocket.protoSent.newmsg) {
-            console.log("message send success");
+
             var info = {
               header: MyWebSocket.protoSent.newmsg,
               data: data.data,
@@ -1072,7 +1072,7 @@ app.controller('msgController', [
 
     $scope.selectMsgUser = function (user) {
       $scope.msgUser = user.mem_id;
-      console.log(user);
+
       $scope.msgUserName = {
         fname : user.fname,
         lname : user.lname,
@@ -1101,11 +1101,11 @@ app.controller('msgController', [
 
         //$scope.view = !$scope.view;
         if ($scope.view && $scope.emojilist.length === 0) {
-          console.log("eee");
+
           $scope.emojilist = EmojiService.get();
         }else {
 
-          console.log("gg");
+
         }
     };
     $scope.onEmojiClick = function (item) {
@@ -1122,7 +1122,7 @@ app.controller('DemoCtrl', function() {
 
 });
 app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$timeout,$http,$q) {
-    console.log("search activated");
+
     var big = -1,page = [];
 
 
@@ -1133,7 +1133,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 
             }).then(function successCallback(response) {
               $scope.countries = response.data;
-              //console.log(response.data);
+              //
               }, function errorCallback(response) {
 
               });
@@ -1175,14 +1175,14 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                     }).then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        console.log(response.data);
+
                         max = response.data.count;
                         deferred.resolve(response);
 
                       }, function errorCallback(response) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
-                        console.log("count err");
+
                          deferred.reject({ message: "Really bad" });
                       });
 
@@ -1199,14 +1199,14 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 
               if(index2 > big){
                 big = index2;
-                console.log(big);
+
 
 
 
                   $scope.searchData.data.h_age = $scope.slider.max;
                   $scope.searchData.data.l_age = $scope.slider.min;
                   $scope.searchData.data.offset = big;
-                  //console.log($scope.searchData.data);
+                  //
                   //max =100;
                   getCount(big).then(function (response) {
                     $http({
@@ -1215,7 +1215,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                         data: $scope.searchData.data,
 
                       }).then(function successCallback(response) {
-                        //console.log(response.data);
+                        //
                         response.data.forEach(function (item,index3) {
                           page.push(item);
 
@@ -1245,12 +1245,12 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                     if(i < 0 || i > max) {
                                 continue;
                             }
-                            console.log("page : "+i);
+
         						result.push(page[i]);
         					}
         					success(result);
                 },function (error) {
-                  console.log(error.statusText);
+
                 });
 
       				}, 100);
@@ -1300,7 +1300,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
-        console.log(msg);
+
         taskList(msg);
     });
     $scope.list = [];
@@ -1311,15 +1311,15 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
     };
     var taskList = function (data) {
       if (data.header == "8000") {
-        console.log("refresh chat");
+
         $http({
           method: 'GET',
           url: 'online/2',
         }).then(function successCallback(response) {
-              //console.log(response.data);
+              //
               $scope.list = [];
               $scope.list.push(response.data);
-              console.log($scope.list);
+
 
 
           }, function errorCallback(response) {
@@ -1328,13 +1328,13 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
       }
       else if (data.header == "8002") {
-        console.log("at 8002");
+
           var msg = JSON.parse(data.data);
-          console.log(msg);
+
           checkUser(msg.sender.toString());
          //msgMap.get(parseInt(msg.sender)).push(msg);
            msgMap.get(msg.sender.toString()).push(msg);
-          console.log("after msg sent"+msgMap.get(msg.sender));
+
 
       }
     };
@@ -1353,12 +1353,12 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
     $scope.showAdvanced = function(ev,user) {
       var mem_id = user.mem_id;
       checkUser(mem_id);
-      console.log(msgMap);
+
       notiService.setDialog(user,true);
       var x = msgMap.get(mem_id);
 
-      console.log("content");
-      console.log(x);
+
+
 
 
       var chatButton = chatSidenav.chat;
@@ -1394,7 +1394,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.messages = data.messages;
 
           $scope.receiver = data.receiver;
-          console.log($scope.receiver);
+
           $scope.myvar = [1,2,3,4,5,6,7];
           var socket = data.websocket.socket;
           var protoSent = data.websocket.protoSent;
@@ -1409,12 +1409,12 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
                   return data.picture;
                 }
                 else {
-                  //console.log("fuck");
+                  //
                   return SESS_USERIMAGE;
                 }
             };
 
-          //console.log($scope.messages);
+          //
           $scope.hide = function() {
             $mdDialog.hide();
             chatButton.showButton();
@@ -1439,12 +1439,12 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
             };
 
             $scope.messages.push(data);
-            console.log("sssssssssss"+JSON.stringify($scope.messages));
+
             var info = {
               header  : protoSent.sendmsg,
               data: JSON.stringify(data),
             };
-            //console.log(info);
+            //
             $scope.msg = null;
             socket.send(info);
 
@@ -1463,10 +1463,10 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.changeEmojiView = function () {
              //$scope.view = !$scope.view;
               if ( $scope.emojilist.length === 0) {
-                console.log("eee");
+
                 $scope.emojilist = EmojiService.get();
               }else {
-                console.log("already loaded");
+
               }
           };
           $scope.bgList = function (val) {
@@ -1519,7 +1519,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
             method: 'GET',
             url: 'block/get',
           }).then(function successCallback(response) {
-              console.log(response.data);
+
               $scope.userList = response.data;
             }, function errorCallback(response) {
 
@@ -1536,7 +1536,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               method: 'GET',
               url: 'block/cancel/'+item.mem_id,
             }).then(function successCallback(response) {
-                console.log(response.data);
+
                 if (response.data === "1") {
                   var index = $scope.userList.indexOf(item);
                   if (index > -1) {
@@ -1549,8 +1549,8 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           };
         }
 
-          console.log("seetigs");
-          console.log("kkk");
+
+
           $scope.settingsData = {
             tabs : {
               profile  : {
@@ -1630,7 +1630,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               $scope.settingsData.tag = response.data.tag;
               $scope.settingsData.dp = response.data.picture;
 
-              console.log(response.data);
+
               if (response.data.gender == 'M') {
                 $scope.settingsData.tabs.profile.info.gender.data = "Male";
                 $scope.settingsData.tabs.profile.info.gender.icon = "flaticons/svg/muscular.svg";
@@ -1688,7 +1688,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
       };
 
     var preFetch = function (sel) {
-      console.log(sel);
+
       if (sel == 8) {
 
         $http({
@@ -1697,7 +1697,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
           }).then(function successCallback(response) {
             $scope.settingsData.countries = response.data;
-            console.log(response.data);
+
             openModal();
 
             }, function errorCallback(response) {
@@ -1756,7 +1756,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           };
           uploader.onAfterAddingAll = function(addedFileItems) {
               //console.info('onAfterAddingAll', addedFileItems);
-              console.log($scope.uploader.queue[0]._file);
+
           };
           uploader.onBeforeUploadItem = function(item) {
               console.info('onBeforeUploadItem', item);
@@ -1813,9 +1813,9 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $scope.settingsData.dialog.progress = false;
           $scope.settingsData.dialog.type = "indeterminate";
           if (sel === 0) {
-            console.log("dp");
+
             $scope.settingsData.dialog.progress = true;
-            console.log($scope.settingsData.dp);
+
           }
           if(sel == 1){
             //change name
@@ -1828,7 +1828,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 }),
 
               }).then(function successCallback(response) {
-                    //console.log(response.data);
+                    //
                     if (response.data.status) {
                       $scope.settingsData.fname = $scope.user.fname;
                       $scope.settingsData.lname = $scope.user.lname;
@@ -1836,7 +1836,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                       $scope.settingsData.dialog.progress = true;
                     }
                 }, function errorCallback(response) {
-                  console.log(response.data);
+
                   $scope.settingsData.dialog.progress = true;
 
                 });
@@ -1851,14 +1851,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 }),
 
               }).then(function successCallback(response) {
-                    //console.log(response.data);
+                    //
                     if (response.data.status) {
                       $scope.settingsData.tag = $scope.user.tag;
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
                     }
                 }, function errorCallback(response) {
-                  console.log(response.data);
+
                   $scope.settingsData.dialog.progress = true;
                 });
           }
@@ -1872,14 +1872,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 }),
 
               }).then(function successCallback(response) {
-                    //console.log(response.data);
+                    //
                     if (response.data.status) {
                       $scope.settingsData.tabs.profile.info.aboutme.data = $scope.user.tabs.profile.info.aboutme.data;
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
                     }
                 }, function errorCallback(response) {
-                  console.log(response.data);
+
                   $scope.settingsData.dialog.progress = true;
                 });
 
@@ -1894,14 +1894,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 }),
 
               }).then(function successCallback(response) {
-                    //console.log(response.data);
+                    //
                     if (response.data.status) {
                       $scope.settingsData.tabs.profile.info.mypre.data = $scope.user.tabs.profile.info.mypre.data;
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
                     }
                 }, function errorCallback(response) {
-                  console.log(response.data);
+
                   $scope.settingsData.dialog.progress = true;
                 });
           }
@@ -1923,7 +1923,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 }),
 
               }).then(function successCallback(response) {
-                    console.log(response.data);
+
                     if (response.data.status) {
 
                       if (gender === "M") {
@@ -1939,7 +1939,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
                     }
                 }, function errorCallback(response) {
-                      console.log(response);
+
                 });
 
           }
@@ -1959,14 +1959,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 data: data,
 
               }).then(function successCallback(response) {
-                    console.log(response.data);
+
                     if (response.data.status) {
                       $scope.cancel();
                       $scope.settingsData.dialog.progress = true;
 
                     }
                 }, function errorCallback(response) {
-                      console.log(response);
+
                 });
 
 
@@ -1985,7 +1985,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 },
 
               }).then(function successCallback(response) {
-                    console.log(response.data);
+
                     if (response.data.status) {
                       $scope.settingsData.tabs.profile.info.country.icon = "flags/1x1/"+response.data.result.toLowerCase()+".svg";
                       $scope.settingsData.tabs.profile.info.country.data = $scope.user.tabs.profile.info.country.data;
@@ -1994,7 +1994,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
                     }
                 }, function errorCallback(response) {
-                      console.log(response);
+
                 });
 
 
@@ -2014,8 +2014,8 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','MyPosts',function($scope,$http,$mdDialog,$routeParams,MyPosts) {
 
 
-          console.log("Users");
-          console.log($routeParams.uid);
+
+
           $scope.uid = $routeParams.uid;
           $scope.datasource = MyPosts;
           $scope.settingsData = {
@@ -2060,13 +2060,13 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
             post : false,
           };
           $scope.onSelectPosts = function () {
-            console.log("hi pro");
+
             MyPosts.setUser($scope.uid);
             $scope.settingsData.post = true;
           };
 
           $scope.hideProfile = function () {
-            console.log();
+
             return !$scope.settingsData.config && $scope.settingsData.blocked;
           };
 
@@ -2076,7 +2076,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
           }).then(function successCallback(response) {
               // this callback will be called asynchronously
               // when the response is available
-              console.log(response.data);
+
               if (response.data === "0") {
                 $scope.settingsData.blocked = true;
               }else {
@@ -2131,14 +2131,14 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
                  }).then(function successCallback(response) {
                      // this callback will be called asynchronously
                      // when the response is available
-                     console.log(response.data);
+
                      max = response.data.count;
                      deferred.resolve(response);
 
                    }, function errorCallback(response) {
                      // called asynchronously if an error occurs
                      // or server returns response with an error status.
-                     console.log("count err");
+
                       deferred.reject({ message: "Really bad" });
                    });
 
@@ -2155,14 +2155,14 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
 
            if(index2 > big){
              big = index2;
-             console.log(big);
+
 
                getCount(big).then(function (response) {
                  $http({
                      method: 'GET',
                      url: 'req/frnd/'+big,
                    }).then(function successCallback(response) {
-                     console.log(response.data);
+
                      response.data.forEach(function (item,index3) {
                        page.push(item);
                      });
@@ -2189,12 +2189,12 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
                  if(i < 0 || i >= max) {
                              continue;
                          }
-                         //console.log("page : "+i);
+                         //
                  result.push(page[i]);
                }
                success(result);
              },function (error) {
-               console.log(error.statusText);
+
              });
 
            }, 100);
@@ -2206,7 +2206,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
          };
 
          $scope.k = function () {
-           console.log("ck");
+
            $scope.adapter.reload();
          };
          $scope.accept = function (user) {
@@ -2214,7 +2214,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
                method: 'GET',
                url: 'req/frnd/action/0/'+user.mem_id,
              }).then(function successCallback(response) {
-                 //console.log(response);
+                 //
                  var index = page.indexOf(user);
                  max--;
                  page.splice(index, 1);
@@ -2228,7 +2228,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
                method: 'GET',
                url: 'req/frnd/action/1/'+user.mem_id,
              }).then(function successCallback(response) {
-                 console.log(response);
+
                  var index = page.indexOf(user);
                  max--;
                  page.splice(index, 1);
@@ -2251,14 +2251,14 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                   }).then(function successCallback(response) {
                       // this callback will be called asynchronously
                       // when the response is available
-                      console.log(response.data);
+
                       max = response.data.count;
                       deferred.resolve(response);
 
                     }, function errorCallback(response) {
                       // called asynchronously if an error occurs
                       // or server returns response with an error status.
-                      console.log("count err");
+
                        deferred.reject({ message: "Really bad" });
                     });
 
@@ -2275,7 +2275,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
             if(index > big){
               big = (big === -1)? 0 : big+10;
               //big = index;
-              console.log(big);
+
 
                 getCount(big).then(function (response) {
 
@@ -2283,7 +2283,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                       method: 'GET',
                       url: 'post/get/'+big,
                     }).then(function successCallback(response) {
-                      console.log(response.data);
+
                       response.data.forEach(function (item,index3) {
                         page.push(item);
                       });
@@ -2302,7 +2302,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           datasource.get = function (index, count, success) {
             $timeout(function () {
 
-                //console.log("index " +index);
+                //
               setBig(index).then(function (response) {
                 var result = [];
                 for (var i = index; i <= index + count - 1; i++) {
@@ -2310,13 +2310,13 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                   if(i < 0 || i >= max) {
                               continue;
                           }
-                          //console.log("page : "+i);
+                          //
                  result.push(page[i]);
                 //result.push("page : "+i);
                 }
                 success(result);
               },function (error) {
-                console.log(error.statusText);
+
               });
 
             }, 100);
@@ -2327,12 +2327,12 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
             remain: true
           };
           $scope.onRating = function(rating,id){
-            console.log(rating +" id "+id);
+
             $http({
                 method: 'GET',
                 url: 'post/onrating/'+id+"/"+rating,
               }).then(function successCallback(response) {
-                console.log(response.data);
+
                 }, function errorCallback(response) {
 
                 });
@@ -2342,7 +2342,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                 method: 'GET',
                 url: 'rating/get/'+id,
               }).then(function successCallback(response) {
-                  console.log(response.data);
+
                   //return response.data.rating;
                 }, function errorCallback(response) {
 
@@ -2368,7 +2368,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
       var isHash = hash.exec(string);
       var isEmail = email.exec(string);
       if (isHash !== null ) {
-        console.log("hash");
+
         self.type = 'hash';
         return {
           type : '0',
@@ -2376,7 +2376,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
         };
       }
       else if (isEmail !== null ) {
-        console.log("email");
+
         self.type = 'email';
         return {
           type : '1',
@@ -2384,7 +2384,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
         };
       }
       else {
-        console.log("no match");
+
         self.type = 'other';
         return {
           type : '2',
@@ -2408,7 +2408,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
     function querySearch (query) {
       var url;
       info = checkRegex(query);
-      console.log(info);
+
       if (info.type == '1') {
         return $http({
             method: 'POST',
@@ -2417,7 +2417,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
               email : info.data
             }
           }).then(function successCallback(response) {
-              console.log(response.data);
+
               self.isHash = (response.data.type === "0")? true :false;
               self.isEmail = (response.data.type === "1")? true :false;
               self.isOther = (response.data.type === "2")? true :false;
@@ -2430,7 +2430,7 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
             method: 'GET',
             url: 'search/tool/'+info.type+'/'+info.data,
           }).then(function successCallback(response) {
-              console.log(response.data);
+
               self.isHash = (response.data.type === "0")? true :false;
               self.isEmail = (response.data.type === "1")? true :false;
               self.isOther = (response.data.type === "2")? true :false;
@@ -2471,8 +2471,8 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
 
 });
 app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q) {
-      console.log($routeParams.type);
-      console.log($routeParams.data);
+
+
       var datasource = {};
       var big =-1,max = 500;
       var page = [];
@@ -2485,14 +2485,14 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  console.log(response.data);
+
                   max = response.data.count;
                   deferred.resolve(response);
 
                 }, function errorCallback(response) {
                   // called asynchronously if an error occurs
                   // or server returns response with an error status.
-                  console.log("count err");
+
                    deferred.reject({ message: "Really bad" });
                 });
 
@@ -2509,7 +2509,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
         if(index > big){
           big = (big === -1)? 0 : big+10;
           //big = index;
-          console.log(big);
+
 
             getCount(big).then(function (response) {
 
@@ -2517,7 +2517,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
                   method: 'GET',
                   url: 'tbs/'+$routeParams.type+"/"+$routeParams.data+"/"+big,
                 }).then(function successCallback(response) {
-                  console.log(response.data);
+
                   response.data.forEach(function (item,index3) {
                     page.push(item);
                   });
@@ -2536,7 +2536,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
       datasource.get = function (index, count, success) {
         $timeout(function () {
 
-            //console.log("index " +index);
+            //
           setBig(index).then(function (response) {
             var result = [];
             for (var i = index; i <= index + count - 1; i++) {
@@ -2544,13 +2544,13 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
               if(i < 0 || i >= max) {
                           continue;
                       }
-                      //console.log("page : "+i);
+                      //
              result.push(page[i]);
             //result.push("page : "+i);
             }
             success(result);
           },function (error) {
-            console.log(error.statusText);
+
           });
 
         }, 100);
@@ -2561,16 +2561,16 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
         remain: true
       };
       $scope.click = function () {
-        console.log('clcick');
+
         $scope.adapter.reload();
       };
       $scope.onRating = function(rating,id){
-        console.log(rating +" id "+id);
+
         $http({
             method: 'GET',
             url: 'post/onrating/'+id+"/"+rating,
           }).then(function successCallback(response) {
-            console.log(response.data);
+
             }, function errorCallback(response) {
 
             });
@@ -2580,7 +2580,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
             method: 'GET',
             url: 'rating/get/'+id,
           }).then(function successCallback(response) {
-              console.log(response.data);
+
               //return response.data.rating;
             }, function errorCallback(response) {
 
@@ -2594,7 +2594,7 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
       method: 'GET',
       url: 'noti/get',
     }).then(function successCallback(response) {
-        console.log(response.data);
+
         $scope.msgButton = parseInt( response.data.message);
         $scope.globeButton = parseInt( response.data.rating);
         $scope.handButton = parseInt( response.data.friend_req);
@@ -2603,7 +2603,7 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
 
       });
       $scope.onClick = function (type) {
-          //console.log(type);
+          //
           $http({
               method: 'GET',
               url: 'noti/seen/'+type,
@@ -2616,10 +2616,10 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
                   }else if (type === 'friend_req') {
                     $scope.handButton = 0;
                   }else {
-                    console.log("invalid");
+
                   }
                 }else {
-                  console.log("error");
+
                 }
                 //return response.data.rating;
               }, function errorCallback(response) {
@@ -2643,7 +2643,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
   $scope.tbClass = ['hide_xs'];
   $scope.searchButtonClass = ['show_xs'];
   $scope.searchButton = function () {
-    console.log("ss");
+
     $scope.tbClass = [''];
     $scope.logoClass = ['hide'];
     $scope.searchButtonClass = ['hide'];
