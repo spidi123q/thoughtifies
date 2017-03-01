@@ -327,6 +327,8 @@
               $this->load->view('template/post_view_card');
           else if($value == 5)
               $this->load->view('template/rating-stars-directive');
+          else if($value == 6)
+              $this->load->view('template/audio_fetch');
         }
 
         public function listEmoji($index)      {

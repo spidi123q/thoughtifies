@@ -434,7 +434,7 @@ app.directive('imageFetch',function($http,$sce) {
                  //$sceDelegate.getTrusted($sce.HTML, response.data);
                  //console.log(response);
                  var temp = $sce.trustAsResourceUrl(response.data);
-                 console.log(temp);
+                 //console.log(temp);
                  attrs.$set('ngSrc',temp);
 
                }, function errorCallback(response) {
@@ -444,7 +444,56 @@ app.directive('imageFetch',function($http,$sce) {
           }
             //template: '<img class="md-user-avatar" src="{{data}}"/>',
         };
-    });
+});
+app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
+        return {
+            restrict: 'E',
+
+           link: function(scope, elem, attrs) {
+
+            console.log(elem["0"].childNodes["0"].autoplay);
+            elem["0"].addEventListener("ended", function() {
+               console.log("playing");
+               //elem["0"].childNodes["0"].play();
+             }, true);
+             var protoRec = MyWebSocket.protoRec;
+             console.log(protoRec);
+            MyWebSocket.socket.onMessage(function (message) {
+                 message = JSON.parse(message.data);
+                  if (message.header === protoRec.newmsg) {
+                            if (notiService.getDialog.isOpen) {
+                                  console.log("dialog open");
+                              }
+                            else {
+                              console.log("new message fuck");
+                              elem["0"].childNodes["0"].play();
+                            }
+                }else {
+                  console.log(message);
+                  console.log("fuck");
+                }
+                //elem["0"].childNodes["0"].autoplay =true;
+
+            });
+            //elem["0"].childNodes["0"].autoplay =true;
+          },
+            templateUrl: 'element/6',
+        };
+});
+app.factory('notiService',function () {
+  var dialog = {
+    isOpen : false,
+  };
+  var setDialog = function (user,isOpen){
+      dialog.isOpen = isOpen;
+      dialog.user = user;
+      console.log(dialog.isOpen);
+  };
+  return {
+    setDialog : setDialog,
+    getDialog : dialog,
+  };
+});
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
   var chat = {};
@@ -581,6 +630,9 @@ app.factory('MyWebSocket', function($websocket,$http) {
         newmsg  : "7001",
         sendmsg  : "7002",
       };
+      var protoRec = {
+        newmsg  : "8002",
+      };
 
 
 
@@ -617,6 +669,7 @@ app.factory('MyWebSocket', function($websocket,$http) {
         response  : response,
         socket  :socket,
         protoSent : protoSent,
+        protoRec : protoRec,
       };
 
       return methods;
@@ -1230,7 +1283,7 @@ app.controller('chatBox', [
 		}
 	]);
 
-app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav,dpDisplay) {
+app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav,dpDisplay,notiService) {
     $scope.chat = MyWebSocket;
     $scope.chatMessages = [];
 
@@ -1292,6 +1345,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       var mem_id = user.mem_id;
       checkUser(mem_id);
       console.log(msgMap);
+      notiService.setDialog(user,true);
       var x = msgMap.get(mem_id);
 
       console.log("content");
@@ -1327,7 +1381,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       };
 
 
-      function DialogController($scope, $mdDialog,chatButton,data,$http,EmojiService,dpDisplay) {
+      function DialogController($scope, $mdDialog,chatButton,data,$http,EmojiService,dpDisplay,notiService) {
           $scope.messages = data.messages;
 
           $scope.receiver = data.receiver;
@@ -1361,6 +1415,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
           $scope.cancel = function() {
             $mdDialog.cancel();
+            notiService.setDialog(null,false);
             chatButton.showButton();
           };
 
@@ -2526,7 +2581,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
       };
 
 });
-app.controller('notiCtrl', function ($scope, $http,chatSidenav) {
+app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
 
   $http({
       method: 'GET',
@@ -2564,6 +2619,7 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav) {
 
               });
       };
+
 
 
 });

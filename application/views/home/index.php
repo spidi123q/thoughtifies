@@ -123,6 +123,8 @@
              </div>
            </md-list-item>
         </md-list>
+
+          <audio-fetch><audio-fetch>
       </md-content>
 
      </md-sidenav>
@@ -174,7 +176,6 @@
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
-
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
