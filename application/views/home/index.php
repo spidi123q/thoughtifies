@@ -3,7 +3,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>js/node_modules/angular-ui-scroll/demo/css/style.css" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+  <script>
+    var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
+    var SESS_USERIMAGE = "<?php echo $picture; ?>";
+  </script>
 </head>
 <body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden">
   <div id="splash" ng-cloak ng-hide="bootscreen">
@@ -38,7 +42,7 @@
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
 
-                  <md-autocomplete ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
+                  <md-autocomplete id="tbs_box" ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
                   ng-disabled="ctrl.isDisabled"
                   md-no-cache="ctrl.noCache"
                   md-selected-item="ctrl.selectedItem"
@@ -177,25 +181,18 @@
   <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
   <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
-  <script>
-    var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
-    var SESS_USERIMAGE = "<?php echo $picture; ?>";
-  </script>
-
-
   <script src="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
   <script src="<?php echo base_url() ;?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
-
-
   <!-- Your application bootstrap  -->
   <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+
 
 </body>
+
 <style>
 .jk-rating-stars-container .button {
   cursor: pointer; }

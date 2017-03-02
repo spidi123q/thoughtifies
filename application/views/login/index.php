@@ -4,6 +4,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+	<script type="text/javascript">
+						if ('serviceWorker' in navigator) {
+					window.addEventListener('load', function() {
+						navigator.serviceWorker.register('sw.js').then(function(registration) {
+							// Registration was successful
+							console.log('ServiceWorker registration successful with scope: ', registration.scope);
+						}).catch(function(err) {
+							// registration failed :(
+							console.log('ServiceWorker registration failed: ', err);
+						});
+					});
+					}
+	</script>
 </head>
 	<body ng-app="IndexApp" ng-controller="AppCtrl">
 		<div class="title flex-container">
@@ -37,7 +50,7 @@
 								<span>Create & share thoughts</span>
 								<span>Privacy first! Thoughtifies don't track you</span>
 						</div>
-<video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
+<video poster="" id="bgvid" playsinline autoplay muted loop>
   <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
 	<source src="<?php echo base_url(); ?>images/untitled.webm" type="video/webm">
 
@@ -54,57 +67,5 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 
-		<!--<script>
-							  window.fbAsyncInit = function() {
-							    FB.init({
-							      appId      : '1789323091320402',
-							      cookie     : true,
-							      xfbml      : true,
-							      version    : 'v2.8'
-							    });
-							    FB.AppEvents.logPageView();
-							  };
-
-							  (function(d, s, id){
-							     var js, fjs = d.getElementsByTagName(s)[0];
-							     if (d.getElementById(id)) {return;}
-							     js = d.createElement(s); js.id = id;
-							     js.src = "//connect.facebook.net/en_US/sdk.js";
-							     fjs.parentNode.insertBefore(js, fjs);
-							   }(document, 'script', 'facebook-jssdk'));
-
-							   function checkLoginState() {
-							  FB.getLoginStatus(function(response) {
-							     console.log(response);
-
-									 sentToken(response.authResponse.accessToken,4)
-							    /* var url = '/me?fields=name,email';
-							                    FB.api(url, function (response) {
-							                        console.log(response);
-							                    });*/
-
-							  });
-
-								  FB.login(function(response) {
-								   console.log(response);
-								}, {scope: 'email'});
-
-								}
-
-							function sentToken(id_token,type) {
-								var xhr = new XMLHttpRequest();
-								xhr.open('POST', 'data/'+type);
-								xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-								xhr.onload = function() {
-									//console.log('Signed in as: ' + xhr.responseText);
-									//location.reload();
-									//window.location.assign = 'aaa';
-									//window.location.reload();
-									//document.write(xhr.responseText);
-					        //document.close();
-								};
-								xhr.send('idtoken=' + id_token);
-							}
-		</script> -->
 	</body>
 </html>
