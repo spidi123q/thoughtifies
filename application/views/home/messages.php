@@ -20,6 +20,9 @@
        </div>
   </md-list-item>
   </md-list>
+  <div layout="row" layout-align="center center">
+    <md-progress-circular ng-if="msgUserListAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+  </div>
 
   </md-sidenav>
 
@@ -35,6 +38,9 @@
           </div>
             <md-content layout="row" flex="60">
                     <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue>
+                      <div layout="row" layout-align="center center">
+                        <md-progress-circular ng-if="msgUserAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                      </div>
                           <md-list>
                                 <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
                                 <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
