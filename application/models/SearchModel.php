@@ -47,6 +47,7 @@
 
 
         $this->db->where($obj);
+        $this->db->like('CONCAT_WS( " ",fname, lname)', $data->name,'after');
 
         if ($data->keyword != '') {
           $like = array(
@@ -94,6 +95,7 @@
 
 
         $this->db->where($obj);
+        $this->db->like('CONCAT_WS( " ",fname, lname)', $data->name,'after');
 
         if ($data->keyword != '') {
           $like = array(

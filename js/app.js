@@ -1163,6 +1163,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                 photo : false,
                 online: false,
                 keyword:  "",
+                name : "",
               }
             };
 
@@ -1219,7 +1220,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                         data: $scope.searchData.data,
 
                       }).then(function successCallback(response) {
-                        //
+                          console.log(response.data);
                         response.data.forEach(function (item,index3) {
                           page.push(item);
 
@@ -1319,10 +1320,13 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
               function selectedItemChange(item) {
                 //$log.info('Item changed to ' + JSON.stringify(item));
                 console.log(item);
+                $scope.searchData.data.name = item.label;
                 $scope.startSearch();
               }
               function searchTextChange(text) {
                 console.log(text);
+                $scope.searchData.data.name = text;
+                $scope.startSearch();
               }
 
 
