@@ -144,4 +144,15 @@ a {
 .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
   background-color: palegreen !important; }
 
+.user_card {
+  background-color: white;
+  margin: 30px; }
+  .user_card img {
+    height: 200px;
+    width: 200px; }
+  @media only screen and (max-width: 600px) {
+    .user_card img {
+      width: 100%;
+      height: auto; } }
+
 /*# sourceMappingURL=index.css.map */

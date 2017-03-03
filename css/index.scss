@@ -180,3 +180,17 @@ a {
  .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
    background-color: $green !important;
  }
+ .user_card {
+   background-color: white;
+   margin: 30px;
+   img {
+     height: 200px;
+     width : 200px;
+   }
+   @media only screen and (max-width: $screen-xs) {
+      img {
+       width: 100%;
+       height: auto;
+     }
+   }
+ }

@@ -41,12 +41,17 @@
       </rzslider>
     <div layout="row" >
           <div flex  >
-                <ul>
+                <div layout="column" layout-align="center center">
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
                    <usercard info="item"></usercard>
-
                   </div>
-                </ul>
+                  <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+                  <div class="">
+                    <br><br>
+                  </div>
+                </div>
+
           </div>
   </div>
+
 </div>
