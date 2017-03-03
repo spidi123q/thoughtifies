@@ -8,6 +8,7 @@
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
   </script>
+  <title>Thoughtifies</title>
 </head>
 <body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden">
   <div id="splash" ng-cloak ng-hide="bootscreen">
@@ -42,7 +43,7 @@
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
 
-                  <md-autocomplete id="tbs_box" ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex
+                  <md-autocomplete id="tbs_box" ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex-gt-sm="50"
                   ng-disabled="ctrl.isDisabled"
                   md-no-cache="ctrl.noCache"
                   md-selected-item="ctrl.selectedItem"

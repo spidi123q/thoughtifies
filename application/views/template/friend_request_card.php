@@ -1,5 +1,5 @@
 <md-card>
-        <img ng-src="http://lorempixel.com/640/480/" class="md-card-image" alt="Washed Out">
+        <img image-fetch ng-src="{{user.picture}}" size="400" class="md-card-image" alt="Washed Out">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{user.fname}} {{user.lname}}</span>

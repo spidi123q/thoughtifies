@@ -126,6 +126,13 @@
         $query = $this->db->get('dictionary');
         return $query->result();
       }
+      public function searchByName($value)      {
+        $this->db->select('CONCAT_WS( " ",fname, lname) as label');
+        $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
+        $this->db->limit(10, 0);
+        $query = $this->db->get('member');
+        return $query->result();
+      }
       public function searchHashtag($value)   {
         $this->db->distinct();
         $this->db->select('hashtag AS label');
