@@ -26,19 +26,20 @@
 								 </md-fab-trigger>
 
 								 <md-fab-actions>
-                   <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini">
+                   <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini fab_actions" >
+                     <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/002-home.svg" alt="" >
 									 </md-button>
-                   <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini">
-										 <i class="material-icons">message</i>
+                   <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
+										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/003-search.svg" alt="" >
 									 </md-button>
-									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini">
-										 <i class="material-icons">message</i>
+									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
+                     <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
 									 </md-button>
-									 <md-button  href="#/request" aria-label="Facebook" class="md-fab md-raised md-mini">
-										 <md-icon md-svg-src="" aria-label="Facebook"></md-icon>
+									 <md-button  href="#/request" aria-label="Facebook" class="md-fab md-raised md-mini fab_actions">
+										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="" >
 									 </md-button>
-									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini">
-										 <md-icon md-svg-src="" aria-label="Google Hangout"></md-icon>
+									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini fab_actions">
+  										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/004-user.svg" alt="" >
 									 </md-button>
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
@@ -103,13 +104,13 @@
          <div flex layout="row" layout-align="space-around" ng-controller="notiCtrl">
            <div>
              <md-button class="md-icon-button" aria-label="More" ng-click="onClick('message')">
-              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" style="overflow-y:hidden;">
+              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
               <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
             </md-button>
            </div>
            <div>
              <md-button class="md-icon-button" aria-label="More" ng-click="onClick('friend_req')">
-              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/handshake.svg" alt="">
+              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
               <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
             </md-button>
            </div>

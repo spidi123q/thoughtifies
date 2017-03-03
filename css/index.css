@@ -128,4 +128,14 @@ video {
   height: 90%;
   overflow-y: scroll; }
 
+.msg_sidenav {
+  height: 500px; }
+
+.fab_actions {
+  padding-top: 7px; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
 /*# sourceMappingURL=index.css.map */

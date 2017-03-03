@@ -16,6 +16,7 @@ var dataCacheName = 'weatherData-v1';
 var cacheName = 'weatherPWA-step-8-1';
 var filesToCache = [
   '/',
+  'https://fonts.googleapis.com/icon?family=Material+Icons'
 ];
 
 self.addEventListener('install', function(e) {

@@ -465,7 +465,7 @@ app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
 
 
                                   var data = JSON.parse(message.data);
-                                  
+
                                   if (data.sender.toString() === notiService.getDialog.user.mem_id.toString()) {
 
                                   }else {
@@ -1242,7 +1242,7 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                   var result = [];
                   for (var i = index; i <= index + count - 1; i++) {
 
-                    if(i < 0 || i > max) {
+                    if(i < 0 || i >= max) {
                                 continue;
                             }
 

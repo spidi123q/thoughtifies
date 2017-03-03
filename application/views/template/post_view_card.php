@@ -2,11 +2,12 @@
   <md-card >
          <md-card-header>
            <md-card-avatar>
-            <!-- <image-fetch data="item.dp"></image-fetch>-->
+             <a href="#/users/{{item.mem_id}}">
             <img class="md-user-avatar" image-fetch ng-src="{{item.dp}}" size="60"/>
+            </a>
            </md-card-avatar>
-           <md-card-header-text>
-             <span class="md-title">{{item.fname}} {{item.lname}}</span>
+           <md-card-header-text>         
+             <span class="md-title"><a href="#/users/{{item.mem_id}}">{{item.fname}} {{item.lname}}</a></span>
              <span class="md-subhead">{{item.tag}}</span>
            </md-card-header-text>
             <md-button class="md-icon-button">
