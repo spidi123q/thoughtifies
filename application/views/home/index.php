@@ -16,7 +16,7 @@
      </div>
 
 	<md-toolbar ng-controller="ToolbarController as ctrl" class="main_toolbar">
-				<div class="md-toolbar-tools">
+				<div class="md-toolbar-tools fabSpeedDialdemoBasicUsage">
 							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
 																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
 								 <md-fab-trigger>
@@ -28,18 +28,23 @@
 								 <md-fab-actions>
                    <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini fab_actions" >
                      <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/002-home.svg" alt="" >
-									 </md-button>
+                     <md-tooltip md-direction="right" md-visible="tooltipVisible">Home</md-tooltip>
+                   </md-button>
                    <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
 										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/003-search.svg" alt="" >
+                     <md-tooltip md-direction="right" md-visible="tooltipVisible">Search People</md-tooltip>
 									 </md-button>
 									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
                      <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
+                     <md-tooltip md-direction="right" md-visible="tooltipVisible">Inbox</md-tooltip>
 									 </md-button>
 									 <md-button  href="#/request" aria-label="Facebook" class="md-fab md-raised md-mini fab_actions">
 										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="" >
+                     <md-tooltip md-direction="right" md-visible="tooltipVisible">Pending Requests</md-tooltip>
 									 </md-button>
 									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini fab_actions">
   										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/004-user.svg" alt="" >
+                       <md-tooltip md-direction="right" md-visible="tooltipVisible">My profile & Settings</md-tooltip>
 									 </md-button>
 								 </md-fab-actions>
 							 </md-fab-speed-dial>
