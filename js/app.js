@@ -510,10 +510,8 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
   var menu = {};
   menu.isOpen = false;
   menu.selectedMode = 'md-scale';
+  var sideOpen;
   var toggleLeft = buildToggler('left');
-  var toggleRight = buildToggler('right');
-  var closeLeft = buildToggler('left');
-  var closeRight = buildToggler('right');
   var bodyClick = function () {
 
     if ($mdSidenav('left').isOpen()) {
@@ -522,17 +520,14 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
     }
   };
 
-
-  function buildClose (componentId) {
-     // Component lookup should always be available since we are not using `ng-if`
-     $mdSidenav(componentId).close()
-       .then(function () {
-
-       });
-   }
-
     function buildToggler(componentId) {
+
       return function() {
+        $mdSidenav('jam')
+      .close()
+      .then(function(){
+        console.log("closed");
+      });
         $mdSidenav(componentId).toggle();
       };
     }
@@ -543,11 +538,16 @@ app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
     chat.showButton = function () {
       chat.isOpen = false;
     };
+    var isOpen = function () {
+        return sideOpen;
+    };
 
     return  {
       chat: chat,
       menu  : menu,
       toggleLeft  : toggleLeft,
+      isOpen : isOpen,
+      sideOpen : sideOpen,
     };
 
 
@@ -903,7 +903,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav) {
 			var datasource = {};
       var big  = -1,max = 0;
       var page  = [];
@@ -922,12 +922,16 @@ app.controller('msgController', [
       $scope.toggleRight = buildToggleri('right');
 
        function buildToggleri(componentId) {
+
          return function() {
+            $mdSidenav('left')
+            .close()
+            .then(function(){
+            });
            $mdSidenav(componentId).toggle();
          };
        }
        $mdSidenav('jam', true).then(function(instance) {
-
           $scope.toggleLeft();
         });
 
@@ -2349,7 +2353,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
                 });
           };
 });
-app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,$http,$rootScope, $location) {
+app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootScope, $location,$mdSidenav) {
 
     var self = this;
 
@@ -2468,6 +2472,13 @@ app.controller('ToolbarController', function ($scope, $timeout, $mdSidenav,$log,
         return (state.value.indexOf(lowercaseQuery) === 0);
       };
     }
+    $scope.onFabClick = function () {
+            $mdSidenav('left')
+             .close()
+             .then(function(){
+               $log.debug('closed');
+             });
+    };
 
 });
 app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q) {
@@ -2587,6 +2598,8 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
             });
       };
 
+
+
 });
 app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
 
@@ -2604,6 +2617,7 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
       });
       $scope.onClick = function (type) {
           //
+          chatSidenav.toggleLeft();
           $http({
               method: 'GET',
               url: 'noti/seen/'+type,
@@ -2648,5 +2662,6 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
     $scope.logoClass = ['hide'];
     $scope.searchButtonClass = ['hide'];
   };
+
 
 });

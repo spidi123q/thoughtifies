@@ -26,23 +26,19 @@
 								 </md-fab-trigger>
 
 								 <md-fab-actions>
-                   <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini fab_actions" >
+                   <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
                      <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/002-home.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Home</md-tooltip>
                    </md-button>
-                   <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
+                   <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
 										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/003-search.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Search People</md-tooltip>
 									 </md-button>
-									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions">
+									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
                      <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Inbox</md-tooltip>
 									 </md-button>
-									 <md-button  href="#/request" aria-label="Facebook" class="md-fab md-raised md-mini fab_actions">
-										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="" >
-                     <md-tooltip md-direction="right" md-visible="tooltipVisible">Pending Requests</md-tooltip>
-									 </md-button>
-									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini fab_actions">
+									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
   										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/004-user.svg" alt="" >
                        <md-tooltip md-direction="right" md-visible="tooltipVisible">My profile & Settings</md-tooltip>
 									 </md-button>
@@ -99,7 +95,7 @@
         <section layout="row" flex >
 
      <md-sidenav flex class="md-sidenav-left" md-component-id="left" class="chatnav"
-                 md-whiteframe="4">
+                 md-whiteframe="4" >
        <md-toolbar class="md-theme-indigo">
          <h1 class="md-toolbar-tools badge1" data-badge="6"></h1>
        </md-toolbar>
@@ -108,13 +104,13 @@
        <md-content layout-margin  >
          <div flex layout="row" layout-align="space-around" ng-controller="notiCtrl">
            <div>
-             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('message')">
+             <md-button class="md-icon-button" aria-label="More" href="#/messages" ng-click="onClick('message')">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
               <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('friend_req')">
+             <md-button class="md-icon-button" aria-label="More" href="#/request" ng-click="onClick('friend_req')">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
               <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
             </md-button>
