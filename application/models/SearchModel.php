@@ -127,6 +127,7 @@
         return $query->result();
       }
       public function searchByName($value)      {
+        $this->db->distinct();
         $this->db->select('CONCAT_WS( " ",fname, lname) as label');
         $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
         $this->db->limit(10, 0);

@@ -422,6 +422,10 @@
             $result['data'] = $this->SearchModel->searchByEmail($data->email);
             echo json_encode($result);
           }
+          elseif ($type === "3") {
+            $result['data'] = $this->SearchModel->searchByName($data);
+            echo json_encode($result);
+          }
           else {
             $result['data'] = $this->SearchModel->searchDictionary($data);
             echo json_encode($result);

@@ -1281,7 +1281,49 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
 
               $scope.startSearch(1);
 
+              var self = this;
 
+              self.simulateQuery = false;
+              self.isDisabled    = false;
+
+              // list of `state` value/display objects
+              self.querySearch   = querySearch;
+              self.selectedItemChange = selectedItemChange;
+              self.searchTextChange   = searchTextChange;
+              self.newState = newState;
+
+              function newState(state) {
+                alert("Sorry! You'll need to create a Constitution for " + state + " first!");
+              }
+
+              // ******************************
+              // Internal methods
+              // ******************************
+
+              /**
+               * Search for states... use $timeout to simulate
+               * remote dataservice call.
+               */
+              function querySearch (query) {
+
+                  return $http({
+                      method: 'GET',
+                      url: 'search/tool/3/'+query,
+                    }).then(function successCallback(response) {
+
+                        return response.data.data;
+                      }, function errorCallback(response) {
+                          return response;
+                      });
+              }
+              function selectedItemChange(item) {
+                //$log.info('Item changed to ' + JSON.stringify(item));
+                console.log(item);
+                $scope.startSearch();
+              }
+              function searchTextChange(text) {
+                console.log(text);
+              }
 
 
 
