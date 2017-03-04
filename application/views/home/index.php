@@ -116,7 +116,7 @@
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More" ng-click="onClick('rating')">
+             <md-button class="md-icon-button" aria-label="More" href="#/listrating" ng-click="onClick('rating')">
                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/earth-globe.svg" alt="">
                <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
            </md-button>

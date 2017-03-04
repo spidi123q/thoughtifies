@@ -25,13 +25,13 @@
      <md-menu-content width="2">
        <md-menu-item>
          <md-button ng-click="deleteMsgUser(item.mem_id)">
-           <i class="material-icons">delete</i>
+           <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon>
            Delete
          </md-button>
        </md-menu-item>
        <md-menu-item>
          <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
-           <md-icon md-svg-icon="call:voicemail"></md-icon>
+           <md-icon md-font-library="material-icons" class="md-light md-48">block</md-icon>
            Block
          </md-button>
        </md-menu-item>

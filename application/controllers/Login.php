@@ -35,6 +35,9 @@
       private function pageTBS()     {
         $this->load->view('home/tbs');
       }
+      private function pageMyPostRating()     {
+        $this->load->view('home/my_post-rating');
+      }
 
 
       public function index() {
@@ -149,6 +152,9 @@
         }
         elseif ($value == 5) {
           $this->pageTBS();
+        }
+        elseif ($value == 6) {
+          $this->pageMyPostRating();
         }
         else {
           echo "invalid page selection";

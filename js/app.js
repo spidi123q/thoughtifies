@@ -43,6 +43,9 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/tbs/:type/:data',{
                   templateUrl:'p/5',
                 })
+                .when('/listrating',{
+                  templateUrl:'p/6',
+                })
                 .otherwise({redirectTo:'/'});
 }]);
 
