@@ -444,6 +444,9 @@
         public function setNotification($data)      {
           $this->SessionModel->setNotification($data);
         }
+        public function deleteMsgUser($id)      {
+          $this->MessageModel->deleteMsgUser($id);
+        }
 
 
 

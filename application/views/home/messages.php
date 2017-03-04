@@ -13,12 +13,32 @@
   </md-toolbar>
 -->
   <md-list >
-    <md-list-item  ui-scroll="item in jj" adapter="msgUserListAdapter on msgController" class="md-3-line" ng-click="selectMsgUser(item)">
+    <md-list-item  ui-scroll="item in jj" adapter="msgUserListAdapter on msgController" class="md-2-line" ng-click="selectMsgUser(item)">
        <img image-fetch ng-src="{{item.picture}}" size="60" class="md-avatar" alt="" />
        <div class="md-list-item-text" layout="column">
          {{item.fname}} {{item.lname}}
        </div>
+       <md-menu class="md-secondary">
+     <md-button aria-label="Open phone interactions menu" class="md-icon-button md-warn" ng-click="openMenu($mdOpenMenu, $event)">
+       <i class="material-icons">more_vert</i>
+     </md-button>
+     <md-menu-content width="2">
+       <md-menu-item>
+         <md-button ng-click="deleteMsgUser(item.mem_id)">
+           <i class="material-icons">delete</i>
+           Delete
+         </md-button>
+       </md-menu-item>
+       <md-menu-item>
+         <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+           <md-icon md-svg-icon="call:voicemail"></md-icon>
+           Block
+         </md-button>
+       </md-menu-item>
+     </md-menu-content>
+   </md-menu>
   </md-list-item>
+
   </md-list>
   <div layout="row" layout-align="center center">
     <md-progress-circular ng-if="msgUserListAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>

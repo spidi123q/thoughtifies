@@ -4,9 +4,9 @@
   <div layout="column" layout-align="center center" ng-controller="Search as ctrl" >
     <br>
 
-    <div layout-gt-xs="column" layout-xs="column" layout-align="space-around center">
+    <div layout-gt-xs="column" layout-xs="column" layout-align="space-between center">
 
-        <div layout="row" layout-align="space-around center" layout-padding >
+        <div layout="row"  layout-padding >
           <md-switch ng-change="startSearch()" ng-model="searchData.data.photo" aria-label="Switch 1">
             photo
           </md-switch>
@@ -31,7 +31,7 @@
             <label>{{searchData.title.keyword}}</label>
             <input ng-change="startSearch()" ng-model="searchData.data.keyword">
           </md-input-container>
-          
+
           <div >
             <md-autocomplete
            ng-disabled="ctrl.isDisabled"

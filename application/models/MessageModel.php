@@ -19,20 +19,26 @@
               FROM (
               SELECT  sender, receiver, date_time
               FROM myMessages
-              WHERE sender =  ?
-              OR receiver =  ?
+              WHERE (sender =  ?
+              OR receiver =  ?)
+              AND (sender_deleted = ? OR receiver_deleted !=?)
               )result
               UNION SELECT result.receiver, result.date_time
               FROM (
 
               SELECT  sender, receiver, date_time
               FROM myMessages
-              WHERE sender =  ?
-              OR receiver =  ?
+              WHERE (sender =  ?
+              OR receiver =  ?)
+              AND (sender_deleted != ? OR receiver_deleted = ?)
               )result
             )r WHERE sender !=  ?) count_table";
 
             $result = $this->db->query($qry, array(
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
+              $this->session->SESS_MEMBER_ID,
               $this->session->SESS_MEMBER_ID,
               $this->session->SESS_MEMBER_ID,
               $this->session->SESS_MEMBER_ID,
@@ -52,8 +58,9 @@
 
             SELECT  sender, receiver, date_time
             FROM myMessages
-            WHERE sender =  ?
-            OR receiver =  ?
+            WHERE (sender =  ?
+            OR receiver =  ?)
+            AND (sender_deleted = ? OR receiver_deleted !=?)
             ORDER BY date_time DESC
             )result
             UNION SELECT result.receiver, result.date_time
@@ -61,14 +68,19 @@
 
             SELECT  sender, receiver, date_time
             FROM myMessages
-            WHERE sender =  ?
-            OR receiver =  ?
+            WHERE (sender =  ?
+            OR receiver =  ?)
+            AND (sender_deleted != ? OR receiver_deleted = ?)
             ORDER BY date_time DESC
             )result
             ORDER BY date_time DESC
           )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,5";
 
           $result = $this->db->query($qry, array(
+            $this->session->SESS_MEMBER_ID,
+            $this->session->SESS_MEMBER_ID,
+            $this->session->SESS_MEMBER_ID,
+            $this->session->SESS_MEMBER_ID,
             $this->session->SESS_MEMBER_ID,
             $this->session->SESS_MEMBER_ID,
             $this->session->SESS_MEMBER_ID,
@@ -114,6 +126,10 @@
                                       ->where('sender',$data)
                               ->group_end()
                       ->group_end()
+                      ->group_start()
+                        ->where('sender_deleted !=',$this->session->SESS_MEMBER_ID)
+                        ->where('receiver_deleted !=',$this->session->SESS_MEMBER_ID)
+                      ->group_end()
                    ->group_end()
             ->get();
             echo json_encode($query->row());
@@ -153,6 +169,10 @@
                                       ->where('sender',$data->user)
                               ->group_end()
                       ->group_end()
+                      ->group_start()
+                        ->where('sender_deleted !=',$this->session->SESS_MEMBER_ID)
+                        ->where('receiver_deleted !=',$this->session->SESS_MEMBER_ID)
+                      ->group_end()
                       //->where("date_time >=","c")
                    ->group_end()
                    ->order_by('date_time', 'DESC')
@@ -178,6 +198,19 @@
                    ->group_end()
             ->get_compiled_select();
             echo $query;
+      }
+
+      public function deleteMsgUser($id)      {
+        $this->db->trans_start();
+        $this->db->set('sender_deleted',$this->session->SESS_MEMBER_ID);
+        $this->db->where('sender', $this->session->SESS_MEMBER_ID);
+        $this->db->where('receiver', $id);
+        $this->db->update('myMessages');
+        $this->db->set('receiver_deleted',$this->session->SESS_MEMBER_ID);
+        $this->db->where('receiver', $this->session->SESS_MEMBER_ID);
+        $this->db->where('sender', $id);
+        $this->db->update('myMessages');
+        $this->db->trans_complete();
       }
 
 

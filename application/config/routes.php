@@ -69,6 +69,7 @@ $route['(:any)/msg/get']='Login/getMessages';
 $route['(:any)/msg/users/(:num)']='Login/getMsgUsers/$2';
 $route['(:any)/msg/users/count']='Login/getMsgUsersCount';
 $route['(:any)/msg/f/(:num)']='Login/f/$2';
+$route['(:any)/msg/del/user/(:num)']='Login/deleteMsgUser/$2';
 $route['(:any)/msg/page/(:num)']='Login/messagePagination/$2';
 $route['(:any)/msg/emoji/(:num)']='Login/listEmoji/$2';
 $route['(:any)/search/tool/(:num)/(:any)']='Login/searchToolBar/$2/$3';

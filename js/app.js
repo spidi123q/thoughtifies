@@ -903,7 +903,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav','$mdDialog', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav$mdDialog) {
 			var datasource = {};
       var big  = -1,max = 0;
       var page  = [];
@@ -1112,8 +1112,24 @@ app.controller('msgController', [
 
         }
     };
+
     $scope.onEmojiClick = function (item) {
       $scope.msg += " "+item;
+    };
+
+    $scope.openMenu = function($mdOpenMenu, ev) {
+       $mdOpenMenu(ev);
+    };
+
+    $scope.deleteMsgUser = function(mem_id){
+      $http({
+        method: 'GET',
+        url: 'msg/del/user/'+mem_id,
+      }).then(function successCallback(response) {
+          console.log(response.data);
+        }, function errorCallback(response) {
+
+        });
     };
 
 
@@ -1122,9 +1138,6 @@ app.controller('msgController', [
 	]);
 
 
-app.controller('DemoCtrl', function() {
-
-});
 app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$timeout,$http,$q) {
 
     var big = -1,page = [];
