@@ -4,7 +4,7 @@
         <md-list-item class="md-2-line" >
           <img ng-csp image-fetch ng-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text post_dialog_contenteditable" layout="column">
-            <div contenteditable ng-model="data"
+            <div  contenteditable="true" placeholder="Share your thoughts" ng-model="data"
             ng-focus="focus()"
             ng-blur="unfocus()"
             ></div>

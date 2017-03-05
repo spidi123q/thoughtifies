@@ -12,13 +12,17 @@
     max-height: 150;">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
-                <h3>{{settingsData.fname}} {{settingsData.lname}}</h3>
+                <h3><md-truncate flex>
+            {{settingsData.fname}} {{settingsData.lname}}
+          </md-truncate></h3>
                 <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,1)" aria-label="call">
                   <i class="material-icons">create</i>
                 </md-button>
               </div>
               <div layout="row"  layout-xs="column">
-                  <h5>{{settingsData.tag}}dddddddddd ddd dddd ddddddddddd</h5>
+                  <h5><md-truncate flex>
+            {{settingsData.tag}}dddddddddd ddd dddd ddddddddddd
+          </md-truncate></h5>
                   <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
                     <i class="material-icons">create</i>
                   </md-button>

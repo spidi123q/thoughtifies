@@ -21,7 +21,7 @@
             </md-content>
           </md-content>
           <div class="chat_dialog_box">
-            <div class="chat_dialog_contenteditable" md-whiteframe="4"  contenteditable="true"
+            <div class="chat_dialog_contenteditable msg_placeholder" md-whiteframe="4"  contenteditable="true" placeholder="Type your message"
             ng-model="msg" ng-change="change()"
             ng-keypress="checkIfEnterKeyWasPressed($event,this)">
             </div>

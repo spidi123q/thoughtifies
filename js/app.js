@@ -80,7 +80,7 @@ app.directive('friendpanel', function () {
       return {
           restrict: 'E',
           scope : {
-            uid : '=uid'
+            uid : '=uid',
           },
           controller: ['$scope','$http','$rootScope','$location','$mdDialog', function ($scope,$http,$rootScope, $location,$mdDialog) {
             $scope.buttons = {
@@ -217,12 +217,11 @@ app.directive('friendpanel', function () {
       return {
           restrict: 'E',
           scope : {
-            uid : '=uid'
+            adapter : '=adapter'
           },
           controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
-                $scope.shadow = {};
+
                 $scope.picture = SESS_USERIMAGE;
-                var placeholder = "<span style='opacity:0.54'>Share your thoughts</span>";
                 $scope.upload = {
                   progress : true,
                   button : false,
@@ -230,22 +229,7 @@ app.directive('friendpanel', function () {
                     file : false,
                   }
                 };
-                $scope.focus = function functionName() {
-                  //
-                  if ($scope.data === placeholder) {
-                    $scope.data = "";
-                  }
-                  $scope.shadow = {
-                     //"box-shadow" : "0px 0px 30px #888888",
-                  };
-                };
-                $scope.unfocus = function functionName($event) {
-                  //
-                  if ($scope.data === "") {
-                    $scope.data = placeholder;
-                  }
-                  $scope.shadow = {};
-                };
+
                 $scope.emojilist = [];
                 $scope.view = false;
                 $scope.changeEmojiView = function () {
@@ -265,7 +249,7 @@ app.directive('friendpanel', function () {
                   }
                   $scope.data += " "+item;
                 };
-                $scope.data = placeholder;
+
                 var uploader = $scope.uploader = new FileUploader({
                   url: 'home/upload',
                   autoUpload: true,
@@ -337,15 +321,15 @@ app.directive('friendpanel', function () {
                             upload : $scope.upload.response,
                           },
                           }).then(function successCallback(response) {
-
-                            if (response.data === "1") {
+                                console.log(response.data);
+                                $scope.adapter.prepend([response.data]);
                                 uploader.clearQueue();
                                 $scope.data = placeholder;
-                            }
+
 
                           }, function errorCallback(response) {
 
-                          });
+               });
 
                           // $scope.data = $scope.data.replace(/(^|\W)(#[a-z\d][\w-]*)/igm, '$1<a href="">$2</a>');
 
@@ -364,8 +348,10 @@ app.directive('friendpanel', function () {
                             return matches;
                         }
 
-                        //
-
+                };
+                $scope.focus = function () {
+                };
+                $scope.unfocus = function ($event) {
                 };
 
 
@@ -471,6 +457,7 @@ app.directive('imageFetch',function($http,$sce) {
             //template: '<img class="md-user-avatar" src="{{data}}"/>',
         };
 });
+
 app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
         return {
             restrict: 'E',
@@ -1721,7 +1708,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 },
               },
               photos  : {
-                name  : "Photos",
+                name  : "POSTS",
               },
               settings  : {
                 name  : "Settings",
@@ -2189,7 +2176,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
                 },
               },
               photos  : {
-                name  : "Photos",
+                name  : "POSTS",
               },
             },
             config: false,
@@ -2219,6 +2206,12 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
               }else {
                 $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
                 $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+                if (response.data.about_partner === null) {
+                  delete $scope.settingsData.tabs.profile.info.mypre;
+                }
+                if (response.data.about_me === null) {
+                  delete $scope.settingsData.tabs.profile.info.aboutme;
+                }
                 $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
                 $scope.settingsData.tabs.profile.info.email.data = response.data.email;
                 $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;

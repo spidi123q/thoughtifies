@@ -372,7 +372,9 @@
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() === TRUE){
-          echo "1";
+          $this->db->where('id',$post_id);
+          $result = $this->db->get('post_view');
+          echo json_encode($result->row());
         }else {
           echo "0";
         }
@@ -425,6 +427,7 @@
       public function getPosts($offset,$id)      {
         if($id !== '')
           $this->db->where('mem_id',$id);
+
         $this->db->limit(10, $offset);
         $query = $this->db->get("post_view");
         $result = $query->result_array();

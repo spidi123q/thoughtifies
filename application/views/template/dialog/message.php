@@ -1,5 +1,5 @@
 <md-dialog class="msg_dialog" aria-label="Mango (Fruit)">
-  <div class="msg_dialog_contenteditable" md-whiteframe="4"  contenteditable="true"
+  <div class="msg_dialog_contenteditable msg_placeholder"  contenteditable="true" placeholder="Type your message"
     ng-model="msg" ng-change="change()"
     ng-keypress="checkIfEnterKeyWasPressed($event,this)">
     </div>

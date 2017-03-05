@@ -1,22 +1,22 @@
 <div id="recentVisitors" class="memberTable">
              <a href="#/users/34">hh</a>
 </div>
+<div ng-controller="PostView">
+      <div  layout="column" layout-align="center center" >
+        <div  layout="row" layout-align="center center" >
+          <postcard adapter="adapter" style="width:500px"></postcard>
+        </div>
+      </div>
 
-
-    <div  layout="column" layout-align="center center" >
-      <div  layout="row" layout-align="center center" >
-        <postcard  style="width:500px"></postcard>
+    <br>
+    <div  layout="column" layout-align="center center"  >
+      <div layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on PostView" >
+          <post-view-card style="width:520px"></post-view-card>
+      </div>
+      <div layout="column"  layout-align="center center">
+        <br>
+        <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+        <br>
       </div>
     </div>
-
-  <br>
-  <div  layout="column" layout-align="center center" ng-controller="PostView" >
-    <div layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on PostView" >
-        <post-view-card style="width:520px"></post-view-card>
-    </div>
-    <div layout="column"  layout-align="center center">
-      <br>  
-      <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
-      <br>
-    </div>
-  </div>
+</div>
