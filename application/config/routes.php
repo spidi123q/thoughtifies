@@ -106,5 +106,7 @@ $route['(:any)/img/dp/(:any)/(:num)']='Login/dpFetch/$2/$3';
 $route['(:any)/img/userdp/(:num)/(:num)']='Login/userDpFetch/$2/$3';
 $route['(:any)/tbs/hash/(:any)/(:num)']='Login/searchPostByHashtag/$2/$3';
 $route['(:any)/tbs/hash/count/(:any)']='Login/searchPostByHashtagCount/$2';
+$route['(:any)/tbs/keyword/(:any)/(:num)']='Login/searchPostByKeyword/$2/$3';
+$route['(:any)/tbs/keyword/count/(:any)']='Login/searchPostByKeywordCount/$2';
 $route['(:any)/noti/get']='Login/getNotification';
 $route['(:any)/noti/seen/(:any)']='Login/setNotification/$2';

@@ -196,6 +196,32 @@
         $query = $this->db->get();
         echo json_encode($query->row());
       }
+      public function searchPostByKeyword($data,$offset)      {
+        $this->db->like('content',$data);
+        $this->db->limit(10, $offset);
+        $query = $this->db->get('post_view');
+        $result = $query->result_array();
+        foreach ($result as $key => $row){
+          $this->db->select("rating");
+          $this->db->where( array(
+            'mem_id' => $this->session->SESS_MEMBER_ID,
+            'post_id' => $row['id'],
+          ));
+          $query = $this->db->get("rating");
+          $result2 = $query->row();
+          $result["$key"]["my_rating"] = isset($result2)?$result2->rating:null;
+        }
+        echo json_encode($result);
+      }
+
+      public function searchPostByKeywordCount($data)    {
+        $this->db->select('COUNT(*) as count');
+        $this->db->from('post_view');
+        $this->db->like('content',$data);
+        $query = $this->db->get();
+        //echo $query;
+         echo json_encode($query->row());
+      }
 
 
    }

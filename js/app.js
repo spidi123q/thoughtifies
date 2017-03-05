@@ -2551,6 +2551,12 @@ app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootS
               self.isHash = (response.data.type === "0")? true :false;
               self.isEmail = (response.data.type === "1")? true :false;
               self.isOther = (response.data.type === "2")? true :false;
+              if (response.data.data.length === 0 ) {
+                var data = {
+                  label : info.data,
+                };
+                response.data.data.push(data);
+              }
               return response.data.data;
             }, function errorCallback(response) {
                 return response;
@@ -2558,12 +2564,18 @@ app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootS
       }else {
         return $http({
             method: 'GET',
-            url: 'search/tool/'+info.type+'/'+info.data,
+            url: 'search/tool/'+info.type+'/'+info.data.toLowerCase(),
           }).then(function successCallback(response) {
 
               self.isHash = (response.data.type === "0")? true :false;
               self.isEmail = (response.data.type === "1")? true :false;
               self.isOther = (response.data.type === "2")? true :false;
+              if (response.data.data.length === 0 ) {
+                var data = {
+                  label : info.data,
+                };
+                response.data.data.push(data);
+              }
               return response.data.data;
             }, function errorCallback(response) {
                 return response;
@@ -2584,6 +2596,8 @@ app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootS
       }
       else if (self.type == 'hash') {
           $location.path( "tbs/hash/"+item.label );
+      }else {
+        $location.path( "tbs/keyword/"+item.label.toLowerCase() );
       }
     }
 

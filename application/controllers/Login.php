@@ -446,6 +446,12 @@
         public function searchPostByHashtagCount($data)        {
           $this->SearchModel->searchPostByHashtagCount($data);
         }
+        public function searchPostByKeyword($data,$offset)        {
+          $this->SearchModel->searchPostByKeyword($data,$offset);
+        }
+        public function searchPostByKeywordCount($data)        {
+          $this->SearchModel->searchPostByKeywordCount($data);
+        }
         public function getNotification()      {
           $this->SessionModel->getNotification();
         }

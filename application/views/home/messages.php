@@ -50,7 +50,7 @@
 
         <div  layout="column" flex="80" style="height:100%">
           <div layout="row" layout-align="end center">
-            <span flex-offset="5">{{msgUserName.fname}} {{msgUserName.lname}}</span>
+            <a href="#/users/{{msgUser}}"><span flex-offset="5">{{msgUserName.fname}} {{msgUserName.lname}}</span></a>
             <md-list-item flex-offset="5" ng-click="toggleLeft()" class="noright">
               <img alt="{{ person.name }}" ng-src="<?php echo base_url(); ?>images/flaticons/svg/team.svg" class="md-avatar" />
               <p>CONTACTS</p>
