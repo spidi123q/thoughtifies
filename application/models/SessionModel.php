@@ -141,12 +141,12 @@
       public function getDetails($id)      {
         $this->db->select('*');
         $qry = "NOT EXISTS (SELECT receiver as users FROM blocked
-        where sender=$id
+        where sender=$id and receiver={$this->session->SESS_MEMBER_ID}
         union
         SELECT sender as users FROM blocked
-        where receiver=$id)";
+        where receiver=$id and sender = {$this->session->SESS_MEMBER_ID})";
         if($id !== $this->session->SESS_MEMBER_ID)
-        $this->db->where($qry);
+          $this->db->where($qry);
         $this->db->where(array('mem_id' => $id));
         $query = $this->db->get('member_details');
         if ($query->num_rows() > 0) {
