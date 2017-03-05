@@ -62,8 +62,13 @@
                       ->group_end();
 
         }
-        $this->advQry = $this->db;
+        $this->db->where("mem_id not in (SELECT receiver as users FROM blocked
+        where sender={$this->session->SESS_MEMBER_ID}
+        union
+        SELECT sender as users FROM blocked
+        where receiver={$this->session->SESS_MEMBER_ID})");
         $this->db->limit(10,$data->offset);
+
         //$advQry = $this->db->get_compiled_select('member_details');
         $advQry = $this->db->get('member_details');
         echo json_encode($advQry->result());

@@ -2147,12 +2147,13 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
 }]);
 
-app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','MyPosts',function($scope,$http,$mdDialog,$routeParams,MyPosts) {
-
-
+app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','MyPosts','$location',function($scope,$http,$mdDialog,$routeParams,MyPosts,$location) {
 
 
           $scope.uid = $routeParams.uid;
+          if ($scope.uid == SESS_MEMBER_ID) {
+            $location.path( "/profile" );
+          }
           $scope.datasource = MyPosts;
           $scope.settingsData = {
             tabs : {
