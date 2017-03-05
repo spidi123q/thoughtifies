@@ -3,7 +3,7 @@
     <md-list class="md-dense" flex>
         <md-list-item class="md-2-line" >
           <img ng-csp image-fetch ng-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
-          <div class="md-list-item-text" layout="column">
+          <div class="md-list-item-text post_dialog_contenteditable" layout="column">
             <div contenteditable ng-model="data"
             ng-focus="focus()"
             ng-blur="unfocus()"
@@ -29,11 +29,13 @@
            </md-switch>
             <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
             <label for="input-file-id" class="md-icon-button">
-                  <i class="material-icons">insert_photo</i>
+                  <md-icon md-font-library="material-icons" class="md-light md-48">insert_photo</md-icon>
             </label>
           </span>
           <span layout="row" layout-align="end center">
-            <md-button ng-click="post()" ng-disabled="upload.button" class="md-warn">post</md-button>
+            <md-button ng-click="post()" ng-disabled="upload.button" class="md-warn">
+              <md-icon md-font-library="material-icons" class="md-light md-48">send</md-icon>
+            </md-button>
           </span>
         </span>
         <md-content  ng-hide="!view"style="height:100%;">

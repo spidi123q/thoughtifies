@@ -128,6 +128,24 @@ video {
   height: 90%;
   overflow-y: scroll; }
 
+.msg_dialog_contenteditable {
+  justify-content: space-around;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  width: 90%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-wrap: break-word; }
+
+.post_dialog_contenteditable {
+  overflow-wrap: break-word; }
+
+.msg_dialog {
+  width: 50%;
+  height: 50%; }
+
 .msg_sidenav {
   height: 500px; }
 

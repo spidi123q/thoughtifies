@@ -282,6 +282,8 @@
           $this->load->view('template/dialog/chat_box');
         else if ($sel == 3)
           $this->load->view('template/dialog/block');
+        else if ($sel == 4)
+          $this->load->view('template/dialog/message');
       }
 
       public function getDialogContent($sel)      {

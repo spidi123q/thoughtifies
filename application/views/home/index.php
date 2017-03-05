@@ -153,11 +153,13 @@
 
 						</div>
  </md-content>
-
-  <md-button ng-hide="chatButton.chat.isOpen" ng-click="chatButton.toggleLeft()" style="position: fixed;
+<span ng-controller="notiCtrl">
+  <md-button ng-hide="chatButton.chat.isOpen" ng-click="toggleLeft()" style="position: fixed;
     z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
-           <i class="material-icons " >perm_contact_calendar</i><span class="badge1" data-badge="8"></span>
+           <i class="material-icons " >perm_contact_calendar</i><span ng-hide="total === 0" class="badge1" data-badge="{{total}}"></span>
    </md-button>
+</span>
+
 
 
 

@@ -16,7 +16,7 @@
            </md-button>
            </md-menu-item>
            <md-menu-item>
-             <md-button ng-click="ctrl.redial($event)">
+             <md-button ng-click="actions.msgButton($event)">
               <md-icon md-font-library="material-icons" class="md-light md-48">message</md-icon>
                Message
              </md-button>

@@ -76,13 +76,13 @@ app.config( [
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
-  app.directive('friendpanel', function () {
+app.directive('friendpanel', function () {
       return {
           restrict: 'E',
           scope : {
             uid : '=uid'
           },
-          controller: ['$scope','$http','$rootScope','$location', function ($scope,$http,$rootScope, $location) {
+          controller: ['$scope','$http','$rootScope','$location','$mdDialog', function ($scope,$http,$rootScope, $location,$mdDialog) {
             $scope.buttons = {
               request : {
                 icon : "add",
@@ -170,6 +170,29 @@ app.config( [
 
                 });
 
+            };
+            $scope.buttons.msgButton = function ($event) {
+              var parentEl = angular.element(document.body);
+                     $mdDialog.show({
+                       parent: parentEl,
+                       targetEvent: $event,
+                       templateUrl: 'dialog/4',
+                       clickOutsideToClose: true,
+                       locals: {
+                         uid: $scope.uid
+                       },
+                       controller: DialogController
+                    });
+                    function DialogController($scope, $mdDialog, uid,sendMessage) {
+                      $scope.uid = uid;
+                      $scope.sendMessage = sendMessage;
+                      $scope.cancel = function() {
+                        $mdDialog.cancel();
+                      };
+                      $scope.send = function () {
+                        sendMessage.sendMsg($scope.uid,$scope.msg);
+                      };
+                    }
             };
 
             $scope.buttons.openMenu = openMenu;
@@ -506,6 +529,51 @@ app.factory('notiService',function () {
     getDialog : dialog,
   };
 });
+app.factory('sendMessage',['$http','MyWebSocket',function($http,MyWebSocket) {
+
+  function taskList (data) {
+
+     if (data.code === MyWebSocket.protoSent.newmsg) {
+
+         var info = {
+           header: MyWebSocket.protoSent.newmsg,
+           data: data.data,
+         };
+         MyWebSocket.socket.send(info);
+
+     }
+ }
+
+  var sendMsg = function (receiver ,message) {
+          var data = {
+            receiver : receiver,
+            message : message
+          };
+
+            $http({
+              method: 'POST',
+              url: 'msg/sent',
+              data: data,
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                if (response.data === "1") {
+                  var data = {
+                    code : MyWebSocket.protoSent.newmsg,
+                    data: receiver,
+                  };
+                  taskList(data);
+                }
+              }, function errorCallback(response) {
+
+              });
+
+		};
+    return {
+      sendMsg : sendMsg,
+    };
+
+
+}]);
 app.factory('chatSidenav',['$mdSidenav',function($mdSidenav) {
 
   var chat = {};
@@ -1124,15 +1192,17 @@ app.controller('msgController', [
        $mdOpenMenu(ev);
     };
 
-    $scope.deleteMsgUser = function(mem_id){
-      $http({
-        method: 'GET',
-        url: 'msg/del/user/'+mem_id,
-      }).then(function successCallback(response) {
-          console.log(response.data);
-        }, function errorCallback(response) {
+    $scope.deleteMsgUser = function(mem_id,$index){
+        console.log($index);
+        $scope.msgUserListAdapter.applyUpdates($index, []);
+        $http({
+          method: 'GET',
+          url: 'msg/del/user/'+mem_id,
+        }).then(function successCallback(response) {
+            console.log(response.data);
+          }, function errorCallback(response) {
 
-        });
+          });
     };
 
 
@@ -2182,7 +2252,7 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
 }]);
 
 
- app.controller('Request', function ($scope,$timeout,$q,$http) {
+app.controller('Request', function ($scope,$timeout,$q,$http) {
 
          var datasource = {};
          var big =-1,max = -1;
@@ -2663,7 +2733,7 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
 
 
 });
-app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
+app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSidenav) {
 
   $http({
       method: 'GET',
@@ -2673,6 +2743,8 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
         $scope.msgButton = parseInt( response.data.message);
         $scope.globeButton = parseInt( response.data.rating);
         $scope.handButton = parseInt( response.data.friend_req);
+        $scope.total = $scope.msgButton + $scope.globeButton + $scope.handButton;
+        console.log($scope.total);
         //return response.data.rating;
       }, function errorCallback(response) {
 
@@ -2702,13 +2774,25 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket) {
 
               });
       };
+         $scope.toggleLeft = buildToggler('left');
+        function buildToggler(componentId) {
+
+            return function() {
+              $mdSidenav('jam')
+            .close()
+            .then(function(){
+              console.log("closed");
+              $scope.total = 0;
+            });
+              $mdSidenav(componentId).toggle();
+            };
+       }
 
 
 
 });
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
   $scope.bootscreen = false;
-  $scope.chatButton = chatSidenav;
   $scope.jsonToURL = function (data) {
     var str = Object.keys(data).map(function(key){
         return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
