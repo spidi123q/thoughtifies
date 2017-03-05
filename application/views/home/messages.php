@@ -56,8 +56,8 @@
               <p>CONTACTS</p>
             </md-list-item>
           </div>
-            <md-content layout="row" flex="60">
-                    <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue>
+            <md-content layout="row" flex="60" style="padding-left:20px;">
+                    <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue style="width:100%;">
                       <div layout="row" layout-align="center center">
                         <md-progress-circular ng-if="msgUserAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
                       </div>
@@ -79,8 +79,8 @@
                     </div>
             </md-content>
 
-            <div layout="column" style="width:100%;padding-top:10px">
-              <div class="msg_placeholder" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="width:100%;height:40px;"
+            <div layout="column" style="width:100%;padding-top:10px;">
+              <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="width:100%;height:40px;"
               ng-focus="focus()"
               ng-blur="unfocus()"
               ></div>

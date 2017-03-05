@@ -1524,7 +1524,6 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           $scope.emojiView = true;
           $scope.msgView = !$scope.emojiView;
           $scope.kunna = "dialog/content/1";
-          $scope.msg= "jkhjkh";
           $scope.dpDisplay = dpDisplay;
           $scope.setDp = function (item) {
             item.receiver = item.receiver.toString();

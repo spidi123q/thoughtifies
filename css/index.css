@@ -110,23 +110,28 @@ video {
   height: 25px;
   width: 25px; }
 
+.chat_dialog {
+  height: 60%;
+  width: 50%; }
+
 .chat_dialog_content {
   overflow-y: scroll;
-  height: 50%; }
+  height: 60%; }
 
 .chat_dialog_box {
   bottom: 0;
-  height: 7%;
+  height: 40%;
   max-height: 150px; }
 
 .chat_dialog_contenteditable {
   justify-content: space-around;
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-bottom: 25px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
   width: 90%;
-  height: 90%;
-  overflow-y: scroll; }
+  height: 30%;
+  overflow-y: auto;
+  overflow-wrap: break-word; }
 
 .msg_dialog_contenteditable {
   justify-content: space-around;
@@ -161,6 +166,9 @@ a {
 
 .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
   background-color: palegreen !important; }
+
+.md-primary.md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
+  background-color: #27c6b7 !important; }
 
 .user_card {
   background-color: white;

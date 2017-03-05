@@ -1,8 +1,7 @@
-<md-dialog  aria-label="Mango (Fruit)" style="width:100%">
+<md-dialog  class="chat_dialog">
 
-  <md-dialog-content style="overflow-y:hidden;">
-          <md-content>
-            <md-content class="md-dialog-content chat_dialog_content"  ng-hide="view" scroll-glue>
+  <md-dialog-content layout="column" layout-align="space-between center" style="overflow-y:hidden;height:100%;">
+            <md-content class="md-dialog-content chat_dialog_content"  ng-hide="view" scroll-glue style="width:100%;height: 100%;">
                 <md-list style="" >
                   <md-list-item class="md-long-text"  ng-repeat="item in messages"  style="padding: 10px; ">
                     <img ng-click="setDp(item)" image-fetch  ng-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
@@ -19,13 +18,10 @@
                 </span>
 
             </md-content>
-          </md-content>
-          <div class="chat_dialog_box">
             <div class="chat_dialog_contenteditable msg_placeholder" md-whiteframe="4"  contenteditable="true" placeholder="Type your message"
             ng-model="msg" ng-change="change()"
             ng-keypress="checkIfEnterKeyWasPressed($event,this)">
             </div>
-          </div>
 
 
 
@@ -34,7 +30,7 @@
 
 
 
-  <md-dialog-actions>
+  <md-dialog-actions >
     <md-button   ng-click="cancel()">
      close
     </md-button>
@@ -44,9 +40,6 @@
           <i class="material-icons ">tag_faces</i>
         </md-button>
   </md-switch>
-    <md-button   ng-click="send(msg);msg=''">
-     sent
-    </md-button>
 
   </md-dialog-actions>
 
