@@ -82,7 +82,7 @@ app.directive('friendpanel', function () {
           scope : {
             uid : '=uid',
           },
-          controller: ['$scope','$http','$rootScope','$location','$mdDialog', function ($scope,$http,$rootScope, $location,$mdDialog) {
+          controller: ['$scope','$http','$rootScope','$location','$mdDialog','MyWebSocket', function ($scope,$http,$rootScope, $location,$mdDialog,MyWebSocket) {
             $scope.buttons = {
               request : {
                 icon : "add",
@@ -134,6 +134,12 @@ app.directive('friendpanel', function () {
                         if (response.data == "1") {
                           $scope.buttons.request.icon = "close";
                           $scope.buttons.request.val = 0;
+                          var info = {
+                            header: MyWebSocket.protoSent.friend_req,
+                            data: $scope.uid,
+                          };
+                          console.log("dai  dai");
+                          MyWebSocket.socket.send(info);
                         }
                     }, function errorCallback(response) {
 
@@ -503,6 +509,7 @@ app.directive('audioFetch',function($http,$sce,MyWebSocket,notiService) {
         };
 });
 app.factory('notiService',function () {
+  var totalNoti;
   var dialog = {
     isOpen : false,
   };
@@ -511,9 +518,21 @@ app.factory('notiService',function () {
       dialog.user = user;
 
   };
+  var setTotalNoti = function (msgButton,handButton,globeButton) {
+    console.log("msg : "+msgButton);
+    console.log("hand : "+handButton);
+    console.log("glob : "+globeButton);
+    totalNoti =  msgButton + handButton + globeButton;
+  };
+  var getTotalNoti = function () {
+    return totalNoti;
+  };
+
   return {
     setDialog : setDialog,
     getDialog : dialog,
+    setTotalNoti : setTotalNoti,
+    getTotalNoti : getTotalNoti,
   };
 });
 app.factory('sendMessage',['$http','MyWebSocket',function($http,MyWebSocket) {
@@ -696,9 +715,11 @@ app.factory('MyWebSocket', function($websocket,$http) {
         init : "7000",
         newmsg  : "7001",
         sendmsg  : "7002",
+        friend_req : "7003",
       };
       var protoRec = {
         newmsg  : "8002",
+        friend_req : "8003",
       };
 
 
@@ -721,11 +742,6 @@ app.factory('MyWebSocket', function($websocket,$http) {
 
       });
       socket.onError(function () {
-
-
-      });
-
-      socket.onMessage(function () {
 
 
       });
@@ -2139,6 +2155,15 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
           $scope.uid = $routeParams.uid;
           if ($scope.uid == SESS_MEMBER_ID) {
             $location.path( "/profile" );
+          }else {
+            $http({
+                method: 'GET',
+                url: 'users/rv/'+$scope.uid,
+              }).then(function successCallback(response) {
+
+                }, function errorCallback(response) {
+
+                });
           }
           $scope.datasource = MyPosts;
           $scope.settingsData = {
@@ -2740,7 +2765,10 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
 
 
 });
-app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSidenav) {
+
+app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSidenav,notiService) {
+
+
 
   $http({
       method: 'GET',
@@ -2750,12 +2778,13 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
         $scope.msgButton = parseInt( response.data.message);
         $scope.globeButton = parseInt( response.data.rating);
         $scope.handButton = parseInt( response.data.friend_req);
-        $scope.total = $scope.msgButton + $scope.globeButton + $scope.handButton;
         console.log($scope.total);
         //return response.data.rating;
       }, function errorCallback(response) {
 
       });
+
+
       $scope.onClick = function (type) {
           //
           chatSidenav.toggleLeft();
@@ -2780,41 +2809,64 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
               }, function errorCallback(response) {
 
               });
+
       };
-         $scope.toggleLeft = buildToggler('left');
-        function buildToggler(componentId) {
-
-            return function() {
-              $mdSidenav('jam')
-            .close()
-            .then(function(){
-              console.log("closed");
-              $scope.total = 0;
-            });
-              $mdSidenav(componentId).toggle();
-            };
-       }
 
 
+       var taskList = function (data) {
+         if (data.header === MyWebSocket.protoRec.friend_req) {
+           //console.log("da kunne");
+           $scope.handButton++;
+           //totalNoti();
+         }
+       };
+       MyWebSocket.socket.onMessage(function (message) {
+         var data = JSON.parse(message.data);
+         console.log(data);
+         taskList(data);
+       });
+
+       $scope.$watchGroup(['handButton', 'globeButton','msgButton'], function(newVal, oldVal) {
+         console.log("changed");
+         notiService.setTotalNoti($scope.msgButton ,$scope.handButton ,$scope.globeButton);
+       });
 
 });
-app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav) {
-  $scope.bootscreen = false;
-  $scope.jsonToURL = function (data) {
-    var str = Object.keys(data).map(function(key){
-        return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
-    }).join('&');
-    return str;
-  };
-  $scope.bootscreen = true;
-  $scope.tbClass = ['hide_xs'];
-  $scope.searchButtonClass = ['show_xs'];
-  $scope.searchButton = function () {
+app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,MyWebSocket,notiService,$interval) {
+      $scope.bootscreen = false;
+      $scope.jsonToURL = function (data) {
+        var str = Object.keys(data).map(function(key){
+            return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
+        }).join('&');
+        return str;
+      };
+      $scope.bootscreen = true;
+      $scope.tbClass = ['hide_xs'];
+      $scope.searchButtonClass = ['show_xs'];
+      $scope.searchButton = function () {
 
-    $scope.tbClass = [''];
-    $scope.logoClass = ['hide'];
-    $scope.searchButtonClass = ['hide'];
-  };
+        $scope.tbClass = [''];
+        $scope.logoClass = ['hide'];
+        $scope.searchButtonClass = ['hide'];
+      };
+
+      $scope.toggleLeft = buildToggler('left');
+     function buildToggler(componentId) {
+
+         return function() {
+           $mdSidenav('jam')
+         .close()
+         .then(function(){
+           console.log("closed");
+           $scope.total = 0;
+         });
+           $mdSidenav(componentId).toggle();
+         };
+     }
+
+     $interval(function() {
+        $scope.totalNoti = notiService.getTotalNoti();
+    },1000);
 
 
 });

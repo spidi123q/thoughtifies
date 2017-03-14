@@ -548,6 +548,14 @@
         echo $this->db->delete('notification', $data);
 
       }
+      public function addRecentVisitor($id)      {
+        $data = array(
+                'sender' => $this->session->SESS_MEMBER_ID,
+                'receiver' => $id,
+        );
+        $this->db->set('date_time','NOW()',FALSE);
+        $this->db->insert('recent_visitors', $data);
+      }
 
 
 

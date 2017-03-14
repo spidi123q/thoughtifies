@@ -461,6 +461,9 @@
         public function deleteMsgUser($id)      {
           $this->MessageModel->deleteMsgUser($id);
         }
+        public function addRecentVisitor($id)        {
+          $this->SessionModel->addRecentVisitor($id);
+        }
 
 
 
