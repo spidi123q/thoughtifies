@@ -451,6 +451,11 @@
         $query = $this->db->get("post_view");
         echo json_encode($query->row());
       }
+      public function getPostById($id)    {
+        $this->db->where('id',$id);
+        $query = $this->db->get('post_view');
+        echo json_encode($query->row());
+      }
 
       public function onRating($data)      {
         $qry = "INSERT INTO rating
@@ -555,6 +560,25 @@
         );
         $this->db->set('date_time','NOW()',FALSE);
         $this->db->insert('recent_visitors', $data);
+      }
+
+      public function listPostRating($offset)      {
+        $this->db->select('id');
+        $this->db->where('mem_id',$this->session->SESS_MEMBER_ID);
+        $where = "post_id IN ({$this->db->get_compiled_select('posts')})";
+        $this->db->where($where);
+        $this->db->limit(10,$offset);
+        $query = $this->db->get('rating_view');
+        echo json_encode($query->result());
+      }
+      public function listPostRatingCount()      {
+        $this->db->select('id');
+        $this->db->where('mem_id',$this->session->SESS_MEMBER_ID);
+        $where = "post_id IN ({$this->db->get_compiled_select('posts')})";
+        $this->db->where($where);
+        $this->db->select('COUNT(*) AS count');
+        $query = $this->db->get('rating_view');
+        echo json_encode($query->row());
       }
 
 

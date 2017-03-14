@@ -210,7 +210,7 @@ app.directive('friendpanel', function () {
       };
   });
 
-  app.directive('usercard', function () {
+app.directive('usercard', function () {
       return {
           restrict: 'E',
           scope: {
@@ -219,7 +219,13 @@ app.directive('friendpanel', function () {
           templateUrl:'element/1',
       };
   });
-  app.directive('postcard', function () {
+app.directive('ratedUsercard', function () {
+        return {
+            restrict: 'E',
+            templateUrl:'element/7',
+        };
+    });
+app.directive('postcard', function () {
       return {
           restrict: 'E',
           scope : {
@@ -365,19 +371,47 @@ app.directive('friendpanel', function () {
           templateUrl:'element/2',
       };
   });
-  app.directive('friendRequestCard', function () {
+app.directive('friendRequestCard', function () {
       return {
           restrict: 'E',
           templateUrl:'element/3',
       };
   });
-  app.directive('postViewCard', function () {
+app.directive('postViewCard', function () {
       return {
+          scope : {
+            item : "=info",
+            mydp : "=mydp",
+          },
+          controller : function ($scope,$http) {
+            $scope.onRating = function(rating,id){
+
+              $http({
+                  method: 'GET',
+                  url: 'post/onrating/'+id+"/"+rating,
+                }).then(function successCallback(response) {
+
+                  }, function errorCallback(response) {
+
+                  });
+            };
+            $scope.getMyRating = function (id) {
+              $http({
+                  method: 'GET',
+                  url: 'rating/get/'+id,
+                }).then(function successCallback(response) {
+
+                    //return response.data.rating;
+                  }, function errorCallback(response) {
+
+                  });
+            };
+          },
           restrict: 'E',
           templateUrl:'element/4',
       };
   });
-  app.directive('elastic', [
+app.directive('elastic', [
     '$timeout',
     function($timeout) {
         return {
@@ -2480,28 +2514,6 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           $scope.adapter = {
             remain: true
           };
-          $scope.onRating = function(rating,id){
-
-            $http({
-                method: 'GET',
-                url: 'post/onrating/'+id+"/"+rating,
-              }).then(function successCallback(response) {
-
-                }, function errorCallback(response) {
-
-                });
-          };
-          $scope.getMyRating = function (id) {
-            $http({
-                method: 'GET',
-                url: 'rating/get/'+id,
-              }).then(function successCallback(response) {
-
-                  //return response.data.rating;
-                }, function errorCallback(response) {
-
-                });
-          };
 });
 app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootScope, $location,$mdSidenav) {
 
@@ -2739,34 +2751,13 @@ app.controller('ToolbarSearch', function ($scope,$http,$routeParams,$timeout,$q)
 
         $scope.adapter.reload();
       };
-      $scope.onRating = function(rating,id){
 
-        $http({
-            method: 'GET',
-            url: 'post/onrating/'+id+"/"+rating,
-          }).then(function successCallback(response) {
-
-            }, function errorCallback(response) {
-
-            });
-      };
-      $scope.getMyRating = function (id) {
-        $http({
-            method: 'GET',
-            url: 'rating/get/'+id,
-          }).then(function successCallback(response) {
-
-              //return response.data.rating;
-            }, function errorCallback(response) {
-
-            });
-      };
 
 
 
 });
 
-app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSidenav,notiService) {
+app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSidenav,notiService,$mdDialog) {
 
 
 
@@ -2785,7 +2776,7 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
       });
 
 
-      $scope.onClick = function (type) {
+      $scope.onClick = function (type,ev) {
           //
           chatSidenav.toggleLeft();
           $http({
@@ -2832,6 +2823,136 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
        });
 
 });
+app.controller('MyPostRating', function ($scope, $timeout, $mdDialog,MyWebSocket,notiService,$interval,$q,$http) {
+
+  var datasource = {};
+  var big =-1,max = 500;
+  var page = [];
+  var getCount = function (big) {
+    var deferred = $q.defer();
+    if (big === 0) {
+          $http({
+            method: 'GET',
+            url: 'globe/count',
+          }).then(function successCallback(response) {
+              console.log(response.data);
+              max = response.data.count;
+              deferred.resolve(response);
+
+            }, function errorCallback(response) {
+               deferred.reject({ message: "Really bad" });
+            });
+
+
+    }else {
+      deferred.resolve({ message: "no http needed" });
+    }
+    return deferred.promise;
+
+  };
+  var setBig = function(index){
+
+    var deferred = $q.defer();
+
+    if(index > big){
+      big = (big === -1)? 0 : big+10;
+      //big = index;
+
+
+        getCount(big).then(function (response) {
+
+          $http({
+              method: 'GET',
+              url: 'globe/get/'+big,
+            }).then(function successCallback(response) {
+              //console.log(response.data);
+              response.data.forEach(function (item,index3) {
+                page.push(item);
+              });
+                deferred.resolve(response);
+              }, function errorCallback(response) {
+                deferred.reject({ message: "Really bad" });
+              });
+
+        });
+    }
+    else {
+      deferred.resolve({ message: "no http needed" });
+    }
+    return deferred.promise;
+  };
+
+  datasource.get = function (index, count, success) {
+    $timeout(function () {
+
+        //
+      setBig(index).then(function (response) {
+        var result = [];
+        for (var i = index; i <= index + count - 1; i++) {
+
+          if(i < 0 || i >= max) {
+                      continue;
+                  }
+                  //
+         result.push(page[i]);
+        //result.push("page : "+i);
+        }
+        success(result);
+      },function (error) {
+
+      });
+
+    }, 100);
+  };
+
+  $scope.datasource = datasource;
+  $scope.adapter = {
+    remain: true
+  };
+  $scope.viewPost = function (post_id,ev) {
+    console.log("view "+post_id);
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'dialog/5',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      locals : {
+        postId  : post_id,
+      },
+      fullscreen: false // Only for -xs, -sm breakpoints.
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
+  function DialogController($scope, $mdDialog,postId) {
+
+    $http({
+        method: 'GET',
+        url: 'post/id/'+postId,
+      }).then(function successCallback(response) {
+        console.log(response.data);
+        $scope.item = response.data;
+        }, function errorCallback(response) {
+        });
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+  }
+
+});
 app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,MyWebSocket,notiService,$interval) {
       $scope.bootscreen = false;
       $scope.jsonToURL = function (data) {
@@ -2866,7 +2987,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
 
      $interval(function() {
         $scope.totalNoti = notiService.getTotalNoti();
-    },1000);
+     },1000);
 
 
 });

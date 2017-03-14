@@ -1,6 +1,6 @@
 
   <md-card >
-         <md-card-header>
+         <md-card-header ng-if="!mydp">
            <md-card-avatar>
              <a href="#/users/{{item.mem_id}}">
             <img class="md-user-avatar" image-fetch ng-src="{{item.dp}}" size="60"/>

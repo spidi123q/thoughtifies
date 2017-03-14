@@ -284,29 +284,31 @@
           $this->load->view('template/dialog/block');
         else if ($sel == 4)
           $this->load->view('template/dialog/message');
+        else if($sel == 5)
+          $this->load->view('template/dialog/my_post');
       }
 
       public function getDialogContent($sel)      {
           if ($sel == 0)
-            $this->load->view('template/dialog/content/change_dp.php');
+            $this->load->view('template/dialog/content/change_dp');
           else if($sel == 1)
-            $this->load->view('template/dialog/content/change_name.php');
+            $this->load->view('template/dialog/content/change_name');
           else if($sel == 2)
-            $this->load->view('template/dialog/content/change_tag.php');
+            $this->load->view('template/dialog/content/change_tag');
           else if($sel == 3)
-            $this->load->view('template/dialog/content/change_aboutme.php');
+            $this->load->view('template/dialog/content/change_aboutme');
           else if($sel == 4)
-            $this->load->view('template/dialog/content/change_mypre.php');
+            $this->load->view('template/dialog/content/change_mypre');
           else if($sel == 5)
-            $this->load->view('template/dialog/content/change_gender.php');
+            $this->load->view('template/dialog/content/change_gender');
           else if($sel == 6)
-            $this->load->view('template/dialog/content/change_bday.php');
+            $this->load->view('template/dialog/content/change_bday');
           else if($sel == 7)
-            $this->load->view('template/dialog/content/change_mail.php');
+            $this->load->view('template/dialog/content/change_mail');
           else if($sel == 8)
-            $this->load->view('template/dialog/content/change_phone.php');
+            $this->load->view('template/dialog/content/change_phone');
           else if($sel == 9)
-            $this->load->view('template/dialog/content/change_country.php');
+            $this->load->view('template/dialog/content/change_country');
         }
 
         public function getMyInfo()        {
@@ -319,7 +321,7 @@
             echo json_encode($this->country_iso->countries);
         }
         public function getChatBox()        {
-          $this->load->view('template/chatbox.php');
+          $this->load->view('template/chatbox');
         }
         public function getElement($value)        {
           if($value == 0){
@@ -337,6 +339,10 @@
               $this->load->view('template/rating-stars-directive');
           else if($value == 6)
               $this->load->view('template/audio_fetch');
+          elseif ($value == 7)
+            $this->load->view('template/rated_usercard');
+
+
         }
 
         public function listEmoji($index)      {
@@ -463,6 +469,15 @@
         }
         public function addRecentVisitor($id)        {
           $this->SessionModel->addRecentVisitor($id);
+        }
+        public function listPostRating($offset)        {
+          $this->SessionModel->listPostRating($offset);
+        }
+        public function listPostRatingCount()        {
+          $this->SessionModel->listPostRatingCount();
+        }
+        public function getPostById($id)      {
+          $this->SessionModel->getPostById($id);
         }
 
 

@@ -69,7 +69,7 @@
         <md-tab label="{{settingsData.tabs.photos.name}}" md-on-select="onSelectPosts()">
           <md-content class="md-padding" ng-if="settingsData.post">
               <div  layout="column"  layout-align="center center" ui-scroll="item in datasource">
-                <post-view-card style="width:520px"></post-view-card>
+                <post-view-card  info="item" style="width:520px"></post-view-card>
               </div>
           </md-content>
 
