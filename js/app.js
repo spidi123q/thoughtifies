@@ -2513,7 +2513,6 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           };
 
           datasource.get = function (index, count, success) {
-            $timeout(function () {
 
                 //
               setBig(index).then(function (response) {
@@ -2532,7 +2531,6 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
 
               });
 
-            }, 100);
           };
 
           $scope.datasource = datasource;
