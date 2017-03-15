@@ -19,9 +19,9 @@
 					}
 	</script>
 </head>
-	<body ng-app="IndexApp" ng-controller="AppCtrl">
-		<div class="title flex-container">
-							<form name="loginform" action="data/1" method="post" class="">
+	<body  >
+		<div  class="title flex-container" style="">
+							<form name="loginform" action="data/1" method="post" style="display:none">
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -45,18 +45,19 @@
 								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
 							</div>
 							<?php echo $fb ?>
-						</div>
-						<div class="quotes">
-								<span>Playground of thoughts around world</span>
-								<span>Create & share thoughts</span>
-								<span>Privacy first! Thoughtifies don't track you</span>
-						</div>
-<video poster="" id="bgvid" playsinline autoplay muted loop>
-  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-	<source src="<?php echo base_url(); ?>images/untitled.webm" type="video/webm">
 
-</video>
+						</div>
+						<div class="quotes flex-container">
+								<div>Advertises your thoughts</div>
+								<div>Privacy first! Thoughtifies don't track you</div>
+						</div>
 
+
+						<video poster="" id="bgvid" playsinline autoplay muted loop>
+							<!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+							<source src="<?php echo base_url(); ?>images/untitled.webm" type="video/webm">
+
+						</video>
 
 
 

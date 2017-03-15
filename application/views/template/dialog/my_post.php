@@ -1,9 +1,9 @@
 
 
-<md-dialog >
+<md-dialog class="post_view_dialog">
 
   <md-dialog-content layout="column" layout-align="space-between center">
-    <post-view-card info="item" mydp="true"></post-view-card>
+    <post-view-card info="item" mydp="true" style="width:100%"></post-view-card>
 
   </md-dialog-content>
 

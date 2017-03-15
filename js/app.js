@@ -336,7 +336,7 @@ app.directive('postcard', function () {
                                 console.log(response.data);
                                 $scope.adapter.prepend([response.data]);
                                 uploader.clearQueue();
-                                $scope.data = placeholder;
+                                $scope.data = "";
 
 
                           }, function errorCallback(response) {
@@ -383,13 +383,19 @@ app.directive('postViewCard', function () {
             item : "=info",
             mydp : "=mydp",
           },
-          controller : function ($scope,$http) {
+          controller : function ($scope,$http,MyWebSocket) {
             $scope.onRating = function(rating,id){
 
               $http({
                   method: 'GET',
                   url: 'post/onrating/'+id+"/"+rating,
                 }).then(function successCallback(response) {
+                    var info = {
+                      header : MyWebSocket.protoSent.new_rating,
+                      data : $scope.item.mem_id,
+                    };
+                    info = JSON.stringify(info);
+                    MyWebSocket.socket.send(info);
 
                   }, function errorCallback(response) {
 
@@ -750,10 +756,12 @@ app.factory('MyWebSocket', function($websocket,$http) {
         newmsg  : "7001",
         sendmsg  : "7002",
         friend_req : "7003",
+        new_rating : "7004",
       };
       var protoRec = {
         newmsg  : "8002",
         friend_req : "8003",
+        new_rating : "8004",
       };
 
 
@@ -2806,9 +2814,10 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
 
        var taskList = function (data) {
          if (data.header === MyWebSocket.protoRec.friend_req) {
-           //console.log("da kunne");
            $scope.handButton++;
-           //totalNoti();
+         }
+         else if (data.header === MyWebSocket.protoRec.new_rating) {
+           $scope.globeButton++;
          }
        };
        MyWebSocket.socket.onMessage(function (message) {

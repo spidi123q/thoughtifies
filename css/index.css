@@ -20,23 +20,20 @@
     padding-top: 35px; }
 
 .quotes {
-  margin-top: 20%;
+  margin-top: 10%;
   background-color: rgba(0, 0, 0, 0.2);
-  padding-top: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-variant: normal;
-  font-size: 4vmin;
+  padding: 1px 5px 1px 5px;
+  text-align: center;
+  padding: 1% 0% 0% 0%;
+  text-align: center;
+  padding: 2% 0% 0% 0%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 25px;
   color: white;
-  width: 500px; }
-  .quotes span {
-    display: block;
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px; }
+  padding-top: 15px; }
 
 video {
+  overflow: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -181,6 +178,10 @@ a {
       width: 100%;
       height: auto; } }
 
+.rating_card_star {
+  margin-right: 20px;
+  margin-bottom: 20px; }
+
 [contenteditable=true]:empty:before {
   content: attr(placeholder);
   display: block;
@@ -190,5 +191,13 @@ a {
 .msg_placeholder {
   padding-top: 10px;
   padding-left: 5px; }
+
+.post_view_dialog {
+  width: 50%;
+  height: auto; }
+  @media only screen and (max-width: 600px) {
+    .post_view_dialog {
+      width: 100%;
+      height: auto; } }
 
 /*# sourceMappingURL=index.css.map */
