@@ -200,4 +200,15 @@ a {
       width: 100%;
       height: auto; } }
 
+.recent_visitors {
+  width: 500px;
+  background-color: white; }
+  .recent_visitors .rv_header {
+    margin: 10px;
+    opacity: 0.54; }
+
+.img-circle {
+  border-radius: 50%;
+  margin: 10px; }
+
 /*# sourceMappingURL=index.css.map */

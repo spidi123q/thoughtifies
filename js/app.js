@@ -1473,11 +1473,12 @@ app.controller('chatBox', [
 		}
 	]);
 
-app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav,dpDisplay,notiService) {
+app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSidenav,dpDisplay,notiService,$interval) {
     $scope.chat = MyWebSocket;
     $scope.chatMessages = [];
 
-    var msgMap = new Map();
+    var msgMap  = new Map();
+    $scope.badge = new Map();
 
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
@@ -1515,6 +1516,8 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
           checkUser(msg.sender.toString());
          //msgMap.get(parseInt(msg.sender)).push(msg);
            msgMap.get(msg.sender.toString()).push(msg);
+           var temp = $scope.badge.get(msg.sender.toString());
+           $scope.badge.set(msg.sender.toString(),++temp);
 
 
       }
@@ -1523,6 +1526,8 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
       if (!msgMap.has(mem_id)) {
         msgMap.set(mem_id,[]);
+        $scope.badge.set(mem_id,0);
+
       }
 
     };
@@ -1534,6 +1539,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
     $scope.showAdvanced = function(ev,user) {
       var mem_id = user.mem_id;
       checkUser(mem_id);
+      $scope.badge.set(mem_id,0);
 
       notiService.setDialog(user,true);
       var x = msgMap.get(mem_id);
@@ -2818,6 +2824,9 @@ app.controller('notiCtrl', function ($scope, $http,chatSidenav,MyWebSocket,$mdSi
          }
          else if (data.header === MyWebSocket.protoRec.new_rating) {
            $scope.globeButton++;
+         }
+         else if (data.header === MyWebSocket.protoRec.newmsg) {
+           $scope.msgButton++;
          }
        };
        MyWebSocket.socket.onMessage(function (message) {

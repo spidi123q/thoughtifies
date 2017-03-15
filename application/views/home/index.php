@@ -126,7 +126,7 @@
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user)">
              <img image-fetch ng-src="{{user.picture}}" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
              <div class="md-list-item-text" layout="column">
-               <p>{{ user.fname }} {{user.lname}}<span class="badge1" data-badge="5">9</span></p>
+               <p>{{ user.fname }} {{user.lname}}<span ng-hide="( badge.get(user.mem_id) === 0) || (  badge.get(user.mem_id) === undefined )" class="badge1" data-badge="{{badge.get(user.mem_id)}}"></span></p>
              </div>
            </md-list-item>
         </md-list>

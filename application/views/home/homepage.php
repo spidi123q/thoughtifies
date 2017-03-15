@@ -6,6 +6,34 @@
         <div  layout="row" layout-align="center center" >
           <postcard adapter="adapter" style="width:500px"></postcard>
         </div>
+        <br>
+        <div  layout="row" layout-align="center center" >
+          <div md-whiteframe="1" class="recent_visitors">
+            <div class="rv_header">
+              Recent visitors
+            </div>
+            <div  layout="row" style="overflow-x:scroll">
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" /><img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
+
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     <br>
