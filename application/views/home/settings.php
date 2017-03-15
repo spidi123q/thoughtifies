@@ -4,7 +4,7 @@
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
             <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">
-              <i class="material-icons">create</i>
+              <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
             </md-button>
 
           </div>
@@ -15,16 +15,14 @@
                 <h3><md-truncate flex>
             {{settingsData.fname}} {{settingsData.lname}}
           </md-truncate></h3>
-                <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,1)" aria-label="call">
-                  <i class="material-icons">create</i>
-                </md-button>
+
               </div>
               <div layout="row"  layout-xs="column">
                   <h5><md-truncate flex>
             {{settingsData.tag}}dddddddddd ddd dddd ddddddddddd
           </md-truncate></h5>
                   <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
-                    <i class="material-icons">create</i>
+                    <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
                   </md-button>
 
               </div>
@@ -50,7 +48,7 @@
                           <p>
                             {{item.name}}
                             <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,$index+3)" aria-label="call">
-                              <i class="material-icons">create</i>
+                              <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
                             </md-button>
                           </p>
                           <h3></h3>
@@ -77,8 +75,17 @@
         <md-tab label="{{settingsData.tabs.settings.name}}">
           <md-content class="md-padding" layout="row" layout-align="center center">
             <md-list flex="50"  >
+              <md-list-item class="md-2-line"  ng-click="getDialog($event,1)" id="left">
+
+        <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">person</md-icon>
+
+                <div class="md-list-item-text" layout="column">
+                  <h3>Change name</h3>
+                  <p>{{ item.notes }}</p>
+                </div>
+              </md-list-item>
                  <md-list-item class="md-2-line"  ng-click="openFromLeft($event)" id="left">
-                   <img ng-src="<?php echo base_url(); ?>images/{{settingsData.tabs.settings.info.block.icon}}" class="md-avatar" alt="{{item.who}}" />
+                  <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">lock</md-icon>
                    <div class="md-list-item-text" layout="column">
                      <h3>{{settingsData.tabs.settings.info.block.name}}</h3>
                      <p>{{ item.notes }}</p>
