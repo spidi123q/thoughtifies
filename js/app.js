@@ -750,7 +750,7 @@ app.factory('dpDisplay', function($http) {
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
-      socket = $websocket('ws://localhost:8887');
+      socket = $websocket('ws://ec2-54-187-75-2.us-west-2.compute.amazonaws.com:8887');
       var protoSent = {
         init : "7000",
         newmsg  : "7001",

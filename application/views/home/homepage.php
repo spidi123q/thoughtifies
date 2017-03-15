@@ -6,8 +6,7 @@
         <div  layout="row" layout-align="center center" >
           <postcard adapter="adapter" style="width:500px"></postcard>
         </div>
-        <br>
-        <div  layout="row" layout-align="center center" >
+        <div  layout="row" layout-align="center center" style="margin-top:20px">
           <div md-whiteframe="1" class="recent_visitors">
             <div class="rv_header">
               Recent visitors
@@ -15,7 +14,7 @@
             <div  layout="row" style="overflow-x:auto">
               <a ng-repeat="item in recentVisitors" href="#/users/{{item.mem_id}}">
                 <img  ng-csp image-fetch ng-src="{{item.picture}}" size="60" class="img-circle" alt="{{item.who}}" />
-              </a>          
+              </a>
             </div>
 
           </div>
