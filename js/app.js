@@ -2441,6 +2441,17 @@ app.controller('Request', function ($scope,$timeout,$q,$http) {
 
    });
 app.controller('PostView', function ($scope, $timeout,$http,$q) {
+
+  $http({
+      method: 'GET',
+      url: 'users/rv/get',
+    }).then(function successCallback(response) {
+          //console.log(response.data);
+          $scope.recentVisitors =  response.data;
+
+      }, function errorCallback(response) {
+      });
+
           var datasource = {};
           var big =-1,max = 500;
           var page = [];

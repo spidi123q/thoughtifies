@@ -12,23 +12,10 @@
             <div class="rv_header">
               Recent visitors
             </div>
-            <div  layout="row" style="overflow-x:scroll">
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" /><img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-                <img ng-csp image-fetch ng-src="8fa89e3b9ed9ea7d84493c3a63e4a376" size="60" class="img-circle" alt="{{item.who}}" />
-
+            <div  layout="row" style="overflow-x:auto">
+              <a ng-repeat="item in recentVisitors" href="#/users/{{item.mem_id}}">
+                <img  ng-csp image-fetch ng-src="{{item.picture}}" size="60" class="img-circle" alt="{{item.who}}" />
+              </a>          
             </div>
 
           </div>

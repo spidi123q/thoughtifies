@@ -86,6 +86,7 @@ $route['(:any)/chatbox']='Login/getChatBox';
 $route['(:any)/users/(:num)']='Login/getUserDetails/$2';
 $route['(:any)/users/rv/(:num)']='Login/addRecentVisitor/$2';
 $route['(:any)/users/request/(:any)']='Login/addFriend/$2';
+$route['(:any)/users/rv/get']='Login/getRecentVisitor';
 $route['(:any)/users/cancel/(:any)']='Login/removeFriend/$2';
 $route['(:any)/users/block/(:num)']='Login/blockUser/$2';
 $route['(:any)/users/frnd/status/(:any)']='Login/getFriendshipStatus/$2';

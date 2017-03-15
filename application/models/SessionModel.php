@@ -561,6 +561,13 @@
         $this->db->set('date_time','NOW()',FALSE);
         $this->db->insert('recent_visitors', $data);
       }
+      public function getRecentVisitor()    {
+        $this->db->distinct('mem_id');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+        $this->db->limit(10,0);
+        $query = $this->db->get('rv_view');
+        echo json_encode($query->result());
+      }
 
       public function listPostRating($offset)      {
         $this->db->select('id');

@@ -470,6 +470,9 @@
         public function addRecentVisitor($id)        {
           $this->SessionModel->addRecentVisitor($id);
         }
+        public function getRecentVisitor()        {
+          $this->SessionModel->getRecentVisitor();
+        }
         public function listPostRating($offset)        {
           $this->SessionModel->listPostRating($offset);
         }
