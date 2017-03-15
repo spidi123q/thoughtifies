@@ -185,7 +185,7 @@
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
-  <script src="<?php echo base_url(); ?>js/twemoji.min.js"></script>
+    <script src="http://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
   <script src="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
   <!-- Angular Material Library -->
