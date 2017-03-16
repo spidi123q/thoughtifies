@@ -485,7 +485,7 @@ app.directive('imageFetch',function($http,$sce) {
             restrict: 'A',
 
            link: function(scope, elem, attrs) {
-             console.log(attrs.ngSrc);
+
              $http({
                method: 'GET',
                url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,

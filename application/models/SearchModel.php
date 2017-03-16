@@ -29,8 +29,8 @@
 
 
         $obj = array(
-          'yy <=' => date("Y") - $data->l_age,
-          'yy >=' => date("Y") - $data->h_age,
+          'member_details.yy <=' => date("Y") - $data->l_age,
+          'member_details.yy >=' => date("Y") - $data->h_age,
         );
         if ($data->photo == 1) {
           $obj['picture !='] = 'photo';
@@ -43,6 +43,7 @@
         if ($data->online == 1) {
 
           $this->db->join('user_online', 'user_online.mem_id=member_details.mem_id');
+          //echo $this->db->get_compiled_select('member_details');
         }
 
 
@@ -62,7 +63,7 @@
                       ->group_end();
 
         }
-        $this->db->where("mem_id not in (SELECT receiver as users FROM blocked
+        $this->db->where("member_details.mem_id not in (SELECT receiver as users FROM blocked
         where sender={$this->session->SESS_MEMBER_ID}
         union
         SELECT sender as users FROM blocked
