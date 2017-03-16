@@ -485,6 +485,7 @@ app.directive('imageFetch',function($http,$sce) {
             restrict: 'A',
 
            link: function(scope, elem, attrs) {
+             console.log(attrs.ngSrc);
              $http({
                method: 'GET',
                url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
@@ -750,7 +751,7 @@ app.factory('dpDisplay', function($http) {
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
-      socket = $websocket('ws://ec2-54-187-75-2.us-west-2.compute.amazonaws.com:8887');
+      socket = $websocket('ws://localhost:8887');
       var protoSent = {
         init : "7000",
         newmsg  : "7001",
@@ -819,7 +820,6 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
               }).then(function successCallback(response) {
                   // this callback will be called asynchronously
                   // when the response is available
-
                   max = response.data.count;
                   deferred.resolve(response);
 
@@ -848,6 +848,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
+
 
                 for (var i = 0; i < response.data.length; i++) {
                   page.push(response.data[i]);
@@ -911,6 +912,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 			return {
 				get: get,
+        count : max,
         test : function () {
           return max;
         }
@@ -1019,10 +1021,10 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
 
 app.controller('msgController', [
-		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav','$mdDialog', function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav$mdDialog) {
+		'$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav','$mdDialog', '$interval',function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav,$mdDialog,$interval) {
 			var datasource = {};
       var big  = -1,max = 0;
-      var page  = [];
+      var page = $scope.userPage = [];
       $scope.msg = '';
       $scope.myDp = SESS_USERIMAGE;
       $scope.dpDisplay = dpDisplay;
@@ -1030,9 +1032,7 @@ app.controller('msgController', [
       MyWebSocket.socket.onMessage(function (message) {
 
       });
-      $scope.log = function() {
-        listMessengers.test();
-      };
+
       $scope.jj = listMessengers;
       $scope.toggleLeft = buildToggleri('jam');
       $scope.toggleRight = buildToggleri('right');
@@ -1119,7 +1119,6 @@ app.controller('msgController', [
       };
 			datasource.get = function (index, count, success) {
 
-				$timeout(function () {
 					setBig(index).then(function (responce) {
             //
             var result = [];
@@ -1136,7 +1135,6 @@ app.controller('msgController', [
                   // handle errors here
 
               });
-				}, 100);
 			};
 
 			$scope.datasource = datasource;

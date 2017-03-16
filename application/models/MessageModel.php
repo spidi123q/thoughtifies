@@ -144,7 +144,7 @@
       }
 
       public function listOnlineUsers()      {
-
+        $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
         $query = $this->db->get('member_online');
         if ($query) {
           echo  json_encode($query->result());

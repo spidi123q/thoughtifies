@@ -67,6 +67,9 @@
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
                    <usercard info="item"></usercard>
                   </div>
+                  <div class="empty_msg" ng-if="adapter.isEmpty() ">
+                    No result
+                  </div>
                   <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
                   <div class="">
                     <br><br>

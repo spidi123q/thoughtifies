@@ -40,8 +40,11 @@
   </md-list-item>
 
   </md-list>
+  <div class="empty_msg" ng-if="msgUserListAdapter.isEmpty()">
+    Inbox empty
+  </div>
   <div layout="row" layout-align="center center">
-    <md-progress-circular ng-if="msgUserListAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+    <md-progress-circular ng-if="msgUserListAdapter.isLoading " md-mode="indeterminate" md-diameter="20"></md-progress-circular>
   </div>
 
   </md-sidenav>
@@ -59,7 +62,13 @@
             <md-content layout="row" flex="60" style="padding-left:20px;">
                     <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue style="width:100%;">
                       <div layout="row" layout-align="center center">
-                        <md-progress-circular ng-if="msgUserAdapter.isLoading" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                        <md-progress-circular ng-if="msgUserAdapter.isLoading && msgUser !== undefined" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                      </div>
+                      <div class="empty_msg" ng-if="msgUserAdapter.isEmpty() && msgUser !== undefined">
+                        No messages
+                      </div>
+                      <div class="empty_msg" ng-if="msgUser === undefined">
+                        No user selected
                       </div>
                           <md-list>
                                 <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">

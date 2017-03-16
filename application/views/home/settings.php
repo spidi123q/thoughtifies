@@ -1,6 +1,6 @@
 <div layout="column" ng-hide="hideProfile()">
   <div  flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
-        <div layout="row">
+        <div layout="row" style="margin:20px">
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
             <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">
@@ -73,22 +73,21 @@
 
         </md-tab>
         <md-tab label="{{settingsData.tabs.settings.name}}">
-          <md-content class="md-padding" layout="row" layout-align="center center">
-            <md-list flex="50"  >
+          <md-content class="md-padding" layout="row" layout-align="center center" >
+            <md-list flex-sm="80"  flex-gt-sm="50"  >
               <md-list-item class="md-2-line"  ng-click="getDialog($event,1)" id="left">
 
         <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">person</md-icon>
 
                 <div class="md-list-item-text" layout="column">
-                  <h3>Change name</h3>
-                  <p>{{ item.notes }}</p>
+                  <h3></h3>
+                  <p>Change name</p>
                 </div>
               </md-list-item>
                  <md-list-item class="md-2-line"  ng-click="openFromLeft($event)" id="left">
                   <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">lock</md-icon>
                    <div class="md-list-item-text" layout="column">
-                     <h3>{{settingsData.tabs.settings.info.block.name}}</h3>
-                     <p>{{ item.notes }}</p>
+                     <p>Blocked users</p>
                    </div>
                  </md-list-item>
               </md-list>

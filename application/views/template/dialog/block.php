@@ -19,6 +19,9 @@
             <md-divider md-inset ng-if="!$last"></md-divider>
           </md-list-item>
         </md-list>
+        <div class="empty_msg" ng-if="userList.length === 0">
+            No blocked users
+        </div>
       </div>
     </md-dialog-content>
 
