@@ -357,7 +357,6 @@
           $data = $this->input->raw_input_stream;
           $data = json_decode($data);
           $this->MessageModel->getMessages($data);
-          //echo "string";
 
         }
         public function countMessages($data)   {
@@ -401,6 +400,11 @@
         }
         public function friendRequestActions($value,$id)   {
           $this->SessionModel->friendRequestActions($value,$id);
+        }
+        public function reportPost()      {
+          $data = $this->input->raw_input_stream;
+          $data = json_decode($data);
+          $this->SessionModel->reportPost($data);
         }
         public function getPosts($value,$id='')      {
             $this->SessionModel->getPosts($value,$id);

@@ -427,6 +427,9 @@
         $this->db->set('date_time', 'NOW()', FALSE);
         echo $this->db->insert('blocked', $data);
       }
+      public function reportPost($data)      {
+        echo $this->db->insert('report_post',$data);
+      }
 
       public function getPosts($offset,$id)      {
         if($id !== '')

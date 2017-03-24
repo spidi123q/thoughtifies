@@ -19,8 +19,8 @@
          {{item.fname}} {{item.lname}}
        </div>
        <md-menu class="md-secondary">
-     <md-button aria-label="Open phone interactions menu" class="md-icon-button md-warn" ng-click="openMenu($mdOpenMenu, $event)">
-       <i class="material-icons">more_vert</i>
+     <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+       <md-icon md-font-library="material-icons" class="md-light md-48">more_vert</md-icon>
      </md-button>
      <md-menu-content width="2">
        <md-menu-item>

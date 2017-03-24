@@ -188,6 +188,8 @@ app.directive('friendpanel', function () {
               }).then(function successCallback(response) {
                   //$scope.buttons.request.progress = false;
                   console.log(response.data);
+                  $scope.buttons.request.icon = "close";
+                  $scope.buttons.request.val = 0;
 
                 }, function errorCallback(response) {
 
@@ -404,7 +406,41 @@ app.directive('postViewCard', function () {
             item : "=info",
             mydp : "=mydp",
           },
-          controller : function ($scope,$http,MyWebSocket) {
+          controller : function ($scope,$http,MyWebSocket,$mdDialog) {
+
+            $scope.openMenu = function($mdOpenMenu, ev) {
+               $mdOpenMenu(ev);
+            };
+            $scope.showPrompt = function(ev) {
+              // Appending dialog to document.body to cover sidenav in docs app
+              var confirm = $mdDialog.prompt()
+                .title('Help us understand situation')
+                .textContent('Briefly describe your problem')
+                .placeholder('Your problem')
+                .ariaLabel('message')
+                .targetEvent(ev)
+                .ok('Report')
+                .cancel('Cancel');
+
+              $mdDialog.show(confirm).then(function(result) {
+                $http({
+                    method: 'POST',
+                    url: 'post/report',
+                    data : {
+                      post_id : $scope.item.id,
+                      message : result,
+                    }
+                  }).then(function successCallback(response) {
+                        console.log(response.data);
+
+                    }, function errorCallback(response) {
+
+                    });
+              }, function() {
+                $scope.status = 'You didn\'t name your dog.';
+              });
+            };
+
             $scope.onRating = function(rating,id){
 
               $http({

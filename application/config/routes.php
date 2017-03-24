@@ -103,6 +103,7 @@ $route['(:any)/post/id/(:num)']='Login/getPostById/$2';
 $route['(:any)/post/get/(:num)']='Login/getPosts/$2';
 $route['(:any)/post/count/(:num)']='Login/getPostsCount/$2';
 $route['(:any)/post/get/(:num)/(:num)']='Login/getPosts/$2/$3';
+$route['(:any)/post/report']='Login/reportPost';
 $route['(:any)/rating/get/(:num)']='Login/getMyRating/$2';
 $route['(:any)/block/get']='Login/listBlockedUsers';
 $route['(:any)/block/cancel/(:num)']='Login/unBlock/$2';
