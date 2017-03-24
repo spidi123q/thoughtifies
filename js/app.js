@@ -406,7 +406,7 @@ app.directive('postViewCard', function () {
             item : "=info",
             mydp : "=mydp",
           },
-          controller : function ($scope,$http,MyWebSocket,$mdDialog) {
+          controller : function ($scope,$http,MyWebSocket,$mdDialog,$mdToast) {
 
             $scope.openMenu = function($mdOpenMenu, ev) {
                $mdOpenMenu(ev);
@@ -432,6 +432,7 @@ app.directive('postViewCard', function () {
                     }
                   }).then(function successCallback(response) {
                         console.log(response.data);
+                        $scope.showSimpleToast("Report submitted");
 
                     }, function errorCallback(response) {
 
@@ -469,6 +470,15 @@ app.directive('postViewCard', function () {
 
                   });
             };
+            $scope.showSimpleToast = function(msg) {
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent(msg)
+                  .position('bottom right' )
+                  .hideDelay(3000)
+              );
+            };
+
           },
           restrict: 'E',
           templateUrl:'element/4',

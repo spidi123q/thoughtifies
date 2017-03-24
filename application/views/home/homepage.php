@@ -24,8 +24,11 @@
         </div>
 
       </div>
-
-    <br>
+    <div layout="row" layout-align="center center">
+      <md-switch ng-model="data.cb1" aria-label="Switch 1">
+       Friends only
+     </md-switch>
+    </div>
     <div  layout="column" layout-align="center center"  >
       <div layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on PostView" >
           <post-view-card info="item" style="width:520px"></post-view-card>
