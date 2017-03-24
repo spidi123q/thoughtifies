@@ -21,5 +21,11 @@
                Message
              </md-button>
            </md-menu-item>
+           <md-menu-item ng-if="actions.request.icon === 'done'">
+             <md-button ng-click="actions.unfriendButton($event)">
+              <md-icon md-font-library="material-icons" class="md-light md-48">clear</md-icon>
+               Unfriend
+             </md-button>
+           </md-menu-item>
          </md-menu-content>
        </md-menu>

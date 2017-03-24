@@ -145,8 +145,11 @@
         union
         SELECT sender as users FROM blocked
         where receiver=$id and sender = {$this->session->SESS_MEMBER_ID})";
-        if($id !== $this->session->SESS_MEMBER_ID)
+
+        if($id !== $this->session->SESS_MEMBER_ID){
           $this->db->where($qry);
+        }
+
         $this->db->where(array('mem_id' => $id));
         $query = $this->db->get('member_details');
         if ($query->num_rows() > 0) {
@@ -159,6 +162,7 @@
           $data['picture'] = $im;
           $this->load->library('country_iso');
           $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          $data['friend_count'] = $this->friendsCount(1);
           echo json_encode($data);
         }else {
           echo "0";
@@ -326,8 +330,8 @@
       }
 
       public function getFriendshipStatus($value)      {
-        $data = array('sender' => $this->session->SESS_MEMBER_ID,
-         'receiver' => $value);
+        $data = array('receiver' => $this->session->SESS_MEMBER_ID,
+         'sender' => $value);
         $query = $this->db->select('status')->from('friendship')
                             ->where($data)->get();
         if ($query->num_rows() > 0) {
@@ -405,14 +409,14 @@
       public function friendRequestActions($value,$id)   {
           if ($value == "0") {
             $this->db->set('status', 1);
-            $this->db->where('sender', $this->session->SESS_MEMBER_ID);
-            $this->db->where('receiver', $id);
-            $this->db->update('friendship');
+            $this->db->where('receiver', $this->session->SESS_MEMBER_ID);
+            $this->db->where('sender', $id);
+            echo $this->db->update('friendship');
 
           }elseif ($value == "1") {
-            $this->db->where('sender', $this->session->SESS_MEMBER_ID);
-            $this->db->where('receiver', $id);
-            $this->db->delete('friendship');
+            $this->db->where('receiver', $this->session->SESS_MEMBER_ID);
+            $this->db->where('sender', $id);
+            echo $this->db->delete('friendship');
           }
       }
       public function blockUser($id)  {
@@ -586,6 +590,52 @@
         $this->db->select('COUNT(*) AS count');
         $query = $this->db->get('rating_view');
         echo json_encode($query->row());
+      }
+
+      public function friendsCount($format = 0)      {
+        $this->db->select('COUNT(*) as count');
+        $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+        $this->db->or_where('receiver',$this->session->SESS_MEMBER_ID);
+        $this->db->where('status',1);
+        $count = $this->db->get('friendship');
+        $count = $count->row();
+        if ($format === 0) {
+          echo json_encode($count);
+        }else {
+          return $count->count;
+        }
+      }
+      public function friendsList($offset)      {
+        $this->db->select('receiver AS user');
+        $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+        $this->db->where('status',1);
+        $table1 = $this->db->get_compiled_select('friendship');
+        $this->db->select('sender AS user');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+        $this->db->where('status',1);
+        $table2 = $this->db->get_compiled_select('friendship');
+        $this->db->select('member_details.*');
+        $this->db->from("($table1 UNION $table2) as t");
+        $this->db->join('member_details', 'member_details.mem_id = t.user');
+        $this->db->limit(10,$offset);
+        $query = $this->db->get();
+        echo json_encode($query->result());
+
+      }
+
+      public function unfriendUser($data)      {
+        $this->db->group_start();
+          $this->db->group_start();
+            $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+            $this->db->where('receiver',$data);
+          $this->db->group_end();
+          $this->db->or_group_start();
+            $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+            $this->db->where('sender',$data);
+          $this->db->group_end();
+        $this->db->group_end();
+        $this->db->where('status',1);
+        echo $this->db->delete('friendship');
       }
 
 

@@ -38,8 +38,8 @@
             </md-button>
           </span>
         </span>
-        <md-content  ng-hide="!view"style="height:100%;">
-            <span ng-repeat="item in emojilist" ng-click="onEmojiClick(item)" style="width:32px;height:32px;">
+        <md-content class="sample-show-hide"  ng-hide="!view"style="height:100%;">
+            <span ng-animate="'animate'"  ng-repeat="item in emojilist" ng-click="onEmojiClick(item)" style="width:32px;height:32px;">
               <span ng-bind-html="item" ></span>
             </span>
         </md-content>

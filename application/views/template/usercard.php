@@ -6,6 +6,6 @@
         {{info.tag}}hhhhh h     hhhhhhhhhhhhh sssssss sssssssss s
       </p>
     </div>
-      <friendpanel layout-xs="row"  layout-gt-xs="column" uid="info.mem_id">
+      <friendpanel layout-xs="row"  layout-gt-xs="column" uid="info.mem_id" index="index" adapter="adapter">
       </friendpanel>
   </div>

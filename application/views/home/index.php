@@ -110,7 +110,7 @@
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More" href="#/request" ng-click="onClick('friend_req',$event)">
+             <md-button class="md-icon-button" aria-label="More" href="#/request/0" ng-click="onClick('friend_req',$event)">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
               <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
             </md-button>

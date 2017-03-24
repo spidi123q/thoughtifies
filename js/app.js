@@ -29,7 +29,7 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/messages',{
                   templateUrl:'p/2',
                 })
-                .when('/request',{
+                .when('/request/:type',{
                   templateUrl:'p/3',
                 })
                 .when('/users/:uid',{
@@ -81,6 +81,8 @@ app.directive('friendpanel', function () {
           restrict: 'E',
           scope : {
             uid : '=uid',
+            index : '=index',
+            adapter : '=adapter',
           },
           controller: ['$scope','$http','$rootScope','$location','$mdDialog','MyWebSocket', function ($scope,$http,$rootScope, $location,$mdDialog,MyWebSocket) {
             $scope.buttons = {
@@ -96,6 +98,7 @@ app.directive('friendpanel', function () {
                 val : -1,
               },
             };
+            console.log($scope.index);
 
             var openMenu = function($mdOpenMenu, ev) {
               originatorEv = ev;
@@ -177,6 +180,22 @@ app.directive('friendpanel', function () {
                 });
 
             };
+            $scope.buttons.unfriendButton = function () {
+
+              $http({
+                method: 'GET',
+                url: 'users/unfriend/'+$scope.uid,
+              }).then(function successCallback(response) {
+                  //$scope.buttons.request.progress = false;
+                  console.log(response.data);
+
+                }, function errorCallback(response) {
+
+                });
+
+                $scope.adapter.applyUpdates($scope.index, []);
+
+            };
             $scope.buttons.msgButton = function ($event) {
               var parentEl = angular.element(document.body);
                      $mdDialog.show({
@@ -214,7 +233,9 @@ app.directive('usercard', function () {
       return {
           restrict: 'E',
           scope: {
-            info: '=info'
+            info: '=info',
+            index : '=index',
+            adapter : '=adapter',
           },
           templateUrl:'element/1',
       };
@@ -1802,6 +1823,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           }).then(function successCallback(response) {
               // this callback will be called asynchronously
               // when the response is available
+              console.log(response.data);
 
               $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
               $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
@@ -1813,6 +1835,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               $scope.settingsData.lname = response.data.lname;
               $scope.settingsData.tag = response.data.tag;
               $scope.settingsData.dp = response.data.picture;
+              $scope.settingsData.friend_count = response.data.friend_count;
 
 
               if (response.data.gender == 'M') {
@@ -2316,22 +2339,39 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
 }]);
 
 
-app.controller('Request', function ($scope,$timeout,$q,$http) {
+app.controller('Request', function ($scope,$timeout,$q,$http,$routeParams) {
 
+
+          if ($routeParams.type === "0") {
+            $scope.switch = true;
+          }else {
+            $scope.switch = false;
+          }
          var datasource = {};
          var big =-1,max = -1;
          var page = [];
+         var url = {};
+         var init =  function () {
+             if ($scope.switch) {
+               url.count = 'req/frnd/count';
+               url.get = 'req/frnd/';
+             }else {
+               url.count  = 'friend/count';
+               url.get  = 'friend/list/';
+             }
+         };
+         init();
          var getCount = function (big) {
            var deferred = $q.defer();
            if (big === 0) {
 
                  $http({
                    method: 'GET',
-                   url: 'req/frnd/count',
+                   url: url.count,
                  }).then(function successCallback(response) {
                      // this callback will be called asynchronously
                      // when the response is available
-
+                     console.log(response.data);
                      max = response.data.count;
                      deferred.resolve(response);
 
@@ -2360,9 +2400,9 @@ app.controller('Request', function ($scope,$timeout,$q,$http) {
                getCount(big).then(function (response) {
                  $http({
                      method: 'GET',
-                     url: 'req/frnd/'+big,
+                     url: url.get+big,
                    }).then(function successCallback(response) {
-
+                      console.log(response.data);
                      response.data.forEach(function (item,index3) {
                        page.push(item);
                      });
@@ -2404,6 +2444,12 @@ app.controller('Request', function ($scope,$timeout,$q,$http) {
          $scope.adapter = {
            remain: true
          };
+         $scope.switchReload = function () {
+           init();
+           big = -1;
+           page = [];
+           $scope.adapter.reload();
+         };
 
          $scope.k = function () {
 
@@ -2414,7 +2460,7 @@ app.controller('Request', function ($scope,$timeout,$q,$http) {
                method: 'GET',
                url: 'req/frnd/action/0/'+user.mem_id,
              }).then(function successCallback(response) {
-                 //
+                 console.log(response.data);
                  var index = page.indexOf(user);
                  max--;
                  page.splice(index, 1);

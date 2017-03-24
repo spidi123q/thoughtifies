@@ -83,12 +83,14 @@
         try {
              // Get the \Facebook\GraphNodes\GraphUser object for the current user.
              // If you provided a 'default_access_token', the '{access-token}' is optional.
-             $response = $fb->get('/me?fields=id,birthday,email,picture.type(large),gender,location,hometown,first_name,middle_name,last_name', $accessToken);
+             $response = $fb->get('/me?fields=id,birthday,email,picture.type(large),gender,location{location},hometown,first_name,middle_name,last_name', $accessToken);
              $userNode = $response->getGraphUser();
-             //print_r($userNode) ;
              $this->db->select('mem_id');
              $this->db->where('id',$userNode->getId());
              $query = $this->db->get('facebook_member');
+             //$response = $fb->get('/me/friends', $accessToken);
+            // $graphEdge = $response->getGraphEdge();
+
             if ($query->num_rows() === 0) {
               $this->createAccountFacebook($userNode,$fb,$accessToken);
              }

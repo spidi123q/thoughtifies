@@ -215,4 +215,8 @@ a {
   opacity: 0.54;
   text-align: center; }
 
+.ng-hide {
+  opacity: 0;
+  transition: all linear .5s; }
+
 /*# sourceMappingURL=index.css.map */
