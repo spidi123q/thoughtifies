@@ -10,7 +10,7 @@
   </script>
   <title>Thoughtifies</title>
 </head>
-<body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden">
+<body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden" >
   <div id="splash" ng-cloak ng-hide="bootscreen">
         <h2>Loading</h2>
      </div>
@@ -90,7 +90,7 @@
         			</md-toolbar>
 
 
-   <md-content ng-controller="chatInit" layout-padding ui-scroll-viewport scroll-glue-top>
+   <md-content id="scrollview" ng-controller="chatInit" layout-padding ui-scroll-viewport scroll-glue-top >
       <div layout="row" style="height: 100%;" ng-cloak>
         <section layout="row" flex >
 
@@ -146,7 +146,7 @@
 <md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
          <i class="material-icons ">perm_contact_calendar</i>
  </md-button>-->
-    <div ng-view layout-align="center center">
+    <div ng-view layout-align="center center" >
 
     </div>
 
@@ -156,7 +156,7 @@
 						</div>
  </md-content>
 <span >
-  <md-button ng-hide="chatButton.chat.isOpen" ng-click="toggleLeft()" style="position: fixed;
+  <md-button myfab  id="chat_fab" ng-hide="chatButton" ng-click="toggleLeft()" style="position: fixed;
     z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
            <i class="material-icons " >perm_contact_calendar</i><span ng-hide="totalNoti === 0" class="badge1" data-badge="{{totalNoti}}"></span>
    </md-button>

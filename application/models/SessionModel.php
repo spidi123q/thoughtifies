@@ -11,7 +11,7 @@
       	$regex = "/#+([a-zA-Z0-9_]+)/";
         preg_match_all($regex, $str, $matches);
         //print_r($matches[1]);
-      	$str = preg_replace($regex, '<a href="hashtag.php?tag=$1">$0</a>', $str);
+      	$str = preg_replace($regex, '<a href="#/tbs/hash/$1">$0</a>', $str);
       	return(
           array('data' => $str ,
           'hashtags' => $matches[1],

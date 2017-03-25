@@ -76,6 +76,21 @@ app.config( [
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
+app.directive("myfab", function ($window,$interval) {
+    return function(scope, element, attrs) {
+      var view = document.querySelector( '#scrollview' );
+        angular.element(view).bind("scroll", function() {
+          console.log("scrolling");
+          //console.log(scope);
+          //scope.chatButton = true;
+          if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
+        // you're at the bottom of the page
+        console.log("end");
+          }
+
+        });
+    };
+});
 app.directive('friendpanel', function () {
       return {
           restrict: 'E',
@@ -3097,6 +3112,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
         }).join('&');
         return str;
       };
+      $scope.chatButton = false;
       $scope.bootscreen = true;
       $scope.tbClass = ['hide_xs'];
       $scope.searchButtonClass = ['show_xs'];
