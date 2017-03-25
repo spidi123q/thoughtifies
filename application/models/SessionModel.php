@@ -344,8 +344,10 @@
       public function getFriendshipStatus($value)      {
         $data = array('receiver' => $this->session->SESS_MEMBER_ID,
          'sender' => $value);
+         $data2 = array('sender' => $this->session->SESS_MEMBER_ID,
+          'receiver' => $value);
         $query = $this->db->select('status')->from('friendship')
-                            ->where($data)->get();
+                            ->where($data)->or_where($data2)->get();
         if ($query->num_rows() > 0) {
           $val = $query->row();
           echo $val->status;
