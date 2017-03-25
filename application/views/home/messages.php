@@ -89,7 +89,7 @@
             </md-content>
 
             <div layout="column" style="width:100%;padding-top:10px;">
-              <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="width:100%;height:40px;"
+              <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="height:40px;"
               ng-focus="focus()"
               ng-blur="unfocus()"
               ></div>
