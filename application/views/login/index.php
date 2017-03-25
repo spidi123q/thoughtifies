@@ -21,7 +21,7 @@
 </head>
 	<body  >
 		<div  class="title flex-container" style="">
-							<form name="loginform" action="data/1" method="post" style="">
+							<form name="loginform" action="data/1" method="post" >
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -47,17 +47,19 @@
 							<?php echo $fb ?>
 
 						</div>
-						<div class="quotes flex-container">
+						<div  class="phone simple-flex-container">
+							<div class="myVideo">
+								<video id="video" autoplay loop >
+								  <source src="<?php echo base_url(); ?>images/sad.mp4" type="video/mp4">
+								Your browser does not support the video tag.
+								</video>
+							</div>
+						</div>
+						<div class="quotes flex-container hide">
 								<div>Advertises your thoughts</div>
 								<div>Privacy first! Thoughtifies don't track you</div>
 						</div>
 
-
-						<video poster="" id="bgvid" playsinline autoplay muted loop>
-							<!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-							<source src="<?php echo base_url(); ?>images/untitled.webm" type="video/webm">
-
-						</video>
 
 
 
@@ -68,6 +70,11 @@
 		<!-- Angular Material Library -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
-
+<script type="text/javascript">
+				var video = document.getElementById('video');
+				document.addEventListener('click',function(){
+					video.play();
+				},false);
+</script>
 	</body>
 </html>

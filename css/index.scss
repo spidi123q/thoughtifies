@@ -13,9 +13,12 @@ $red: #E53B3A;
     height: auto;
   }
 }
+body{
+  background-color: $band-color;
+}
 .title{
-  background-color: $band-color-trasparent;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.37);
+   //$band-color-trasparent;
+  //box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.37);
   padding: 1px 5px 1px 5px;
   text-align: center;
   padding: 1% 0% 0% 0%;
@@ -32,35 +35,29 @@ $red: #E53B3A;
     padding-top: 35px;
   }
 }
-.quotes {
-  margin-top: 10%;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 1px 5px 1px 5px;
-  text-align: center;
-  padding: 1% 0% 0% 0%;
-  text-align: center;
-  padding: 2% 0% 0% 0%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 25px;
-  color: white;
-  padding-top: 15px;
+.simple-flex-container{
+  display: flex;
+  justify-content: center;
+}
+.phone {
+  margin-top: 50px;
+}
+.myVideo {
+    background-image: url('../images/Nexus 6P.png');
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 416px;
+    position: relative;
+    video {
+      top: 43px;
+      left: 8px;
+      position: absolute;
+      height: 326px;
+    }
 }
 
-video {
-   overflow:hidden;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    transform: translateX(-50%) translateY(-50%);
-  background: url('') no-repeat;
-  background-size: cover;
-  transition: 1s opacity;
-}
+
+
 .stopfade {
    opacity: .5;
 }
