@@ -2542,18 +2542,30 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
       }, function errorCallback(response) {
       });
 
-          var datasource = {};
+          var datasource = {},url = {};
           var big =-1,max = 500;
           var page = [];
+
+          var init =  function () {
+            if ($scope.friend_switch) {
+              url.count = 'post/friends/count';
+              url.get = 'post/friends/get/';
+            }else {
+              url.count = 'post/count';
+              url.get = 'post/get/';
+            }
+          };
+          init();
           var getCount = function (big) {
             var deferred = $q.defer();
             if (big === 0) {
                   $http({
                     method: 'GET',
-                    url: 'post/count',
+                    url: url.count,
                   }).then(function successCallback(response) {
                       // this callback will be called asynchronously
                       // when the response is available
+                      console.log(response.data);
 
                       max = response.data.count;
                       deferred.resolve(response);
@@ -2584,7 +2596,7 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
 
                   $http({
                       method: 'GET',
-                      url: 'post/get/'+big,
+                      url: url.get+big,
                     }).then(function successCallback(response) {
 
                       response.data.forEach(function (item,index3) {
@@ -2627,6 +2639,13 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           $scope.adapter = {
             remain: true
           };
+          $scope.friendSwitchChange =  function () {
+            init();
+            big = -1;
+            page = [];
+            $scope.adapter.reload();
+          };
+
 });
 app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootScope, $location,$mdSidenav) {
 

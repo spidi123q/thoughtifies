@@ -25,7 +25,7 @@
 
       </div>
     <div layout="row" layout-align="center center">
-      <md-switch ng-model="data.cb1" aria-label="Switch 1">
+      <md-switch ng-model="friend_switch" aria-label="Switch 1" ng-change="friendSwitchChange()">
        Friends only
      </md-switch>
     </div>

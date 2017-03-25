@@ -18,6 +18,18 @@
          )
         );
       }
+
+      private function friendsListQuery()      {
+        $this->db->select('receiver AS user');
+        $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+        $this->db->where('status',1);
+        $table1 = $this->db->get_compiled_select('friendship');
+        $this->db->select('sender AS user');
+        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+        $this->db->where('status',1);
+        $table2 = $this->db->get_compiled_select('friendship');
+        return "($table1 UNION $table2) as t";
+      }
       private function convertToJPEG($data)      {
 
         $fileType = $data->data('file_type');
@@ -431,9 +443,13 @@
         echo $this->db->insert('report_post',$data);
       }
 
-      public function getPosts($offset,$id)      {
+      public function getPosts($offset,$id,$type = 0)      {
+        $friendQry = $this->friendsListQuery();
         if($id !== '')
-          $this->db->where('mem_id',$id);
+          $this->db->where('mem_id',$id); //view post of users in profile
+        if ($type === 1) {
+            $this->db->join($friendQry, 't.user = post_view.mem_id');
+        }
 
         $this->db->limit(10, $offset);
         $query = $this->db->get("post_view");
@@ -451,11 +467,16 @@
         echo json_encode($result);
       }
 
-      public function getPostsCount($id)      {
+      public function getPostsCount($id,$type = 0)      {
+        $friendQry = $this->friendsListQuery();
         $this->db->select("COUNT(*) AS count");
         if($id !== '')
           $this->db->where('mem_id',$id);
+        if ($type === 1) {
+            $this->db->join($friendQry, 't.user = post_view.mem_id');
+          }
         $query = $this->db->get("post_view");
+        //echo  $query;
         echo json_encode($query->row());
       }
       public function getPostById($id)    {
@@ -608,17 +629,11 @@
           return $count->count;
         }
       }
+
       public function friendsList($offset)      {
-        $this->db->select('receiver AS user');
-        $this->db->where('sender',$this->session->SESS_MEMBER_ID);
-        $this->db->where('status',1);
-        $table1 = $this->db->get_compiled_select('friendship');
-        $this->db->select('sender AS user');
-        $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
-        $this->db->where('status',1);
-        $table2 = $this->db->get_compiled_select('friendship');
+        $qry = $this->friendsListQuery();
         $this->db->select('member_details.*');
-        $this->db->from("($table1 UNION $table2) as t");
+        $this->db->from($qry);
         $this->db->join('member_details', 'member_details.mem_id = t.user');
         $this->db->limit(10,$offset);
         $query = $this->db->get();

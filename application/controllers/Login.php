@@ -412,6 +412,12 @@
         public function getPostsCount($id = '')      {
             $this->SessionModel->getPostsCount($id);
         }
+        public function getFriendsPosts($value)      {
+            $this->SessionModel->getPosts($value,'',1);
+        }
+        public function getFriendsPostsCount($id = '')      {
+            $this->SessionModel->getPostsCount($id,1);
+        }
         public function onRating($id,$val)      {
           $data = array(
             $this->session->SESS_MEMBER_ID,
