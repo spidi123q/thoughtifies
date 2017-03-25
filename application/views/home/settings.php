@@ -1,6 +1,6 @@
 <div layout="column" ng-hide="hideProfile()">
   <div  flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
-        <div layout="row" style="margin:20px">
+        <div layout="row" >
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
             <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">

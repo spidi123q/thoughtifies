@@ -346,8 +346,14 @@
          'sender' => $value);
          $data2 = array('sender' => $this->session->SESS_MEMBER_ID,
           'receiver' => $value);
-        $query = $this->db->select('status')->from('friendship')
-                            ->where($data)->or_where($data2)->get();
+        $query = $this->db->select('status')->from('friendship');
+                  $this->db->group_start();
+                            $this->db->where($data);
+                  $this->db->group_end();
+                  $this->db->or_group_start();
+                        $this->db->where($data2);
+                  $this->db->group_end();
+                $query =   $this->db->get();
         if ($query->num_rows() > 0) {
           $val = $query->row();
           echo $val->status;

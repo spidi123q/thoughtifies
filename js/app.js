@@ -110,7 +110,7 @@ app.directive('friendpanel', function () {
                method: 'GET',
                url: 'users/frnd/status/'+$scope.uid,
              }).then(function successCallback(response) {
-                   //
+                   console.log(response.data);
                    if (response.data === "0") {
                      $scope.buttons.request.icon = "close";
                      $scope.buttons.request.val = 0;

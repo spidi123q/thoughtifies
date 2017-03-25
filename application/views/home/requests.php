@@ -2,7 +2,8 @@
 
   <div layout="column" layout-align="center center">
     <md-switch ng-model="switch" aria-label="Switch 1" ng-change="switchReload()">
-    Pending
+     <span ng-if="switch" class="empty_msg">Pending</span>
+     <span ng-if="!switch" class="empty_msg">Friends</span>
   </md-switch>
     <div ui-scroll="user in datasource" adapter="adapter on Request" >
      <friend-request-card ng-if="switch"></friend-request-card>
