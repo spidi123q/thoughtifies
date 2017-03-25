@@ -222,4 +222,7 @@ a {
 .hide_elem {
   display: none; }
 
+.msgPage md-backdrop.md-sidenav-backdrop {
+  display: none; }
+
 /*# sourceMappingURL=index.css.map */

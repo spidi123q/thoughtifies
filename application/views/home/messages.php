@@ -1,8 +1,8 @@
 
 
-<md-content layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
+<md-content class="msgPage" layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
 
-  <md-sidenav class="md-sidenav-left" md-component-id="jam" md-disable-backdrop md-whiteframe="4"
+  <md-sidenav class="md-sidenav-left" md-component-id="jam"  md-whiteframe="4"
        ui-scroll-viewport >
 <!--
   <md-toolbar class="md-theme-indigo" layout="row">
@@ -60,7 +60,7 @@
             </md-list-item>
           </div>
             <md-content layout="row" flex="60" style="padding-left:20px;">
-                    <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue style="width:100%;">
+                    <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue style="width:100%;overflow-x:hidden">
                       <div layout="row" layout-align="center center">
                         <md-progress-circular ng-if="msgUserAdapter.isLoading && msgUser !== undefined" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
                       </div>
@@ -74,9 +74,9 @@
                                 <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
                                 <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                                 <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
-                                <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px; ">
+                                <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px;overflow-wrap: break-word;">
                                   <h3>{{ todos[0].who }}</h3>
-                                  <h5 ng-bind-html="item.message" style="color:grey"></h5>
+                                  <h5 ng-bind-html="item.message" style="color:grey;" ></h5>
                                 </div>
                               </md-list-item>
                             </md-list>

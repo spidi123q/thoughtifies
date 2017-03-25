@@ -1116,19 +1116,10 @@ app.controller('msgController', [
       });
 
       $scope.jj = listMessengers;
-      $scope.toggleLeft = buildToggleri('jam');
-      $scope.toggleRight = buildToggleri('right');
-
-       function buildToggleri(componentId) {
-
-         return function() {
-            $mdSidenav('left')
-            .close()
-            .then(function(){
-            });
-           $mdSidenav(componentId).toggle();
-         };
-       }
+      $scope.toggleLeft = function () {
+        $mdSidenav('jam')
+          .toggle();
+      };
        $mdSidenav('jam', true).then(function(instance) {
           $scope.toggleLeft();
         });
