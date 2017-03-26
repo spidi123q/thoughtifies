@@ -19,9 +19,9 @@
 					}
 	</script>
 </head>
-	<body  >
+	<body class="login_body" >
 		<div  class="title flex-container" style="">
-							<form name="loginform" action="data/1" method="post" >
+							<form class="" name="loginform" action="data/1" method="post" >
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -47,34 +47,45 @@
 							<?php echo $fb ?>
 
 						</div>
-						<div  class="phone simple-flex-container">
+						<div  class="phone simple-flex-container mobile_flex">
 							<div class="myVideo">
-								<video id="video" autoplay loop >
+								<video id="video" autoplay loop muted playsinline>
 								  <source src="<?php echo base_url(); ?>images/sad.mp4" type="video/mp4">
 								Your browser does not support the video tag.
 								</video>
 							</div>
+							<div class="quotes flex-container column">
+									<div>Advertising your thoughts</div>
+									<div>Connecting people</div>
+									<div>Privacy first! Thoughtifies don't track you</div>
+							</div>
 						</div>
-						<div class="quotes flex-container hide">
-								<div>Advertises your thoughts</div>
-								<div>Privacy first! Thoughtifies don't track you</div>
-						</div>
 
 
 
 
-		<div id="footer">
+
+		<div class="simple-flex-container footer">
+			<div class="">
+				Credits
+			</div>
+			<div class="">
+				Privacy Policy
+			</div>
+			<div class="">
+				Contact
+			</div>
 		</div>
-		<!-- Angular Material requires Angular.js Libraries -->
-
-		<!-- Angular Material Library -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 <script type="text/javascript">
 				var video = document.getElementById('video');
 				document.addEventListener('click',function(){
-					video.play();
+						video.play();
 				},false);
+				window.onscroll = function (e) {
+						// called when the window is scrolled.
+						console.log("scroll");
+
+				}
 </script>
 	</body>
 </html>

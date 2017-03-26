@@ -80,7 +80,7 @@ app.directive("myfab", function ($window,$interval) {
     return function(scope, element, attrs) {
       var view = document.querySelector( '#scrollview' );
         angular.element(view).bind("scroll", function() {
-          console.log("scrolling");
+          //console.log("scrolling");
           //console.log(scope);
           //scope.chatButton = true;
           if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
@@ -1996,19 +1996,20 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           url: 'settings/upload',
           autoUpload: true,
         });
-        // FILTERS
+        uploader.filters.push({
+            name: 'customFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                return this.queue.length < 1;
+            }
+        });
 
-          uploader.filters.push({
-              name: 'customFilter',
-              fn: function(item /*{File|FileLikeObject}*/, options) {
-                  return this.queue.length < 10;
-              }
-          });
 
           // CALLBACKS
 
           uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
               console.info('onWhenAddingFileFailed', item, filter, options);
+              uploader.clearQueue();
+              uploader.addToQueue(item);
           };
           uploader.onAfterAddingFile = function(fileItem) {
               console.info('onAfterAddingFile', fileItem);

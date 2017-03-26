@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300");
 @media only screen and (max-width: 255px) {
   img {
     width: 100%;
     height: auto; } }
-body {
+.login_body {
   background-color: #26A69A; }
 
 .title {
@@ -22,7 +23,8 @@ body {
 
 .simple-flex-container {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
 
 .phone {
   margin-top: 50px; }
@@ -39,6 +41,28 @@ body {
     position: absolute;
     height: 326px; }
 
+.column {
+  flex-direction: column; }
+
+.quotes {
+  color: white;
+  margin: 30px;
+  font-size: x-large;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black; }
+  .quotes div {
+    padding: 10px 10px 10px; }
+
+.footer {
+  margin: 50px;
+  position: relative;
+  justify-content: flex-end;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black; }
+  .footer div {
+    margin-left: 30px; }
+
 .stopfade {
   opacity: .5; }
 
@@ -52,13 +76,10 @@ body {
     .flex-container img {
       padding-top: 20px; } }
 
-#footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  text-align: center; }
+@media only screen and (max-width: 750px) {
+  .mobile_flex {
+    flex-direction: column;
+    justify-content: center; } }
 
 .hide {
   display: none; }
@@ -216,5 +237,8 @@ a {
 
 .msgPage md-backdrop.md-sidenav-backdrop {
   display: none; }
+
+.main_view {
+  margin-top: 30px; }
 
 /*# sourceMappingURL=index.css.map */

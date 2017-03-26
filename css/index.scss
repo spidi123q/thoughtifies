@@ -5,6 +5,7 @@ $blue: #3ea5ce;
 $green: palegreen;
 $yellow: lighten(#ffba00, 5%);
 $red: #E53B3A;
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
 
 
 @media only screen and (max-width: 255px) {
@@ -13,7 +14,7 @@ $red: #E53B3A;
     height: auto;
   }
 }
-body{
+.login_body{
   background-color: $band-color;
 }
 .title{
@@ -38,6 +39,7 @@ body{
 .simple-flex-container{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .phone {
   margin-top: 50px;
@@ -55,9 +57,30 @@ body{
       height: 326px;
     }
 }
-
-
-
+.column {
+  flex-direction: column;
+}
+.quotes {
+  color: white;
+  margin: 30px;
+  font-size: x-large;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black;
+  div {
+    padding: 10px 10px 10px;
+  }
+}
+.footer {
+  margin: 50px;
+  position: relative;
+  justify-content: flex-end;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black;
+  div{
+    margin-left: 30px;
+  }
+}
 .stopfade {
    opacity: .5;
 }
@@ -75,16 +98,13 @@ body{
   }
 
 }
-
-#footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  //background-color: #efefef;
-  text-align: center;
+.mobile_flex {
+  @media only screen and (max-width: $screen-xs+150) {
+     flex-direction: column;
+     justify-content: center;
+  }
 }
+
 .hide {
   display:none;
 }
@@ -263,4 +283,7 @@ a {
 }
 .msgPage md-backdrop.md-sidenav-backdrop{
     display:none
+}
+.main_view{
+  margin-top: 30px;
 }

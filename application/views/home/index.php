@@ -146,7 +146,7 @@
 <md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
          <i class="material-icons ">perm_contact_calendar</i>
  </md-button>-->
-    <div ng-view layout-align="center center" >
+    <div class="main_view" ng-view layout-align="center center" >
 
     </div>
 
