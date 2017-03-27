@@ -333,7 +333,7 @@ app.directive('postcard', function () {
                     }
                 };
                 $scope.onEmojiClick = function (item) {
-                  if ($scope.data === placeholder) {
+                  if ($scope.data === undefined) {
                     $scope.data = "";
                   }
                   $scope.data += " "+item;
