@@ -1,3 +1,4 @@
+<br><br>
 <div ng-controller="PostView">
       <div  layout="column" layout-align="center center" >
         <div  layout="row" layout-align="center center" >
