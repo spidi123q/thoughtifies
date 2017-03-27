@@ -307,14 +307,11 @@ app.directive('postcard', function () {
                   url: 'home/upload',
                   autoUpload: true,
                 });
-                uploader.filters.push({
-                    name: 'customFilter',
-                    fn: function(item /*{File|FileLikeObject}*/, options) {
-                        return this.queue.length < 1;
-                    }
-                });
+                uploader.filters.queueLimit = 1;
                 uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
                     console.info('onWhenAddingFileFailed', item, filter, options);
+                    uploader.clearQueue();
+                    uploader.addToQueue(item);
                 };
                 uploader.onAfterAddingFile = function(fileItem) {
                     console.info('onAfterAddingFile', fileItem);
