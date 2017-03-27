@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize','angular-loading-bar', 'ngAnimate']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar']);
 
 
 
@@ -17,6 +17,9 @@ app.config(function($mdThemingProvider) {
       'hue-2' : 'A700',
     });
 });
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+}]);
 
 app.config(['$routeProvider', function($routeProvider){
                 $routeProvider
@@ -1010,6 +1013,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
         var setUser = function (id) {
           big = -1;
+          page = [];
           user = id;
         };
         var getCount = function (big) {

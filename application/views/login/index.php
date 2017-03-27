@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="manifest" href="manifest.json">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+	<!--
 	<script type="text/javascript">
 						if ('serviceWorker' in navigator) {
 					window.addEventListener('load', function() {
@@ -18,6 +19,7 @@
 					});
 					}
 	</script>
+-->
 </head>
 	<body class="login_body" >
 		<div  class="title flex-container" style="">
