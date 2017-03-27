@@ -180,6 +180,36 @@ a {
 .md-primary.md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
   background-color: #27c6b7 !important; }
 
+.jk-rating-stars-container .button {
+  cursor: pointer; }
+
+.jk-rating-stars-container .button .material-icons {
+  font-size: 30px; }
+
+.jk-rating-stars-container .star-button.star-on .material-icons {
+  color: #EE9A00; }
+
+.jk-rating-stars-container .star-button.star-off .material-icons {
+  color: #ddd; }
+
+.autocomplete-custom-template li {
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
+
+.autocomplete-custom-template .item-title md-icon {
+  height: 60px;
+  width: 60px; }
+
 .user_card {
   background-color: white;
   margin: 30px; }

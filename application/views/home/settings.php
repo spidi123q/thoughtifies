@@ -78,9 +78,15 @@
           </md-content>
         </md-tab>
         <md-tab label="{{settingsData.tabs.photos.name}}" md-on-select="onSelectPosts()">
-          <md-content class="md-padding" ng-if="settingsData.post">
-              <div  layout="column"  layout-align="center center" ui-scroll="item in datasource">
-                <post-view-card  info="item" style="width:520px"></post-view-card>
+          <md-content ng-controller="ProfilePosts"  class="md-padding" ng-if="settingsData.post">
+                <div   layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
+                  <post-view-card  info="item" style="width:520px"></post-view-card>
+                </div>
+              <div  layout="column"  layout-align="center center">
+
+                <br>
+                <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+                <br>
               </div>
           </md-content>
 

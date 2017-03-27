@@ -1071,9 +1071,6 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
 
   			var get = function (index, count, success) {
 
-          $timeout(function () {
-
-                //
               setBig(index).then(function (response) {
                 var result = [];
                 for (var i = index; i <= index + count - 1; i++) {
@@ -1089,8 +1086,6 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
               },function (error) {
 
               });
-
-            }, 100);
 
   			};
 
@@ -1746,14 +1741,15 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
       }
 });
-
+app.controller('ProfilePosts',function ($scope,MyPosts) {
+  $scope.datasource = MyPosts;
+    $scope.adapter = {
+      remain: true
+    };
+});
 app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q','MyPosts',function($scope,$http,$mdDialog,FileUploader,$timeout,$q,MyPosts) {
-      var datasource = {};
-      var big =-1,max = 500;
-      var page = [];
-			$scope.datasource = MyPosts;
-			$scope.delay = false;
 
+			$scope.delay = false;
         $scope.adapter = {
           remain: true
         };
@@ -2286,7 +2282,6 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
 app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','MyPosts','$location',function($scope,$http,$mdDialog,$routeParams,MyPosts,$location) {
 
-
           $scope.uid = $routeParams.uid;
           if ($scope.uid == SESS_MEMBER_ID) {
             $location.path( "/profile" );
@@ -2300,7 +2295,6 @@ app.controller('UserController', ['$scope','$http','$mdDialog','$routeParams','M
 
                 });
           }
-          $scope.datasource = MyPosts;
           $scope.settingsData = {
             tabs : {
               profile  : {

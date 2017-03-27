@@ -141,7 +141,7 @@
 
    <div style="outline: none;
        border: 0;" flex layout-padding>
-<br><br><br>
+<br>
     <div class="main_view" ng-view layout-align="center center" >
 
     </div>
@@ -199,36 +199,5 @@
 
 </body>
 
-<style>
-.jk-rating-stars-container .button {
-  cursor: pointer; }
-  .jk-rating-stars-container .button .material-icons {
-    font-size: 30px; }
-
-.jk-rating-stars-container .star-button {
-   }
-  .jk-rating-stars-container .star-button.star-on .material-icons {
-    color: #EE9A00; }
-  .jk-rating-stars-container .star-button.star-off .material-icons {
-    color: #ddd; }
-.autocomplete-custom-template li {
-  height: auto;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  white-space: normal;
-}
-.autocomplete-custom-template li:last-child {
-  border-bottom-width: 0;
-}
-.autocomplete-custom-template .item-title,
-.autocomplete-custom-template .item-metadata {
-  display: block;
-  line-height: 2;
-}
-.autocomplete-custom-template .item-title md-icon {
-  height: 60px;
-  width: 60px;
-}
-</style>
 
 </html>
