@@ -680,6 +680,14 @@
         echo $this->db->delete('friendship');
       }
 
+      public function deletePost($id)    {
+        $this->db->set('deleted', 1);
+        $this->db->where('id', $id);
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+        $this->db->update('posts');
+        echo  $this->db->affected_rows();
+      }
+
 
 
 

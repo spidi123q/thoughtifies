@@ -29,7 +29,7 @@
     </div>
     <div  layout="column" layout-align="center center"  >
       <div layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on PostView" >
-          <post-view-card info="item" style="width:520px"></post-view-card>
+          <post-view-card adapter="adapter" index="$index" info="item" style="width:520px"></post-view-card>
       </div>
       <div layout="column"  layout-align="center center">
         <br>

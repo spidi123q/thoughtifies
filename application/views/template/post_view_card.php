@@ -21,6 +21,12 @@
                         Report
                       </md-button>
                     </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="delete()">
+                        <md-icon md-font-library="material-icons" class="md-light md-48">pan_tool</md-icon>
+                        Delete
+                      </md-button>
+                    </md-menu-item>
                   </md-menu-content>
         </md-menu>
          </md-card-header>

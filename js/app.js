@@ -420,6 +420,8 @@ app.directive('postViewCard', function () {
           scope : {
             item : "=info",
             mydp : "=mydp",
+            adapter : "=adapter",
+            index : "=index",
           },
           controller : function ($scope,$http,MyWebSocket,$mdDialog,$mdToast) {
 
@@ -474,16 +476,24 @@ app.directive('postViewCard', function () {
 
                   });
             };
-            $scope.getMyRating = function (id) {
+
+            $scope.delete =  function () {
               $http({
                   method: 'GET',
-                  url: 'rating/get/'+id,
+                  url: 'post/delete/'+$scope.item.id,
                 }).then(function successCallback(response) {
-
-                    //return response.data.rating;
+                    console.log(response.data);
+                    if (parseInt(response.data) >0) {
+                      $scope.showSimpleToast("Thought deleted successfully");
+                    }
+                    else {
+                      $scope.showSimpleToast("Thought deletion failed");
+                      $scope.adapter.reload();
+                    }
                   }, function errorCallback(response) {
 
                   });
+              $scope.adapter.applyUpdates($scope.index, []);
             };
             $scope.showSimpleToast = function(msg) {
               $mdToast.show(

@@ -504,6 +504,9 @@
         public function friendsList($offset)    {
           $this->SessionModel->friendsList($offset);
         }
+        public function deletePost($id)    {
+          $this->SessionModel->deletePost($id);
+        }
 
 
 

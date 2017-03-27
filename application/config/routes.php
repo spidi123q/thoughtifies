@@ -102,6 +102,7 @@ $route['(:any)/post/onrating/(:num)/(:num)']='Login/onRating/$2/$3';
 $route['(:any)/post/count']='Login/getPostsCount';
 $route['(:any)/post/id/(:num)']='Login/getPostById/$2';
 $route['(:any)/post/get/(:num)']='Login/getPosts/$2';
+$route['(:any)/post/delete/(:num)']='Login/deletePost/$2';
 $route['(:any)/post/count/(:num)']='Login/getPostsCount/$2';
 $route['(:any)/post/friends/get/(:num)']='Login/getFriendsPosts/$2';
 $route['(:any)/post/friends/count']='Login/getFriendsPostsCount';
