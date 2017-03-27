@@ -10,18 +10,18 @@
   </script>
   <title>Thoughtifies</title>
 </head>
-<body ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden" >
+<body class="home_body" ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden" ng-class="disabledClass" >
   <div id="splash" ng-cloak ng-hide="bootscreen">
         <h2>Loading</h2>
      </div>
 
 	<md-toolbar ng-controller="ToolbarController as ctrl" class="main_toolbar">
 				<div class="md-toolbar-tools fabSpeedDialdemoBasicUsage">
-							 <md-fab-speed-dial md-open="menu.isOpen" md-direction="down"
-																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left">
+							 <md-fab-speed-dial  md-open="menu.isOpen" md-direction="down"
+																	ng-class="menu.selectedMode" class="md-scale md-raised md-fab-top-left" >
 								 <md-fab-trigger>
 									 <md-button aria-label="menu" class="md-fab md-warn">
-										 <i class="material-icons">dashboard</i>
+                     <md-icon  md-font-library="material-icons">dashboard</md-icon>
 									 </md-button>
 								 </md-fab-trigger>
 
@@ -141,11 +141,7 @@
 
    <div style="outline: none;
        border: 0;" flex layout-padding>
-<br><br>
-<!--
-<md-button ng-click="t()" class="md-fab md-primary" aria-label="Chat">
-         <i class="material-icons ">perm_contact_calendar</i>
- </md-button>-->
+<br><br><br>
     <div class="main_view" ng-view layout-align="center center" >
 
     </div>
@@ -156,9 +152,9 @@
 						</div>
  </md-content>
 <span >
-  <md-button myfab  id="chat_fab" ng-hide="chatButton" ng-click="toggleLeft()" style="position: fixed;
-    z-index: 999;" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
-           <i class="material-icons " >perm_contact_calendar</i><span ng-hide="totalNoti === 0" class="badge1" data-badge="{{totalNoti}}"></span>
+  <md-button myfab  id="chat_fab" ng-hide="chatButton" ng-click="toggleLeft()" class="md-fab md-fab-bottom-right md-primary" aria-label="Chat">
+           <md-icon  md-font-library="material-icons">perm_contact_calendar</md-icon><span ng-hide="totalNoti === 0" class="badge1" data-badge="{{totalNoti}}"></span>
+
    </md-button>
 </span>
 

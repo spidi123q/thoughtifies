@@ -90,10 +90,10 @@
             <md-list flex-sm="80"  flex-gt-sm="50"  >
 
               <md-list-item class="md-2-line"  ng-click="getDialog($event,2)" id="left">
-                <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">gesture</md-icon>
+                <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">public</md-icon>
                 <div class="md-list-item-text" layout="column">
                   <h3></h3>
-                  <p>Change tag</p>
+                  <p>Change status</p>
                 </div>
               </md-list-item>
               <md-list-item class="md-2-line"  ng-click="getDialog($event,1)" id="left">

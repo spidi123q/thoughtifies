@@ -238,4 +238,12 @@ a {
 .msgPage md-backdrop.md-sidenav-backdrop {
   display: none; }
 
+.disabled_content {
+  -moz-filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  /* IE6-9 */
+  filter: grayscale(100%);
+  pointer-events: none !important; }
+
 /*# sourceMappingURL=index.css.map */

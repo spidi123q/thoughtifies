@@ -3109,7 +3109,7 @@ app.controller('MyPostRating', function ($scope, $timeout, $mdDialog,MyWebSocket
   }
 
 });
-app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidenav,MyWebSocket,notiService,$interval) {
+app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast) {
       $scope.bootscreen = false;
       $scope.jsonToURL = function (data) {
         var str = Object.keys(data).map(function(key){
@@ -3145,6 +3145,21 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav,$log,chatSidena
      $interval(function() {
         $scope.totalNoti = notiService.getTotalNoti();
      },1000);
+     window.addEventListener("offline", function(e) {
+        $scope.disabledClass = 'disabled_content';
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('You are "Offline"')
+            .position('bottom right' )
+            .hideDelay(3000)
+        );
+
+      }, false);
+
+      window.addEventListener("online", function(e) {
+        $scope.disabledClass = '';
+      }, false);
+
 
 
 });
