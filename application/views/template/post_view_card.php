@@ -16,15 +16,15 @@
               </md-button>
                   <md-menu-content width="2">
                     <md-menu-item>
-                      <md-button ng-click="showPrompt($event)">
-                        <md-icon md-font-library="material-icons" class="md-light md-48">pan_tool</md-icon>
-                        Report
+                      <md-button ng-click="showConfirm()">
+                        <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon>
+                        Delete
                       </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                      <md-button ng-click="delete()">
+                      <md-button ng-click="showPrompt($event)">
                         <md-icon md-font-library="material-icons" class="md-light md-48">pan_tool</md-icon>
-                        Delete
+                        Report
                       </md-button>
                     </md-menu-item>
                   </md-menu-content>

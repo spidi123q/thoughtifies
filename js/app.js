@@ -362,7 +362,7 @@ app.directive('postcard', function () {
                   //$scope.data.replace(/.*/,linkify.twitter($scope.data));
                 };
                 $scope.post = function () {
-
+                  $scope.data = ($scope.data === undefined)?"":$scope.data;
                         $http({
                           method: 'POST',
                           url: 'home/post',
@@ -494,6 +494,21 @@ app.directive('postViewCard', function () {
 
                   });
               $scope.adapter.applyUpdates($scope.index, []);
+            };
+            $scope.showConfirm = function(ev) {
+              // Appending dialog to document.body to cover sidenav in docs app
+              var confirm = $mdDialog.confirm()
+                    .title('Would you like to delete your thought?')
+                    .ariaLabel('delete')
+                    .targetEvent(ev)
+                    .ok('YES')
+                    .cancel('NO');
+
+              $mdDialog.show(confirm).then(function() {
+                $scope.delete();
+              }, function() {
+
+              });
             };
             $scope.showSimpleToast = function(msg) {
               $mdToast.show(
@@ -1278,6 +1293,7 @@ app.controller('msgController', [
       $scope.msgUserAdapter.reload();
       $scope.toggleLeft();
     };
+
     $scope.bgList = function (val) {
       if (val) {
         return {
@@ -1323,8 +1339,26 @@ app.controller('msgController', [
             console.log(response.data);
           }, function errorCallback(response) {
 
-          });
+        });
     };
+
+    $scope.showConfirm = function(ev,mem_id,$index) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.confirm()
+            .title('Would you like to delete this conversion?')
+            .ariaLabel('delete')
+            .targetEvent(ev)
+            .ok('YES')
+            .cancel('NO');
+
+      $mdDialog.show(confirm).then(function() {
+        $scope.deleteMsgUser(mem_id,$index);
+      }, function() {
+
+      });
+    };
+
+
 
 
 

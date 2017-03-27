@@ -24,7 +24,7 @@
      </md-button>
      <md-menu-content width="2">
        <md-menu-item>
-         <md-button ng-click="deleteMsgUser(item.mem_id,$index)">
+         <md-button ng-click="showConfirm($event,item.mem_id,$index)">
            <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon>
            Delete
          </md-button>
