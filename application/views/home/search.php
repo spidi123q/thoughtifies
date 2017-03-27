@@ -6,13 +6,15 @@
 
     <div layout-gt-xs="column" layout-xs="column" layout-align="space-between center">
 
-        <div layout="row"  layout-padding >
-          <md-switch ng-change="startSearch()" ng-model="searchData.data.photo" aria-label="Switch 1">
-            photo
-          </md-switch>
-          <md-switch ng-change="startSearch()" ng-model="searchData.data.online" aria-label="Switch 2">
-            online
-          </md-switch>
+        <div lauout-xs="column" layout-gt-xs="row" layout-align="center center">
+          <div layout="row" layout-padding layout-align="start center">
+            <md-switch ng-change="startSearch()" ng-model="searchData.data.photo" aria-label="Switch 1">
+              photo
+            </md-switch>
+            <md-switch ng-change="startSearch()" ng-model="searchData.data.online" aria-label="Switch 2">
+              online
+            </md-switch>
+          </div>
           <md-input-container  >
                     <label>{{searchData.title.country}}</label>
                     <md-select ng-change="startSearch()" ng-model="searchData.data.country">
@@ -26,7 +28,7 @@
           </md-input-container>
 
         </div>
-        <div class="md-secondary" layout="row" layout-align="space-around center"  layout-padding>
+        <div class="md-secondary" layout-xs="column" layout-gt-xs="row" layout-align="space-around center"  layout-padding>
           <md-input-container flex-offset="15">
             <label>{{searchData.title.keyword}}</label>
             <input ng-change="startSearch()" ng-model="searchData.data.keyword">
@@ -65,7 +67,7 @@
           <div flex  >
                 <div layout="column" layout-align="center center">
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
-                   <usercard info="item"></usercard>
+                   <usercard index="$index" adapter="adapter" info="item"></usercard>
                   </div>
                   <div class="empty_msg" ng-if="adapter.isEmpty() ">
                     No result

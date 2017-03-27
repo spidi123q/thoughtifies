@@ -116,12 +116,12 @@ app.directive('friendpanel', function () {
                 val : -1,
               },
             };
-            console.log($scope.index);
 
             var openMenu = function($mdOpenMenu, ev) {
               originatorEv = ev;
               $mdOpenMenu(ev);
             };
+
 
            var init = function() {
              $http({
@@ -190,7 +190,16 @@ app.directive('friendpanel', function () {
               }).then(function successCallback(response) {
                   //$scope.buttons.request.progress = false;
                   if (response.data == "1") {
-                    $location.path( "/" );
+                    var path = '/users/'+$scope.uid;
+
+                    if (path === $location.path() ) {
+                        $location.path( "/" );
+                        console.log("user page");
+                    }else {
+                      console.log("not in user"+$scope.index);
+                      $scope.adapter.applyUpdates($scope.index,[]);
+                    }
+
                   }
 
                 }, function errorCallback(response) {
@@ -198,6 +207,7 @@ app.directive('friendpanel', function () {
                 });
 
             };
+
             $scope.buttons.unfriendButton = function () {
 
               $http({
@@ -206,14 +216,15 @@ app.directive('friendpanel', function () {
               }).then(function successCallback(response) {
                   //$scope.buttons.request.progress = false;
                   console.log(response.data);
-                  $scope.buttons.request.icon = "close";
-                  $scope.buttons.request.val = 0;
+                  $scope.buttons.request.icon = "add";
+                  $scope.buttons.request.val = -1;
+                  $scope.actions.request.disabled = false;
 
                 }, function errorCallback(response) {
 
                 });
 
-                $scope.adapter.applyUpdates($scope.index, []);
+                //$scope.adapter.applyUpdates($scope.index, []);
 
             };
             $scope.buttons.msgButton = function ($event) {
@@ -239,10 +250,35 @@ app.directive('friendpanel', function () {
                       };
                     }
             };
+            $scope.showConfirm = function(ev,sel) {
+              // Appending dialog to document.body to cover sidenav in docs app
+              var msg;
+              if (sel === 0) {
+                msg = "Are sure about blocking this user?";
+              }
+              else if (sel === 1) {
+                msg = "Do you want to unfriend this user?";
+              }
+              var confirm = $mdDialog.confirm()
+                    .title(msg)
+                    .ariaLabel('delete')
+                    .targetEvent(ev)
+                    .ok('YES')
+                    .cancel('NO');
+
+              $mdDialog.show(confirm).then(function() {
+                if (sel === 0) {
+                  blockButton();
+                }else if (sel === 1) {
+                  $scope.buttons.unfriendButton();
+                }
+              }, function() {
+
+              });
+            };
 
             $scope.buttons.openMenu = openMenu;
             $scope.buttons.requestButton = requestButton;
-            $scope.buttons.blockButton = blockButton;
             $scope.actions = $scope.buttons;
               }],
           templateUrl:'element/0',

@@ -1,6 +1,6 @@
 
     <md-button md-menu-origin="" class="md-icon-button md-accent" aria-label="Favorite" ng-disabled="actions.request.disabled" ng-click="actions.requestButton()">
-      <i class="material-icons" ng-hide="actions.request.progress">{{actions.request.icon}}</i>
+      <md-icon md-font-library="material-icons">{{actions.request.icon}}</md-icon>
       <md-progress-circular md-mode="indeterminate" ng-hide="!actions.request.progress" md-diameter="20px">
       </md-progress-circular>
     </md-button>
@@ -10,7 +10,7 @@
          </md-button>
          <md-menu-content>
            <md-menu-item>
-             <md-button ng-click="actions.blockButton()">
+             <md-button ng-click="showConfirm($event,0)">
                <md-icon md-font-library="material-icons" class="md-light md-48">{{actions.block.icon}}</md-icon>
                Block
            </md-button>
@@ -22,7 +22,7 @@
              </md-button>
            </md-menu-item>
            <md-menu-item ng-if="actions.request.icon === 'done'">
-             <md-button ng-click="actions.unfriendButton($event)">
+             <md-button ng-click="showConfirm($event,1)">
               <md-icon md-font-library="material-icons" class="md-light md-48">clear</md-icon>
                Unfriend
              </md-button>
