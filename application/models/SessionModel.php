@@ -62,6 +62,10 @@
         }
       }
 
+      private function FunctionName($imgUrl)      {
+        # code...
+      }
+
       private function createThumb($imgUrl,$size,$picture)      {
         $config['image_library'] = 'gd2';
         $config['source_image'] = $imgUrl;
@@ -132,21 +136,33 @@
 
           $this->convertToJPEG($this->upload);
           $newFile = $this->upload->data('file_path').$this->upload->data('raw_name').'.jpg';
-
-
-                $qry = "UPDATE member SET picture=? WHERE mem_id=?";
-
-                if ($this->db->query($qry, array($this->upload->data('raw_name'), $this->session->SESS_MEMBER_ID))) {
+          $this->session->set_userdata('TEMP_DP', $this->upload->data('raw_name'));
                   $imgUrl = $newFile;
                   $imgUrl =$this->createThumb($imgUrl,150,$this->upload->data('raw_name'));
                   $im = file_get_contents($imgUrl);
                   $im = base64_encode($im);
                   $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
-                  echo $im;
-                }
-
-
+                  $response = array(
+                    'dp' => $im,
+                    'filename' => $this->session->TEMP_DP,
+                   );
+                   echo json_encode($response);
         }
+      }
+
+      public function setDp()    {
+        $response = array(
+          'sel' => 0,
+          'status' => true,
+        );
+        $this->db->set('picture', $this->session->TEMP_DP);
+        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+         if ( $this->db->update('member') ) {
+           $response['status'] = true;
+         }else {
+           $response['status'] = false;
+         }
+         echo json_encode($response);
       }
 
 

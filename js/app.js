@@ -1991,21 +1991,12 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
         $scope.settingsData.dialog.progress = true;
         $scope.user = angular.copy(settingsData);
         $scope.user.bday  = new Date();
-        $scope.myImage='';
-          $scope.myCroppedImage='';
-        $scope.upload = {
-          progress : true,
-        };
+        $scope.upload = {};
         var uploader = $scope.uploader = new FileUploader({
           url: 'settings/upload',
           autoUpload: true,
         });
-        uploader.filters.push({
-            name: 'customFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options) {
-                return this.queue.length < 1;
-            }
-        });
+        uploader.filters.queueLimit = 1;
 
 
           // CALLBACKS
@@ -2020,6 +2011,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           };
           uploader.onAfterAddingAll = function(addedFileItems) {
               //console.info('onAfterAddingAll', addedFileItems);
+              console.log($scope.upload);
 
           };
           uploader.onBeforeUploadItem = function(item) {
@@ -2037,8 +2029,10 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           };
           uploader.onSuccessItem = function(fileItem, response, status, headers) {
               //console.info('onSuccessItem', fileItem, response, status, headers);
-              $scope.upload.progress = true;
-              $scope.settingsData.dp = response;
+              console.log(response);
+              $scope.upload.response = response;
+              uploader.clearQueue();
+              //$scope.settingsData.dp = response;
 
           };
           uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -2069,7 +2063,10 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $mdDialog.hide();
         };
 
-        $scope.cancel = function() {
+        $scope.cancel = function(sel) {
+          if (sel === 0) {
+            uploader.cancelAll();
+          }
           $mdDialog.cancel();
         };
 
@@ -2078,7 +2075,23 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $scope.settingsData.dialog.type = "indeterminate";
           if (sel === 0) {
 
-            $scope.settingsData.dialog.progress = true;
+            $http({
+                method: 'POST',
+                url: 'settings/setdp',
+
+              }).then(function successCallback(response) {
+                    //
+                    if (response.data.status) {
+                      $scope.settingsData.dp = $scope.upload.response.dp;
+                      SESS_USERIMAGE = $scope.upload.response.filename;
+                      $scope.settingsData.dialog.progress = true;
+                      $scope.cancel();
+                    }
+                }, function errorCallback(response) {
+
+                  $scope.settingsData.dialog.progress = true;
+
+                });
 
           }
           if(sel == 1){

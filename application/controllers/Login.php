@@ -209,6 +209,9 @@
       public function dpUpload()    {
                $this->SessionModel->dpUpload();
       }
+      public function setDp()    {
+               $this->SessionModel->setDp();
+      }
       public function postImageUpload()    {
                $this->SessionModel->postImageUpload();
       }

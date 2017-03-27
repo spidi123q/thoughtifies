@@ -62,6 +62,7 @@ $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';
 $route['(:any)/settings/get/0']='Login/getMyDetails';
 $route['(:any)/settings/upload']='Login/dpUpload';
+$route['(:any)/settings/setdp']='Login/setDp';
 $route['(:any)/msg/load/(:num)']='Login/displayMessages/$2';
 $route['(:any)/msg/sent']='Login/sentMessage';
 $route['(:any)/msg/count/(:num)']='Login/countMsg/$2';

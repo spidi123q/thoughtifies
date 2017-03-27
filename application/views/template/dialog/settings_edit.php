@@ -9,7 +9,7 @@
 
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button ng-click="cancel()">
+      <md-button ng-click="cancel(settingsData.click)">
        CANCEL
       </md-button>
       <md-button class="md-warn" ng-click="submit(settingsData.click)">
