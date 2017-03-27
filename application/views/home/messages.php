@@ -14,7 +14,7 @@
 -->
   <md-list >
     <md-list-item  ui-scroll="item in jj" adapter="msgUserListAdapter on msgController" class="md-2-line" ng-click="selectMsgUser(item)">
-       <img image-fetch ng-src="{{item.picture}}" size="60" class="md-avatar" alt="" />
+       <img image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="md-avatar" alt="" />
        <div class="md-list-item-text" layout="column">
          {{item.fname}} {{item.lname}}
        </div>
@@ -72,8 +72,8 @@
                       </div>
                           <md-list>
                                 <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
-                                <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
-                                <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                                 <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px;">
                                   <h3>{{ todos[0].who }}</h3>
                                   <h5 ng-bind-html="item.message" style="color:grey;" ></h5>

@@ -124,7 +124,7 @@
          </div>
          <md-list flex>
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user)">
-             <img image-fetch ng-src="{{user.picture}}" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
+             <img image-fetch img-src="{{user.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
              <div class="md-list-item-text" layout="column">
                <p>{{ user.fname }} {{user.lname}}<span ng-hide="( badge.get(user.mem_id) === 0) || (  badge.get(user.mem_id) === undefined )" class="badge1" data-badge="{{badge.get(user.mem_id)}}"></span></p>
              </div>

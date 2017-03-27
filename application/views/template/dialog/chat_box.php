@@ -4,7 +4,7 @@
             <md-content class="md-dialog-content chat_dialog_content"  ng-hide="view" scroll-glue style="width:100%;height: 100%;">
                 <md-list style="" >
                   <md-list-item class="md-long-text"  ng-repeat="item in messages"  style="padding: 10px; ">
-                    <img ng-click="setDp(item)" image-fetch  ng-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                    <img ng-click="setDp(item)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg"  img-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                   <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px; ">
                     <h3>{{ todos[0].who }}</h3>
                     <h5 ng-bind-html="item.message" style="color:grey"></h5>

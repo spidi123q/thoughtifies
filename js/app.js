@@ -567,10 +567,9 @@ app.directive('imageFetch',function($http,$sce) {
             restrict: 'A',
 
            link: function(scope, elem, attrs) {
-
              $http({
                method: 'GET',
-               url: 'img/dp/'+attrs.ngSrc+'/'+attrs.size,
+               url: 'img/dp/'+attrs.imgSrc+'/'+attrs.size,
              }).then(function successCallback(response) {
                  //$sceDelegate.getTrusted($sce.HTML, response.data);
                  //

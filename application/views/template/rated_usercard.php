@@ -1,6 +1,6 @@
   <div md-whiteframe="1" class="user_card">
     <div layout-xs="column" layout-gt-xs="row" >
-      <a href="#/users/{{item.mem_id}}"><img image-fetch ng-src="{{item.picture}}" size="500" class="md-card-image" alt="Washed Out"></a>
+      <a href="#/users/{{item.mem_id}}"><img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{item.picture}}" size="500" class="md-card-image" alt="Washed Out"></a>
       <div flex-offset="5" layout="column">
         <a href="#/users/{{item.mem_id}}"><span class="md-headline">{{item.fname}}  {{item.lname}}</span></a>
         <div class="rating_card_star">
