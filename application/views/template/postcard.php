@@ -29,7 +29,7 @@
            </md-switch>
             <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
             <label for="input-file-id" class="md-button md-icon-button">
-                  <md-icon md-font-library="material-icons" class="md-light md-48">insert_photo</md-icon>
+                  <md-icon md-font-library="material-icons" class="md-light md-48">add_a_photo</md-icon>
             </label>
           </span>
           <span layout="row" layout-align="end center">

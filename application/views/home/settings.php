@@ -12,19 +12,18 @@
     max-height: 150;">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
-                <h3><md-truncate flex>
-            {{settingsData.fname}} {{settingsData.lname}}
-          </md-truncate></h3>
-
+                <h3>
+                <md-truncate flex>
+                  {{settingsData.fname}} {{settingsData.lname}}
+                </md-truncate>
+              </h3>
               </div>
               <div layout="row"  layout-xs="column">
-                  <h5><md-truncate flex>
-            {{settingsData.tag}}dddddddddd ddd dddd ddddddddddd
-          </md-truncate></h5>
-                  <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,2)" aria-label="call">
-                    <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
-                  </md-button>
-
+                  <h5>
+                    <md-truncate flex>
+                      {{settingsData.tag}}
+                    </md-truncate>
+                  </h5>
               </div>
           </div>
         </div>
@@ -89,10 +88,16 @@
         <md-tab label="{{settingsData.tabs.settings.name}}">
           <md-content class="md-padding" layout="row" layout-align="center center" >
             <md-list flex-sm="80"  flex-gt-sm="50"  >
+
+              <md-list-item class="md-2-line"  ng-click="getDialog($event,2)" id="left">
+                <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">gesture</md-icon>
+                <div class="md-list-item-text" layout="column">
+                  <h3></h3>
+                  <p>Change tag</p>
+                </div>
+              </md-list-item>
               <md-list-item class="md-2-line"  ng-click="getDialog($event,1)" id="left">
-
-        <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">person</md-icon>
-
+                <md-icon  md-font-library="material-icons" class="md-light md-48" style="color:grey">person</md-icon>
                 <div class="md-list-item-text" layout="column">
                   <h3></h3>
                   <p>Change name</p>
