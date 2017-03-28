@@ -15,7 +15,7 @@
                 <md-icon md-font-library="material-icons" class="md-light md-48">more_vert</md-icon>
               </md-button>
                   <md-menu-content width="2">
-                    <md-menu-item>
+                    <md-menu-item ng-if="item.mem_id === sessid">
                       <md-button ng-click="showConfirm()">
                         <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon>
                         Delete

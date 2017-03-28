@@ -461,6 +461,7 @@ app.directive('postViewCard', function () {
           },
           controller : function ($scope,$http,MyWebSocket,$mdDialog,$mdToast) {
 
+            $scope.sessid = SESS_MEMBER_ID;
             $scope.openMenu = function($mdOpenMenu, ev) {
                $mdOpenMenu(ev);
             };
