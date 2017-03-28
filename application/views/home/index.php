@@ -97,12 +97,14 @@
      <md-sidenav flex class="md-sidenav-left" md-component-id="left" class="chatnav"
                  md-whiteframe="4" >
        <md-toolbar class="md-theme-indigo">
-         <h1 class="md-toolbar-tools badge1" data-badge="6"></h1>
        </md-toolbar>
-       <br><br>
-
-       <md-content layout-margin  >
-         <div flex layout="row" layout-align="space-around" ng-controller="notiCtrl">
+       <div layout="row" layout-align="space-around start">
+         <md-button  class="md-secondary md-icon-button" href="logout" aria-label="call">
+           <md-icon md-font-library="material-icons" class="md-light md-48">refresh</md-icon>
+         </md-button>
+       </div>
+       <md-content layout-align="end start" layout-margin  >
+         <div flex layout="row"  layout-align="space-around start" ng-controller="notiCtrl">
            <div>
              <md-button class="md-icon-button" aria-label="More" href="#/messages" ng-click="onClick('message',$event)">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >

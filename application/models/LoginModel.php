@@ -19,11 +19,7 @@
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u, );
             if ($this->session->has_userdata('fb_access_token')) {
-              $data = array(
-                'mem_id' => $this->session->SESS_MEMBER_ID,
-                'fb_access_token' =>  $this->session->fb_access_token,
-               );
-               header("Location: http://localhost/code/login/".$data['mem_id']);
+               redirect("http://localhost/code/login/{$this->session->SESS_MEMBER_ID}");
             }else {
               $this->load->view('login/index',$data);
             }

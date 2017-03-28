@@ -58,6 +58,7 @@ $route['data/3']='Login/loginUser2';
 $route['data/4']='Login/loginFacebook';
 $route['login/(:num)']='Login/restoreSession/$1';
 $route['home']='Login/loadHome';
+$route['(:any)/logout']='Login/logout';
 $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';
 $route['(:any)/settings/get/0']='Login/getMyDetails';

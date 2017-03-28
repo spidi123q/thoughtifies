@@ -450,6 +450,10 @@
         public function deletePost($id)    {
           $this->SessionModel->deletePost($id);
         }
+        public function logout()      {
+          $this->session->sess_destroy();
+          redirect('http://localhost/code');
+        }
 
 
 
