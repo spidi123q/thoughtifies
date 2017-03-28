@@ -52,7 +52,7 @@
           echo "0";
         }
       }
-      private function startSession($mem_id)      {
+      public function startSession($mem_id)      {
         $this->db->select('*');
         $this->db->where('mem_id',$mem_id);
         $query = $this->db->get('member');
@@ -68,7 +68,12 @@
           'mem_id' => $this->session->SESS_MEMBER_ID,
           'picture' =>  $this->session->SESS_USERIMAGE,
          );
-        $this->load->view('home/index',$data);
+         if ($this->session->has_userdata('fb_access_token')) {
+            $this->load->view('home/index',$data);
+         }else {
+           redirect();
+         }
+
       }
 
       private function loginFacebook()    {
