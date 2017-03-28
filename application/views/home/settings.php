@@ -47,7 +47,7 @@
                         <div class="md-list-item-text">
                           <p>
                             {{item.name}}
-                            <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,$index+3)" aria-label="call">
+                            <md-button ng-disabled=" ($index+3) === 7" ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,$index+3)" aria-label="call">
                               <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
                             </md-button>
                           </p>

@@ -22,9 +22,14 @@
         </div>
 
       </div>
-    <div layout="row" layout-align="center center">
-      <md-switch ng-model="friend_switch" aria-label="Switch 1" ng-change="friendSwitchChange()">
-       <span class="empty_msg">Friend's thoughts</span>
+    <div layout="row" layout-margin layout-align="center center">
+      <div class="">
+        <md-button  class="md-secondary md-icon-button" ng-click="adapter.reload()" aria-label="call">
+          <md-icon md-font-library="material-icons" class="md-light md-48">refresh</md-icon>
+        </md-button>
+      </div>
+      <md-switch  ng-model="friend_switch" aria-label="Switch 1" ng-change="friendSwitchChange()">
+       <span class="empty_msg">Friends only</span>
      </md-switch>
     </div>
     <div  layout="column" layout-align="center center"  >

@@ -5,6 +5,30 @@
          parent::__construct();
       }
 
+      public function loadIndex()    {
+                    $fb = new Facebook\Facebook([
+            'app_id' => '1789323091320402', // Replace {app-id} with your app id
+            'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+            'default_graph_version' => 'v2.8',
+            ]);
+
+            $helper = $fb->getRedirectLoginHelper();
+            $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
+            $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
+            $img = '<img src="'.base_url("images/fb_button.jpg").'" />';
+            $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
+            $data = array('fb' => $u, );
+            if ($this->session->has_userdata('fb_access_token')) {
+              $data = array(
+                'mem_id' => $this->session->SESS_MEMBER_ID,
+                'fb_access_token' =>  $this->session->fb_access_token,
+               );
+               header("Location: http://localhost/code/login/".$data['mem_id']);
+            }else {
+              $this->load->view('login/index',$data);
+            }
+      }
+
       private function createAccountFacebook($userNode,$fb,$accessToken)      {
         $loc = $userNode->getLocation()->getId();
         $response = $fb->get("$loc?fields=location", $accessToken);

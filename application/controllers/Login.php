@@ -41,29 +41,7 @@
 
 
       public function index() {
-                $fb = new Facebook\Facebook([
-        'app_id' => '1789323091320402', // Replace {app-id} with your app id
-        'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-        'default_graph_version' => 'v2.8',
-        ]);
-
-        $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
-        $img = '<img src="'.base_url("images/fb_button.jpg").'" />';
-        $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
-        $data = array('fb' => $u, );
-        if ($this->session->has_userdata('fb_access_token')) {
-          $data = array(
-            'mem_id' => $this->session->SESS_MEMBER_ID,
-            'fb_access_token' =>  $this->session->fb_access_token,
-           );
-           header("Location: http://localhost/code/login/".$data['mem_id']);
-        }else {
-          $this->load->view('login/index',$data);
-        }
-
-
+          $this->LoginModel->loadIndex();
       }
       public function restoreSession($mem_id)      {
           $this->LoginModel->startSession($mem_id);
@@ -95,53 +73,6 @@
 
       public function loginFacebook() {
         $this->LoginModel->initFacebook();
-      }
-
-      public function createAccount()   {
-
-
-        $this->load->model('LoginModel');
-
-        $data = array(
-           'email' => $this->input->post('email'),
-           'fname' => $this->input->post('fname'),
-           'lname' => $this->input->post('lname'),
-           'gender' => $this->input->post('gender'),
-           'country' => $this->input->post('country'),
-           'contact' => $this->input->post('contact'),
-           'username' => $this->input->post('username'),
-           'password' => $this->input->post('password'),
-           'dd' => $this->input->post('dd'),
-           'mm' => $this->input->post('mm'),
-           'yy' => $this->input->post('yy'),
-        );
-        $v = $this->LoginModel->createAccount($data);
-        if ($v) {
-
-          $this->load->library('email');
-              $config['protocol']    = 'smtp';
-              $config['smtp_host']    = 'ssl://smtp.gmail.com';
-              $config['smtp_port']    = '465';
-              $config['smtp_timeout'] = '7';
-              $config['smtp_user']    = 'ubuntu123q@gmail.com';
-              $config['smtp_pass']    = 'fuck123q';
-              $config['charset']    = 'utf-8';
-              $config['newline']    = "\r\n";
-              $config['mailtype'] = 'text'; // or html
-              $config['validation'] = TRUE; // bool whether to validate email or not
-
-          $this->email->initialize($config);
-          $this->email->from('ubuntu123q@gmail.com', 'Your Name');
-          $this->email->to($data['email']);
-          $this->email->subject('Email Test');
-          $this->email->message('Testing the email class.');
-
-          $this->email->send();
-        }
-        else {
-          echo "fail";
-        }
-
       }
 
 
