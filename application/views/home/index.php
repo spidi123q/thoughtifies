@@ -100,7 +100,7 @@
        </md-toolbar>
        <div layout="row" layout-align="space-around start">
          <md-button  class="md-secondary md-icon-button" href="logout" aria-label="call">
-           <md-icon md-font-library="material-icons" class="md-light md-48">refresh</md-icon>
+           <md-icon md-font-library="material-icons" class="md-light md-48">power_settings_new</md-icon>
          </md-button>
        </div>
        <md-content layout-align="end start" layout-margin  >
