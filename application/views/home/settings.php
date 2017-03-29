@@ -87,6 +87,9 @@
 
                 <br>
                 <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+                <div class="empty_msg" ng-if="adapter.isEmpty()">
+                  User has no thoughts yet
+                </div>
                 <br>
               </div>
           </md-content>
