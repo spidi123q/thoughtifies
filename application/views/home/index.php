@@ -1,6 +1,7 @@
 <html lang="en" >
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#26A69A" />
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
