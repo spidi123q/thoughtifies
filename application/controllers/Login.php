@@ -41,7 +41,13 @@
 
 
       public function index() {
-          $this->LoginModel->loadIndex();
+          $this->LoginModel->loadIndex(0);
+      }
+      public function license()    {
+        $this->LoginModel->loadIndex(1);
+      }
+      public function privacy()    {
+        $this->LoginModel->loadIndex(2);
       }
       public function restoreSession($mem_id)      {
           $this->LoginModel->startSession($mem_id);

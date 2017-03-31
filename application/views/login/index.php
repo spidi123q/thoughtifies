@@ -21,10 +21,11 @@
 					}
 	</script>
 -->
+<title>Thoughtifies</title>
 </head>
 	<body class="login_body" >
 		<div  class="title flex-container" style="">
-							<form class="" name="loginform" action="data/1" method="post" >
+							<form class="hide" name="loginform" action="data/1" method="post" >
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -45,33 +46,25 @@
 									</div>
 							</form>
 							<div>
+								<a href="index">
 								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
+								</a>
 							</div>
 
 							<div class="">
 								<div class="">
-									<?php echo $fb ?>
+									{fb}
 								</div>
 								<div class="tpp">
-									By signing up, you agree to our Terms & Privacy Policy.
+									By signing up, you agree to our <a href="license">Terms</a> &
+									<a href="privacy">Privacy</a> Policy.
 								</div>
 							</div>
 
 						</div>
-						<div  class="phone simple-flex-container mobile_flex">
-							<div class="myVideo">
-								<video id="video" autoplay loop muted playsinline>
-								  <source src="<?php echo base_url(); ?>images/sad.mp4" type="video/mp4">
-								Your browser does not support the video tag.
-								</video>
-							</div>
-							<div class="quotes flex-container column">
-									<div>Advertising your thoughts</div>
-									<div>Connecting people</div>
-									<div>Privacy first! Thoughtifies don't track you</div>
-							</div>
+						<div >
+							{content}
 						</div>
-
 
 
 
@@ -81,22 +74,14 @@
 				Credits
 			</div>
 			<div class="">
-				Privacy Policy
+				<a href="privacy">
+					Privacy Policy
+				</a>
 			</div>
 			<div class="">
 				Contact
 			</div>
 		</div>
-<script type="text/javascript">
-				var video = document.getElementById('video');
-				document.addEventListener('click',function(){
-						video.play();
-				},false);
-				window.onscroll = function (e) {
-						// called when the window is scrolled.
-						console.log("scroll");
 
-				}
-</script>
 	</body>
 </html>

@@ -5,7 +5,7 @@
          parent::__construct();
       }
 
-      public function loadIndex()    {
+      public function loadIndex($sel)    {
                     $fb = new Facebook\Facebook([
             'app_id' => '1789323091320402', // Replace {app-id} with your app id
             'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
@@ -17,11 +17,21 @@
             $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
             $img = '<img src="'.base_url("images/fb_button.jpg").'" class="fb-login-button" />';
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
-            $data = array('fb' => $u, );
+            $data = array('fb' => $u,
+            );
+            if ($sel === 0) {
+              $data['content'] =  $this->load->view('login/phone','',TRUE);
+            }
+            else if ($sel === 1) {
+              $data['content'] =  $this->load->view('login/license','',TRUE);
+            }
+            else if ($sel === 2) {
+              $data['content'] =  $this->load->view('login/privacy','',TRUE);
+            }
             if ($this->session->has_userdata('fb_access_token')) {
                redirect("http://localhost/code/login/{$this->session->SESS_MEMBER_ID}");
             }else {
-              $this->load->view('login/index',$data);
+              $this->parser->parse('login/index',$data);
             }
       }
 

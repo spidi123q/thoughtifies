@@ -107,22 +107,23 @@
        <md-content layout-align="end start" layout-margin  >
          <div flex layout="row"  layout-align="space-around start" ng-controller="notiCtrl">
            <div>
+             <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
              <md-button class="md-icon-button" aria-label="More" href="#/messages" ng-click="onClick('message',$event)">
               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
-              <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
             </md-button>
            </div>
            <div>
-             <md-button class="md-icon-button" aria-label="More" href="#/request/0" ng-click="onClick('friend_req',$event)">
-              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
-              <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
-            </md-button>
+             <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
+               <md-button class="md-icon-button" aria-label="More" href="#/request/0" ng-click="onClick('friend_req',$event)">
+                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
+              </md-button>
+
            </div>
            <div>
+             <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
              <md-button class="md-icon-button" aria-label="More" href="#/listrating" ng-click="onClick('rating',$event)">
                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/earth-globe.svg" alt="">
-               <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
-           </md-button>
+             </md-button>
            </div>
          </div>
          <md-list flex>

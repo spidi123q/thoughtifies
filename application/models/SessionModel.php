@@ -33,10 +33,10 @@
       private function convertToJPEG($data)      {
 
         $fileType = $data->data('file_type');
-        $allowedType = array('image/jpeg', 'image/pjpeg');
-        if ( !in_array($fileType,$allowedType)) {
-          $png = array('image/png',  'image/x-png');
-          if (in_array($fileType,$png)) {
+        $type = get_mimes();
+        if ( !in_array($fileType,$type['jpg']) || !in_array($fileType,$type['jpeg'])) {
+
+          if (in_array($fileType,$type['png'])) {
               $image = imagecreatefrompng ($data->data('full_path') );
               $newFile = $data->data('file_path').$data->data('raw_name').'.jpg';
                imagejpeg($image,$newFile,100);
@@ -48,6 +48,9 @@
                   return false;
                 }
           }
+        }
+        else {
+          return true;
         }
       }
 
@@ -129,7 +132,7 @@
         {
                 $error = array('error' => $this->upload->display_errors());
 
-                print_r($error);
+                echo json_encode($error);
         }
         else
         {
@@ -562,9 +565,14 @@
         $imgUrl = "images/userimages/".$file.'.jpg';
         $imgUrl =$this->createThumb($imgUrl,$size,$file);
         $im = file_get_contents($imgUrl);
-        $im = base64_encode($im);
-        $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
-        echo $im;
+        if ($im === FALSE) {
+          echo "0";
+        }
+        else {
+          $im = base64_encode($im);
+          $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+          echo $im;
+        }
       }
       public function userDpFetch($id,$size)        {
         $this->db->select('picture');

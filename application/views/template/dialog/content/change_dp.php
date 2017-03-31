@@ -3,11 +3,12 @@
         <label for="input-file-id" class="md-button md-primary">
           Choose File
         </label>
-        <div ng-show="upload.response !== undefined" layout="column">
+        <div ng-show="upload.response !== undefined" layout="column" layout-margin>
           <div class="empty_msg">
               Preview
           </div>
-          <img src="{{upload.response.dp}}" alt="">
+          <span ng-bind-html="error"></span>
+          <img src="{{upload.response.dp}}" alt="" ng-click="previewClick($event)">
         </div>
         <div ng-show="uploader.isUploading" layout="column">
           <div class="empty_msg">

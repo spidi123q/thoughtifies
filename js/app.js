@@ -633,12 +633,11 @@ app.directive('imageFetch',function($http,$sce) {
                method: 'GET',
                url: 'img/dp/'+attrs.imgSrc+'/'+attrs.size,
              }).then(function successCallback(response) {
-                 //$sceDelegate.getTrusted($sce.HTML, response.data);
-                 //
-                 var temp = $sce.trustAsResourceUrl(response.data);
-                 //
-                 attrs.$set('ngSrc',temp);
 
+                 if (response.data !== "0") {
+                   var temp = $sce.trustAsResourceUrl(response.data);
+                   attrs.$set('ngSrc',temp);
+                 }
                }, function errorCallback(response) {
 
                });
@@ -2077,7 +2076,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
     };
 
-      function DialogController($scope, $mdDialog,settingsData) {
+      function DialogController($scope, $mdDialog,settingsData,$mdToast) {
         $scope.settingsData = settingsData;
         $scope.settingsData.dialog.progress = true;
         $scope.user = angular.copy(settingsData);
@@ -2121,6 +2120,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           uploader.onSuccessItem = function(fileItem, response, status, headers) {
               //console.info('onSuccessItem', fileItem, response, status, headers);
               console.log(response);
+              if (response.error !== undefined) {
+                $scope.error = response.error;
+                $scope.uButton = true;
+              }
+              else {
+                $scope.error = "";
+                $scope.uButton = false;
+              }
               $scope.upload.response = response;
               uploader.clearQueue();
               //$scope.settingsData.dp = response;
@@ -2144,7 +2151,9 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
 
 
-
+          $scope.previewClick = function (ev) {
+            console.log(ev);
+          };
 
 
 
@@ -2162,27 +2171,38 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
         };
 
         $scope.submit = function(sel) {
-          $scope.settingsData.dialog.progress = false;
-          $scope.settingsData.dialog.type = "indeterminate";
+
           if (sel === 0) {
 
-            $http({
-                method: 'POST',
-                url: 'settings/setdp',
+            if ($scope.upload.response === undefined) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent('No file uploaded')
+                    .hideDelay(3000)
+                );
+            }else {
+              $scope.settingsData.dialog.progress = false;
+              $scope.settingsData.dialog.type = "indeterminate";
+              $http({
+                  method: 'POST',
+                  url: 'settings/setdp',
 
-              }).then(function successCallback(response) {
-                    //
-                    if (response.data.status) {
-                      $scope.settingsData.dp = $scope.upload.response.dp;
-                      SESS_USERIMAGE = $scope.upload.response.filename;
-                      $scope.settingsData.dialog.progress = true;
-                      $scope.cancel();
-                    }
-                }, function errorCallback(response) {
+                }).then(function successCallback(response) {
+                      //
+                      if (response.data.status) {
+                        $scope.settingsData.dp = $scope.upload.response.dp;
+                        SESS_USERIMAGE = $scope.upload.response.filename;
+                        $scope.settingsData.dialog.progress = true;
+                        $scope.cancel();
+                      }
+                  }, function errorCallback(response) {
 
-                  $scope.settingsData.dialog.progress = true;
+                    $scope.settingsData.dialog.progress = true;
 
-                });
+                  });
+            }
+
+
 
           }
           if(sel == 1){
