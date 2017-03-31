@@ -72,7 +72,10 @@
 		<div class="simple-flex-container footer">
 			<div class="simple-flex-container">
 				<div class="">
-					Credits
+					<a href="credits">
+						Credits
+					</a>
+
 				</div>
 				<div class="">
 					<a href="privacy">
@@ -86,7 +89,9 @@
 				</div>
 			</div>
 			<div class="contact">
-				Contact
+				<a href="contact">
+					Contact
+				</a>
 			</div>
 		</div>
 

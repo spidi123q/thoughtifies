@@ -28,6 +28,12 @@
             else if ($sel === 2) {
               $data['content'] =  $this->load->view('login/privacy','',TRUE);
             }
+            else if ($sel === 3) {
+              $data['content'] =  $this->load->view('login/credits','',TRUE);
+            }
+            else if ($sel === 4) {
+              $data['content'] =  $this->load->view('login/contact','',TRUE);
+            }
             if ($this->session->has_userdata('fb_access_token')) {
                redirect("http://localhost/code/login/{$this->session->SESS_MEMBER_ID}");
             }else {

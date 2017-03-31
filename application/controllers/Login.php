@@ -49,6 +49,12 @@
       public function privacy()    {
         $this->LoginModel->loadIndex(2);
       }
+      public function credits()    {
+        $this->LoginModel->loadIndex(3);
+      }
+      public function contact()    {
+        $this->LoginModel->loadIndex(4);
+      }
       public function restoreSession($mem_id)      {
           $this->LoginModel->startSession($mem_id);
       }
