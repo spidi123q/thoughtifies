@@ -901,11 +901,13 @@ app.factory('MyWebSocket', function($websocket,$http) {
         sendmsg  : "7002",
         friend_req : "7003",
         new_rating : "7004",
+        typing : "7005",
       };
       var protoRec = {
         newmsg  : "8002",
         friend_req : "8003",
         new_rating : "8004",
+        typing : "8005"
       };
 
 
@@ -1627,6 +1629,7 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
     var msgMap  = new Map();
     $scope.badge = new Map();
 
+
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
 
@@ -1724,14 +1727,15 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
       };
 
 
-      function DialogController($scope, $mdDialog,chatButton,data,$http,EmojiService,dpDisplay,notiService) {
+      function DialogController($scope, $mdDialog,chatButton,data,$http,EmojiService,dpDisplay,notiService,$timeout) {
           $scope.messages = data.messages;
-
           $scope.receiver = data.receiver;
-
+          $scope.isTyping = false;
           $scope.myvar = [1,2,3,4,5,6,7];
           var socket = data.websocket.socket;
           var protoSent = data.websocket.protoSent;
+          var protoRec = data.websocket.protoRec;
+          var count = 0;
           $scope.emojiView = true;
           $scope.msgView = !$scope.emojiView;
           $scope.kunna = "dialog/content/1";
@@ -1815,6 +1819,32 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
               };
             }
           };
+
+          $scope.change =  function () {
+             count = count % 10;
+             if ($scope.msg === '') {
+               count = 0;
+             }
+             console.log(count);
+            if (count === 0) {
+              var data = {
+                header : protoSent.typing,
+                data : $scope.receiver,
+              };
+              socket.send(data);
+            }
+            count++;
+          };
+          socket.onMessage(function (message) {
+
+              var msg = JSON.parse(message.data);
+              if (msg.header === protoRec.typing && msg.data === $scope.receiver) {
+                $scope.isTyping = true;
+                $timeout(function () {
+                    $scope.isTyping = false;
+                }, 2000);
+              }
+          });
 
 
 

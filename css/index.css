@@ -258,4 +258,16 @@ a {
   filter: grayscale(100%);
   pointer-events: none !important; }
 
+.tpp {
+  color: white;
+  font-size: 10px;
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black; }
+
+.typing-warn {
+  color: #FF5722; }
+
+.chat-text div {
+  overflow-wrap: break-word; }
+
 /*# sourceMappingURL=index.css.map */

@@ -47,7 +47,15 @@
 							<div>
 								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
 							</div>
-							<?php echo $fb ?>
+
+							<div class="">
+								<div class="">
+									<?php echo $fb ?>
+								</div>
+								<div class="tpp">
+									By signing up, you agree to our Terms & Privacy Policy.
+								</div>
+							</div>
 
 						</div>
 						<div  class="phone simple-flex-container mobile_flex">
