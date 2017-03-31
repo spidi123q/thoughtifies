@@ -70,15 +70,22 @@
 
 
 		<div class="simple-flex-container footer">
-			<div class="">
-				Credits
+			<div class="simple-flex-container">
+				<div class="">
+					Credits
+				</div>
+				<div class="">
+					<a href="privacy">
+						Privacy
+					</a>
+				</div>
+				<div class="">
+					<a href="license">
+						Terms
+					</a>
+				</div>
 			</div>
-			<div class="">
-				<a href="privacy">
-					Privacy Policy
-				</a>
-			</div>
-			<div class="">
+			<div class="contact">
 				Contact
 			</div>
 		</div>
