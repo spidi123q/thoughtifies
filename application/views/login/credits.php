@@ -10,6 +10,7 @@
       <li>designed by Vectors Market from Freepik</li>
       <li>designed by Vectors Market from Dimitry Miroliubov</li>
       <li>Website : <a href="http://www.flaticon.com/">www.flaticon.com</a></li>
+      <li>designed by Kiran Raj</li>
     </ul>
   </div>
 </div>
