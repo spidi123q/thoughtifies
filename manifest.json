@@ -1,9 +1,9 @@
 
 {
   "name": "Thoughtifies",
-  "short_name": "Th",
+  "short_name": "Thoughtifies",
   "background_color": "#26A69A",
-  "theme_color": "#26A69A",
+  "theme_color": "#FF5722",
   "display": "standalone",
   "description": "Advertising your thoughts.",
   "icons": [{
@@ -30,5 +30,5 @@
     "src": "images/touch/homescreen192.png",
     "sizes": "192x192",
     "type": "image/png"
-  }],
+  }]
 }

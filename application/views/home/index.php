@@ -50,6 +50,7 @@
                   <md-autocomplete id="tbs_box" ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex-gt-sm="50"
                   ng-disabled="ctrl.isDisabled"
                   md-no-cache="ctrl.noCache"
+                  md-autofocus = "false"
                   md-selected-item="ctrl.selectedItem"
                   md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
                   md-search-text="ctrl.searchText"

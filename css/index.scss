@@ -8,6 +8,10 @@ $yellow: lighten(#ffba00, 5%);
 $red: #E53B3A;
 @import url('https://fonts.googleapis.com/css?family=Raleway:300');
 
+.md-scroll-mask{
+  position: initial;
+
+}
 
 @media only screen and (max-width: 255px) {
    img {

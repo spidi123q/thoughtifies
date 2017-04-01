@@ -1,9 +1,6 @@
 
 var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar']);
 
-
-
-
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('teal',{
@@ -3278,8 +3275,9 @@ app.controller('MyPostRating', function ($scope, $timeout, $mdDialog,MyWebSocket
   }
 
 });
-app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast) {
+app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil) {
       $scope.bootscreen = false;
+
       $scope.jsonToURL = function (data) {
         var str = Object.keys(data).map(function(key){
             return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
@@ -3330,6 +3328,7 @@ app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiServ
       window.addEventListener("online", function(e) {
         $scope.disabledClass = '';
       }, false);
+      $mdUtil.enableScrolling();
 
 
 
