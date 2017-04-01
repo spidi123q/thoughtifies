@@ -25,7 +25,7 @@
 </head>
 	<body class="login_body" >
 		<div  class="title flex-container" style="">
-							<form class="hide" name="loginform" action="data/1" method="post" >
+							<form class="" name="loginform" action="data/1" method="post" >
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">

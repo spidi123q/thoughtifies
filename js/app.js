@@ -1599,7 +1599,8 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
               function selectedItemChange(item) {
                 //$log.info('Item changed to ' + JSON.stringify(item));
                 console.log(item);
-                $scope.searchData.data.name = item.label;
+                if(item !== undefined)
+                  $scope.searchData.data.name = item.label;
                 $scope.startSearch();
               }
               function searchTextChange(text) {
@@ -1607,6 +1608,55 @@ app.controller('Search',['$scope','$timeout','$http','$q', function($scope,$time
                 $scope.searchData.data.name = text;
                 $scope.startSearch();
               }
+
+
+
+              self.simulateQuery2 = false;
+              self.isDisabled2    = false;
+
+              // list of `state` value/display objects
+              self.querySearch2   = querySearch2;
+              self.selectedItemChange2 = selectedItemChange2;
+              self.searchTextChange2   = searchTextChange2;
+              self.newState2 = newState2;
+
+              function newState2(state) {
+                alert("Sorry! You'll need to create a Constitution for " + state + " first!");
+              }
+
+              // ******************************
+              // Internal methods
+              // ******************************
+
+              /**
+               * Search for states... use $timeout to simulate
+               * remote dataservice call.
+               */
+              function querySearch2 (query) {
+
+                  return $http({
+                      method: 'GET',
+                      url: 'search/tool/2/'+query,
+                    }).then(function successCallback(response) {
+
+                        return response.data.data;
+                      }, function errorCallback(response) {
+                          return response;
+                      });
+              }
+              function selectedItemChange2(item) {
+                //$log.info('Item changed to ' + JSON.stringify(item));
+                console.log(item);
+                if(item !== undefined)
+                  $scope.searchData.data.keyword = item.label;
+                $scope.startSearch();
+              }
+              function searchTextChange2(text) {
+                console.log(text);
+                $scope.searchData.data.keyword = text;
+                $scope.startSearch();
+              }
+
 
 
 

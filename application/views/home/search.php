@@ -15,7 +15,7 @@
               online
             </md-switch>
           </div>
-          <md-input-container  >
+          <md-input-container flex-offset="10"  >
                     <label>{{searchData.title.country}}</label>
                     <md-select ng-change="startSearch()" ng-model="searchData.data.country">
                       <md-option  value="Any">
@@ -28,13 +28,27 @@
           </md-input-container>
 
         </div>
-        <div class="md-secondary" layout-xs="column" layout-gt-xs="row" layout-align="space-around center"  layout-padding>
-          <md-input-container flex-offset="15">
-            <label>{{searchData.title.keyword}}</label>
-            <input ng-change="startSearch()" ng-model="searchData.data.keyword">
-          </md-input-container>
+        <div class="md-secondary" layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="space-between center" layout-align-xs="center center"  layout-margin>
+            <md-autocomplete
+           ng-disabled="ctrl.isDisabled2"
+           md-no-cache="ctrl.noCache2"
+           md-selected-item="ctrl.selectedItem2"
+           md-search-text-change="ctrl.searchTextChange2(ctrl.searchText)"
+           md-search-text="ctrl.searchText2"
+           md-selected-item-change="ctrl.selectedItemChange2(item)"
+           md-items="item in ctrl.querySearch2(ctrl.searchText)"
+           md-item-text="item.label"
+           md-min-length="0"
+           placeholder="Search keyword">
+         <md-item-template>
+           <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.label}}</span>
+         </md-item-template>
+         <md-not-found>
+           No states matching "{{ctrl.searchText}}" were found.
+           <a ng-click="ctrl.newState2(ctrl.searchText)">Create a new one!</a>
+         </md-not-found>
+       </md-autocomplete>
 
-          <div >
             <md-autocomplete
            ng-disabled="ctrl.isDisabled"
            md-no-cache="ctrl.noCache"
@@ -54,7 +68,6 @@
            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
          </md-not-found>
        </md-autocomplete>
-          </div>
         </div>
 
     </div>
