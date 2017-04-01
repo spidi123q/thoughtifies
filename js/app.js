@@ -1171,11 +1171,6 @@ app.controller('msgController', [
       $scope.msg = '';
       $scope.myDp = SESS_USERIMAGE;
       $scope.dpDisplay = dpDisplay;
-
-      MyWebSocket.socket.onMessage(function (message) {
-
-      });
-
       $scope.jj = listMessengers;
       $scope.toggleLeft = function () {
         $mdSidenav('jam')
@@ -1278,6 +1273,7 @@ app.controller('msgController', [
       $scope.msgUserAdapter = {
         remain: true
       };
+
 
       $scope.sendMsg = function () {
           var data = {
@@ -1397,6 +1393,13 @@ app.controller('msgController', [
       }, function() {
 
       });
+    };
+    $scope.shadow = function functionName() {
+      if ($mdSidenav('jam').isOpen()) {
+        return {
+              'box-shadow': '0px 0px 5px',
+        };
+      }
     };
 
 
@@ -1684,15 +1687,10 @@ app.controller('chatInit', function($scope,$http,MyWebSocket,$mdDialog,chatSiden
 
     $scope.chat.socket.onMessage(function(message) {
         var msg = JSON.parse(message.data);
-
         taskList(msg);
     });
     $scope.list = [];
 
-    $scope.t = function () {
-        $scope.list.push("gfgdg");
-        $scope.list[1] = "5";
-    };
     var taskList = function (data) {
       if (data.header == "8000") {
 
@@ -3301,12 +3299,14 @@ app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiServ
      function buildToggler(componentId) {
 
          return function() {
-           $mdSidenav('jam')
-         .close()
-         .then(function(){
-           console.log("closed");
-           $scope.total = 0;
-         });
+           if ($mdSidenav('jam').isOpen()) {
+             $mdSidenav('jam')
+           .close()
+           .then(function(){
+             console.log("closed");
+           });
+           }
+            $scope.total = 0;
            $mdSidenav(componentId).toggle();
          };
      }

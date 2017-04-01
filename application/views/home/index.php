@@ -99,7 +99,7 @@
                  md-whiteframe="4" >
        <md-toolbar class="md-theme-indigo">
        </md-toolbar>
-       <div layout="row" layout-align="space-around start">
+       <div layout="row" layout-align="space-around start" style="margin-top: 8px;">
          <md-button  class="md-secondary md-icon-button" href="logout" aria-label="call">
            <md-icon md-font-library="material-icons" class="md-warn">power_settings_new</md-icon>
          </md-button>

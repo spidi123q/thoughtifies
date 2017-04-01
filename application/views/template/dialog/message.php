@@ -1,4 +1,4 @@
-<md-dialog class="msg_dialog" aria-label="Mango (Fruit)">
+<md-dialog class="msg_dialog" aria-label="Mango (Fruit)" >
   <div class="msg_dialog_contenteditable msg_placeholder"  contenteditable="true" placeholder="Type your message"
     ng-model="msg" ng-change="change()"
     ng-keypress="checkIfEnterKeyWasPressed($event,this)">

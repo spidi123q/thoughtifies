@@ -2,7 +2,7 @@
 <br><br>
 <md-content class="msgPage" layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
 
-  <md-sidenav class="md-sidenav-left" md-component-id="jam"  md-whiteframe="4"
+  <md-sidenav class="md-sidenav-left" md-component-id="jam" ng-style="shadow()" 
        ui-scroll-viewport md-swipe-left="toggleLeft()" md-swipe-right="toggleLeft()">
 <!--
   <md-toolbar class="md-theme-indigo" layout="row">

@@ -80,7 +80,7 @@
           <div flex  >
                 <div layout="column" layout-align="center center">
                   <div ui-scroll="item in datasource" adapter="adapter on Search">
-                   <usercard index="$index" adapter="adapter" info="item"></usercard>
+                   <usercard  index="$index" adapter="adapter" info="item"></usercard>
                   </div>
                   <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
                   <div class="empty_msg" ng-if="adapter.isEmpty() && !adapter.isLoading">
