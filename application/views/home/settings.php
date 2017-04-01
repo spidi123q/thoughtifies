@@ -1,6 +1,6 @@
 <div layout="column" ng-hide="hideProfile()">
   <div  flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
-<br><br>
+
         <div layout="row" >
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
@@ -28,13 +28,12 @@
               </div>
           </div>
         </div>
-<br>
         <div ng-if="!settingsData.config">
           <section md-whiteframe="1" layout="row" layout-align="center center">
             <friendpanel uid="uid"></friendpanel>
           </section>
         </div>
-  </div><br>
+  </div>
   <div flex ng-cloak>
     <md-content>
       <md-tabs md-dynamic-height md-border-bottom>
