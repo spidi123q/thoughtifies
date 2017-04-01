@@ -3,7 +3,7 @@
 <md-content class="msgPage" layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
 
   <md-sidenav class="md-sidenav-left" md-component-id="jam"  md-whiteframe="4"
-       ui-scroll-viewport >
+       ui-scroll-viewport md-swipe-left="toggleLeft()" md-swipe-right="toggleLeft()">
 <!--
   <md-toolbar class="md-theme-indigo" layout="row">
   <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
@@ -16,7 +16,7 @@
     <md-list-item  ui-scroll="item in jj" adapter="msgUserListAdapter on msgController" class="md-2-line" ng-click="selectMsgUser(item)">
        <img image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="md-avatar" alt="" />
        <div class="md-list-item-text" layout="column">
-         {{item.fname}} {{item.lname}}
+         <h5>{{item.fname}} {{item.lname}}</h5>
        </div>
        <md-menu class="md-secondary">
      <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
@@ -52,12 +52,15 @@
 
 
         <div  layout="column" flex="80" style="height:100%">
-          <div layout="row" layout-align="end center">
+          <div layout="row" layout-align="end center" >
             <a href="#/users/{{msgUser}}"><span flex-offset="5">{{msgUserName.fname}} {{msgUserName.lname}}</span></a>
-            <md-list-item flex-offset="5" ng-click="toggleLeft()" class="noright">
-              <img alt="{{ person.name }}" ng-src="<?php echo base_url(); ?>images/flaticons/svg/team.svg" class="md-avatar" />
-              <p>CONTACTS</p>
-            </md-list-item>
+
+            <div layout="row" layout-align="center center" class="md-button md-primary" ng-click="toggleLeft()">
+              <md-button class="md-icon-button" aria-label="More" >
+                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/team.svg" alt="">
+              </md-button>
+              <span>contacts &nbsp &nbsp</span>
+            </div>
           </div>
             <md-content layout="row" flex="60" style="padding-left:20px;">
                     <md-content ng-hide="view" flex ui-scroll-viewport scroll-glue style="width:100%;overflow-x:hidden">
@@ -86,14 +89,14 @@
                         </span>
                     </div>
             </md-content>
-
+          <span layout="column" ng-hide="msgUser === undefined" layout-align="center start">
             <div layout="column" style="width:100%;padding-top:10px;">
               <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="height:40px;"
               ng-focus="focus()"
               ng-blur="unfocus()"
               ></div>
             </div>
-            <div layout="row" >
+            <div layout="row" flex-offset="10">
               <span layout="row" layout-align="end center">
                 <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
@@ -106,8 +109,12 @@
                       <i class="material-icons">insert_photo</i>
                 </label>-->
               </span>
-              <md-button class="md-warn" ng-click="sendMsg()">send</md-button>
+              <md-button ng-click="sendMsg()" class="md-warn">
+                <md-icon md-font-library="material-icons" class="md-light md-48">send</md-icon>
+              </md-button>
             </div>
+          </span>
+
 
         </div>
 

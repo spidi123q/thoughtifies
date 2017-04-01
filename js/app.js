@@ -318,6 +318,7 @@ app.directive('postcard', function () {
                     file : false,
                   }
                 };
+                $scope.progress = false;
 
                 $scope.emojilist = [];
                 $scope.view = false;
@@ -399,6 +400,7 @@ app.directive('postcard', function () {
                 };
                 $scope.post = function () {
                   $scope.data = ($scope.data === undefined)?"":$scope.data;
+                  $scope.progress = true;
                         $http({
                           method: 'POST',
                           url: 'home/post',
@@ -408,6 +410,7 @@ app.directive('postcard', function () {
                           },
                           }).then(function successCallback(response) {
                                 console.log(response.data);
+                                $scope.progress = false;
                                 $scope.adapter.prepend([response.data]);
                                 uploader.clearQueue();
                                 $scope.data = "";

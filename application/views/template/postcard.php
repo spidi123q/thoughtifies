@@ -33,7 +33,8 @@
             </label>
           </span>
           <span layout="row" layout-align="end center">
-            <md-button ng-click="post()" ng-disabled="upload.button" class="md-warn">
+            <md-progress-circular ng-show="progress" class="md-warn" md-mode="indeterminate" md-diameter="20px"></md-progress-circular>
+            <md-button  ng-click="post()" ng-disabled="upload.button || progress" class="md-warn">
               <md-icon md-font-library="material-icons" class="md-light md-48">send</md-icon>
             </md-button>
           </span>

@@ -12,6 +12,24 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
+      private function getLastMsg($user)    {
+        $this->db->select('message')->from('myMessages');
+        $this->db->group_start();
+          $this->db->group_start();
+            $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+            $this->db->or_where('sender',$user);
+          $this->db->group_end();
+          $this->db->or_group_start();
+            $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+            $this->db->or_where('sender',$user);
+          $this->db->group_end();
+        $this->db->group_end();
+        $this->db->order_by('date_time','DESC');
+        $this->db->limit(1,0);
+
+
+      }
+
       public function listMessengersCount()      {
               $qry = "SELECT count(*) AS count FROM (SELECT DISTINCT sender
               FROM (
