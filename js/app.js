@@ -2946,13 +2946,15 @@ app.controller('ToolbarController', function ($scope, $timeout,$log,$http,$rootS
 
     function selectedItemChange(item) {
       //$log.info('Item changed to ' + JSON.stringify(item));
-      if (self.type == 'email') {
-          $location.path( "/users/"+item.mem_id );
-      }
-      else if (self.type == 'hash') {
-          $location.path( "tbs/hash/"+item.label );
-      }else {
-        $location.path( "tbs/keyword/"+item.label.toLowerCase() );
+      if (item !== undefined) {
+        if (self.type == 'email') {
+            $location.path( "/users/"+item.mem_id );
+        }
+        else if (self.type == 'hash') {
+            $location.path( "tbs/hash/"+item.label );
+        }else {
+          $location.path( "tbs/keyword/"+item.label.toLowerCase() );
+        }
       }
     }
 
