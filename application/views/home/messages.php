@@ -40,7 +40,7 @@
   </md-list-item>
 
   </md-list>
-  <div class="empty_msg" ng-if="msgUserListAdapter.isEmpty()">
+  <div class="empty_msg" ng-if="msgUserListAdapter.isEmpty() && !msgUserListAdapter.isLoading">
     Inbox empty
   </div>
   <div layout="row" layout-align="center center">
@@ -64,7 +64,7 @@
                       <div layout="row" layout-align="center center">
                         <md-progress-circular ng-if="msgUserAdapter.isLoading && msgUser !== undefined" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
                       </div>
-                      <div class="empty_msg" ng-if="msgUserAdapter.isEmpty() && msgUser !== undefined">
+                      <div class="empty_msg" ng-if="msgUserAdapter.isEmpty() && msgUser !== undefined && !msgUserAdapter.isLoading">
                         No messages
                       </div>
                       <div class="empty_msg" ng-if="msgUser === undefined">

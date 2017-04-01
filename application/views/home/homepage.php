@@ -24,7 +24,7 @@
       </div>
     <div layout="row" layout-margin layout-align="center center">
       <div class="">
-        <md-button  class="md-secondary md-icon-button" ng-click="adapter.reload()" aria-label="call">
+        <md-button  class="md-secondary md-icon-button" ng-click="reload()" aria-label="call">
           <md-icon md-font-library="material-icons" class="md-light md-48">refresh</md-icon>
         </md-button>
       </div>
@@ -39,6 +39,9 @@
       <div layout="column"  layout-align="center center">
         <br>
         <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+        <div class="empty_msg" ng-if="adapter.isEmpty() && !adapter.isLoading">
+          Empty
+        </div>
         <br>
       </div>
     </div>

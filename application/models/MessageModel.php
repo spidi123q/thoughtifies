@@ -74,7 +74,7 @@
             ORDER BY date_time DESC
             )result
             ORDER BY date_time DESC
-          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,5";
+          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,10";
 
           $result = $this->db->query($qry, array(
             $this->session->SESS_MEMBER_ID,
@@ -94,10 +94,14 @@
           }
           //print_r($listMemid);
 
-          $this->db->select('*')->from('member');
-          $this->db->where_in('mem_id', $listMemid);
-          $result = $this->db->get();
-          echo json_encode($result->result());
+
+          if ( sizeof($listMemid) > 0 ) {
+            $this->db->select('*')->from('member');
+            $this->db->where_in('mem_id', $listMemid);
+            $result = $this->db->get();
+            echo json_encode($result->result());
+          }
+
 
           }
 

@@ -2822,11 +2822,14 @@ app.controller('PostView', function ($scope, $timeout,$http,$q) {
           $scope.adapter = {
             remain: true
           };
-          $scope.friendSwitchChange =  function () {
-            init();
+          $scope.reload = function functionName() {
             big = -1;
             page = [];
             $scope.adapter.reload();
+          };
+          $scope.friendSwitchChange =  function () {
+            init();
+            $scope.reload();
           };
 
 });
