@@ -42,51 +42,61 @@
       }
 
       private function createAccountFacebook($userNode,$fb,$accessToken)      {
-        $loc = $userNode->getLocation()->getId();
-        $response = $fb->get("$loc?fields=location", $accessToken);
-        $locNode = $response->getGraphObject()->getProperty("location");
-        $date  = $userNode->getBirthday();
-        $this->load->library('country_iso');
-        $cont = array_flip($this->country_iso->countries);
-        $country = $cont["{$locNode['country']}"];
-        //  print_r($userNode) ;
-        $tmpfname = tempnam("images/userimages", "fb");
-        $img = "$tmpfname.jpg";
-        file_put_contents($img, file_get_contents( $userNode->getPicture()['url'] ) );
-        $newFileName = basename($img, ".jpg");
-        $info = array(
-        'email' => $userNode->getEmail(),
-        'fname' => $userNode->getFirstName(),
-        'lname' => $userNode->getLastName(),
-        'picture' => $newFileName,
-        'gender' => ($userNode->getGender() === "male")? 'M':'F',
-        'dd' => $date->format('j'),
-        'mm' => $date->format('n'),
-        'yy' => $date->format('Y'),
-        'country' => $country,
-        );
-        //print_r($info);
-        $this->db->trans_start();
-        $this->db->set('join_date', 'NOW()', FALSE);
-        $this->db->insert('member', $info);
-        $query = $this->db->query('SELECT LAST_INSERT_ID() as mem_id');
-        $mem_id = $query->row()->mem_id;
-        $data = array(
-          'id' => $userNode->getId(),
-          'mem_id' => $mem_id,
-        );
-        //print_r($data);
-        $this->db->insert('facebook_member', $data);
-        $this->db->trans_complete();
-        if ($this->db->trans_status() === TRUE){
-          //echo "1";
-          $fb_access_token = (string) $accessToken;
-          $this->session->set_userdata('fb_access_token', $fb_access_token);
-          $this->startSession($mem_id);
 
-        }else {
-          echo "0";
-        }
+          $loc =  $userNode->getLocation();
+          if ($loc !== null) {
+            $loc = $loc->getId();
+            $response = $fb->get("$loc?fields=location", $accessToken);
+            $locNode = $response->getGraphObject()->getProperty("location");
+            $date  = $userNode->getBirthday();
+            $this->load->library('country_iso');
+            $cont = array_flip($this->country_iso->countries);
+            $country = $cont["{$locNode['country']}"];
+            //  print_r($userNode) ;
+            $tmpfname = tempnam("images/userimages", "fb");
+            $img = "$tmpfname.jpg";
+            file_put_contents($img, file_get_contents( $userNode->getPicture()['url'] ) );
+            $newFileName = basename($img, ".jpg");
+            $info = array(
+            'email' => $userNode->getEmail(),
+            'fname' => $userNode->getFirstName(),
+            'lname' => $userNode->getLastName(),
+            'picture' => $newFileName,
+            'gender' => ($userNode->getGender() === "male")? 'M':'F',
+            'dd' => $date->format('j'),
+            'mm' => $date->format('n'),
+            'yy' => $date->format('Y'),
+            'country' => $country,
+            );
+            //print_r($info);
+            $this->db->trans_start();
+            $this->db->set('join_date', 'NOW()', FALSE);
+            $this->db->insert('member', $info);
+            $query = $this->db->query('SELECT LAST_INSERT_ID() as mem_id');
+            $mem_id = $query->row()->mem_id;
+            $data = array(
+              'id' => $userNode->getId(),
+              'mem_id' => $mem_id,
+            );
+            //print_r($data);
+            $this->db->insert('facebook_member', $data);
+            $this->db->trans_complete();
+            if ($this->db->trans_status() === TRUE){
+              //echo "1";
+              $fb_access_token = (string) $accessToken;
+              $this->session->set_userdata('fb_access_token', $fb_access_token);
+              $this->startSession($mem_id);
+
+            }else {
+              echo "0";
+            }
+          }
+          else {
+            redirect();
+          }
+
+
+
       }
       public function startSession($mem_id)      {
         $this->db->select('*');
@@ -143,10 +153,12 @@
              }
           } catch(\Facebook\Exceptions\FacebookResponseException $e) {
            // When Graph returns an error
+           redirect();
            echo 'Graph returned an error: ' . $e->getMessage();
            exit;
           } catch(\Facebook\Exceptions\FacebookSDKException $e) {
            // When validation fails or other local issues
+           redirect();
            echo 'Facebook SDK returned an error: ' . $e->getMessage();
            exit;
           }

@@ -1,4 +1,3 @@
-
 {
   "name": "Thoughtifies",
   "short_name": "Thoughtifies",
@@ -6,6 +5,7 @@
   "theme_color": "#FF5722",
   "display": "standalone",
   "description": "Advertising your thoughts.",
+  "start_url": ".",
   "icons": [{
     "src": "images/touch/homescreen48.png",
     "sizes": "48x48",

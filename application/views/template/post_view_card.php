@@ -6,9 +6,8 @@
             <img class="md-user-avatar" image-fetch img-src="{{item.dp}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60"/>
             </a>
            </md-card-avatar>
-           <md-card-header-text>
+           <md-card-header-text layout-align="center start">
              <span class="md-title"><a href="#/users/{{item.mem_id}}">{{item.fname}} {{item.lname}}</a></span>
-             <span class="md-subhead">{{item.tag}}</span>
            </md-card-header-text>
             <md-menu class="md-secondary">
               <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">

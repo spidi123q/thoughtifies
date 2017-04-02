@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
   <link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
+  <link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
