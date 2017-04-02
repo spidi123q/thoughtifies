@@ -1,5 +1,5 @@
 <div layout="column" ng-hide="hideProfile()">
-  <div  flex="35" layout="row" layout-xs="column"  layout-align="center center" layout-align-xs="space-between center">
+  <div  flex="35"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
 
         <div layout="row" >
           <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
@@ -13,26 +13,24 @@
     max-height: 150;">
           <div flex-offset="10" flex layout="column" layout-align="center center">
               <div layout="row">
-                <h3>
-                <md-truncate flex>
+                <h3 md-truncate>
                   {{settingsData.fname}} {{settingsData.lname}}
-                </md-truncate>
               </h3>
               </div>
-              <div layout="row"  layout-xs="column">
-                  <h5>
-                    <md-truncate flex>
+              <div layout="row"  layout-xs="column" layout-padding>
+                  <h5 class="empty_msg" md-truncate>
                       {{settingsData.tag}}
-                    </md-truncate>
                   </h5>
               </div>
+
           </div>
         </div>
         <div ng-if="!settingsData.config">
           <section md-whiteframe="1" layout="row" layout-align="center center">
-            <friendpanel uid="uid"></friendpanel>
+            <friendpanel layout="row" uid="uid"></friendpanel>
           </section>
         </div>
+
   </div>
   <div flex ng-cloak>
     <md-content>
