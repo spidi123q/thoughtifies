@@ -11,7 +11,7 @@
             </md-card-title-text>
           </md-card-title>
           <md-card-content>
-            <div class="tag">
+            <div class="tag empty_msg">
                 {{info.tag}}
             </div>
           </md-card-content>

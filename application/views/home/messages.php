@@ -2,7 +2,7 @@
 <br><br>
 <md-content class="msgPage" layout="row" ng-controller="msgController" layout-align="center center" style="height:100%">
 
-  <md-sidenav class="md-sidenav-left" md-component-id="jam" ng-style="shadow()" 
+  <md-sidenav class="md-sidenav-left" md-component-id="jam" ng-style="shadow()"
        ui-scroll-viewport md-swipe-left="toggleLeft()" md-swipe-right="toggleLeft()">
 <!--
   <md-toolbar class="md-theme-indigo" layout="row">
@@ -53,7 +53,7 @@
 
         <div  layout="column" flex="80" style="height:100%">
           <div layout="row" layout-align="end center" >
-            <a href="#/users/{{msgUser}}"><span flex-offset="5">{{msgUserName.fname}} {{msgUserName.lname}}</span></a>
+            <a href="#/users/{{msgUser}}"><span flex-offset="5">{{msgUserName.fname}}</span></a>
 
             <div layout="row" layout-align="center center" class="md-button md-primary" ng-click="toggleLeft()">
               <md-button class="md-icon-button" aria-label="More" >

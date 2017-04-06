@@ -297,10 +297,7 @@ a {
  .post_view_dialog{
    width: 50%;
    height: auto;
-   @media only screen and (max-width: $screen-xs) {
-     width: 100%;
-     height: auto;
-   }
+
  }
  .recent_visitors{
    width:500px;
@@ -320,10 +317,12 @@ a {
   text-align: center;
 }
 
-.ng-hide {
-  opacity: 0;
-  transition: all linear .5s;
-}
+  .ng-hide {
+   opacity: 0;
+   transition: all linear .5s;
+ }
+
+
 .hide_elem {
   display: none;;
 }
@@ -362,4 +361,18 @@ a {
 }
 .main_view{
   margin-top: 30px;
+}
+.profile-dp{
+  @media only screen and (max-width: $screen-xs) {
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+  @media only screen and (min-width: $screen-xs) {
+    max-width: 150px !important;
+    max-height: 150px !important;
+  }
+}
+
+.hash-tag{
+  color: darkcyan;
 }

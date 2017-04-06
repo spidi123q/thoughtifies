@@ -10,6 +10,7 @@
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
+    var BASE_URL = "<?php echo base_url(); ?>";
   </script>
   <title>Thoughtifies</title>
 </head>
@@ -51,7 +52,7 @@
                   <md-autocomplete id="tbs_box" ng-class="tbClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" flex-gt-sm="50"
                   ng-disabled="ctrl.isDisabled"
                   md-no-cache="ctrl.noCache"
-                  md-autofocus = "false"
+                  md-autofocus = "true"
                   md-selected-item="ctrl.selectedItem"
                   md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
                   md-search-text="ctrl.searchText"

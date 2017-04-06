@@ -2,23 +2,23 @@
   <div  flex="35"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
 
         <div layout="row" >
-          <div layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
+          <div  ng-if="settingsData.config" layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
 
-            <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">
+            <md-button  class="md-secondary md-icon-button" ng-click="getDialog($event,0)" aria-label="call">
               <md-icon md-font-library="material-icons" class="md-light md-48">create</md-icon>
             </md-button>
 
           </div>
-          <img flex="40" md-whiteframe="3"   alt="" ng-src="{{settingsData.dp}}"  alt="" style="max-width: 150;
-    max-height: 150;">
-          <div flex-offset="10" flex layout="column" layout-align="center center">
-              <div layout="row">
+          <img flex="40" md-whiteframe="3"   alt="" ng-src="{{settingsData.dp}}"  alt="" class="profile-dp" style="max-width: 100;
+    max-height: 100;">
+          <div flex flex-offset="10" flex layout="column" layout-align="center center">
+              <div layout="row" layout-align="start center">
                 <h3 md-truncate>
                   {{settingsData.fname}} {{settingsData.lname}}
               </h3>
               </div>
               <div layout="row"  layout-xs="column" layout-padding>
-                  <h5 class="empty_msg" md-truncate>
+                  <h5 class="empty_msg" md-truncate style="height:100%">
                       {{settingsData.tag}}
                   </h5>
               </div>

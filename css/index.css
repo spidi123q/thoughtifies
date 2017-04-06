@@ -249,10 +249,6 @@ a {
 .post_view_dialog {
   width: 50%;
   height: auto; }
-  @media only screen and (max-width: 600px) {
-    .post_view_dialog {
-      width: 100%;
-      height: auto; } }
 
 .recent_visitors {
   width: 500px;
@@ -311,5 +307,17 @@ a {
 
 .main_view {
   margin-top: 30px; }
+
+@media only screen and (max-width: 600px) {
+  .profile-dp {
+    max-width: 100px !important;
+    max-height: 100px !important; } }
+@media only screen and (min-width: 600px) {
+  .profile-dp {
+    max-width: 150px !important;
+    max-height: 150px !important; } }
+
+.hash-tag {
+  color: darkcyan; }
 
 /*# sourceMappingURL=index.css.map */
