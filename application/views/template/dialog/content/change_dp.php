@@ -1,5 +1,5 @@
 <div layout="column">
-        <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
+        <input class="ng-hide" id="input-file-id"  type="file" accept="image/*" nv-file-select="" uploader="uploader" />
         <label for="input-file-id" class="md-button md-primary">
           Choose File
         </label>
@@ -8,7 +8,21 @@
               Preview
           </div>
           <span ng-bind-html="error"></span>
-          <img src="{{upload.response.dp}}" alt="" ng-click="previewClick($event)">
+          <div ng-if="upload.response.dp !== undefined">
+            <ng-croppie   src="upload.response.dp"
+                          ng-model='outputImage'
+                          update='onUpdate'
+                          boundry="{w: 200, h: 200}"
+                          viewport="{w: 150, h: 150}"
+                          orientation="true"
+                          rotation="90"
+                          mousezoom="true"
+                          zoom="false"
+                          type="square">
+            </ng-croppie>
+          </div>
+
+
         </div>
         <div ng-show="uploader.isUploading" layout="column">
           <div class="empty_msg">

@@ -65,9 +65,6 @@
         }
       }
 
-      private function FunctionName($imgUrl)      {
-        # code...
-      }
 
       private function createThumb($imgUrl,$size,$picture)      {
         $config['image_library'] = 'gd2';
@@ -79,8 +76,31 @@
         $config['height']       = $size;
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();
+        $this->image_lib->clear();
         $imgUrl = "images/userimages/".$picture.'_thumb.jpg';
         return $imgUrl;
+      }
+      private function cropDp($values)    {
+        $length = (float)$values[0] - (float)$values[2];
+        $length = abs($length);
+        $length = floor($length);
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = './images/userimages/'.$this->session->TEMP_DP.".jpg";
+        $config['x_axis'] = $values[0];
+        $config['y_axis'] = $values[1];
+        $config['height'] = $length;
+        $config['width'] =  $length;
+        $config['maintain_ratio'] = FALSE;
+        $this->load->library('image_lib', $config);
+        $this->image_lib->initialize($config);
+        if ( ! $this->image_lib->crop())
+        {
+                echo $this->image_lib->display_errors();
+        }
+        else {
+          return true;
+        }
+        $this->image_lib->clear();
       }
 
 //-----------------public method--------------------------------------
@@ -141,7 +161,7 @@
           $newFile = $this->upload->data('file_path').$this->upload->data('raw_name').'.jpg';
           $this->session->set_userdata('TEMP_DP', $this->upload->data('raw_name'));
                   $imgUrl = $newFile;
-                  $imgUrl =$this->createThumb($imgUrl,150,$this->upload->data('raw_name'));
+                  //$imgUrl =$this->createThumb($imgUrl,1000,$this->upload->data('raw_name'));
                   $im = file_get_contents($imgUrl);
                   $im = base64_encode($im);
                   $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
@@ -153,18 +173,33 @@
         }
       }
 
-      public function setDp()    {
+      public function setDp($data)    {
         $response = array(
           'sel' => 0,
-          'status' => true,
+          'status' => false,
         );
-        $this->db->set('picture', $this->session->TEMP_DP);
-        $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
-         if ( $this->db->update('member') ) {
-           $response['status'] = true;
-         }else {
-           $response['status'] = false;
-         }
+
+        if ( $this->cropDp($data) ) {
+          $this->db->set('picture', $this->session->TEMP_DP);
+          $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
+           if ( $this->db->update('member') ) {
+             $response['status'] = true;
+             $imgUrl = "images/userimages/".$this->session->TEMP_DP.'.jpg';
+             $config['image_library'] = 'gd2';
+             $config['source_image'] = $imgUrl;
+             $config['create_thumb'] = TRUE;
+             $config['maintain_ratio'] = FALSE;
+             $config['quality'] = 100;
+             $config['width']         = 150;
+             $config['height']       = 150;
+             $this->load->library('image_lib', $config);
+             $this->image_lib->resize();
+             $im = file_get_contents($imgUrl);
+             $im = base64_encode($im);
+             $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
+             $response['dp'] = $im;
+           }
+        }
          echo json_encode($response);
       }
 

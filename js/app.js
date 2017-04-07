@@ -1,5 +1,5 @@
 
-var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar']);
+var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
 
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
@@ -2125,11 +2125,14 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
     };
 
       function DialogController($scope, $mdDialog,settingsData,$mdToast) {
+        $scope.inputImage = null;
+        $scope.outputImage = null;
         $scope.settingsData = settingsData;
         $scope.settingsData.dialog.progress = true;
         $scope.user = angular.copy(settingsData);
         $scope.user.bday  = new Date();
         $scope.upload = {};
+        var points;
         var uploader = $scope.uploader = new FileUploader({
           url: 'settings/upload',
           autoUpload: true,
@@ -2177,6 +2180,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
                 $scope.uButton = false;
               }
               $scope.upload.response = response;
+              $scope.inputImage = response.dp;
               uploader.clearQueue();
               //$scope.settingsData.dp = response;
 
@@ -2202,6 +2206,10 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $scope.previewClick = function (ev) {
             console.log(ev);
           };
+
+           $scope.onUpdate = function(data) {
+               points = data.points;
+           };
 
 
 
@@ -2234,11 +2242,12 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
               $http({
                   method: 'POST',
                   url: 'settings/setdp',
+                  data : JSON.stringify(points),
 
                 }).then(function successCallback(response) {
                       //
                       if (response.data.status) {
-                        $scope.settingsData.dp = $scope.upload.response.dp;
+                        $scope.settingsData.dp = response.data.dp;
                         SESS_USERIMAGE = $scope.upload.response.filename;
                         $scope.settingsData.dialog.progress = true;
                         $scope.cancel();

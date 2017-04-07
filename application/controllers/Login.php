@@ -165,7 +165,9 @@
                $this->SessionModel->dpUpload();
       }
       public function setDp()    {
-               $this->SessionModel->setDp();
+                $data = $this->input->raw_input_stream;
+                $data = json_decode($data);
+               $this->SessionModel->setDp($data);
       }
       public function postImageUpload()    {
                $this->SessionModel->postImageUpload();

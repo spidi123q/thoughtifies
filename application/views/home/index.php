@@ -196,6 +196,8 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
   <script src="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.css"/>
+  <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
 
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
