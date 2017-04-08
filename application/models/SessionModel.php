@@ -400,7 +400,7 @@
          'sender' => $value);
          $data2 = array('sender' => $this->session->SESS_MEMBER_ID,
           'receiver' => $value);
-        $query = $this->db->select('status')->from('friendship');
+        $query = $this->db->select('sender,receiver,status')->from('friendship');
                   $this->db->group_start();
                             $this->db->where($data);
                   $this->db->group_end();
@@ -410,7 +410,7 @@
                 $query =   $this->db->get();
         if ($query->num_rows() > 0) {
           $val = $query->row();
-          echo $val->status;
+          echo json_encode($val);
         }else {
           echo "-1";
         }

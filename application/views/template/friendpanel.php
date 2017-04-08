@@ -27,5 +27,17 @@
                Unfriend
              </md-button>
            </md-menu-item>
+           <md-menu-item ng-if="actions.pending">
+             <md-button ng-click="accept()">
+              <md-icon md-font-library="material-icons" class="md-light md-48">done</md-icon>
+               Accept
+             </md-button>
+           </md-menu-item>
+           <md-menu-item ng-if="actions.pending">
+             <md-button ng-click="reject()">
+              <md-icon md-font-library="material-icons" class="md-light md-48">clear</md-icon>
+               Reject
+             </md-button>
+           </md-menu-item>
          </md-menu-content>
        </md-menu>

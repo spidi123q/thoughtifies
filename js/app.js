@@ -112,6 +112,7 @@ app.directive('friendpanel', function () {
                 icon : "block",
                 val : -1,
               },
+              pending :  false,
             };
 
             var openMenu = function($mdOpenMenu, ev) {
@@ -126,13 +127,24 @@ app.directive('friendpanel', function () {
                url: 'users/frnd/status/'+$scope.uid,
              }).then(function successCallback(response) {
                    console.log(response.data);
-                   if (response.data === "0") {
-                     $scope.buttons.request.icon = "close";
-                     $scope.buttons.request.val = 0;
-                   }
-                   else if (response.data === "1") {
+
+                    if (response.data.status === "1") {
                      $scope.buttons.request.icon = "done";
                      $scope.buttons.request.disabled = true;
+                   }
+                   else  {
+
+                     if (response.data.status === "0") {
+                       if (response.data.sender === SESS_MEMBER_ID.toString()) {
+                         $scope.buttons.request.icon = "close";
+                         $scope.buttons.request.val = 0;
+                       }else {
+                         console.log("pending req");
+                         $scope.buttons.request.disabled = true;
+                         $scope.buttons.request.icon = "reply";
+                         $scope.buttons.pending = true;
+                       }
+                     }
                    }
                }, function errorCallback(response) {
 
@@ -216,6 +228,9 @@ app.directive('friendpanel', function () {
                   $scope.buttons.request.icon = "add";
                   $scope.buttons.request.val = -1;
                   $scope.actions.request.disabled = false;
+                  if ($scope.adapter !== undefined) {
+                    $scope.adapter.applyUpdates($scope.index,[]);
+                  }
 
                 }, function errorCallback(response) {
 
@@ -272,6 +287,31 @@ app.directive('friendpanel', function () {
               }, function() {
 
               });
+            };
+            $scope.accept = function () {
+              $http({
+                  method: 'GET',
+                  url: 'req/frnd/action/0/'+$scope.uid,
+                }).then(function successCallback(response) {
+                  $scope.buttons.request.icon = "done";
+                  $scope.buttons.request.disabled = true;
+                  $scope.buttons.pending = false;
+
+                  }, function errorCallback(response) {
+                  });
+            };
+            $scope.reject = function () {
+              $http({
+                  method: 'GET',
+                  url: 'req/frnd/action/1/'+$scope.uid,
+                }).then(function successCallback(response) {
+                  $scope.buttons.request.icon = "add";
+                  $scope.buttons.request.val = -1;
+                  $scope.actions.request.disabled = false;
+                  $scope.buttons.pending = false;
+
+                  }, function errorCallback(response) {
+                  });
             };
 
             $scope.buttons.openMenu = openMenu;
