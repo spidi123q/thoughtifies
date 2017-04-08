@@ -76,7 +76,7 @@
           </md-content>
         </md-tab>
         <md-tab label="{{settingsData.tabs.photos.name}}" md-on-select="onSelectPosts()">
-          <div ng-if="settingsData.post">
+          <md-content ng-if="settingsData.post">
             <div ng-controller="ProfilePosts"  class="md-padding" >
                   <div >
                           <div   layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
@@ -92,7 +92,7 @@
                         </div>
                   </div>
             </div>
-          </div>
+          </md-content>
 
         </md-tab>
         <md-tab label="{{settingsData.tabs.settings.name}}">
