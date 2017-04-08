@@ -1,5 +1,5 @@
 <div layout="column" ng-hide="hideProfile()">
-  <div  flex="35"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
+  <div flex-xs="35" flex-sm="35"  flex-gt-sm="30"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
 
         <div layout="row" >
           <div  ng-if="settingsData.config" layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
@@ -11,16 +11,16 @@
           </div>
           <img flex="40" md-whiteframe="3"   alt="" ng-src="{{settingsData.dp}}"  alt="" class="profile-dp" style="max-width: 100;
     max-height: 100;">
-          <div flex flex-offset="10" flex layout="column" layout-align="center center">
+          <div flex flex-offset="10" flex layout="column" layout-align="center end" style="margin-top: 20px;">
               <div layout="row" layout-align="start center">
                 <h3 md-truncate>
                   {{settingsData.fname}} {{settingsData.lname}}
               </h3>
               </div>
-              <div layout="row"  layout-xs="column" layout-padding>
-                  <h5 class="empty_msg" md-truncate style="height:100%">
-                      {{settingsData.tag}}
-                  </h5>
+              <div class="empty_msg" layout="row" layout-align="start center">
+                <h6 md-truncate>
+                  {{settingsData.tag}}
+              </h6>
               </div>
 
           </div>
@@ -76,20 +76,23 @@
           </md-content>
         </md-tab>
         <md-tab label="{{settingsData.tabs.photos.name}}" md-on-select="onSelectPosts()">
-          <md-content ng-controller="ProfilePosts"  class="md-padding" ng-if="settingsData.post">
-                <div   layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
-                  <post-view-card adapter="adapter" index="$index" info="item" style="width:520px"></post-view-card>
-                </div>
-              <div  layout="column"  layout-align="center center">
+          <div ng-if="settingsData.post">
+            <div ng-controller="ProfilePosts"  class="md-padding" >
+                  <div >
+                          <div   layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
+                            <post-view-card adapter="adapter" index="$index" info="item" style="width:520px"></post-view-card>
 
-                <br>
-                <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
-                <div class="empty_msg" ng-if="adapter.isEmpty() && !adapter.isLoading">
-                  User has no thoughts yet
-                </div>
-                <br>
-              </div>
-          </md-content>
+                          </div>
+                        <div  layout="column"  layout-align="center center">
+                          <md-progress-circular ng-if="adapter.isLoading" md-mode="indeterminate" md-diameter="30"></md-progress-circular>
+                          <div class="empty_msg" ng-if="adapter.isEmpty() && !adapter.isLoading">
+                            User has no thoughts yet
+                          </div>
+                          <br>
+                        </div>
+                  </div>
+            </div>
+          </div>
 
         </md-tab>
         <md-tab label="{{settingsData.tabs.settings.name}}">

@@ -1944,6 +1944,9 @@ app.controller('ProfilePosts',function ($scope,MyPosts) {
     $scope.adapter = {
       remain: true
     };
+    $scope.k = function () {
+      console.log("kunna");
+    }
 });
 app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q','MyPosts',function($scope,$http,$mdDialog,FileUploader,$timeout,$q,MyPosts) {
 
@@ -2061,6 +2064,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
           $scope.onSelectPosts = function () {
             MyPosts.setUser(SESS_MEMBER_ID);
             $scope.settingsData.post = true;
+
           };
 
           $http({

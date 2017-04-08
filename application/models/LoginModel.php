@@ -1,16 +1,17 @@
 <?php
    class LoginModel extends CI_Model {
-
+     private $fb;
       function __construct() {
          parent::__construct();
+         $this->fb = new Facebook\Facebook([
+                   'app_id' => '1789323091320402', // Replace {app-id} with your app id
+                   'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+                   'default_graph_version' => 'v2.8',
+                   ]);
       }
 
       public function loadIndex($sel)    {
-                    $fb = new Facebook\Facebook([
-            'app_id' => '1789323091320402', // Replace {app-id} with your app id
-            'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-            'default_graph_version' => 'v2.8',
-            ]);
+                    $fb = $this->fb;
 
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
@@ -124,12 +125,7 @@
 
       private function loginFacebook()    {
         $id_token = $this->session->fb_access_token;
-        $fb = new \Facebook\Facebook([
-          'app_id' => '1789323091320402',
-          'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-          'default_graph_version' => 'v2.8',
-          //'default_access_token' => '{access-token}', // optional
-        ]);
+        $fb = $this->fb;
         $accessToken = new Facebook\Authentication\AccessToken($id_token);
         try {
              // Get the \Facebook\GraphNodes\GraphUser object for the current user.
@@ -232,11 +228,7 @@
                   $this->loginFacebook();
                 }
                 else {
-                  $fb = new Facebook\Facebook([
-                  'app_id' => '1789323091320402', // Replace {app-id} with your app id
-                  'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
-                  'default_graph_version' => 'v2.8',
-                  ]);
+                  $fb = $this->fb;
 
                 $helper = $fb->getRedirectLoginHelper();
                 $this->session->set_userdata('FBRLH_state', $this->input->get('state'));
