@@ -865,7 +865,7 @@ app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
             });
 
             uni = twemoji.parse(uni,  {
-              base: 'http://localhost/twemoji-gh-pages/',
+              base: 'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-896777377482/emoji/',
               ext : '.png',
               size :20
               });
@@ -1944,9 +1944,7 @@ app.controller('ProfilePosts',function ($scope,MyPosts) {
     $scope.adapter = {
       remain: true
     };
-    $scope.k = function () {
-      console.log("kunna");
-    }
+
 });
 app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeout','$q','MyPosts',function($scope,$http,$mdDialog,FileUploader,$timeout,$q,MyPosts) {
 
