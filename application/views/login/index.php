@@ -4,9 +4,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#26A69A" />
-	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
-	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+	<link rel="icon" href="https://thoughtifies.com/images/fav.png">
+	<link rel="manifest" href="https://thoughtifies.com/manifest.json">
+	<link rel="stylesheet" href="https://thoughtifies.com/css/index.css">
 	<!--
 	<script type="text/javascript">
 						if ('serviceWorker' in navigator) {
@@ -48,7 +48,7 @@
 							</form>
 							<div>
 								<a href="index">
-								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
+								<img class="logo" src="https://thoughtifies.com/images/logo.png" alt=""/>
 								</a>
 							</div>
 

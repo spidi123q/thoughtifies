@@ -4,7 +4,7 @@
             <md-content class="md-dialog-content chat_dialog_content"  ng-hide="view" scroll-glue style="width:100%;height: 100%;overflow-x:hidden">
                 <md-list style="" >
                   <md-list-item class="md-long-text"  ng-repeat="item in messages"  style="padding: 10px; ">
-                    <img ng-click="setDp(item)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg"  img-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                    <img ng-click="setDp(item)" image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg"  img-src="{{setDp(item)}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                   <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px;overflow-x: hidden;">
                     <h5 class="chat-text" ng-bind-html="item.message" style="color:grey;overflow-wrap: break-word;"></h5>
                   </div>

@@ -1,5 +1,5 @@
 <div layout="column" ng-hide="hideProfile()">
-  <div flex="35"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
+  <div flex-xs="35" flex-sm="35"  flex-gt-sm="30"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
 
         <div layout="row" >
           <div  ng-if="settingsData.config" layout="row"  layout-align="end end" style="z-index: 10;position: absolute;">
@@ -40,7 +40,7 @@
             <div layout="column"  flex-sm="80"  flex-gt-sm="50">
                     <md-list>
                       <md-list-item  class="md-3-line" ng-repeat="item in settingsData.tabs.profile.info" >
-                        <img ng-src="<?php echo base_url(); ?>images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
+                        <img ng-src="https://thoughtifies.com/images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             {{item.name}}
@@ -55,7 +55,7 @@
                         <md-divider md-inset></md-divider>
                       </md-list-item>
                       <md-list-item  class="md-3-line"  >
-                        <img ng-src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" class="md-avatar" alt="{{item.who}}" >
+                        <img ng-src="https://thoughtifies.com/images/flaticons/svg/001-hand-shake.svg" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             FRIENDS
@@ -77,8 +77,9 @@
         </md-tab>
         <md-tab label="{{settingsData.tabs.photos.name}}" md-on-select="onSelectPosts()">
           <md-content ng-if="settingsData.post">
-            <div ng-controller="ProfilePosts"  >
-                          <div   layout="column"  layout-align="center center" start-index="10" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
+            <div ng-controller="ProfilePosts"  class="md-padding" >
+                  <div >
+                          <div   layout="column"  layout-align="center center" ui-scroll="item in datasource" adapter="adapter on ProfilePosts">
                             <post-view-card adapter="adapter" index="$index" info="item" style="width:520px"></post-view-card>
 
                           </div>
@@ -89,6 +90,7 @@
                           </div>
                           <br>
                         </div>
+                  </div>
             </div>
           </md-content>
 

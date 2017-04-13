@@ -1,7 +1,7 @@
   <div md-whiteframe="1" class="user_card" >
     <div layout-xs="column" layout-gt-xs="row" >
       <a href="#/users/{{item.mem_id}}">
-        <img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{item.picture}}" size="500" class="md-card-image" alt="Washed Out"></a>
+        <img image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{item.picture}}" size="500" class="md-card-image" alt="Washed Out"></a>
       <div flex-offset="5" layout="column">
         <div class="name" style="">
           <a href="#/users/{{item.mem_id}}"><span class="md-headline">{{item.fname}}  {{item.lname}}</span></a>

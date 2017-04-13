@@ -13,7 +13,7 @@
             </div>
             <div  layout="row" style="overflow-x:auto">
               <a ng-repeat="item in recentVisitors" href="#/users/{{item.mem_id}}">
-                <img  ng-csp image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="img-circle" alt="{{item.who}}" />
+                <img  ng-csp image-fetch img-src="{{item.picture}}" ng-src="https://thoughtifies.com/images/dp_bg.jpg" size="60" class="img-circle" alt="{{item.who}}" />
               </a>
             </div>
 
