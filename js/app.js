@@ -933,7 +933,7 @@ app.factory('dpDisplay', function($http) {
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
-      socket = $websocket('ws://localhost:8887');
+      socket = $websocket('ws://thoughtifies-chat.us-west-2.elasticbeanstalk.com:8887');
       var protoSent = {
         init : "7000",
         newmsg  : "7001",
@@ -1146,7 +1146,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           var deferred = $q.defer();
 
           if(index > big){
-            big = (big === -1)? 0 : big+10;
+            big = (big <= -1)? 0 : big+10;
             //big = index;
 
 
@@ -1173,7 +1173,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
         };
 
   			var get = function (index, count, success) {
-
+          console.log(index);
               setBig(index).then(function (response) {
                 var result = [];
                 for (var i = index; i <= index + count - 1; i++) {
