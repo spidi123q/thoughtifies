@@ -36,7 +36,7 @@
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
             if ($this->session->has_userdata('fb_access_token')) {
-               redirect("https://thoughtifies.com/login/{$this->session->SESS_MEMBER_ID}");
+               redirect("http://thoughtifies.com/login/{$this->session->SESS_MEMBER_ID}");
             }else {
               $this->parser->parse('login/index',$data);
             }
