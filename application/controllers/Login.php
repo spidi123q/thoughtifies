@@ -55,8 +55,8 @@
       public function contact()    {
         $this->LoginModel->loadIndex(4);
       }
-      public function restoreSession($mem_id)      {
-          $this->LoginModel->startSession($mem_id);
+      public function restoreSession()      {
+          $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
       }
 
       public function loginUser()      {
