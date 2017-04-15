@@ -1,5 +1,5 @@
 <md-card>
-        <img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{user.picture}}" size="400" class="md-card-image" alt="Washed Out">
+        <img image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{user.picture}}" size="400" class="md-card-image" alt="Washed Out">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{user.fname}} {{user.lname}}</span>
