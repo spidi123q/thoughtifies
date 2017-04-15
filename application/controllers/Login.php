@@ -266,9 +266,8 @@
           else if($sel == 7)
             $this->load->view('template/dialog/content/change_mail');
           else if($sel == 8)
-            $this->load->view('template/dialog/content/change_phone');
-          else if($sel == 9)
             $this->load->view('template/dialog/content/change_country');
+
         }
 
         public function getMyInfo()        {

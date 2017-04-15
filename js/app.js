@@ -2109,7 +2109,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
   };
   $scope.getDialog = function(ev,sel) {
-
+    console.log(sel);
     var openModal = function () {
             $mdDialog.show({
               controller: DialogController,
@@ -2139,6 +2139,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
             url: 'list/countries',
 
           }).then(function successCallback(response) {
+            console.log(response.data);
             $scope.settingsData.countries = response.data;
 
             openModal();
