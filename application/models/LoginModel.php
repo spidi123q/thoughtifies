@@ -15,8 +15,8 @@
 
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
-            $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
-            $img = '<img src="'.base_url("images/fb_button.jpg").'" class="fb-login-button" />';
+            $loginUrl = $helper->getLoginUrl('http://thoughtifies.com/data/4', $permissions);
+            $img = '<img src="https://thoughtifies.com/images/fb_button.jpg" class="fb-login-button" />';
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
             );

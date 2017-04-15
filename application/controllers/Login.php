@@ -465,7 +465,7 @@
         }
         public function logout()      {
           $this->session->sess_destroy();
-          redirect('http://localhost/code');
+          redirect('https://thoughtifies.com');
         }
 
 

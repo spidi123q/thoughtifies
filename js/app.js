@@ -55,6 +55,7 @@ app.config(function($sceDelegateProvider) {
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
     'http://127.0.0.1/**',
+    'https://thoughtifies.com/**',
     'http://localhost/**'
   ]);
 
