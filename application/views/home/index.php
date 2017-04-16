@@ -3,14 +3,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
   <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
-  <link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
-  <link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
+  <link rel="stylesheet" href="https://thoughtifies.com/node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="https://thoughtifies.com/css/index.css">
+  <link rel="icon" href="https://thoughtifies.com/images/fav.png">
+  <link rel="manifest" href="https://thoughtifies.com/manifest.json">
   <script>
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
-    var BASE_URL = "<?php echo base_url(); ?>";
+    var BASE_URL = "https://thoughtifies.com/";
   </script>
   <title>Thoughtifies</title>
 </head>
@@ -31,19 +31,19 @@
 
 								 <md-fab-actions>
                    <md-button  href="#/" aria-label="Home" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
-                     <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/002-home.svg" alt="" >
+                     <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/002-home.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Home</md-tooltip>
                    </md-button>
                    <md-button  href="#/search" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
-										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/003-search.svg" alt="" >
+										 <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/003-search.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Search People</md-tooltip>
 									 </md-button>
 									 <md-button  href="#/messages" aria-label="Twitter" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
-                     <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
+                     <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/paper-plane.svg" alt="" >
                      <md-tooltip md-direction="right" md-visible="tooltipVisible">Inbox</md-tooltip>
 									 </md-button>
 									 <md-button  href="#/profile" aria-label="Google Hangout" class="md-fab md-raised md-mini fab_actions" ng-click="onFabClick()">
-  										 <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/004-user.svg" alt="" >
+  										 <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/004-user.svg" alt="" >
                        <md-tooltip md-direction="right" md-visible="tooltipVisible">My profile & Settings</md-tooltip>
 									 </md-button>
 								 </md-fab-actions>
@@ -85,7 +85,7 @@
                 </md-not-found>
               </md-autocomplete>
               <span ng-class="logoClass" flex-offset-xs="30" flex-offset-sm="15" flex-offset-gt-sm="10" style="padding-bottom:9px">
-                <img style="" src="<?php echo base_url(); ?>images/tho_small.png" />
+                <img style="" src="https://thoughtifies.com/images/tho_small.png" />
               </span>
               <span flex-xs></span>
               <md-button class="md-icon-button" aria-label="Favorite" ng-click="searchButton()" ng-class="searchButtonClass">
@@ -113,26 +113,26 @@
            <div>
              <span ng-hide="msgButton === 0" ng-hide="true"class="badge1" data-badge="{{msgButton}}"></span>
              <md-button class="md-icon-button" aria-label="More" href="#/messages" ng-click="onClick('message',$event)">
-              <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/paper-plane.svg" alt="" >
+              <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/paper-plane.svg" alt="" >
             </md-button>
            </div>
            <div>
              <span ng-hide="handButton === 0" class="badge1" data-badge="{{handButton}}"></span>
                <md-button class="md-icon-button" aria-label="More" href="#/request/0" ng-click="onClick('friend_req',$event)">
-                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" alt="">
+                <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/001-hand-shake.svg" alt="">
               </md-button>
 
            </div>
            <div>
              <span ng-hide="globeButton === 0" class="badge1" data-badge="{{globeButton}}"></span>
              <md-button class="md-icon-button" aria-label="More" href="#/listrating" ng-click="onClick('rating',$event)">
-               <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/earth-globe.svg" alt="">
+               <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/earth-globe.svg" alt="">
              </md-button>
            </div>
          </div>
          <md-list flex>
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user)">
-             <img image-fetch img-src="{{user.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
+             <img image-fetch img-src="{{user.picture}}" ng-src="https://thoughtifies.com/images/dp_bg.jpg" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
              <div class="md-list-item-text" layout="column">
                <p>{{ user.fname }} {{user.lname}}<span ng-hide="( badge.get(user.mem_id) === 0) || (  badge.get(user.mem_id) === undefined )" class="badge1" data-badge="{{badge.get(user.mem_id)}}"></span></p>
              </div>
@@ -176,31 +176,31 @@
 
 
   <!-- Angular Material requires Angular.js Libraries -->
-  <script src="<?php echo base_url(); ?>node_modules/angular/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
-  <script src="<?php echo base_url(); ?>js/angular-file-upload.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
-    <script src="<?php echo base_url(); ?>js/twemoji.min.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
-  <script src="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.css"/>
-  <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
-  <script src="<?php echo base_url() ;?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angular/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
+  <script src="https://thoughtifies.com/js/angular-file-upload.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="https://thoughtifies.com/js/jk-rating-stars/dist/jk-rating-stars.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-linkify/angular-linkify.js"></script>
+    <script src="https://thoughtifies.com/js/twemoji.min.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angularjs-slider/dist/rzslider.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://thoughtifies.com/node_modules/angularjs-slider/dist/rzslider.min.css"/>
+  <script src="https://thoughtifies.com/js/angular-loading-bar-master/build/loading-bar.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://thoughtifies.com/js/angular-loading-bar-master/build/loading-bar.css"/>
+  <script src="https://thoughtifies.com/node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://thoughtifies.com/node_modules/ng-croppie/minified/ng-croppie.min.css"/>
+  <script src="https://thoughtifies.com/node_modules/angular-contenteditable/angular-contenteditable.js"></script>
   <!-- Angular Material Library -->
-  <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
+  <script src="https://thoughtifies.com/node_modules/angular-material/angular-material.min.js"></script>
   <!-- Your application bootstrap  -->
-  <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
+  <script type="text/javascript" src="https://thoughtifies.com/js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 

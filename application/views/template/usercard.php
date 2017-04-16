@@ -1,7 +1,7 @@
 
   <md-card>
           <md-card-title-media>
-            <a href="#/users/{{info.mem_id}}"><img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{info.picture}}" size="400" class="md-card-image" alt="Washed Out"></a>
+            <a href="#/users/{{info.mem_id}}"><img image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{info.picture}}" size="400" class="md-card-image" alt="Washed Out"></a>
           </md-card-title-media>
           <md-card-title>
             <md-card-title-text>
