@@ -934,7 +934,7 @@ app.factory('dpDisplay', function($http) {
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
-      socket = $websocket('ws://thoughtifies-chat.us-west-2.elasticbeanstalk.com:8887');
+      socket = $websocket('wss://chat.thoughtifies.com');
       var protoSent = {
         init : "7000",
         newmsg  : "7001",
