@@ -15,7 +15,7 @@
 
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
-            $loginUrl = $helper->getLoginUrl('http://thoughtifies.com/data/4', $permissions);
+            $loginUrl = $helper->getLoginUrl('https://thoughtifies.com/data/4', $permissions);
             $img = '<img src="https://thoughtifies.com/images/fb_button.jpg" class="fb-login-button" />';
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
@@ -36,7 +36,7 @@
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
             if ($this->session->has_userdata('fb_access_token')) {
-               redirect("http://thoughtifies.com/login/1");
+               redirect("https://thoughtifies.com/login/1");
             }else {
               $this->parser->parse('login/index',$data);
             }
