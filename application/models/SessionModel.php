@@ -227,7 +227,7 @@
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
           */
-          $data['picture'] = 'http://localhost/code/'.$imgUrl;
+          $data['picture'] = 'https://thoughtifies.com/'.$imgUrl;
           $this->load->library('country_iso');
           $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
           $data['friend_count'] = $this->friendsCount(1);
