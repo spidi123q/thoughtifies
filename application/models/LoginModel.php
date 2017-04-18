@@ -49,10 +49,15 @@
             $loc = $loc->getId();
             $response = $fb->get("$loc?fields=location", $accessToken);
             $locNode = $response->getGraphObject()->getProperty("location");
+            $country = $cont["{$locNode['country']}"];
+          }
+          else {
+            $country = 'XX';
+          }
             $date  = $userNode->getBirthday();
             $this->load->library('country_iso');
             $cont = array_flip($this->country_iso->countries);
-            $country = $cont["{$locNode['country']}"];
+
             //  print_r($userNode) ;
             $tmpfname = tempnam("images/userimages", "fb");
             $img = "$tmpfname.jpg";
@@ -91,10 +96,7 @@
             }else {
               echo "0";
             }
-          }
-          else {
-            redirect(base_url());
-          }
+
 
 
 
