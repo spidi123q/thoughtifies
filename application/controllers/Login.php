@@ -56,7 +56,12 @@
         $this->LoginModel->loadIndex(4);
       }
       public function restoreSession()      {
-          $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
+        if ($this->session->has_userdata('SESS_MEMBER_ID')) {
+           $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
+        }else {
+          redirect();
+        }
+
       }
 
       public function loginUser()      {
