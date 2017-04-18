@@ -93,7 +93,7 @@
             }
           }
           else {
-            redirect();
+            redirect(base_url());
           }
 
 
@@ -118,7 +118,7 @@
          if ($this->session->has_userdata('fb_access_token')) {
             $this->load->view('home/index',$data);
          }else {
-           redirect();
+           redirect( base_url());
          }
 
       }
@@ -149,12 +149,10 @@
              }
           } catch(\Facebook\Exceptions\FacebookResponseException $e) {
            // When Graph returns an error
-           redirect();
            echo 'Graph returned an error: ' . $e->getMessage();
            exit;
           } catch(\Facebook\Exceptions\FacebookSDKException $e) {
            // When validation fails or other local issues
-           redirect();
            echo 'Facebook SDK returned an error: ' . $e->getMessage();
            exit;
           }

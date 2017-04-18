@@ -59,7 +59,7 @@
         if ($this->session->has_userdata('SESS_MEMBER_ID')) {
            $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
         }else {
-          redirect();
+          redirect(base_url());
         }
 
       }
