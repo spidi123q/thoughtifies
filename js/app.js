@@ -933,7 +933,7 @@ app.factory('dpDisplay', function($http) {
 app.factory('MyWebSocket', function($websocket,$http) {
       // Open a WebSocket connection
       var socket,mem_id,response;
-      socket = $websocket('ws://localhost:8887');
+      socket = $websocket('ws://localhost:5000');
       var protoSent = {
         init : "7000",
         newmsg  : "7001",
