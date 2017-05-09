@@ -2,6 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="msvalidate.01" content="AC7559ADA74AA6F34319B5A26EBF3C41" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#26A69A" />
 	<link rel="icon" href="https://thoughtifies.com/images/fav.png">
