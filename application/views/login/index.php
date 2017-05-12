@@ -1,6 +1,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
+    <meta name="description" content="A place where you can share and explore thoughts of people around the world,friends and connecting with them.We respect your privacy so we don't collect private data or track you">
+    <meta name="keywords" content="thoughts,facebook,social network,privacy">
+    <meta name="author" content="Suraj Kiran">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="msvalidate.01" content="AC7559ADA74AA6F34319B5A26EBF3C41" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +36,7 @@
 					}
 	</script>
 -->
-<title>Thoughtifies</title>
+<title>Thoughtifies | Advertising your thoughts</title>
 </head>
 	<body class="login_body" >
 		<div  class="title flex-container" style="">
