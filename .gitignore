@@ -13,3 +13,4 @@ node_modules/angular-ui-chat/
 node_modules/camelcase/
 images/userimages/
 .idea/
+.idea/workspace.xml
