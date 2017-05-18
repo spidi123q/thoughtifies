@@ -14,7 +14,7 @@
 -->
   <md-list >
     <md-list-item  ui-scroll="item in jj" adapter="msgUserListAdapter on msgController" class="md-2-line" ng-click="selectMsgUser(item)">
-       <img image-fetch img-src="{{item.picture}}" ng-src="https://thoughtifies.com/images/dp_bg.jpg" size="60" class="md-avatar" alt="" />
+       <img image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="md-avatar" alt="" />
        <div class="md-list-item-text" layout="column">
          <h5>{{item.fname}} {{item.lname}}</h5>
        </div>
@@ -57,7 +57,7 @@
 
             <div layout="row" layout-align="center center" class="md-button md-primary" ng-click="toggleLeft()">
               <md-button class="md-icon-button" aria-label="More" >
-                <img class="notification_icon" src="https://thoughtifies.com/images/flaticons/svg/team.svg" alt="">
+                <img class="notification_icon" src="<?php echo base_url(); ?>images/flaticons/svg/team.svg" alt="">
               </md-button>
               <span>contacts &nbsp &nbsp</span>
             </div>
@@ -75,8 +75,8 @@
                       </div>
                           <md-list>
                                 <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
-                                <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
-                                <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                                 <div class="md-list-item-text" ng-style="bgList(dpDisplay.get(item))" style="border-radius: 10px;padding: 5px;overflow-x: hidden;">
                                   <h5 ng-bind-html="item.message" style="color:grey;overflow-wrap: break-word;" ></h5>
                                 </div>

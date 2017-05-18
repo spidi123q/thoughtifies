@@ -3,7 +3,7 @@
          <md-card-header ng-if="!mydp">
            <md-card-avatar>
              <a href="#/users/{{item.mem_id}}">
-            <img class="md-user-avatar" image-fetch img-src="{{item.dp}}" ng-src="https://thoughtifies.com/images/dp_bg.jpg" size="60"/>
+            <img class="md-user-avatar" image-fetch img-src="{{item.dp}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60"/>
             </a>
            </md-card-avatar>
            <md-card-header-text layout-align="center start">
@@ -29,7 +29,7 @@
                   </md-menu-content>
         </md-menu>
          </md-card-header>
-         <img ng-if="item.image !== null" ng-src="https://thoughtifies.com/images/userimages/posts/{{item.image}}.jpg" class="md-card-image" alt="Washed Out">
+         <img ng-if="item.image !== null" ng-src="<?php echo base_url(); ?>images/userimages/posts/{{item.image}}.jpg" class="md-card-image" alt="Washed Out">
          <md-card-content>
            <p>
              <span ng-bind-html="item.content" ></span>

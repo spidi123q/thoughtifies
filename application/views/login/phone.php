@@ -1,7 +1,7 @@
 <div  class="phone simple-flex-container mobile_flex">
   <div class="myVideo">
     <video id="video" autoplay loop muted playsinline>
-      <source src="https://thoughtifies.com/images/sad.mp4" type="video/mp4">
+      <source src="<?php echo base_url(); ?>images/sad.mp4" type="video/mp4">
     Your browser does not support the video tag.
     </video>
   </div>

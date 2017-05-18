@@ -2,7 +2,7 @@
   <span layout="row" flex>
     <md-list class="md-dense" flex>
         <md-list-item class="md-2-line" >
-          <img ng-csp image-fetch ng-src="https://thoughtifies.com/images/dp_bg.jpg" img-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
+          <img ng-csp image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{picture}}" size="60" class="md-avatar" alt="{{item.who}}" />
           <div class="md-list-item-text post_dialog_contenteditable" layout="column">
             <div  contenteditable="true" placeholder="Share your thoughts" ng-model="data"
             ng-focus="focus()"

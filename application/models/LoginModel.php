@@ -1,4 +1,5 @@
 <?php
+
    class LoginModel extends CI_Model {
      private $fb;
       function __construct() {
@@ -15,8 +16,8 @@
 
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
-            $loginUrl = $helper->getLoginUrl('https://thoughtifies.com/data/4', $permissions);
-            $img = '<img src="https://thoughtifies.com/images/fb_button.jpg" class="fb-login-button" />';
+            $loginUrl = $helper->getLoginUrl(base_url().'data/4', $permissions);
+            $img = "<img src='".base_url()."images/fb_button.jpg' class='fb-login-button' />";
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
             );
@@ -36,7 +37,7 @@
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
             if ($this->session->has_userdata('fb_access_token')) {
-               redirect("https://thoughtifies.com/login/1");
+               redirect(base_url()."login/1");
             }else {
               $this->parser->parse('login/index',$data);
             }
@@ -45,8 +46,12 @@
       private function createAccountFacebook($userNode,$fb,$accessToken)      {
 
           $loc =  $userNode->getLocation();
+
           if ($loc !== null) {
+
             $loc = $loc->getId();
+            $this->load->library('country_iso');
+            $cont = array_flip($this->country_iso->countries);
             $response = $fb->get("$loc?fields=location", $accessToken);
             $locNode = $response->getGraphObject()->getProperty("location");
             $country = $cont["{$locNode['country']}"];
@@ -55,10 +60,6 @@
             $country = 'XX';
           }
             $date  = $userNode->getBirthday();
-            $this->load->library('country_iso');
-            $cont = array_flip($this->country_iso->countries);
-
-            //  print_r($userNode) ;
             $tmpfname = tempnam("images/userimages", "fb");
             $img = "$tmpfname.jpg";
             file_put_contents($img, file_get_contents( $userNode->getPicture()['url'] ) );

@@ -40,7 +40,7 @@
             <div layout="column"  flex-sm="80"  flex-gt-sm="50">
                     <md-list>
                       <md-list-item  class="md-3-line" ng-repeat="item in settingsData.tabs.profile.info" >
-                        <img ng-src="https://thoughtifies.com/images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
+                        <img ng-src="<?php echo base_url(); ?>images/{{item.icon}}" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             {{item.name}}
@@ -55,7 +55,7 @@
                         <md-divider md-inset></md-divider>
                       </md-list-item>
                       <md-list-item  class="md-3-line"  >
-                        <img ng-src="https://thoughtifies.com/images/flaticons/svg/001-hand-shake.svg" class="md-avatar" alt="{{item.who}}" >
+                        <img ng-src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             FRIENDS

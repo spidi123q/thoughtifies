@@ -227,9 +227,14 @@
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
           */
-          $data['picture'] = 'https://thoughtifies.com/'.$imgUrl;
+          $data['picture'] = base_url().$imgUrl;
           $this->load->library('country_iso');
-          $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          if ( isset($this->country_iso->countries[ $data['country'] ])){
+              $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          }
+          else{
+              $data['c_name'] = 'Unknown';
+          }
           $data['friend_count'] = $this->friendsCount(1);
           echo json_encode($data);
         }else {

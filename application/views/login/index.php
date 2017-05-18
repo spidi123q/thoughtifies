@@ -8,9 +8,9 @@
 	<meta name="msvalidate.01" content="AC7559ADA74AA6F34319B5A26EBF3C41" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#26A69A" />
-	<link rel="icon" href="https://thoughtifies.com/images/fav.png">
-	<link rel="manifest" href="https://thoughtifies.com/manifest.json">
-	<link rel="stylesheet" href="https://thoughtifies.com/css/index.css">
+	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
+	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,7 +41,7 @@
 	<body class="login_body" >
 		<div  class="title flex-container" style="">
 			<h5>Alpha testing... will open soon</h5>
-							<form class="hide" name="loginform" action="data/1" method="post" >
+							<form class="" name="loginform" action="data/1" method="post" >
 									<div class="container-fluid row-fluid">
 										<div id="fdf" class="col-sm-7">L social network</div>
 												<div class="col-sm-2">
@@ -63,7 +63,7 @@
 							</form>
 							<div>
 								<a href="index">
-								<img class="logo" src="https://thoughtifies.com/images/logo.png" alt=""/>
+								<img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
 								</a>
 							</div>
 
