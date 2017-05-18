@@ -1,4 +1,5 @@
 /images/userimages/*
+.idea
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
