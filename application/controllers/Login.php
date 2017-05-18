@@ -55,8 +55,13 @@
       public function contact()    {
         $this->LoginModel->loadIndex(4);
       }
-      public function restoreSession($mem_id)      {
-          $this->LoginModel->startSession($mem_id);
+      public function restoreSession()      {
+        if ($this->session->has_userdata('SESS_MEMBER_ID')) {
+           $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
+        }else {
+          redirect(base_url());
+        }
+
       }
 
       public function loginUser()      {
@@ -266,9 +271,8 @@
           else if($sel == 7)
             $this->load->view('template/dialog/content/change_mail');
           else if($sel == 8)
-            $this->load->view('template/dialog/content/change_phone');
-          else if($sel == 9)
             $this->load->view('template/dialog/content/change_country');
+
         }
 
         public function getMyInfo()        {
@@ -466,7 +470,7 @@
         }
         public function logout()      {
           $this->session->sess_destroy();
-          redirect('http://localhost/code');
+          redirect('https://thoughtifies.com');
         }
 
 

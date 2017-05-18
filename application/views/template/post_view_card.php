@@ -29,7 +29,7 @@
                   </md-menu-content>
         </md-menu>
          </md-card-header>
-         <img ng-if="item.image !== null" ng-src="<?php echo base_url() ;?>images/userimages/posts/{{item.image}}.jpg" class="md-card-image" alt="Washed Out">
+         <img ng-if="item.image !== null" ng-src="<?php echo base_url(); ?>images/userimages/posts/{{item.image}}.jpg" class="md-card-image" alt="Washed Out">
          <md-card-content>
            <p>
              <span ng-bind-html="item.content" ></span>

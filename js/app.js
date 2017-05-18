@@ -55,6 +55,7 @@ app.config(function($sceDelegateProvider) {
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
     'http://127.0.0.1/**',
+    'https://thoughtifies.com/**',
     'http://localhost/**'
   ]);
 
@@ -1146,7 +1147,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
           var deferred = $q.defer();
 
           if(index > big){
-            big = (big === -1)? 0 : big+10;
+            big = (big <= -1)? 0 : big+10;
             //big = index;
 
 
@@ -1173,7 +1174,7 @@ app.factory('listMessengers', ['$log', '$timeout','$http','$q',
         };
 
   			var get = function (index, count, success) {
-
+          console.log(index);
               setBig(index).then(function (response) {
                 var result = [];
                 for (var i = index; i <= index + count - 1; i++) {
@@ -2109,7 +2110,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
 
   };
   $scope.getDialog = function(ev,sel) {
-
+    console.log(sel);
     var openModal = function () {
             $mdDialog.show({
               controller: DialogController,
@@ -2139,6 +2140,7 @@ app.controller('Settings', ['$scope','$http','$mdDialog','FileUploader','$timeou
             url: 'list/countries',
 
           }).then(function successCallback(response) {
+            console.log(response.data);
             $scope.settingsData.countries = response.data;
 
             openModal();

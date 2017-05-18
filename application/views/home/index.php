@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
   <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url() ;?>node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
   <link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
   <link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
@@ -177,10 +177,10 @@
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="<?php echo base_url(); ?>node_modules/angular/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
@@ -196,11 +196,11 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.css"/>
   <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
-  <script src="<?php echo base_url() ;?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
   <!-- Your application bootstrap  -->
-  <script type="text/javascript" src="<?php echo base_url() ;?>js/app.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 

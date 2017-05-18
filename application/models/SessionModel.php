@@ -221,13 +221,20 @@
         if ($query->num_rows() > 0) {
           $data  = $query->row_array();
           $imgUrl = "images/userimages/".$data['picture'].'.jpg';
-          $imgUrl =$this->createThumb($imgUrl,150,$data['picture']);
+          $imgUrl = $this->createThumb($imgUrl,150,$data['picture']);
+          /*
           $im = file_get_contents($imgUrl);
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
-          $data['picture'] = $im;
+          */
+          $data['picture'] = base_url().$imgUrl;
           $this->load->library('country_iso');
-          $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          if ( isset($this->country_iso->countries[ $data['country'] ])){
+              $data['c_name'] = $this->country_iso->countries[ $data['country'] ];
+          }
+          else{
+              $data['c_name'] = 'Unknown';
+          }
           $data['friend_count'] = $this->friendsCount(1);
           echo json_encode($data);
         }else {

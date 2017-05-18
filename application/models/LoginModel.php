@@ -1,4 +1,5 @@
 <?php
+
    class LoginModel extends CI_Model {
      private $fb;
       function __construct() {
@@ -15,8 +16,8 @@
 
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
-            $loginUrl = $helper->getLoginUrl('http://localhost/code/data/4', $permissions);
-            $img = '<img src="'.base_url("images/fb_button.jpg").'" class="fb-login-button" />';
+            $loginUrl = $helper->getLoginUrl(base_url().'data/4', $permissions);
+            $img = "<img src='".base_url()."images/fb_button.jpg' class='fb-login-button' />";
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
             );
@@ -36,7 +37,7 @@
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
             if ($this->session->has_userdata('fb_access_token')) {
-               redirect("http://localhost/code/login/{$this->session->SESS_MEMBER_ID}");
+               redirect(base_url()."login/1");
             }else {
               $this->parser->parse('login/index',$data);
             }
@@ -45,15 +46,20 @@
       private function createAccountFacebook($userNode,$fb,$accessToken)      {
 
           $loc =  $userNode->getLocation();
+
           if ($loc !== null) {
+
             $loc = $loc->getId();
-            $response = $fb->get("$loc?fields=location", $accessToken);
-            $locNode = $response->getGraphObject()->getProperty("location");
-            $date  = $userNode->getBirthday();
             $this->load->library('country_iso');
             $cont = array_flip($this->country_iso->countries);
+            $response = $fb->get("$loc?fields=location", $accessToken);
+            $locNode = $response->getGraphObject()->getProperty("location");
             $country = $cont["{$locNode['country']}"];
-            //  print_r($userNode) ;
+          }
+          else {
+            $country = 'XX';
+          }
+            $date  = $userNode->getBirthday();
             $tmpfname = tempnam("images/userimages", "fb");
             $img = "$tmpfname.jpg";
             file_put_contents($img, file_get_contents( $userNode->getPicture()['url'] ) );
@@ -91,10 +97,7 @@
             }else {
               echo "0";
             }
-          }
-          else {
-            redirect();
-          }
+
 
 
 
@@ -118,7 +121,7 @@
          if ($this->session->has_userdata('fb_access_token')) {
             $this->load->view('home/index',$data);
          }else {
-           redirect();
+           redirect( base_url());
          }
 
       }
@@ -149,12 +152,10 @@
              }
           } catch(\Facebook\Exceptions\FacebookResponseException $e) {
            // When Graph returns an error
-           redirect();
            echo 'Graph returned an error: ' . $e->getMessage();
            exit;
           } catch(\Facebook\Exceptions\FacebookSDKException $e) {
            // When validation fails or other local issues
-           redirect();
            echo 'Facebook SDK returned an error: ' . $e->getMessage();
            exit;
           }
