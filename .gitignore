@@ -1,7 +1,15 @@
 /images/userimages/*
-.idea
+.idea/*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+.elasticbeanstalk/
+application/vendor/bin/
+application/vendor/twig/
+node_modules/amdefine/
+node_modules/angular-simple-chat-master/
+node_modules/angular-ui-chat/
+node_modules/camelcase/
+images/userimages/
