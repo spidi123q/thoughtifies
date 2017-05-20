@@ -1,19 +1,19 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  var gulp = require('gulp'),
-    runSequence = require('run-sequence');
+    var gulp = require('gulp'),
+        runSequence = require('run-sequence');
 
-  gulp.task('pre-build-tasks', function(done) {
-    runSequence(
+    gulp.task('pre-build-tasks', function(done) {
+        runSequence(
       'clean', //Cleans dist and .tmp folder
       'clean-cache', //Cleans gulp cache
       done
     );
-  });
+    });
 
-  gulp.task('build', function(done) {
-    runSequence(
+    gulp.task('build', function(done) {
+        runSequence(
       'pre-build-tasks',
       'assets', //compile sass files.
       'templates', //Concatenates all html directives into a single js file and save them in the angular cache
@@ -23,13 +23,13 @@
       'post-build-taks',
       done
     );
-  });
+    });
 
-  gulp.task('post-build-taks', function(done) {
-    runSequence(
+    gulp.task('post-build-taks', function(done) {
+        runSequence(
       'clean-tmp', //Cleans the .tmp folder
       done
     );
-  });
+    });
 
 })();

@@ -56,7 +56,7 @@ angular.module('app', ['uiCropper'])
                         orientation: orientation
                     });
                     setTimeout(function () {
-                        var tt = canvas.toDataURL("image/jpeg", 1);
+                        var tt = canvas.toDataURL('image/jpeg', 1);
                         $scope.$apply(function ($scope) {
                             $scope.imageDataURI = tt;
                         });

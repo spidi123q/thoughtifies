@@ -6,43 +6,43 @@ require('./stubs/window');
 Croppie = require('../../croppie');
 
 describe('Croppie', function () {
-	var testCroppieObject, stubElement;
+    var testCroppieObject, stubElement;
 
-	beforeEach(function () {
-		stubElement = new HTMLElement();
-		testCroppieObject = new Croppie(stubElement);
-	});
+    beforeEach(function () {
+        stubElement = new HTMLElement();
+        testCroppieObject = new Croppie(stubElement);
+    });
 
-	describe('constructor', function () {
-		it('should expose a reference to its bound element.', function () {
-			assert.strictEqual(testCroppieObject.element, stubElement);
-		});
+    describe('constructor', function () {
+        it('should expose a reference to its bound element.', function () {
+            assert.strictEqual(testCroppieObject.element, stubElement);
+        });
 
-		it('should use croppy defaults if no options are provided.', function () {
-			function matchDefaults(actualOptionGroup, expectedOptionGroup, path) {
-				path = path || 'options';
+        it('should use croppy defaults if no options are provided.', function () {
+            function matchDefaults(actualOptionGroup, expectedOptionGroup, path) {
+                path = path || 'options';
 
-				Object
+                Object
 					.keys(expectedOptionGroup)
 					.forEach(function (optionName) {
-						var currentPath;
+    var currentPath;
 
-						currentPath = [
-							path,
-							optionName
-						].join('.');
+    currentPath = [
+        path,
+        optionName
+    ].join('.');
 
-						if (typeof expectedOptionGroup[optionName] === 'object') {
-							matchDefaults(actualOptionGroup[optionName], expectedOptionGroup[optionName], currentPath);
-						} else {
-							assert.equal(actualOptionGroup[optionName], expectedOptionGroup[optionName], 'Matching ' + currentPath);
-						}
-					});
-			}
+    if (typeof expectedOptionGroup[optionName] === 'object') {
+        matchDefaults(actualOptionGroup[optionName], expectedOptionGroup[optionName], currentPath);
+    } else {
+        assert.equal(actualOptionGroup[optionName], expectedOptionGroup[optionName], 'Matching ' + currentPath);
+    }
+});
+            }
 
-			matchDefaults(testCroppieObject.options, Croppie.defaults);
-		});
+            matchDefaults(testCroppieObject.options, Croppie.defaults);
+        });
 
-	});
+    });
 
 });

@@ -1,8 +1,8 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  var gulp = require('gulp');
+    var gulp = require('gulp');
 
-  gulp.task('assets', ['assets-styles'], function() {});
+    gulp.task('assets', ['assets-styles'], function() {});
 
 })();

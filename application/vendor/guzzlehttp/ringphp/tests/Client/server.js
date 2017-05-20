@@ -58,7 +58,7 @@ var GuzzleServer = function(port, log) {
         var hasher = crypto.createHash('md5');
         hasher.update(input);
         return hasher.digest('hex');
-    }
+    };
 
     /**
      * Node.js HTTP server authentication module.
@@ -88,19 +88,19 @@ var GuzzleServer = function(port, log) {
                 }
             }
             switch (type) {
-                case 'digest':
-                    var digestParams = {
-                        realm: 'Digest Test',
-                        login: 'me',
-                        password: 'test'
-                    };
-                    if (options && options.qop) {
-                        digestParams.qop = options.qop;
-                    }
-                    loadAuthentifier[typeId] = auth.digest(digestParams, function(username, callback) {
-                        callback(md5(digestParams.login + ':' + digestParams.realm + ':' + digestParams.password));
-                    });
-                    break
+            case 'digest':
+                var digestParams = {
+                    realm: 'Digest Test',
+                    login: 'me',
+                    password: 'test'
+                };
+                if (options && options.qop) {
+                    digestParams.qop = options.qop;
+                }
+                loadAuthentifier[typeId] = auth.digest(digestParams, function(username, callback) {
+                    callback(md5(digestParams.login + ':' + digestParams.realm + ':' + digestParams.password));
+                });
+                break;
             }
         }
         return loadAuthentifier[typeId];

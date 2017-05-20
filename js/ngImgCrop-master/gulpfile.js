@@ -26,29 +26,29 @@ var today = new Date();
 // Configuration
 
 var Config = {
-  port: 9000,
-  livereloadPort: 35728,
-  testPage: 'test/ng-img-crop.html',
-  cache: (typeof argv.cache !== 'undefined' ? !!argv.cache : true),
-  paths: {
-    source:   {
-      root:   'source',
-      js:     'source/js',
-      scss:   'source/scss'
+    port: 9000,
+    livereloadPort: 35728,
+    testPage: 'test/ng-img-crop.html',
+    cache: (typeof argv.cache !== 'undefined' ? !!argv.cache : true),
+    paths: {
+        source:   {
+            root:   'source',
+            js:     'source/js',
+            scss:   'source/scss'
+        },
+        compileUnminified: {
+            root:   'compile/unminified',
+            js:     'compile/unminified',
+            css:    'compile/unminified'
+        },
+        compileMinified: {
+            root:   'compile/minified',
+            js:     'compile/minified',
+            css:    'compile/minified'
+        }
     },
-    compileUnminified: {
-      root:   'compile/unminified',
-      js:     'compile/unminified',
-      css:    'compile/unminified'
-    },
-    compileMinified: {
-      root:   'compile/minified',
-      js:     'compile/minified',
-      css:    'compile/minified'
-    }
-  },
-  banners: {
-    unminified: '/*!\n' +
+    banners: {
+        unminified: '/*!\n' +
                 ' * ' + pkg.prettyName + ' v' + pkg.version + '\n' +
                 ' * ' + pkg.homepage + '\n' +
                 ' *\n' +
@@ -57,8 +57,8 @@ var Config = {
                 ' *\n' +
                 ' * Generated at ' + gutil.date(today, 'dddd, mmmm dS, yyyy, h:MM:ss TT') + '\n' +
                 ' */',
-    minified: '/*! ' + pkg.prettyName + ' v' + pkg.version + ' License: ' + pkg.license + ' */'
-  }
+        minified: '/*! ' + pkg.prettyName + ' v' + pkg.version + ' License: ' + pkg.license + ' */'
+    }
 };
 
 // Tasks
@@ -66,11 +66,11 @@ var Config = {
 
 // Compile Styles
 gulp.task('styles', function(){
-  return gulp.src(Config.paths.source.scss + '/'+pkg.name+'.scss')
+    return gulp.src(Config.paths.source.scss + '/'+pkg.name+'.scss')
     .pipe(compass({
-      sass: Config.paths.source.scss,
-      css: Config.paths.compileUnminified.css,
-      errLogToConsole: true
+        sass: Config.paths.source.scss,
+        css: Config.paths.compileUnminified.css,
+        errLogToConsole: true
     }))
     .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(Config.paths.compileUnminified.css));
@@ -78,20 +78,20 @@ gulp.task('styles', function(){
 
 // Compile Scripts
 gulp.task('scripts', function(){
-  return gulp.src([
-      Config.paths.source.js + '/init.js',
-      Config.paths.source.js + '/classes/*.js',
-      Config.paths.source.js + '/ng-img-crop.js'
+    return gulp.src([
+        Config.paths.source.js + '/init.js',
+        Config.paths.source.js + '/classes/*.js',
+        Config.paths.source.js + '/ng-img-crop.js'
     ])
     .pipe(concat(pkg.name+'.js', {
-      separator: '\n\n',
-      process: function(src) {
+        separator: '\n\n',
+        process: function(src) {
         // Remove all 'use strict'; from the code and
         // replaces all double blank lines with one
-        return src.replace(/\r\n/g, '\n')
+            return src.replace(/\r\n/g, '\n')
                   .replace(/'use strict';\n+/g, '')
                   .replace(/\n\n\s*\n/g, '\n\n');
-      }
+        }
     }))
     .pipe(concat.header(Config.banners.unminified + '\n' +
                         '(function() {\n\'use strict\';\n\n'))
@@ -102,57 +102,57 @@ gulp.task('scripts', function(){
 
 // Make a Distrib
 gulp.task('dist:js:clean', function(){
-  return gulp.src([Config.paths.compileMinified.root + '/**/*.js'], { read: false })
+    return gulp.src([Config.paths.compileMinified.root + '/**/*.js'], { read: false })
     .pipe(clean());
 });
 gulp.task('dist:css:clean', function(){
-  return gulp.src([Config.paths.compileMinified.root + '/**/*.css'], { read: false })
+    return gulp.src([Config.paths.compileMinified.root + '/**/*.css'], { read: false })
     .pipe(clean());
 });
 gulp.task('dist:js', ['dist:js:clean', 'scripts'], function(){
-  return gulp.src(Config.paths.compileUnminified.js + '/**/*.js')
+    return gulp.src(Config.paths.compileUnminified.js + '/**/*.js')
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(header(Config.banners.minified))
     .pipe(gulp.dest(Config.paths.compileMinified.js));
 });
 gulp.task('dist:css', ['dist:css:clean', 'styles'], function(){
-  return gulp.src(Config.paths.compileUnminified.css + '/**/*.css')
+    return gulp.src(Config.paths.compileUnminified.css + '/**/*.css')
     .pipe(minifyCss())
     .pipe(gulp.dest(Config.paths.compileMinified.css));
 });
 
 // Server
 gulp.task('server', function(){
-  express()
+    express()
     .use(express_lr())
     .use(express.static('.'))
     .listen(Config.port);
-  gutil.log('Server listening on port ' + Config.port);
+    gutil.log('Server listening on port ' + Config.port);
 });
 
 // LiveReload
 gulp.task('livereload', function(){
-  lr = tinylr();
-  lr.listen(Config.livereloadPort, function(err) {
-    if(err) {
-      gutil.log('Livereload error:', err);
-    }
-  });
-  refresh_lr=refresh(lr);
+    lr = tinylr();
+    lr.listen(Config.livereloadPort, function(err) {
+        if(err) {
+            gutil.log('Livereload error:', err);
+        }
+    });
+    refresh_lr=refresh(lr);
 });
 
 // Watches
 gulp.task('watch', function(){
-  gulp.watch(Config.paths.source.scss + '/**/*.scss', ['styles']);
-  gulp.watch([Config.paths.source.js + '/**/*.js'], ['scripts']);
-  gulp.watch([
-    Config.paths.compileUnminified.css + '/**/*.css',
-    Config.paths.compileUnminified.js + '/**/*.js',
-    Config.testPage
-  ], function(evt){
-    refresh_lr.changed(evt.path);
-  });
+    gulp.watch(Config.paths.source.scss + '/**/*.scss', ['styles']);
+    gulp.watch([Config.paths.source.js + '/**/*.js'], ['scripts']);
+    gulp.watch([
+        Config.paths.compileUnminified.css + '/**/*.css',
+        Config.paths.compileUnminified.js + '/**/*.js',
+        Config.testPage
+    ], function(evt){
+        refresh_lr.changed(evt.path);
+    });
 });
 
 
@@ -161,7 +161,7 @@ gulp.task('watch', function(){
 
 // Code linter
 gulp.task('lint', function() {
-  return gulp.src(Config.paths.source.js + '/**/*.js')
+    return gulp.src(Config.paths.source.js + '/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter(jshintStylish));
 });
@@ -172,7 +172,7 @@ gulp.task('build', ['dist:js', 'dist:css']);
 // Start server and watch for changes
 gulp.task('default', ['server', 'livereload', 'styles', 'scripts', 'watch'], function(){
   // use the -o arg to open the test page in the browser
-  if(argv.o) {
-    opn('http://localhost:' + Config.port+'/'+Config.testPage);
-  }
+    if(argv.o) {
+        opn('http://localhost:' + Config.port+'/'+Config.testPage);
+    }
 });
