@@ -12,6 +12,27 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
+      private function isUserBlocked($user){
+          $this->db->group_start();
+          $this->db->where(array(
+              "sender" => $this->session->SESS_MEMBER_ID,
+              "receiver" => $user
+          ));
+          $this->db->group_end();
+          $this->db->or_group_start();
+          $this->db->where(array(
+              "sender" => $user,
+              "receiver" => $this->session->SESS_MEMBER_ID,
+          ));
+          $this->db->group_end();
+          $query = $this->db->get('blocked');
+          if ($query->num_rows() > 0){
+              return true;
+          }else{
+              return false;
+          }
+
+      }
       private function getLastMsg($user)    {
         $this->db->select('message')->from('myMessages');
         $this->db->group_start();
@@ -126,13 +147,19 @@
 
 
       public function sentMessage($data)      {
-          $info = array(
-          'sender' => $this->session->SESS_MEMBER_ID,
-          'receiver' => $data->receiver,
-          'message' => "{$data->message}" ,
-          );
-          $this->db->set('date_time','NOW()',FALSE);
-          echo  $this->db->insert('myMessages',$info);
+          if (!$this->isUserBlocked($data->receiver)){
+              $info = array(
+                  'sender' => $this->session->SESS_MEMBER_ID,
+                  'receiver' => $data->receiver,
+                  'message' => "{$data->message}" ,
+              );
+              $this->db->set('date_time','NOW()',FALSE);
+              echo  $this->db->insert('myMessages',$info);
+          }
+          else{
+              echo "0";
+          }
+
       }
 
       public function countMsg($data)      {

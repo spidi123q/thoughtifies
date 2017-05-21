@@ -1190,7 +1190,7 @@
 
 
     app.controller('msgController', [
-        '$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav','$mdDialog', '$interval',function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav,$mdDialog,$interval) {
+        '$scope', '$log', '$timeout','$http','MyWebSocket','$q','dpDisplay','listMessengers','$mdSidenav','EmojiService','chatSidenav','$mdDialog','$mdToast',function ($scope,console, $timeout,$http,MyWebSocket,$q,dpDisplay,listMessengers,$mdSidenav,EmojiService,chatSidenav,$mdDialog,$mdToast) {
             var datasource = {};
             var big  = -1,max = 0;
             var page = $scope.userPage = [];
@@ -1201,6 +1201,7 @@
             $scope.toggleLeft = function () {
                 $mdSidenav('jam')
                     .toggle();
+
             };
             $mdSidenav('jam', true).then(function() {
                 $scope.toggleLeft();
@@ -1302,6 +1303,7 @@
 
 
             $scope.sendMsg = function () {
+
                 var data = {
                     receiver : $scope.msgUser,
                     message : $scope.msg
@@ -1321,6 +1323,16 @@
                             data: $scope.myuser,
                         };
                         taskList(data);
+                    }
+                    else {
+                        big = -1;
+                        $scope.msgUserAdapter.reload();
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Sorry! Sending message failed')
+                                .position('bottom right' )
+                                .hideDelay(3000)
+                        );
                     }
                 }, function errorCallback() {
 
@@ -2753,7 +2765,7 @@
         };
 
     });
-    app.controller('PostView', function ($scope, $timeout,$http,$q) {
+    app.controller('PostView', function ($scope, $timeout,$http,$q,$mdToast) {
 
         $http({
             method: 'GET',
@@ -3322,6 +3334,7 @@
             }).join('&');
             return str;
         };
+
         $scope.chatButton = false;
         $scope.bootscreen = true;
         $scope.tbClass = ['hide_xs'];
@@ -3335,7 +3348,6 @@
 
         $scope.toggleLeft = buildToggler('left');
         function buildToggler(componentId) {
-
             return function() {
                 if ($mdSidenav('jam').isOpen()) {
                     $mdSidenav('jam')
