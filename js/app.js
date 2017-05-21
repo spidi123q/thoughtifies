@@ -2765,7 +2765,7 @@
         };
 
     });
-    app.controller('PostView', function ($scope, $timeout,$http,$q,$mdToast) {
+    app.controller('PostView', function ($scope, $timeout,$http,$q) {
 
         $http({
             method: 'GET',
