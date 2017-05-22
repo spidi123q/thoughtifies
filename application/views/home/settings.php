@@ -20,7 +20,12 @@
               <div class="empty_msg" layout="row" layout-align="start center">
                 <h6 md-truncate>
                   {{settingsData.tag}}
-              </h6>
+                </h6>
+              </div>
+              <div ng-if="!settingsData.config" class="empty_msg" layout="row" layout-align="start center">
+                  <h6 md-truncate>
+                      last logined {{settingsData.last_login}}
+                  </h6>
               </div>
 
           </div>

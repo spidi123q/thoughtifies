@@ -2578,6 +2578,7 @@
             if (response.data === '0') {
                 $scope.settingsData.blocked = true;
             }else {
+                console.log(response.data);
                 $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
                 $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
                 if (response.data.about_partner === null) {
@@ -2594,6 +2595,7 @@
                 $scope.settingsData.lname = response.data.lname;
                 $scope.settingsData.tag = response.data.tag;
                 $scope.settingsData.dp = response.data.picture;
+                $scope.settingsData.last_login = response.data.last_login;
                 if (response.data.gender == 'M') {
                     $scope.settingsData.tabs.profile.info.gender.data = 'Male';
                     $scope.settingsData.tabs.profile.info.gender.icon = 'flaticons/svg/muscular.svg';
@@ -2740,7 +2742,7 @@
             $http({
                 method: 'GET',
                 url: 'req/frnd/action/0/'+user.mem_id,
-            }).then(function successCallback(response) {
+            }).then(function successCallback() {
                 
                 var index = page.indexOf(user);
                 max--;

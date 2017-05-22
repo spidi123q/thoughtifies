@@ -15,7 +15,8 @@
 		"facebook/graph-sdk": "^5.4",
 		"silex/silex": "1.0.*@dev",
 		"twig/twig": ">=1.8,<2.0-dev",
-		"guzzlehttp/guzzle: ":"5.2.*"
+		"guzzlehttp/guzzle":"5.2.*",
+		"nesbot/carbon": "1.22.1"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

@@ -120,6 +120,9 @@
          );
          if ($this->session->has_userdata('fb_access_token')) {
             $this->load->view('home/index',$data);
+             $this->db->set('last_login',"NOW()",FALSE);
+             $this->db->where('mem_id', $mem_id);
+             $this->db->update('member');
          }else {
            redirect( base_url());
          }

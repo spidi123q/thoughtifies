@@ -1,4 +1,7 @@
 <?php
+
+use Carbon\Carbon;
+
    class SessionModel extends CI_Model {
 
      private $recentVisitorsData,$fb;
@@ -240,7 +243,33 @@
           else{
               $data['c_name'] = 'Unknown';
           }
+          $this->db->select("NOW() as time",FALSE);
+          $result = $this->db->get()->row();
+
           $data['friend_count'] = $this->friendsCount(1);
+          $date = new DateTime($data['last_login']);
+          $dt = Carbon::create(
+              $date->format("Y"),
+              $date->format("m"),
+              $date->format("d"),
+              $date->format("H"),
+              $date->format("i"),
+              $date->format("s"),
+              $date->getTimezone()
+          );
+            $timeNow = new DateTime($result->time);
+            $timeNow = Carbon::create(
+                $timeNow->format("Y"),
+                $timeNow->format("m"),
+                $timeNow->format("d"),
+                $timeNow->format("H"),
+                $timeNow->format("i"),
+                $timeNow->format("s"),
+                $timeNow->getTimezone()
+            );
+          $data['last_login'] = $dt->diffForHumans($timeNow);
+            //$data['last_login'] = $result->time;
+
           echo json_encode($data);
         }else {
           echo "0";
