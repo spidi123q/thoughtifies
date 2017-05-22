@@ -510,7 +510,7 @@ use Carbon\Carbon;
         }
         public function logout()      {
           $this->session->sess_destroy();
-          redirect('https://thoughtifies.com');
+          redirect(base_url());
         }
         public function getFbFriends(){
             $this->SessionModel->getFbfriends();

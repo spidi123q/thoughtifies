@@ -857,7 +857,11 @@
                 ext : '.png',
                 size :20
             });
-            emojilist.push(uni);
+            var top = emojilist.length;
+            if (emojilist[top] === undefined){
+                emojilist[top] = uni;
+            }
+            //emojilist.push(uni);
 
         };
 
@@ -1743,7 +1747,7 @@
 
 
 
-                }, function errorCallback(response) {
+                }, function errorCallback() {
 
                 });
 
@@ -1934,6 +1938,13 @@
                     }, 2000);
                 }
             });
+            $scope.onEmojiClick = function (item) {
+
+                if ($scope.msg === undefined) {
+                    $scope.msg = '';
+                }
+                $scope.msg += ' '+item;
+            };
 
 
 

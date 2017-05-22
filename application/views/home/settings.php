@@ -23,8 +23,11 @@
                 </h6>
               </div>
               <div ng-if="!settingsData.config" class="empty_msg" layout="row" layout-align="start center">
-                  <h6 md-truncate>
-                      last logined {{settingsData.last_login}}
+                  <h6 layout="row" layout-align="center center" >
+                      <i class="material-icons">access_time</i>
+                      <p >
+                          &nbsp;&nbsp;{{settingsData.last_login}}
+                      </p>
                   </h6>
               </div>
 
