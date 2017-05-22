@@ -4,7 +4,7 @@
       <md-progress-circular md-mode="indeterminate" ng-hide="!actions.request.progress" md-diameter="20px">
       </md-progress-circular>
     </md-button>
-    <md-menu>
+    <md-menu ng-if="!addOnly">
          <md-button   class="md-icon-button md-accent" ng-click="actions.openMenu($mdOpenMenu, $event)">
              <i md-menu-align-target="" class="material-icons">more_vert</i>
          </md-button>

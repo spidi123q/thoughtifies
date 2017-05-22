@@ -9,9 +9,14 @@
               </div> </span>
               </div>
               <div  layout="row" style="overflow-x:auto">
-                  <a ng-repeat="item in fbFriends" href="#/users/{{item.mem_id}}">
-                      <img  ng-csp image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="img-circle" alt="{{item.who}}" />
-                  </a>
+                  <div layout="column" layout-align="center center" ng-repeat="item in fbFriends">
+                      <a  href="#/users/{{item.mem_id}}">
+                          <img  ng-csp image-fetch img-src="{{item.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="img-circle" alt="{{item.who}}" />
+                      </a>
+                      <friendpanel layout="row" uid="item.mem_id" index="$index" add-only="true">
+                      </friendpanel>
+
+                  </div>
               </div>
 
 

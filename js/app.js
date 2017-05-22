@@ -101,6 +101,7 @@
                 uid : '=uid',
                 index : '=index',
                 adapter : '=adapter',
+                addOnly : '=addOnly',
             },
             controller: ['$scope','$http','$rootScope','$location','$mdDialog','MyWebSocket', function ($scope,$http,$rootScope, $location,$mdDialog,MyWebSocket) {
                 $scope.buttons = {
@@ -121,7 +122,6 @@
                 var openMenu = function($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
-
 
                 var init = function() {
                     $http({
