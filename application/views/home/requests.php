@@ -2,7 +2,7 @@
 
   <div ng-controller="FbUsers" layout="column" layout-align="center center">
       <div  layout="row" layout-align="center center" style="margin-top:20px">
-          <div md-whiteframe="1" class="recent_visitors">
+          <div  md-whiteframe="1" class="recent_visitors">
               <div class="rv_header">
                   Your Facebook friends <span ng-if="recentVisitors.length === 0"><div class="empty_msg" >
                 No friends
