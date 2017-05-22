@@ -3325,6 +3325,16 @@
         }
 
     });
+    app.controller('FbUsers',function ($scope,$http) {
+        $http({
+            method: 'GET',
+            url: 'fb/friends'
+        }).then(function successCallback(response) {
+            $scope.fbFriends =  response.data;
+        }, function errorCallback() {
+        });
+    });
+
     app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil) {
         $scope.bootscreen = false;
 

@@ -1,9 +1,14 @@
 <?php
 
+require APPPATH.'third_party/aws.phar';
    class Login extends CI_Controller {
 
      function __construct() {
         parent::__construct();
+        $GLOBALS['FB_APP_ID'] = '1838531036399607';
+        $GLOBALS['FB_APP_SECRET'] = '878b5530b283d6b9f8b1cba69bf0619d';
+        $GLOBALS['AWS_KEY'] = 'AKIAIG6LG4L5COCYFVMQ';
+        $GLOBALS['AWS_SECRET'] = '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';
         $this->load->helper(array('form', 'url','file'));
         $this->load->model('SessionModel');
         $this->load->model('MessageModel');
@@ -41,6 +46,36 @@
 
 
       public function index() {
+
+          /* handle the result */
+/*
+          $client = new Aws\Ses\SesClient([
+              'version'=> 'latest',
+              'region' => 'us-west-2',
+              'credentials' => [
+                  'key'    => 'AKIAIG6LG4L5COCYFVMQ',
+                  'secret' => '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'
+              ]
+          ]);
+
+          $request = array();
+          $request['Source'] = "support@thoughtifies.com";
+          $request['Destination']['ToAddresses'] = array('support@thoughtifies.com');
+          $request['Message']['Subject']['Data'] = 'dsfsd';
+          $request['Message']['Body']['Html']['Data'] = '<h1>fdsfsddsf</h1>';
+
+          try {
+              $result = $client->sendEmail($request);
+              $messageId = $result->get('MessageId');
+              echo("Email sent! Message ID: $messageId"."\n");
+
+          } catch (Exception $e) {
+              echo("The email was not sent. Error message: ");
+              echo($e->getMessage()."\n");
+          }
+*/
+
+
           $this->LoginModel->loadIndex(0);
       }
       public function license()    {
@@ -185,6 +220,10 @@
         $data = $this->input->raw_input_stream;
         $data = json_decode($data);
         $this->MessageModel->sentMessage($data);
+          $s3 = new Aws\S3\S3Client([
+              'version' => 'latest',
+              'region'  => 'us-east-1'
+          ]);
 
 
       }
@@ -471,6 +510,9 @@
         public function logout()      {
           $this->session->sess_destroy();
           redirect('https://thoughtifies.com');
+        }
+        public function getFbFriends(){
+            $this->SessionModel->getFbfriends();
         }
 
 

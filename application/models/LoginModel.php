@@ -5,8 +5,8 @@
       function __construct() {
          parent::__construct();
          $this->fb = new Facebook\Facebook([
-                   'app_id' => '1789323091320402', // Replace {app-id} with your app id
-                   'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+                   'app_id' => $GLOBALS['FB_APP_ID'],
+                   'app_secret' => $GLOBALS['FB_APP_SECRET'],
                    'default_graph_version' => 'v2.8',
                    ]);
       }
@@ -273,7 +273,7 @@
               //  var_dump($tokenMetadata);
 
                 // Validation (these will throw FacebookSDKException's when they fail)
-                $tokenMetadata->validateAppId('1789323091320402'); // Replace {app-id} with your app id
+                $tokenMetadata->validateAppId($GLOBALS['FB_APP_ID']); // Replace {app-id} with your app id
                 // If you know the user ID this access token belongs to, you can validate it here
                 //$tokenMetadata->validateUserId('123');
                 $tokenMetadata->validateExpiration();

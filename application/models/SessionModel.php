@@ -1,10 +1,15 @@
 <?php
    class SessionModel extends CI_Model {
 
-     private $recentVisitorsData;
+     private $recentVisitorsData,$fb;
 
       function __construct() {
          parent::__construct();
+          $this->fb = new Facebook\Facebook([
+              'app_id' => $GLOBALS['FB_APP_ID'],
+              'app_secret' => $GLOBALS['FB_APP_SECRET'],
+              'default_graph_version' => 'v2.8',
+          ]);
 
       }
       private function convertHashtags($str){
@@ -736,6 +741,51 @@
         $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
         $this->db->update('posts');
         echo  $this->db->affected_rows();
+      }
+
+      public function getFbFriends(){
+          $fb = $this->fb;
+          try {
+              $response = $fb->get("me/friends", $this->session->fb_access_token);
+              $friends = $response->getGraphEdge();
+              if ($fb->next($friends)) {
+                  $allFriends = array();
+                  $friendsArray = $friends->asArray();
+                  $allFriends = array_merge($friendsArray, $allFriends);
+                  while ($friends = $fb->next($friends)) {
+                      $friendsArray = $friends->asArray();
+                      $allFriends = array_merge($friendsArray, $allFriends);
+                  }
+                  foreach ($allFriends as $key) {
+                      echo $key['name'] . "<br>";
+                  }
+                  echo count($allFriends);
+              } else {
+                  $allFriends = $friends->asArray();
+              }
+              $allFriendsFbId = array();
+              foreach ($allFriends as $key) {
+                  array_push($allFriendsFbId,$key['id']);
+              }
+
+              $this->db->select("mem_id");
+              $this->db->where_in("id",$allFriendsFbId);
+              $query = $this->db->get("facebook_member");
+              $fbAppUsers = array();
+              foreach ($query->result() as $row) {
+                  array_push($fbAppUsers,$row->mem_id);
+              }
+              $this->db->select("mem_id,picture");
+              $this->db->where_in("mem_id",$fbAppUsers);
+              $query = $this->db->get("member");
+              echo json_encode($query->result());
+
+
+
+          } catch(Facebook\Exceptions\FacebookSDKException $e) {
+              echo 'Error: ' . $e->getMessage();
+              exit;
+          }
       }
 
 

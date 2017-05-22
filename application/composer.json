@@ -12,12 +12,10 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
-		"google/apiclient": "^2.0",
 		"facebook/graph-sdk": "^5.4",
 		"silex/silex": "1.0.*@dev",
 		"twig/twig": ">=1.8,<2.0-dev",
-		"google/apiclient": "1.1.*",
-		"guzzlehttp/guzzle": "5.2.*"
+		"guzzlehttp/guzzle: ":"5.2.*"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
