@@ -83,7 +83,6 @@ $route['(:any)/search/tool/(:num)/(:any)']='Login/searchToolBar/$2/$3';
 $route['(:any)/search/tool/(:num)']='Login/searchToolBar/$2';
 $route['(:any)/search/adv']='Login/advancedSearch';
 $route['(:any)/search/adv/count']='Login/advancedSearchCount';
-$route['(:any)/online/id']='Login/updateOnlineUsers';
 $route['(:any)/online/2']='Login/listOnlineUsers';
 $route['(:any)/dialog/(:num)']='Login/getDialog/$2';
 $route['(:any)/dialog/content/(:num)']='Login/getDialogContent/$2';

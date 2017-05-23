@@ -12,6 +12,17 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
+       private function friendsListQuery()      {
+           $this->db->select('receiver AS user');
+           $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+           $this->db->where('status',1);
+           $table1 = $this->db->get_compiled_select('friendship');
+           $this->db->select('sender AS user');
+           $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+           $this->db->where('status',1);
+           $table2 = $this->db->get_compiled_select('friendship');
+           return "($table1) UNION ($table2)";
+       }
       private function isUserBlocked($user){
           $this->db->group_start();
           $this->db->where(array(
@@ -193,11 +204,19 @@
       }
 
       public function listOnlineUsers()      {
-        $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
-        $query = $this->db->get('member_online');
-        if ($query) {
-          echo  json_encode($query->result());
-        }
+        $query = $this->db->query( $this->friendsListQuery());
+        $friends = array();
+          foreach ($query->result() as $row) {
+              array_push($friends,$row->user);
+          }
+         if ( sizeof($friends) > 0){
+             $this->db->select("mem_id,fname,lname,picture");
+             $this->db->where_in("mem_id",$friends);
+             $query = $this->db->get("member");
+             if ($query) {
+                 echo  json_encode($query->result());
+             }
+         }
       }
 
       public function listEmoji($index)      {
