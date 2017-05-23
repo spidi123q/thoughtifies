@@ -210,10 +210,13 @@
               array_push($friends,$row->user);
           }
          if ( sizeof($friends) > 0){
-             $this->db->select("mem_id,fname,lname,picture");
-             $this->db->where_in("mem_id",$friends);
-             $query = $this->db->get("member");
-             if ($query) {
+             $this->db->select("t.mem_id,fname,lname,picture");
+             $this->db->from("member t");
+             $this->db->where("t.mem_id !=",$this->session->SESS_MEMBER_ID);
+             $this->db->where_in("t.mem_id",$friends);
+             $this->db->join('user_online', 'user_online.mem_id = t.mem_id');
+             $query = $this->db->get("");
+             if ($query->num_rows() > 0) {
                  echo  json_encode($query->result());
              }
          }
