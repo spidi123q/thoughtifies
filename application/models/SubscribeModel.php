@@ -13,7 +13,7 @@
                   'secret' => $GLOBALS['AWS_SECRET']
               ]
           ]);
-          $this->request['Source'] = "support@thoughtifies.com";
+          $this->request['Source'] = "noreply@thoughtifies.com";
       }
       private function setDestination(){
          $this->request['Destination']['ToAddresses'] = array($this->data->email);
@@ -21,7 +21,12 @@
       private function setType($type){
          if ($type === 0){
              $this->request['Message']['Subject']['Data'] = $this->session->SESS_FIRST_NAME." ".$this->session->SESS_LAST_NAME.' has send you friend request';
-             $template = "da kunne";
+             $template = $this->parser->parse('template/email/friend_request.html',array(
+                 'mem_id' => $this->session->SESS_MEMBER_ID,
+                 'fname' => $this->session->SESS_FIRST_NAME,
+                 'lname' => $this->session->SESS_LAST_NAME,
+                 'base_url' =>base_url()
+             ), TRUE);
              $this->setBody($template);
          }
 
