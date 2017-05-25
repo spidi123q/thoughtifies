@@ -351,6 +351,7 @@
             controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
 
                 $scope.picture = SESS_USERIMAGE;
+                console.log($scope.picture);
                 $scope.upload = {
                     progress : true,
                     button : false,
@@ -2085,7 +2086,7 @@
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            
+            console.log(response.data);
 
             $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
             $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
@@ -2097,6 +2098,7 @@
             $scope.settingsData.lname = response.data.lname;
             $scope.settingsData.tag = response.data.tag;
             $scope.settingsData.dp = response.data.picture;
+            console.log(response.data.picture);
             $scope.settingsData.friend_count = response.data.friend_count;
 
 
@@ -2107,20 +2109,17 @@
                 $scope.settingsData.tabs.profile.info.gender.data = 'Female';
                 $scope.settingsData.tabs.profile.info.gender.icon = 'flaticons/svg/femenine.svg';
             }
-
-
+            console.log($scope.settingsData);
 
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            console.log(response);
 
         });
 
         $scope.openMenu = function($mdOpenMenu, ev) {
             $mdOpenMenu(ev);
-        };
-        $scope.showAlert = function(ev) {
-
         };
         $scope.getDialog = function(ev,sel) {
             

@@ -1,7 +1,7 @@
 
 
 
-  <div layout="column" layout-align="center center" ng-controller="Search as ctrl" >
+  <md-content layout="column" layout-align="center center" ng-controller="Search as ctrl" >
     <br>
 
     <div layout-gt-xs="column" layout-xs="column" layout-align="space-between center">
@@ -94,4 +94,4 @@
           </div>
   </div>
 
-</div>
+</md-content>
