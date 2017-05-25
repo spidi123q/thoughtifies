@@ -29,6 +29,16 @@
              ), TRUE);
              $this->setBody($template);
          }
+         else if ($type === 1){
+             $this->request['Message']['Subject']['Data'] = 'New message from '.$this->session->SESS_FIRST_NAME." ".$this->session->SESS_LAST_NAME;
+             $template = $this->parser->parse('template/email/new_message.html',array(
+                 'fname' => $this->session->SESS_FIRST_NAME,
+                 'lname' => $this->session->SESS_LAST_NAME,
+                 'base_url' =>base_url()
+             ), TRUE);
+             $this->setBody($template);
+         }
+
 
       }
       private function setBody($template){
@@ -59,6 +69,10 @@
          $this->getReceiverDetails($receiver);
          $this->setType(0);
       }
+       public function newMessage($receiver){
+           $this->getReceiverDetails($receiver);
+           $this->setType(1);
+       }
       public function initFlush(){
           ignore_user_abort(true);
           set_time_limit(0);

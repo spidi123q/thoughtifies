@@ -261,6 +261,7 @@
                         };
                         $scope.send = function () {
                             sendMessage.sendMsg($scope.uid,$scope.msg);
+                            $scope.cancel();
                         };
                     }
                 };

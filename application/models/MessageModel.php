@@ -165,7 +165,11 @@
                   'message' => "{$data->message}" ,
               );
               $this->db->set('date_time','NOW()',FALSE);
+              $this->SubscribeModel->initFlush();
               echo  $this->db->insert('myMessages',$info);
+              $this->SubscribeModel->closeFlush();
+              $this->SubscribeModel->newMessage($data->receiver);
+
           }
           else{
               echo "0";

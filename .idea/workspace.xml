@@ -2,311 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/template/email/friend_request.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_buttons.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_cards.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_carousel.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_chips.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_collapsible.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_color.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_dropdown.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_global.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_grid.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_icons-material-design.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_materialbox.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_mixins.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_modal.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_navbar.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_normalize.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_preloader.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_roboto.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_sideNav.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_slider.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_table_of_contents.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_tabs.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_toast.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_tooltip.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_typography.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_variables.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/114c535c49780b80ae5775533b3a64bdf78f0e41/_waves.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_checkboxes.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_file-input.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_forms.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_input-fields.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_radio-buttons.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_range.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_select.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/18f5f696bfff33ea622e844ec622122672e2b588/_switches.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/8b6dffa464cab4035c3831744ee07b52099bfb09/index.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/8b6dffa464cab4035c3831744ee07b52099bfb09/main.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/8b6dffa464cab4035c3831744ee07b52099bfb09/materialize.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/ce4cb1f84bd042927da6903006bcceccb304f3a4/_default.date.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/ce4cb1f84bd042927da6903006bcceccb304f3a4/_default.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.sass-cache/ce4cb1f84bd042927da6903006bcceccb304f3a4/_default.time.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/chat.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/bottom_left.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/bottom_right.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/botton_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/close_corner.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/left_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/right_bar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/stab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_selected_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_selected_l.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_selected_r.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_separator.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/tab_starter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/top_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/top_left.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/css/images/top_right.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/bottom_left.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/bottom_right.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/botton_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/close_corner.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/left_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/right_bar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/stab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_selected_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_selected_l.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_selected_r.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_separator.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/tab_starter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/top_bar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/top_left.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/images/top_right.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/jquery.fancybox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/jquery.filmstrip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/materialize.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/materialize.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/messagelist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/msgview.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/nav.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/page.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/stylesheet.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/.versions" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/accordion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/accordion.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/accordion.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/ad.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/ad.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/api.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/api.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/breadcrumb.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/breadcrumb.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/button.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/button.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/card.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/card.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/checkbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/checkbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/checkbox.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/checkbox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/colorize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/colorize.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/comment.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/comment.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/container.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/container.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dimmer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dimmer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dimmer.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dimmer.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/divider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/divider.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dropdown.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dropdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dropdown.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/dropdown.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/embed.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/embed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/embed.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/embed.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/feed.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/feed.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/flag.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/flag.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/form.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/form.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/form.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/form.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/grid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/header.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/header.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/icon.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/icon.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/image.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/image.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/input.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/input.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/item.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/item.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/label.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/label.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/list.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/list.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/loader.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/loader.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/menu.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/message.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/message.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/modal.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/modal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/modal.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/modal.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/nag.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/nag.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/nag.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/nag.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/popup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/popup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/popup.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/popup.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/progress.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/progress.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/progress.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/progress.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rail.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rail.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rating.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rating.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rating.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/rating.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/reset.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/reset.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/reveal.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/reveal.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/search.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/search.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/search.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/search.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/segment.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/segment.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/shape.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/shape.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/shape.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/shape.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sidebar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sidebar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sidebar.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sidebar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/site.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/site.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/site.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/site.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/state.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/state.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/statistic.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/statistic.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/step.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/step.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sticky.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sticky.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sticky.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/sticky.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/tab.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/tab.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/tab.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/tab.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/table.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/table.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/transition.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/transition.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/transition.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/transition.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/video.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/video.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/video.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/video.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/visibility.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/visibility.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/visit.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/components/visit.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/npm-debug.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/package.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/semantic.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/semantic.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/semantic.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/semantic.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/fonts/icons.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/Semantic-UI-CSS-master/themes/default/assets/images/flags.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chatbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/index_app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery-2.1.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/myscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/material.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mdl/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/.sass-cache/57eaed9e8fd9245a7f76fc4b690af284194fbc32/index.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_buttons.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_cards.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_carousel.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_chips.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_collapsible.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_color.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_dropdown.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_global.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_grid.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_icons-material-design.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_materialbox.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_mixins.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_modal.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_navbar.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_normalize.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_prefixer.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_preloader.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_roboto.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_sideNav.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_slider.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_table_of_contents.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_tabs.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_toast.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_tooltip.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_typography.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_variables.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/_waves.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/date_picker/_default.date.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/date_picker/_default.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/date_picker/_default.time.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_checkboxes.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_file-input.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_forms.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_input-fields.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_radio-buttons.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_range.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_select.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/components/forms/_switches.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/img/bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/index.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/index.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/index.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sass/materialize.scss" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/template/email/new_message.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/MessageModel.php" afterPath="$PROJECT_DIR$/application/models/MessageModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/SubscribeModel.php" afterPath="$PROJECT_DIR$/application/models/SubscribeModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -445,8 +145,28 @@
       <file leaf-file-name="SubscribeModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/SubscribeModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="35" column="68" lean-forward="false" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
+            <state relative-caret-position="173">
+              <caret line="33" column="86" lean-forward="false" selection-start-line="33" selection-start-column="86" selection-end-line="33" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="379">
+              <caret line="263" column="44" lean-forward="false" selection-start-line="263" selection-start-column="44" selection-end-line="263" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_message.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/template/email/new_message.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -474,6 +194,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="MessageModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/MessageModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="170" column="63" lean-forward="false" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+              <folding>
+                <marker date="1495696415371" expanded="true" signature="2197:2936" ph="SELECT count... " />
+                <marker date="1495696415371" expanded="true" signature="2228:2923" ph="SELECT DISTI... sender" />
+                <marker date="1495696415371" expanded="true" signature="2286:2575" ph="SELECT resul... sender" />
+                <marker date="1495696415371" expanded="true" signature="2360:2553" ph="SELECT sende... myMessages" />
+                <marker date="1495696415371" expanded="true" signature="2596:2889" ph="SELECT resul... sender" />
+                <marker date="1495696415371" expanded="true" signature="2673:2867" ph="SELECT sende... myMessages" />
+                <marker date="1495696415371" expanded="true" signature="3551:4363" ph="SELECT DISTI... sender" />
+                <marker date="1495696415371" expanded="true" signature="3606:3918" ph="SELECT resul... sender" />
+                <marker date="1495696415371" expanded="true" signature="3677:3898" ph="SELECT sende... myMessages" />
+                <marker date="1495696415371" expanded="true" signature="3937:4252" ph="SELECT resul... sender" />
+                <marker date="1495696415371" expanded="true" signature="4010:4232" ph="SELECT sende... myMessages" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="friendpanel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/template/friendpanel.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -484,11 +226,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SessionModel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SessionModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="429" column="10" lean-forward="false" selection-start-line="429" selection-start-column="10" selection-end-line="429" selection-end-column="10" />
+              <caret line="429" column="45" lean-forward="true" selection-start-line="429" selection-start-column="10" selection-end-line="429" selection-end-column="45" />
               <folding>
                 <marker date="1495695511859" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
                 <marker date="1495695511859" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
@@ -496,22 +238,6 @@
                 <marker date="1495695511859" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
                 <marker date="1495695511859" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
                 <marker date="1495695511859" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/template/email/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -570,17 +296,18 @@
         <option value="$PROJECT_DIR$/application/views/home/settings.php" />
         <option value="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
         <option value="$PROJECT_DIR$/css/index.scss" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/models/MessageModel.php" />
         <option value="$PROJECT_DIR$/application/views/template/email/layout.html" />
         <option value="$PROJECT_DIR$/application/models/LoginModel.php" />
         <option value="$PROJECT_DIR$/application/models/Stud_Model.php" />
         <option value="$PROJECT_DIR$/application/views/template/friendpanel.php" />
         <option value="$PROJECT_DIR$/application/controllers/Login.php" />
         <option value="$PROJECT_DIR$/application/views/template/email/friend_request.html" />
-        <option value="$PROJECT_DIR$/application/models/SubscribeModel.php" />
         <option value="$PROJECT_DIR$/application/models/SessionModel.php" />
+        <option value="$PROJECT_DIR$/application/views/template/email/new_message.html" />
+        <option value="$PROJECT_DIR$/application/models/MessageModel.php" />
+        <option value="$PROJECT_DIR$/application/models/SubscribeModel.php" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -642,6 +369,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -873,6 +614,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/views/template/email" />
       <recent name="$PROJECT_DIR$/application/models" />
       <recent name="$PROJECT_DIR$/images/userimages" />
     </key>
@@ -1096,11 +838,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495535306483</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="email notification for friend request">
+      <created>1495695837052</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1495695837052</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93067000" />
+    <option name="totallyTimeSpent" value="93897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1174,14 +923,15 @@
     <MESSAGE value="last logined feature added" />
     <MESSAGE value="chat emoji click fixes" />
     <MESSAGE value="user online bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="user online bug fixes" />
+    <MESSAGE value="email notification for friend request" />
+    <option name="LAST_COMMIT_MESSAGE" value="email notification for friend request" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/SubscribeModel.php</url>
-          <line>58</line>
+          <line>68</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
@@ -1197,13 +947,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/vendor/composer/installed.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1404">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/vendor/composer/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1328,13 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31500">
-          <caret line="1750" column="0" lean-forward="false" selection-start-line="1750" selection-start-column="0" selection-end-line="1750" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/home/settings.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1359,26 +1095,6 @@
         <state relative-caret-position="1512">
           <caret line="84" column="62" lean-forward="false" selection-start-line="84" selection-start-column="62" selection-end-line="84" selection-end-column="62" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/MessageModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3888">
-          <caret line="216" column="73" lean-forward="false" selection-start-line="216" selection-start-column="73" selection-end-line="216" selection-end-column="73" />
-          <folding>
-            <marker date="1495532673395" expanded="true" signature="2197:2936" ph="SELECT count... " />
-            <marker date="1495532673395" expanded="true" signature="2228:2923" ph="SELECT DISTI... sender" />
-            <marker date="1495532673395" expanded="true" signature="2286:2575" ph="SELECT resul... sender" />
-            <marker date="1495532673395" expanded="true" signature="2360:2553" ph="SELECT sende... myMessages" />
-            <marker date="1495532673395" expanded="true" signature="2596:2889" ph="SELECT resul... sender" />
-            <marker date="1495532673395" expanded="true" signature="2673:2867" ph="SELECT sende... myMessages" />
-            <marker date="1495532673395" expanded="true" signature="3551:4363" ph="SELECT DISTI... sender" />
-            <marker date="1495532673395" expanded="true" signature="3606:3918" ph="SELECT resul... sender" />
-            <marker date="1495532673395" expanded="true" signature="3677:3898" ph="SELECT sende... myMessages" />
-            <marker date="1495532673395" expanded="true" signature="3937:4252" ph="SELECT resul... sender" />
-            <marker date="1495532673395" expanded="true" signature="4010:4232" ph="SELECT sende... myMessages" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1483,35 +1199,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/template/friendpanel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="83" lean-forward="false" selection-start-line="3" selection-start-column="83" selection-end-line="3" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/template/email/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
           <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/LoginModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="121" column="60" lean-forward="false" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="60" />
-          <folding>
-            <marker date="1495686004239" expanded="true" signature="6771:6865" ph="SELECT * FRO... member" />
-            <marker date="1495686004239" expanded="true" signature="7406:7454" ph="UPDATE membe... " />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1612,18 +1309,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/SubscribeModel.php">
+    <entry file="file://$PROJECT_DIR$/application/models/LoginModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="35" column="68" lean-forward="false" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
-          <folding />
+        <state relative-caret-position="263">
+          <caret line="121" column="60" lean-forward="false" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="60" />
+          <folding>
+            <marker date="1495686004239" expanded="true" signature="6771:6865" ph="SELECT * FRO... member" />
+            <marker date="1495686004239" expanded="true" signature="7406:7454" ph="UPDATE membe... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="429" column="10" lean-forward="false" selection-start-line="429" selection-start-column="10" selection-end-line="429" selection-end-column="10" />
+          <caret line="429" column="45" lean-forward="true" selection-start-line="429" selection-start-column="10" selection-end-line="429" selection-end-column="45" />
           <folding>
             <marker date="1495695511859" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
             <marker date="1495695511859" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
@@ -1632,6 +1332,58 @@
             <marker date="1495695511859" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
             <marker date="1495695511859" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/template/friendpanel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="83" lean-forward="false" selection-start-line="3" selection-start-column="83" selection-end-line="3" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/MessageModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="170" column="63" lean-forward="false" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+          <folding>
+            <marker date="1495696415371" expanded="true" signature="2197:2936" ph="SELECT count... " />
+            <marker date="1495696415371" expanded="true" signature="2228:2923" ph="SELECT DISTI... sender" />
+            <marker date="1495696415371" expanded="true" signature="2286:2575" ph="SELECT resul... sender" />
+            <marker date="1495696415371" expanded="true" signature="2360:2553" ph="SELECT sende... myMessages" />
+            <marker date="1495696415371" expanded="true" signature="2596:2889" ph="SELECT resul... sender" />
+            <marker date="1495696415371" expanded="true" signature="2673:2867" ph="SELECT sende... myMessages" />
+            <marker date="1495696415371" expanded="true" signature="3551:4363" ph="SELECT DISTI... sender" />
+            <marker date="1495696415371" expanded="true" signature="3606:3918" ph="SELECT resul... sender" />
+            <marker date="1495696415371" expanded="true" signature="3677:3898" ph="SELECT sende... myMessages" />
+            <marker date="1495696415371" expanded="true" signature="3937:4252" ph="SELECT resul... sender" />
+            <marker date="1495696415371" expanded="true" signature="4010:4232" ph="SELECT sende... myMessages" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/template/email/new_message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/SubscribeModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="33" column="86" lean-forward="false" selection-start-line="33" selection-start-column="86" selection-end-line="33" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="263" column="44" lean-forward="false" selection-start-line="263" selection-start-column="44" selection-end-line="263" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
