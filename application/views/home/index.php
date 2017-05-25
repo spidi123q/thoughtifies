@@ -2,16 +2,13 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
-    <style>
+    <style rel="prefetch">
         body{
             background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-896777377482/Thoughtifies/ripple.gif");
             background-repeat: no-repeat;
             background-position: center;
         }
     </style>
-
-
-
   <link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
   <link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
   <script>
