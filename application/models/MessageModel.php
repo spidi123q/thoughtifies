@@ -12,7 +12,7 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
-       private function friendsListQuery()      {
+       public function friendsListQuery()      {
            $this->db->select('receiver AS user');
            $this->db->where('sender',$this->session->SESS_MEMBER_ID);
            $this->db->where('status',1);

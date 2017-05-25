@@ -809,22 +809,16 @@ use Carbon\Carbon;
               foreach ($query->result() as $row) {
                   array_push($fbAppUsers,$row->mem_id);
               }
-
-              $this->db->select('receiver AS user');
-              $this->db->where('sender',$this->session->SESS_MEMBER_ID);
-              $table1 = $this->db->get_compiled_select('friendship');
-              $this->db->select('sender AS user');
-              $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
-              $table2 = $this->db->get_compiled_select('friendship');
-              $qry =  "($table1) UNION ($table2)";
+              $qry = $this->MessageModel->friendsListQuery();
               $query = $this->db->query($qry);
-              $fbNewAppUsers = array();
+              $myFriends = array();
               foreach ($query->result() as $row) {
-                  array_push($fbNewAppUsers,$row->user);
+                  array_push($myFriends,$row->user);
               }
-              array_push($fbNewAppUsers,$this->session->SESS_MEMBER_ID);
+              array_push($myFriends,$this->session->SESS_MEMBER_ID);
               $this->db->select("mem_id,picture");
-              $this->db->where_not_in("mem_id",$fbNewAppUsers);
+              $this->db->where_not_in("mem_id",$myFriends);
+              $this->db->where_in('mem_id',$fbAppUsers);
               $this->db->order_by("join_date","DESC");
               $this->db->limit(10);
               $query = $this->db->get("member");
