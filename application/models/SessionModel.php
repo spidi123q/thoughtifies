@@ -14,6 +14,7 @@ use Carbon\Carbon;
               'default_graph_version' => 'v2.8',
           ]);
 
+
       }
       private function convertHashtags($str){
       	$regex = "/#+([a-zA-Z0-9_]+)/";
@@ -418,14 +419,18 @@ use Carbon\Carbon;
         }
       }
 
-      public function addFriend($data)   {
+      public function addFriend($receiver)   {
+
           $data = array(
           'sender' => $this->session->SESS_MEMBER_ID,
-          'receiver' => $data,
+          'receiver' => $receiver,
           'status' => 0
           );
           $this->db->set('date_time', 'NOW()', FALSE);
+          $this->SubscribeModel->initFlush();
           echo $this->db->insert('friendship', $data);
+          $this->SubscribeModel->closeFlush();
+          $this->SubscribeModel->addFriend($receiver);
       }
 
       public function removeFriend($data)   {

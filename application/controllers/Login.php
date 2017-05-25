@@ -15,6 +15,7 @@ use Carbon\Carbon;
         $this->load->model('MessageModel');
         $this->load->model('SearchModel');
         $this->load->model('LoginModel');
+        $this->load->model('SubscribeModel');
 
      }
 
@@ -47,36 +48,6 @@ use Carbon\Carbon;
 
 
       public function index() {
-
-          /* handle the result */
-/*
-          $client = new Aws\Ses\SesClient([
-              'version'=> 'latest',
-              'region' => 'us-west-2',
-              'credentials' => [
-                  'key'    => 'AKIAIG6LG4L5COCYFVMQ',
-                  'secret' => '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'
-              ]
-          ]);
-
-          $request = array();
-          $request['Source'] = "support@thoughtifies.com";
-          $request['Destination']['ToAddresses'] = array('support@thoughtifies.com');
-          $request['Message']['Subject']['Data'] = 'dsfsd';
-          $request['Message']['Body']['Html']['Data'] = '<h1>fdsfsddsf</h1>';
-
-          try {
-              $result = $client->sendEmail($request);
-              $messageId = $result->get('MessageId');
-              echo("Email sent! Message ID: $messageId"."\n");
-
-          } catch (Exception $e) {
-              echo("The email was not sent. Error message: ");
-              echo($e->getMessage()."\n");
-          }
-*/
-
-
           $this->LoginModel->loadIndex(0);
       }
       public function license()    {
@@ -221,11 +192,6 @@ use Carbon\Carbon;
         $data = $this->input->raw_input_stream;
         $data = json_decode($data);
         $this->MessageModel->sentMessage($data);
-          $s3 = new Aws\S3\S3Client([
-              'version' => 'latest',
-              'region'  => 'us-east-1'
-          ]);
-
 
       }
 

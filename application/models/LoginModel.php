@@ -109,8 +109,9 @@
         $row = $query->row();
         $data = array('SESS_USERNAME' => $row->username,
          'SESS_MEMBER_ID' => $row->mem_id,
-         'SESS_FIRST_NAME' =>$row->fname,
+         'SESS_FIRST_NAME' => $row->fname,
          'SESS_LAST_NAME' => $row->lname,
+         'SESS_EMAIL' => $row->email,
          'SESS_USERIMAGE' => $row->picture,
        );
         $this->session->set_userdata($data);
@@ -181,6 +182,7 @@
                 'SESS_FIRST_NAME' =>$row->fname,
                 'SESS_LAST_NAME' => $row->lname,
                 'SESS_USERIMAGE' => $row->picture,
+                    'SESS_EMAIL' => $row->email,
               );
 
 
