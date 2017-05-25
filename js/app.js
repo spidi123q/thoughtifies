@@ -3351,14 +3351,6 @@
 
     app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil) {
         $scope.bootscreen = false;
-
-        $scope.jsonToURL = function (data) {
-            var str = Object.keys(data).map(function(key){
-                return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
-            }).join('&');
-            return str;
-        };
-
         $scope.chatButton = false;
         $scope.bootscreen = true;
         $scope.tbClass = ['hide_xs'];
@@ -3404,9 +3396,28 @@
         }, false);
         $mdUtil.enableScrolling();
 
+        function my() {
+
+        }
+        $mdToast.show({
+            hideDelay   : 3000,
+            position    : 'bottom right',
+            controller  : ToastController,
+            templateUrl : 'toast/0'
+        });
+
+        function ToastController($scope) {
+            $scope.closeToast = function () {
+                $mdToast
+                    .hide()
+                    .then(function() {
+                    });
+            };
+        }
 
 
     });
+
 
 
     // Define your library strictly...

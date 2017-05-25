@@ -280,6 +280,10 @@ use Carbon\Carbon;
             $this->load->view('template/dialog/content/change_country');
 
         }
+        public function getToast($sel){
+            if ($sel == 0)
+                $this->load->view('template/toast/app_invite');
+        }
 
         public function getMyInfo()        {
           $data = array('mem_id' => $this->session->SESS_MEMBER_ID, );
