@@ -7,7 +7,7 @@
   app_id=<?php echo $GLOBALS['FB_APP_ID'] ?>
   &display=popup&amp;caption=thoughtifies.com
   &link=https://thoughtifies.com/
-  &redirect_uri=<?php echo base_url(); ?>">
-        Invite
+  &redirect_uri=<?php echo base_url(); ?>" ng-click="onClickShare()">
+        Share
     </md-button>
 </md-toast>

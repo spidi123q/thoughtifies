@@ -3395,16 +3395,22 @@
             $scope.disabledClass = '';
         }, false);
         $mdUtil.enableScrolling();
-
-        function my() {
+        function appInviteToast() {
+            var flag = localStorage.getItem('hasInvited');
+            if (flag === null){
+                $mdToast.show({
+                    hideDelay   : 3000,
+                    position    : 'bottom right',
+                    controller  : ToastController,
+                    templateUrl : 'toast/0'
+                });
+            }
 
         }
-        $mdToast.show({
-            hideDelay   : 3000,
-            position    : 'bottom right',
-            controller  : ToastController,
-            templateUrl : 'toast/0'
-        });
+        appInviteToast();
+
+    
+
 
         function ToastController($scope) {
             $scope.closeToast = function () {
@@ -3413,6 +3419,9 @@
                     .then(function() {
                     });
             };
+            $scope.onClickShare = function () {
+                localStorage.setItem('hasInvited', '1');
+            }
         }
 
 
