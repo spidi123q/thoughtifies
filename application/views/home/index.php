@@ -4,7 +4,7 @@
   <meta name="theme-color" content="#26A69A" />
     <style rel="prefetch">
         body{
-            background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-896777377482/Thoughtifies/ripple.gif");
+            background-image: url("<?php echo base_url(); ?>images/ripple.gif");
             background-repeat: no-repeat;
             background-position: center;
         }
