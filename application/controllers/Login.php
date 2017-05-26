@@ -8,8 +8,6 @@ use Carbon\Carbon;
         parent::__construct();
         $GLOBALS['FB_APP_ID'] = '1838531036399607';
         $GLOBALS['FB_APP_SECRET'] = '878b5530b283d6b9f8b1cba69bf0619d';
-        $GLOBALS['AWS_KEY'] = 'AKIAIG6LG4L5COCYFVMQ';
-        $GLOBALS['AWS_SECRET'] = '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';
         $this->load->helper(array('form', 'url','file'));
         $this->load->model('SessionModel');
         $this->load->model('MessageModel');
