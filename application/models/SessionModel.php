@@ -9,8 +9,8 @@ use Carbon\Carbon;
       function __construct() {
          parent::__construct();
           $this->fb = new Facebook\Facebook([
-              'app_id' => $GLOBALS['FB_APP_ID'],
-              'app_secret' => $GLOBALS['FB_APP_SECRET'],
+              'app_id' => $_SERVER['FB_APP_ID'],
+              'app_secret' => $_SERVER['FB_APP_SECRET'],
               'default_graph_version' => 'v2.8',
           ]);
 

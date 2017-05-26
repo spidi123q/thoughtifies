@@ -118,6 +118,7 @@
         $data = array(
           'mem_id' => $this->session->SESS_MEMBER_ID,
           'picture' =>  $this->session->SESS_USERIMAGE,
+            'chat_url' =>$_SERVER['CHAT_URL'],
          );
          if ($this->session->has_userdata('fb_access_token')) {
             $this->load->view('home/index',$data);

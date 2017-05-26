@@ -15,6 +15,7 @@
     var SESS_MEMBER_ID = "<?php echo $mem_id; ?>";
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
     var BASE_URL = "<?php echo base_url(); ?>";
+    var CHAT_URL = "<?php echo $chat_url; ?>";
   </script>
     <script src="<?php echo base_url(); ?>node_modules/angular/angular.min.js"></script>
   <title>Thoughtifies</title>
