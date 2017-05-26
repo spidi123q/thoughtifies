@@ -3,7 +3,7 @@ var document;
 document = require('./document');
 
 window = {
-	document : document
+    document : document
 };
 
 module.exports = window;

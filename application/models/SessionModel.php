@@ -1,10 +1,19 @@
 <?php
+
+use Carbon\Carbon;
+
    class SessionModel extends CI_Model {
 
-     private $recentVisitorsData;
+     private $recentVisitorsData,$fb;
 
       function __construct() {
          parent::__construct();
+          $this->fb = new Facebook\Facebook([
+              'app_id' => $GLOBALS['FB_APP_ID'],
+              'app_secret' => $GLOBALS['FB_APP_SECRET'],
+              'default_graph_version' => 'v2.8',
+          ]);
+
 
       }
       private function convertHashtags($str){
@@ -235,7 +244,33 @@
           else{
               $data['c_name'] = 'Unknown';
           }
+          $this->db->select("NOW() as time",FALSE);
+          $result = $this->db->get()->row();
+
           $data['friend_count'] = $this->friendsCount(1);
+          $date = new DateTime($data['last_login']);
+          $dt = Carbon::create(
+              $date->format("Y"),
+              $date->format("m"),
+              $date->format("d"),
+              $date->format("H"),
+              $date->format("i"),
+              $date->format("s"),
+              $date->getTimezone()
+          );
+            $timeNow = new DateTime($result->time);
+            $timeNow = Carbon::create(
+                $timeNow->format("Y"),
+                $timeNow->format("m"),
+                $timeNow->format("d"),
+                $timeNow->format("H"),
+                $timeNow->format("i"),
+                $timeNow->format("s"),
+                $timeNow->getTimezone()
+            );
+          $data['last_login'] = $dt->diffForHumans($timeNow);
+            //$data['last_login'] = $result->time;
+
           echo json_encode($data);
         }else {
           echo "0";
@@ -384,14 +419,18 @@
         }
       }
 
-      public function addFriend($data)   {
+      public function addFriend($receiver)   {
+
           $data = array(
           'sender' => $this->session->SESS_MEMBER_ID,
-          'receiver' => $data,
+          'receiver' => $receiver,
           'status' => 0
           );
           $this->db->set('date_time', 'NOW()', FALSE);
+          $this->SubscribeModel->initFlush();
           echo $this->db->insert('friendship', $data);
+          $this->SubscribeModel->closeFlush();
+          $this->SubscribeModel->addFriend($receiver);
       }
 
       public function removeFriend($data)   {
@@ -736,6 +775,61 @@
         $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
         $this->db->update('posts');
         echo  $this->db->affected_rows();
+      }
+
+      public function getFbFriends(){
+          $fb = $this->fb;
+          try {
+              $response = $fb->get("me/friends", $this->session->fb_access_token);
+              $friends = $response->getGraphEdge();
+              if ($fb->next($friends)) {
+                  $allFriends = array();
+                  $friendsArray = $friends->asArray();
+                  $allFriends = array_merge($friendsArray, $allFriends);
+                  while ($friends = $fb->next($friends)) {
+                      $friendsArray = $friends->asArray();
+                      $allFriends = array_merge($friendsArray, $allFriends);
+                  }
+                  foreach ($allFriends as $key) {
+                      echo $key['name'] . "<br>";
+                  }
+                  echo count($allFriends);
+              } else {
+                  $allFriends = $friends->asArray();
+              }
+              $allFriendsFbId = array();
+              foreach ($allFriends as $key) {
+                  array_push($allFriendsFbId,$key['id']);
+              }
+
+              $this->db->select("mem_id");
+              $this->db->where_in("id",$allFriendsFbId);
+              $query = $this->db->get("facebook_member");
+              $fbAppUsers = array();
+              foreach ($query->result() as $row) {
+                  array_push($fbAppUsers,$row->mem_id);
+              }
+              $qry = $this->MessageModel->friendsListQuery();
+              $query = $this->db->query($qry);
+              $myFriends = array();
+              foreach ($query->result() as $row) {
+                  array_push($myFriends,$row->user);
+              }
+              array_push($myFriends,$this->session->SESS_MEMBER_ID);
+              $this->db->select("mem_id,picture");
+              $this->db->where_not_in("mem_id",$myFriends);
+              $this->db->where_in('mem_id',$fbAppUsers);
+              $this->db->order_by("join_date","DESC");
+              $this->db->limit(10);
+              $query = $this->db->get("member");
+              echo json_encode($query->result());
+
+
+
+          } catch(Facebook\Exceptions\FacebookSDKException $e) {
+              echo 'Error: ' . $e->getMessage();
+              exit;
+          }
       }
 
 

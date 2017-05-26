@@ -1,14 +1,21 @@
 <?php
 
+require APPPATH.'third_party/aws.phar';
+use Carbon\Carbon;
    class Login extends CI_Controller {
 
      function __construct() {
         parent::__construct();
+        $GLOBALS['FB_APP_ID'] = '1838531036399607';
+        $GLOBALS['FB_APP_SECRET'] = '878b5530b283d6b9f8b1cba69bf0619d';
+        $GLOBALS['AWS_KEY'] = 'AKIAIG6LG4L5COCYFVMQ';
+        $GLOBALS['AWS_SECRET'] = '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';
         $this->load->helper(array('form', 'url','file'));
         $this->load->model('SessionModel');
         $this->load->model('MessageModel');
         $this->load->model('SearchModel');
         $this->load->model('LoginModel');
+        $this->load->model('SubscribeModel');
 
      }
 
@@ -96,7 +103,7 @@
       public function pageSelection($value)      {
 
         if($value == 0){
-          $this->pageHome();
+            $this->pageHome();
         }
         elseif ($value == 1) {
           $this->pageSearch();
@@ -186,7 +193,6 @@
         $data = json_decode($data);
         $this->MessageModel->sentMessage($data);
 
-
       }
 
       public function f($p)      {
@@ -273,6 +279,10 @@
           else if($sel == 8)
             $this->load->view('template/dialog/content/change_country');
 
+        }
+        public function getToast($sel){
+            if ($sel == 0)
+                $this->load->view('template/toast/app_invite');
         }
 
         public function getMyInfo()        {
@@ -470,7 +480,10 @@
         }
         public function logout()      {
           $this->session->sess_destroy();
-          redirect('https://thoughtifies.com');
+          redirect(base_url());
+        }
+        public function getFbFriends(){
+            $this->SessionModel->getFbfriends();
         }
 
 

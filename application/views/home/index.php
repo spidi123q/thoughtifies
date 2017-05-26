@@ -2,9 +2,13 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+    <style rel="prefetch">
+        body{
+            background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-896777377482/Thoughtifies/ripple.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
   <link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
   <link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
   <script>
@@ -12,6 +16,7 @@
     var SESS_USERIMAGE = "<?php echo $picture; ?>";
     var BASE_URL = "<?php echo base_url(); ?>";
   </script>
+    <script src="<?php echo base_url(); ?>node_modules/angular/angular.min.js"></script>
   <title>Thoughtifies</title>
 </head>
 <body class="home_body" ng-app="BlankApp" ng-cloak ng-controller="AppCtrl" style="overflow-y:hidden" ng-class="disabledClass" >
@@ -176,7 +181,6 @@
 
 
   <!-- Angular Material requires Angular.js Libraries -->
-  <script src="<?php echo base_url(); ?>node_modules/angular/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -202,6 +206,9 @@
   <!-- Your application bootstrap  -->
   <script type="text/javascript" src="<?php echo base_url(); ?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 
 
 </body>

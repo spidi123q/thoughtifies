@@ -14,13 +14,13 @@
 /*! @source http://purl.eligrey.com/github/canvas-toBlob.js/blob/master/canvas-toBlob.js */
 
 (function(view) {
-    "use strict";
+    'use strict';
     var
         Uint8Array = view.Uint8Array,
         HTMLCanvasElement = view.HTMLCanvasElement,
         canvas_proto = HTMLCanvasElement && HTMLCanvasElement.prototype,
         is_base64_regex = /\s*;\s*base64\s*(?:;|$)/i,
-        to_data_url = "toDataURL",
+        to_data_url = 'toDataURL',
         base64_ranks, decode_base64 = function(base64) {
             var
                 len = base64.length,
@@ -64,10 +64,10 @@
     if (HTMLCanvasElement && !canvas_proto.toBlob) {
         canvas_proto.toBlob = function(callback, type /*, ...args*/ ) {
             if (!type) {
-                type = "image/png";
+                type = 'image/png';
             }
             if (this.mozGetAsFile) {
-                callback(this.mozGetAsFile("canvas", type));
+                callback(this.mozGetAsFile('canvas', type));
                 return;
             }
             if (this.msToBlob && /^\s*image\/png\s*(?:$|;)/i.test(type)) {
@@ -78,17 +78,17 @@
             var
                 args = Array.prototype.slice.call(arguments, 1),
                 dataURI = this[to_data_url].apply(this, args),
-                header_end = dataURI.indexOf(","),
+                header_end = dataURI.indexOf(','),
                 data = dataURI.substring(header_end + 1),
                 is_base64 = is_base64_regex.test(dataURI.substring(0, header_end)),
                 blob;
             if (Blob.fake) {
                 // no reason to decode a data: URI that's just going to become a data URI again
-                blob = new Blob
+                blob = new Blob;
                 if (is_base64) {
-                    blob.encoding = "base64";
+                    blob.encoding = 'base64';
                 } else {
-                    blob.encoding = "URI";
+                    blob.encoding = 'URI';
                 }
                 blob.data = data;
                 blob.size = data.length;
@@ -110,13 +110,13 @@
 
         if (canvas_proto.toDataURLHD) {
             canvas_proto.toBlobHD = function() {
-                to_data_url = "toDataURLHD";
+                to_data_url = 'toDataURLHD';
                 var blob = this.toBlob();
-                to_data_url = "toDataURL";
+                to_data_url = 'toDataURL';
                 return blob;
-            }
+            };
         } else {
             canvas_proto.toBlobHD = canvas_proto.toBlob;
         }
     }
-}(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this.content || this));
+}(typeof self !== 'undefined' && self || typeof window !== 'undefined' && window || this.content || this));

@@ -1,10 +1,10 @@
 
     <md-button md-menu-origin="" class="md-icon-button md-accent" aria-label="Favorite" ng-disabled="actions.request.disabled" ng-click="actions.requestButton()">
-      <md-icon md-font-library="material-icons">{{actions.request.icon}}</md-icon>
-      <md-progress-circular md-mode="indeterminate" ng-hide="!actions.request.progress" md-diameter="20px">
+      <md-icon ng-if="!actions.request.progress" md-font-library="material-icons">{{actions.request.icon}}</md-icon>
+      <md-progress-circular class="md-warn" md-mode="indeterminate" ng-if="actions.request.progress" md-diameter="20px">
       </md-progress-circular>
     </md-button>
-    <md-menu>
+    <md-menu ng-if="!addOnly">
          <md-button   class="md-icon-button md-accent" ng-click="actions.openMenu($mdOpenMenu, $event)">
              <i md-menu-align-target="" class="material-icons">more_vert</i>
          </md-button>

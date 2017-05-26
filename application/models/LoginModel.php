@@ -5,8 +5,8 @@
       function __construct() {
          parent::__construct();
          $this->fb = new Facebook\Facebook([
-                   'app_id' => '1789323091320402', // Replace {app-id} with your app id
-                   'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
+                   'app_id' => $GLOBALS['FB_APP_ID'],
+                   'app_secret' => $GLOBALS['FB_APP_SECRET'],
                    'default_graph_version' => 'v2.8',
                    ]);
       }
@@ -109,8 +109,9 @@
         $row = $query->row();
         $data = array('SESS_USERNAME' => $row->username,
          'SESS_MEMBER_ID' => $row->mem_id,
-         'SESS_FIRST_NAME' =>$row->fname,
+         'SESS_FIRST_NAME' => $row->fname,
          'SESS_LAST_NAME' => $row->lname,
+         'SESS_EMAIL' => $row->email,
          'SESS_USERIMAGE' => $row->picture,
        );
         $this->session->set_userdata($data);
@@ -120,6 +121,9 @@
          );
          if ($this->session->has_userdata('fb_access_token')) {
             $this->load->view('home/index',$data);
+             $this->db->set('last_login',"NOW()",FALSE);
+             $this->db->where('mem_id', $mem_id);
+             $this->db->update('member');
          }else {
            redirect( base_url());
          }
@@ -178,6 +182,7 @@
                 'SESS_FIRST_NAME' =>$row->fname,
                 'SESS_LAST_NAME' => $row->lname,
                 'SESS_USERIMAGE' => $row->picture,
+                    'SESS_EMAIL' => $row->email,
               );
 
 
@@ -273,7 +278,7 @@
               //  var_dump($tokenMetadata);
 
                 // Validation (these will throw FacebookSDKException's when they fail)
-                $tokenMetadata->validateAppId('1789323091320402'); // Replace {app-id} with your app id
+                $tokenMetadata->validateAppId($GLOBALS['FB_APP_ID']); // Replace {app-id} with your app id
                 // If you know the user ID this access token belongs to, you can validate it here
                 //$tokenMetadata->validateUserId('123');
                 $tokenMetadata->validateExpiration();

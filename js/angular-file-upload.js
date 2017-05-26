@@ -4,118 +4,118 @@
 */
 
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["angular-file-upload"] = factory();
-	else
-		root["angular-file-upload"] = factory();
+    if(typeof exports === 'object' && typeof module === 'object')
+        module.exports = factory();
+    else if(typeof define === 'function' && define.amd)
+        define([], factory);
+    else if(typeof exports === 'object')
+        exports['angular-file-upload'] = factory();
+    else
+		root['angular-file-upload'] = factory();
 })(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+    return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+        /******/ 	var installedModules = {};
 /******/
 /******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+        /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+            /******/ 		if(installedModules[moduleId])
+                /******/ 			return installedModules[moduleId].exports;
 /******/
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
+            /******/ 		var module = installedModules[moduleId] = {
+                /******/ 			exports: {},
+                /******/ 			id: moduleId,
+                /******/ 			loaded: false
+            /******/ 		};
 /******/
 /******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+            /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
 /******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
+            /******/ 		module.loaded = true;
 /******/
 /******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+            /******/ 		return module.exports;
+        /******/ 	}
 /******/
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
+        /******/ 	__webpack_require__.m = modules;
 /******/
 /******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
+        /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+        /******/ 	__webpack_require__.p = '';
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
-/******/ })
+        /******/ 	return __webpack_require__(0);
+    /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	var _options = __webpack_require__(2);
+        var _options = __webpack_require__(2);
 	
-	var _options2 = _interopRequireDefault(_options);
+        var _options2 = _interopRequireDefault(_options);
 	
-	var _FileUploader = __webpack_require__(3);
+        var _FileUploader = __webpack_require__(3);
 	
-	var _FileUploader2 = _interopRequireDefault(_FileUploader);
+        var _FileUploader2 = _interopRequireDefault(_FileUploader);
 	
-	var _FileLikeObject = __webpack_require__(4);
+        var _FileLikeObject = __webpack_require__(4);
 	
-	var _FileLikeObject2 = _interopRequireDefault(_FileLikeObject);
+        var _FileLikeObject2 = _interopRequireDefault(_FileLikeObject);
 	
-	var _FileItem = __webpack_require__(5);
+        var _FileItem = __webpack_require__(5);
 	
-	var _FileItem2 = _interopRequireDefault(_FileItem);
+        var _FileItem2 = _interopRequireDefault(_FileItem);
 	
-	var _FileDirective = __webpack_require__(6);
+        var _FileDirective = __webpack_require__(6);
 	
-	var _FileDirective2 = _interopRequireDefault(_FileDirective);
+        var _FileDirective2 = _interopRequireDefault(_FileDirective);
 	
-	var _FileSelect = __webpack_require__(7);
+        var _FileSelect = __webpack_require__(7);
 	
-	var _FileSelect2 = _interopRequireDefault(_FileSelect);
+        var _FileSelect2 = _interopRequireDefault(_FileSelect);
 	
-	var _Pipeline = __webpack_require__(8);
+        var _Pipeline = __webpack_require__(8);
 	
-	var _Pipeline2 = _interopRequireDefault(_Pipeline);
+        var _Pipeline2 = _interopRequireDefault(_Pipeline);
 	
-	var _FileDrop = __webpack_require__(9);
+        var _FileDrop = __webpack_require__(9);
 	
-	var _FileDrop2 = _interopRequireDefault(_FileDrop);
+        var _FileDrop2 = _interopRequireDefault(_FileDrop);
 	
-	var _FileOver = __webpack_require__(10);
+        var _FileOver = __webpack_require__(10);
 	
-	var _FileOver2 = _interopRequireDefault(_FileOver);
+        var _FileOver2 = _interopRequireDefault(_FileOver);
 	
-	var _FileSelect3 = __webpack_require__(11);
+        var _FileSelect3 = __webpack_require__(11);
 	
-	var _FileSelect4 = _interopRequireDefault(_FileSelect3);
+        var _FileSelect4 = _interopRequireDefault(_FileSelect3);
 	
-	var _FileDrop3 = __webpack_require__(12);
+        var _FileDrop3 = __webpack_require__(12);
 	
-	var _FileDrop4 = _interopRequireDefault(_FileDrop3);
+        var _FileDrop4 = _interopRequireDefault(_FileDrop3);
 	
-	var _FileOver3 = __webpack_require__(13);
+        var _FileOver3 = __webpack_require__(13);
 	
-	var _FileOver4 = _interopRequireDefault(_FileOver3);
+        var _FileOver4 = _interopRequireDefault(_FileOver3);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	angular.module(_config2.default.name, []).value('fileUploaderOptions', _options2.default).factory('FileUploader', _FileUploader2.default).factory('FileLikeObject', _FileLikeObject2.default).factory('FileItem', _FileItem2.default).factory('FileDirective', _FileDirective2.default).factory('FileSelect', _FileSelect2.default).factory('FileDrop', _FileDrop2.default).factory('FileOver', _FileOver2.default).factory('Pipeline', _Pipeline2.default).directive('nvFileSelect', _FileSelect4.default).directive('nvFileDrop', _FileDrop4.default).directive('nvFileOver', _FileOver4.default).run(['FileUploader', 'FileLikeObject', 'FileItem', 'FileDirective', 'FileSelect', 'FileDrop', 'FileOver', 'Pipeline', function (FileUploader, FileLikeObject, FileItem, FileDirective, FileSelect, FileDrop, FileOver, Pipeline) {
+        angular.module(_config2.default.name, []).value('fileUploaderOptions', _options2.default).factory('FileUploader', _FileUploader2.default).factory('FileLikeObject', _FileLikeObject2.default).factory('FileItem', _FileItem2.default).factory('FileDirective', _FileDirective2.default).factory('FileSelect', _FileSelect2.default).factory('FileDrop', _FileDrop2.default).factory('FileOver', _FileOver2.default).factory('Pipeline', _Pipeline2.default).directive('nvFileSelect', _FileSelect4.default).directive('nvFileDrop', _FileDrop4.default).directive('nvFileOver', _FileOver4.default).run(['FileUploader', 'FileLikeObject', 'FileItem', 'FileDirective', 'FileSelect', 'FileDrop', 'FileOver', 'Pipeline', function (FileUploader, FileLikeObject, FileItem, FileDirective, FileSelect, FileDrop, FileOver, Pipeline) {
 	    // only for compatibility
 	    FileUploader.FileLikeObject = FileLikeObject;
 	    FileUploader.FileItem = FileItem;
@@ -124,26 +124,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    FileUploader.FileDrop = FileDrop;
 	    FileUploader.FileOver = FileOver;
 	    FileUploader.Pipeline = Pipeline;
-	}]);
+        }]);
 
-/***/ },
+    /***/ },
 /* 1 */
-/***/ function(module, exports) {
+    /***/ function(module, exports) {
 
-	module.exports = {
-		"name": "angularFileUpload"
-	};
+        module.exports = {
+            'name': 'angularFileUpload'
+        };
 
-/***/ },
+    /***/ },
 /* 2 */
-/***/ function(module, exports) {
+    /***/ function(module, exports) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = {
+        });
+        exports.default = {
 	    url: '/',
 	    alias: 'file',
 	    headers: {},
@@ -157,42 +157,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	    queueLimit: Number.MAX_VALUE,
 	    withCredentials: false,
 	    disableMultipart: false
-	};
+        };
 
-/***/ },
+    /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
+        });
 	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+        var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; }();
 	
-	exports.default = __identity;
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _angular = angular;
-	var bind = _angular.bind;
-	var copy = _angular.copy;
-	var extend = _angular.extend;
-	var forEach = _angular.forEach;
-	var isObject = _angular.isObject;
-	var isNumber = _angular.isNumber;
-	var isDefined = _angular.isDefined;
-	var isArray = _angular.isArray;
-	var isUndefined = _angular.isUndefined;
-	var element = _angular.element;
-	function __identity(fileUploaderOptions, $rootScope, $http, $window, $timeout, FileLikeObject, FileItem, Pipeline) {
+        var _angular = angular;
+        var bind = _angular.bind;
+        var copy = _angular.copy;
+        var extend = _angular.extend;
+        var forEach = _angular.forEach;
+        var isObject = _angular.isObject;
+        var isNumber = _angular.isNumber;
+        var isDefined = _angular.isDefined;
+        var isArray = _angular.isArray;
+        var isUndefined = _angular.isUndefined;
+        var element = _angular.element;
+        function __identity(fileUploaderOptions, $rootScope, $http, $window, $timeout, FileLikeObject, FileItem, Pipeline) {
 	    var File = $window.File;
 	    var FormData = $window.FormData;
 	
@@ -1059,34 +1059,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    FileUploader.isHTML5 = FileUploader.prototype.isHTML5;
 	
 	    return FileUploader;
-	}
+        }
 	
-	__identity.$inject = ['fileUploaderOptions', '$rootScope', '$http', '$window', '$timeout', 'FileLikeObject', 'FileItem', 'Pipeline'];
+        __identity.$inject = ['fileUploaderOptions', '$rootScope', '$http', '$window', '$timeout', 'FileLikeObject', 'FileItem', 'Pipeline'];
 
-/***/ },
+    /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _angular = angular;
-	var copy = _angular.copy;
-	var isElement = _angular.isElement;
-	var isString = _angular.isString;
-	function __identity() {
+        var _angular = angular;
+        var copy = _angular.copy;
+        var isElement = _angular.isElement;
+        var isString = _angular.isString;
+        function __identity() {
 	
 	    return function () {
 	        /**
@@ -1133,33 +1133,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        return FileLikeObject;
 	    }();
-	}
+        }
 
-/***/ },
+    /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _angular = angular;
-	var copy = _angular.copy;
-	var extend = _angular.extend;
-	var element = _angular.element;
-	var isElement = _angular.isElement;
-	function __identity($compile, FileLikeObject) {
+        var _angular = angular;
+        var copy = _angular.copy;
+        var extend = _angular.extend;
+        var element = _angular.element;
+        var isElement = _angular.isElement;
+        function __identity($compile, FileLikeObject) {
 	
 	    return function () {
 	        /**
@@ -1425,32 +1425,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        return FileItem;
 	    }();
-	}
+        }
 	
-	__identity.$inject = ['$compile', 'FileLikeObject'];
+        __identity.$inject = ['$compile', 'FileLikeObject'];
 
-/***/ },
+    /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _angular = angular;
-	var extend = _angular.extend;
-	function __identity() {
+        var _angular = angular;
+        var extend = _angular.extend;
+        function __identity() {
 	    var FileDirective = function () {
 	        /**
 	         * Creates instance of {FileDirective} object
@@ -1527,34 +1527,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    FileDirective.prototype.events = {};
 	
 	    return FileDirective;
-	}
+        }
 
-/***/ },
+    /***/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+        function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called'); } return call && (typeof call === 'object' || typeof call === 'function') ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+        function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _angular = angular;
-	var extend = _angular.extend;
-	function __identity($compile, FileDirective) {
+        var _angular = angular;
+        var extend = _angular.extend;
+        function __identity($compile, FileDirective) {
 	
 	    return function (_FileDirective) {
 	        _inherits(FileSelect, _FileDirective);
@@ -1629,29 +1629,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        return FileSelect;
 	    }(FileDirective);
-	}
+        }
 	
-	__identity.$inject = ['$compile', 'FileDirective'];
+        __identity.$inject = ['$compile', 'FileDirective'];
 
-/***/ },
+    /***/ },
 /* 8 */
-/***/ function(module, exports) {
+    /***/ function(module, exports) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	  value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+        function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _angular = angular;
-	var bind = _angular.bind;
-	var isUndefined = _angular.isUndefined;
-	function __identity($q) {
+        var _angular = angular;
+        var bind = _angular.bind;
+        var isUndefined = _angular.isUndefined;
+        function __identity($q) {
 	
 	  return function () {
 	    /**
@@ -1705,37 +1705,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    return Pipeline;
 	  }();
-	}
+        }
 	
-	__identity.$inject = ['$q'];
+        __identity.$inject = ['$q'];
 
-/***/ },
+    /***/ },
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+        function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called'); } return call && (typeof call === 'object' || typeof call === 'function') ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+        function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _angular = angular;
-	var extend = _angular.extend;
-	var forEach = _angular.forEach;
-	function __identity(FileDirective) {
+        var _angular = angular;
+        var extend = _angular.extend;
+        var forEach = _angular.forEach;
+        function __identity(FileDirective) {
 	
 	    return function (_FileDirective) {
 	        _inherits(FileDrop, _FileDirective);
@@ -1865,36 +1865,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        return FileDrop;
 	    }(FileDirective);
-	}
+        }
 	
-	__identity.$inject = ['FileDirective'];
+        __identity.$inject = ['FileDirective'];
 
-/***/ },
+    /***/ },
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+        function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called'); } return call && (typeof call === 'object' || typeof call === 'function') ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+        function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _angular = angular;
-	var extend = _angular.extend;
-	function __identity(FileDirective) {
+        var _angular = angular;
+        var extend = _angular.extend;
+        function __identity(FileDirective) {
 	
 	    return function (_FileDirective) {
 	        _inherits(FileOver, _FileDirective);
@@ -1949,28 +1949,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        return FileOver;
 	    }(FileDirective);
-	}
+        }
 	
-	__identity.$inject = ['FileDirective'];
+        __identity.$inject = ['FileDirective'];
 
-/***/ },
+    /***/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function __identity($parse, FileUploader, FileSelect) {
+        function __identity($parse, FileUploader, FileSelect) {
 	
 	    return {
 	        link: function link(scope, element, attributes) {
@@ -1992,28 +1992,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	    };
-	}
+        }
 	
-	__identity.$inject = ['$parse', 'FileUploader', 'FileSelect'];
+        __identity.$inject = ['$parse', 'FileUploader', 'FileSelect'];
 
-/***/ },
+    /***/ },
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function __identity($parse, FileUploader, FileDrop) {
+        function __identity($parse, FileUploader, FileDrop) {
 	
 	    return {
 	        link: function link(scope, element, attributes) {
@@ -2036,28 +2036,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	    };
-	}
+        }
 	
-	__identity.$inject = ['$parse', 'FileUploader', 'FileDrop'];
+        __identity.$inject = ['$parse', 'FileUploader', 'FileDrop'];
 
-/***/ },
+    /***/ },
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+    /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+        'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+        Object.defineProperty(exports, '__esModule', {
 	    value: true
-	});
-	exports.default = __identity;
+        });
+        exports.default = __identity;
 	
-	var _config = __webpack_require__(1);
+        var _config = __webpack_require__(1);
 	
-	var _config2 = _interopRequireDefault(_config);
+        var _config2 = _interopRequireDefault(_config);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function __identity(FileUploader, FileOver) {
+        function __identity(FileUploader, FileOver) {
 	
 	    return {
 	        link: function link(scope, element, attributes) {
@@ -2077,12 +2077,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	        }
 	    };
-	}
+        }
 	
-	__identity.$inject = ['FileUploader', 'FileOver'];
+        __identity.$inject = ['FileUploader', 'FileOver'];
 
-/***/ }
-/******/ ])
+    /***/ }
+/******/ ]);
 });
-;
+
 //# sourceMappingURL=angular-file-upload.js.map

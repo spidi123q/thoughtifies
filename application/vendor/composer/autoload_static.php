@@ -17,6 +17,7 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Debug\\' => 24,
         ),
         'R' => 
@@ -37,12 +38,20 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         array (
             'Facebook\\' => 9,
         ),
+        'C' => 
+        array (
+            'Carbon\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
         ),
         'Symfony\\Component\\Debug\\' => 
         array (
@@ -71,6 +80,10 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         'Facebook\\' => 
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
+        ),
+        'Carbon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
     );
 

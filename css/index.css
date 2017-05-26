@@ -135,7 +135,7 @@
   width: 50%; }
 
 .chat_dialog_content {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 60%; }
 
 .chat_dialog_box {

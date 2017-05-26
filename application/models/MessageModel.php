@@ -12,6 +12,38 @@
         $query = $this->db->get('member');
         echo json_encode($query->result());
       }
+       public function friendsListQuery()      {
+           $this->db->select('receiver AS user');
+           $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+           $this->db->where('status',1);
+           $table1 = $this->db->get_compiled_select('friendship');
+           $this->db->select('sender AS user');
+           $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+           $this->db->where('status',1);
+           $table2 = $this->db->get_compiled_select('friendship');
+           return "($table1) UNION ($table2)";
+       }
+      private function isUserBlocked($user){
+          $this->db->group_start();
+          $this->db->where(array(
+              "sender" => $this->session->SESS_MEMBER_ID,
+              "receiver" => $user
+          ));
+          $this->db->group_end();
+          $this->db->or_group_start();
+          $this->db->where(array(
+              "sender" => $user,
+              "receiver" => $this->session->SESS_MEMBER_ID,
+          ));
+          $this->db->group_end();
+          $query = $this->db->get('blocked');
+          if ($query->num_rows() > 0){
+              return true;
+          }else{
+              return false;
+          }
+
+      }
       private function getLastMsg($user)    {
         $this->db->select('message')->from('myMessages');
         $this->db->group_start();
@@ -126,13 +158,23 @@
 
 
       public function sentMessage($data)      {
-          $info = array(
-          'sender' => $this->session->SESS_MEMBER_ID,
-          'receiver' => $data->receiver,
-          'message' => "{$data->message}" ,
-          );
-          $this->db->set('date_time','NOW()',FALSE);
-          echo  $this->db->insert('myMessages',$info);
+          if (!$this->isUserBlocked($data->receiver)){
+              $info = array(
+                  'sender' => $this->session->SESS_MEMBER_ID,
+                  'receiver' => $data->receiver,
+                  'message' => "{$data->message}" ,
+              );
+              $this->db->set('date_time','NOW()',FALSE);
+              $this->SubscribeModel->initFlush();
+              echo  $this->db->insert('myMessages',$info);
+              $this->SubscribeModel->closeFlush();
+              $this->SubscribeModel->newMessage($data->receiver);
+
+          }
+          else{
+              echo "0";
+          }
+
       }
 
       public function countMsg($data)      {
@@ -166,11 +208,22 @@
       }
 
       public function listOnlineUsers()      {
-        $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
-        $query = $this->db->get('member_online');
-        if ($query) {
-          echo  json_encode($query->result());
-        }
+        $query = $this->db->query( $this->friendsListQuery());
+        $friends = array();
+          foreach ($query->result() as $row) {
+              array_push($friends,$row->user);
+          }
+         if ( sizeof($friends) > 0){
+             $this->db->select("t.mem_id,fname,lname,picture");
+             $this->db->from("member t");
+             $this->db->where("t.mem_id !=",$this->session->SESS_MEMBER_ID);
+             $this->db->where_in("t.mem_id",$friends);
+             $this->db->join('user_online', 'user_online.mem_id = t.mem_id');
+             $query = $this->db->get("");
+             if ($query->num_rows() > 0) {
+                 echo  json_encode($query->result());
+             }
+         }
       }
 
       public function listEmoji($index)      {
