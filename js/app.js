@@ -929,7 +929,7 @@
     app.factory('MyWebSocket', function($websocket) {
         // Open a WebSocket connection
         var socket,mem_id,response;
-        socket = $websocket('wss://thoughtifies.com');
+        socket = $websocket('wss://chat.thoughtifies.com');
         var protoSent = {
             init : '7000',
             newmsg  : '7001',
