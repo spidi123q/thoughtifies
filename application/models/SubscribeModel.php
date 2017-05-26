@@ -8,10 +8,6 @@
           $this->client = new Aws\Ses\SesClient([
               'version'=> 'latest',
               'region' => 'us-west-2',
-              'credentials' => [
-                  'key'    => $GLOBALS['AWS_KEY'],
-                  'secret' => $GLOBALS['AWS_SECRET']
-              ]
           ]);
           $this->request['Source'] = "noreply@thoughtifies.com";
       }
