@@ -1449,7 +1449,7 @@
                 var keyCode = $event.which || $event.keyCode;
                 if (keyCode === 13) {
                     $scope.sendMsg(scope.msg);
-                    scope.msg = "";
+                    scope.msg = '';
                 }
             };
 
