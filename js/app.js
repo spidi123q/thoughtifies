@@ -1445,6 +1445,13 @@
                     };
                 }
             };
+            $scope.checkIfEnterKeyWasPressed = function($event,scope){
+                var keyCode = $event.which || $event.keyCode;
+                if (keyCode === 13) {
+                    $scope.sendMsg(scope.msg);
+                    scope.msg = "";
+                }
+            };
 
 
 
@@ -3348,7 +3355,7 @@
         });
     });
 
-    app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil) {
+    app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil,$location) {
         $scope.bootscreen = false;
         $scope.chatButton = false;
         $scope.bootscreen = true;
@@ -3363,8 +3370,10 @@
 
         $scope.toggleLeft = buildToggler('left');
         function buildToggler(componentId) {
+            //console.log($location.path());
+            var currentUrl = $location.path();
             return function() {
-                if ($mdSidenav('jam').isOpen()) {
+                if ( currentUrl == '/messages') {
                     $mdSidenav('jam')
                         .close()
                         .then(function(){

@@ -208,7 +208,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 
 
 </body>
