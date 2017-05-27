@@ -926,10 +926,17 @@
 
 
 
-    app.factory('MyWebSocket', function($websocket) {
+    app.factory('MyWebSocket', function($websocket,$interval) {
         // Open a WebSocket connection
         var socket,mem_id,response;
         socket = $websocket(CHAT_URL);
+        socket.onOpen(function () {
+            $interval(function () {
+                socket = $websocket(CHAT_URL);
+            },100);
+        })
+
+
         var protoSent = {
             init : '7000',
             newmsg  : '7001',

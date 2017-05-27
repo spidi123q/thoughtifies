@@ -1,5 +1,5 @@
 <?php
-
+/** @var Facebook\Authentication\AccessToken $id_token */
 require APPPATH.'third_party/aws.phar';
 use Carbon\Carbon;
    class Login extends CI_Controller {
@@ -81,6 +81,7 @@ use Carbon\Carbon;
            $data = array(
              'mem_id' => $this->session->SESS_MEMBER_ID,
              'picture' => $this->session->SESS_USERIMAGE,
+               'chat_url' =>$_SERVER['CHAT_URL'],
             );
            $this->load->view('home/index',$data);
          }

@@ -9,7 +9,7 @@
               'version'=> 'latest',
               'region' => 'us-west-2',
           ]);
-          $this->request['Source'] = "noreply@thoughtifies.com";
+          $this->request['Source'] = "Thoughtifies <noreply@thoughtifies.com>";
       }
       private function setDestination(){
          $this->request['Destination']['ToAddresses'] = array($this->data->email);
