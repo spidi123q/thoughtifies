@@ -12,9 +12,9 @@
                   </md-list>
               </md-content>
             <md-content class="chat_dialog_content" ng-hide="!view">
-                <div style="padding: 5px" ng-repeat="item in emojilist" ng-click="onEmojiClick(item)">
-                  <div ng-bind-html="item"></div>
-                </div>
+                <span style="padding: 5px" ng-repeat="item in emojilist" ng-click="onEmojiClick(item)">
+                  <span ng-bind-html="item"></span>
+                </span>
 
             </md-content>
             <div class="typing-warn" ng-show="isTyping">
