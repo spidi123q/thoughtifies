@@ -203,6 +203,7 @@
   <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
   <script src="<?php echo base_url(); ?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-touch/angular-touch.min.js"></script>
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
   <!-- Your application bootstrap  -->

@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     /*global Map Map:true*/
-    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
+    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie','ngTouch']);
 
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -867,14 +867,14 @@
 
         };
 
-        var listEmoji = function (index) {
+        var listEmoji = function (index,switchVal) {
             $http({
                 method: 'GET',
                 url: 'msg/emoji/'+index,
             }).then(function successCallback(response) {
                 //
                 response.data.forEach(makeEmoji);
-                if( index <= 1791){
+                if( index <= 1791 ){
                     listEmoji(index+10);
                 }
 
@@ -1951,8 +1951,8 @@
                     }, 2000);
                 }
             });
-            $scope.onEmojiClickChat = function (item) {
-                console.log("emoji click");
+            $scope.onEmojiClick = function (item,$event) {
+                console.log($event);
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }

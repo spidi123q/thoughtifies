@@ -12,7 +12,7 @@
                   </md-list>
               </md-content>
             <md-content class="chat_dialog_content" ng-hide="!view">
-                <span style="padding: 5px" ng-repeat="item in emojilist" ng-click="onEmojiClickChat(item)">
+                <span  ng-repeat="item in emojilist" ng-click="onEmojiClick(item,$event)">
                   <span ng-bind-html="item"></span>
                 </span>
 
@@ -36,7 +36,7 @@
     <md-button class=""  ng-click="cancel()">
      close
     </md-button>
-   <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
+   <md-switch ng-model="switchVal" ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
     <md-button class="md-icon-button" aria-label="More">
         <i class="material-icons ">tag_faces</i>
