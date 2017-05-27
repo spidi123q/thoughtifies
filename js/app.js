@@ -855,7 +855,7 @@
             });
 
             uni = twemoji.parse(uni,  {
-                base: 'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-896777377482/emoji/',
+                base: 'https://thoughtifies.com/emoji/',
                 ext : '.png',
                 size :20
             });
