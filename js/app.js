@@ -1951,7 +1951,7 @@
                     }, 2000);
                 }
             });
-            $scope.onEmojiClick = function (item) {
+            $scope.onEmojiClickChat = function (item) {
                 console.log("emoji click");
                 if ($scope.msg === undefined) {
                     $scope.msg = '';

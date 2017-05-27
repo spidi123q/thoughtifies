@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" afterPath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -156,11 +157,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="1954" column="43" lean-forward="false" selection-start-line="1954" selection-start-column="43" selection-end-line="1954" selection-end-column="43" />
+            <state relative-caret-position="72">
+              <caret line="1953" column="35" lean-forward="false" selection-start-line="1953" selection-start-column="19" selection-end-line="1953" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -237,11 +238,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat_box.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chat_box.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+              <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#md-content#1;n#md-dialog-content#0;n#md-dialog#0;n#!!top" expanded="true" />
               </folding>
@@ -297,7 +298,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getDetails</find>
       <find>Setti</find>
       <find>getMyD</find>
       <find>inde</find>
@@ -327,6 +327,7 @@
       <find>onRating</find>
       <find>onClick</find>
       <find>EmojiS</find>
+      <find>chatIn</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;session-&gt;fb_acces_token</replace>
@@ -387,8 +388,8 @@
         <option value="$PROJECT_DIR$/application/models/SubscribeModel.php" />
         <option value="$PROJECT_DIR$/application/views/login/index.php" />
         <option value="$PROJECT_DIR$/application/models/SearchModel.php" />
-        <option value="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
         <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
       </list>
     </option>
   </component>
@@ -1082,11 +1083,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495899386635</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="test">
+      <created>1495899781028</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899781028</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150461000" />
+    <option name="totallyTimeSpent" value="150840000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1099,7 +1107,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25354213" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1110,7 +1117,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33777037" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33777037" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25428784" sideWeight="0.5111732" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37104824" sideWeight="0.49031296" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1592,21 +1599,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
+    <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#md-content#1;n#md-dialog-content#0;n#md-dialog#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="1953" column="35" lean-forward="false" selection-start-line="1953" selection-start-column="19" selection-end-line="1953" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
+    <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="1954" column="43" lean-forward="false" selection-start-line="1954" selection-start-column="43" selection-end-line="1954" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="180">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#md-content#1;n#md-dialog-content#0;n#md-dialog#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
