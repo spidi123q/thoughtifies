@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" afterPath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -156,11 +156,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="857" column="54" lean-forward="false" selection-start-line="857" selection-start-column="54" selection-end-line="857" selection-end-column="54" />
+            <state relative-caret-position="92">
+              <caret line="1954" column="43" lean-forward="false" selection-start-line="1954" selection-start-column="43" selection-end-line="1954" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -237,7 +237,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat_box.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chat_box.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -372,7 +372,6 @@
         <option value="$PROJECT_DIR$/.ebextensions/https.conf" />
         <option value="$PROJECT_DIR$/application/views/template/toast/app_invite.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/system/libraries/Session/Session.php" />
         <option value="dbtable:/7d969a93/0160391e-52a9-4b8c-a5c4-3068f1dfadf3/simple_login.friendship" />
         <option value="$PROJECT_DIR$/css/index.scss" />
@@ -389,6 +388,7 @@
         <option value="$PROJECT_DIR$/application/views/login/index.php" />
         <option value="$PROJECT_DIR$/application/models/SearchModel.php" />
         <option value="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -1068,11 +1068,25 @@
       <option name="project" value="LOCAL" />
       <updated>1495899102781</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="span fix">
+      <created>1495899176672</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899176672</updated>
+    </task>
+    <task id="LOCAL-00026" summary="test">
+      <created>1495899386635</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899386635</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149855000" />
+    <option name="totallyTimeSpent" value="150461000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1183,6 +1197,7 @@
     <MESSAGE value="redirection bug fix" />
     <MESSAGE value="email on new rating" />
     <MESSAGE value="new min files" />
+    <MESSAGE value="span fix" />
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
@@ -1577,14 +1592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="857" column="54" lean-forward="false" selection-start-line="857" selection-start-column="54" selection-end-line="857" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1592,6 +1599,14 @@
           <folding>
             <element signature="n#style#0;n#span#0;n#md-content#1;n#md-dialog-content#0;n#md-dialog#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="1954" column="43" lean-forward="false" selection-start-line="1954" selection-start-column="43" selection-end-line="1954" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

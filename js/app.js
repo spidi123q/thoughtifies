@@ -1952,7 +1952,7 @@
                 }
             });
             $scope.onEmojiClick = function (item) {
-                console.log("emoji click")
+                console.log("emoji click");
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
