@@ -397,6 +397,10 @@ use Carbon\Carbon;
             $id,$val
           );
           $this->SessionModel->onRating($data);
+          $this->SubscribeModel->initFlush();
+          $this->SubscribeModel->newRating($data);
+          $this->SubscribeModel->closeFlush();
+
         }
         public function getMyRating($value)      {
           $this->SessionModel->getMyRating($value);

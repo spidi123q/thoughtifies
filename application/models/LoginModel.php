@@ -127,7 +127,7 @@
           'picture' =>  $this->session->SESS_USERIMAGE,
             'chat_url' =>$_SERVER['CHAT_URL'],
          );
-         if ( isset($_SESSION['fb_acces_token']) ) {
+         if ( $this->session->has_userdata('fb_acces_token') ) {
              $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
             if (!$accessToken->isExpired()){
                 $this->load->view('home/index',$data);

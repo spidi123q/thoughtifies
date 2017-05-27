@@ -602,6 +602,7 @@ use Carbon\Carbon;
                 rating = VALUES(rating)";
           $this->db->query($qry,$data);
 
+
       }
 
       public function getMyRating($value)      {

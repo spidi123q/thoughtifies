@@ -209,7 +209,7 @@
   <script type="text/javascript" src="<?php echo base_url(); ?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.fixed.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
 
 

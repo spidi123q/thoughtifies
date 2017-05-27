@@ -34,6 +34,15 @@
              ), TRUE);
              $this->setBody($template);
          }
+         else if ($type === 2){
+             $this->request['Message']['Subject']['Data'] = 'Your thought rated by '.$this->session->SESS_FIRST_NAME." ".$this->session->SESS_LAST_NAME;
+             $template = $this->parser->parse('template/email/new_rating.html',array(
+                 'fname' => $this->session->SESS_FIRST_NAME,
+                 'lname' => $this->session->SESS_LAST_NAME,
+                 'base_url' =>base_url()
+             ), TRUE);
+             $this->setBody($template);
+         }
 
 
       }
@@ -61,6 +70,17 @@
          $this->data =  $query->row();
           $this->setDestination();
       }
+      private function getRatingDetails($data){
+              $this->db->select('mem_id');
+              $this->db->where('id',$data['1']);
+              $query =  $this->db->get('posts');
+              $result = $query->row();
+              if ($result->mem_id != $this->session->SESS_MEMBER_ID){
+                  $this->getReceiverDetails($result->mem_id);
+                  $this->setType(2);
+              }
+
+      }
       public function addFriend($receiver){
          $this->getReceiverDetails($receiver);
          $this->setType(0);
@@ -68,6 +88,9 @@
        public function newMessage($receiver){
            $this->getReceiverDetails($receiver);
            $this->setType(1);
+       }
+       public function newRating($data){
+           $this->getRatingDetails($data);
        }
       public function initFlush(){
           ignore_user_abort(true);
