@@ -12,7 +12,7 @@
                   </md-list>
               </md-content>
             <md-content class="chat_dialog_content" ng-hide="!view">
-                <span  ng-repeat="item in emojilist" ng-click="onEmojiClick(item,$event)">
+                <span  ng-repeat="item in emojilist" ng-click="onEmojiClickChat(item)">
                   <span ng-bind-html="item"></span>
                 </span>
 

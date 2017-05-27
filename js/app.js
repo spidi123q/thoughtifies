@@ -874,7 +874,8 @@
             }).then(function successCallback(response) {
                 //
                 response.data.forEach(makeEmoji);
-                if( index <= 1791 ){
+                //1791
+                if( index <= 10){
                     listEmoji(index+10);
                 }
 
@@ -932,7 +933,7 @@
         socket = $websocket(CHAT_URL);
         socket.onOpen(function () {
             $interval(function () {
-                socket = $websocket(CHAT_URL);
+                //socket = $websocket(CHAT_URL);
             },100);
         })
 
