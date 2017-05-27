@@ -36,7 +36,7 @@
     <md-button class=""  ng-click="cancel()">
      close
     </md-button>
-   <md-switch ng-model="switchVal" ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
+   <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
     <md-button class="md-icon-button" aria-label="More">
         <i class="material-icons ">tag_faces</i>

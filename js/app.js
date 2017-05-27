@@ -868,7 +868,7 @@
 
         };
 
-        var listEmoji = function (index,switchVal) {
+        var listEmoji = function (index) {
             $http({
                 method: 'GET',
                 url: 'msg/emoji/'+index,
