@@ -2,6 +2,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
+    <link rel="prefetch" href="<?php echo base_url(); ?>images/ripple.gif" as="image">
     <style rel="prefetch">
         body{
             background-image: url("<?php echo base_url(); ?>images/ripple.gif");

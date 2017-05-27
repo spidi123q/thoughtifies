@@ -731,8 +731,10 @@ use Carbon\Carbon;
 
       public function friendsCount($format = 0)      {
         $this->db->select('COUNT(*) as count');
+        $this->db->group_start();
         $this->db->where('sender',$this->session->SESS_MEMBER_ID);
         $this->db->or_where('receiver',$this->session->SESS_MEMBER_ID);
+        $this->db->group_end();
         $this->db->where('status',1);
         $count = $this->db->get('friendship');
         $count = $count->row();

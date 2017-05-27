@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Login.php" afterPath="$PROJECT_DIR$/application/controllers/Login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/LoginModel.php" afterPath="$PROJECT_DIR$/application/models/LoginModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/SessionModel.php" afterPath="$PROJECT_DIR$/application/models/SessionModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/SubscribeModel.php" afterPath="$PROJECT_DIR$/application/models/SubscribeModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home/index.php" afterPath="$PROJECT_DIR$/application/views/home/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,6 +35,38 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - simple_login@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="simple_login" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - simple_login@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="simple_login" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -64,18 +94,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SessionModel.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SessionModel.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="774" column="65" lean-forward="false" selection-start-line="774" selection-start-column="51" selection-end-line="774" selection-end-column="65" />
+            <state relative-caret-position="63">
+              <caret line="733" column="33" lean-forward="false" selection-start-line="733" selection-start-column="33" selection-end-line="733" selection-end-column="33" />
               <folding>
-                <marker date="1495865680521" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
-                <marker date="1495865680521" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
-                <marker date="1495865680521" expanded="true" signature="16672:16867" ph="SELECT membe... friendship" />
-                <marker date="1495865680521" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
-                <marker date="1495865680521" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
-                <marker date="1495865680521" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
+                <marker date="1495872329815" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
+                <marker date="1495872329815" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
+                <marker date="1495872329815" expanded="true" signature="16672:16867" ph="SELECT membe... friendship" />
+                <marker date="1495872329815" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
+                <marker date="1495872329815" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
+                <marker date="1495872329815" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
               </folding>
             </state>
           </provider>
@@ -85,13 +115,13 @@
         <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginModel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/LoginModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1297">
@@ -107,9 +137,24 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="80">
+              <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simple_login.friendship" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/7d969a93/0160391e-52a9-4b8c-a5c4-3068f1dfadf3/simple_login.friendship">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -135,7 +180,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>l</find>
       <find>logo</find>
       <find>chatI</find>
       <find>onEmojiClick</find>
@@ -165,6 +209,7 @@
       <find>logi</find>
       <find>getfb</find>
       <find>Graph returned an error:</find>
+      <find>count</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -211,13 +256,14 @@
         <option value="$PROJECT_DIR$/application/views/login/index.php" />
         <option value="$PROJECT_DIR$/application/views/template/toast/app_invite.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
-        <option value="$PROJECT_DIR$/application/views/home/index.php" />
         <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/application/models/SubscribeModel.php" />
-        <option value="$PROJECT_DIR$/application/models/SessionModel.php" />
         <option value="$PROJECT_DIR$/system/libraries/Session/Session.php" />
         <option value="$PROJECT_DIR$/application/controllers/Login.php" />
         <option value="$PROJECT_DIR$/application/models/LoginModel.php" />
+        <option value="$PROJECT_DIR$/application/views/home/index.php" />
+        <option value="dbtable:/7d969a93/0160391e-52a9-4b8c-a5c4-3068f1dfadf3/simple_login.friendship" />
+        <option value="$PROJECT_DIR$/application/models/SessionModel.php" />
       </list>
     </option>
   </component>
@@ -709,7 +755,7 @@
       <workItem from="1495777529364" duration="2101000" />
       <workItem from="1495779800422" duration="30000" />
       <workItem from="1495816651734" duration="270000" />
-      <workItem from="1495863003757" duration="4887000" />
+      <workItem from="1495863003757" duration="6175000" />
     </task>
     <task id="LOCAL-00001" summary="EsLint added">
       <created>1495255036369</created>
@@ -837,11 +883,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495803964959</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="facebook login redirection fixes">
+      <created>1495869260676</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1495869260676</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133833000" />
+    <option name="totallyTimeSpent" value="135121000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -854,12 +907,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25354213" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39800996" sideWeight="0.509687" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.49739" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3327787" sideWeight="0.49739" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -952,13 +1006,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/login/license.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/login/phone.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1238,29 +1285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="774" column="65" lean-forward="false" selection-start-line="774" selection-start-column="51" selection-end-line="774" selection-end-column="65" />
-          <folding>
-            <marker date="1495865680521" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
-            <marker date="1495865680521" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
-            <marker date="1495865680521" expanded="true" signature="16672:16867" ph="SELECT membe... friendship" />
-            <marker date="1495865680521" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
-            <marker date="1495865680521" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
-            <marker date="1495865680521" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpstorm.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-992">
@@ -1272,7 +1296,7 @@
     <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1284,6 +1308,42 @@
           <folding>
             <marker date="1495869221892" expanded="true" signature="7331:7425" ph="SELECT * FRO... member" />
             <marker date="1495869221892" expanded="true" signature="7966:8014" ph="UPDATE membe... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/7d969a93/0160391e-52a9-4b8c-a5c4-3068f1dfadf3/simple_login.friendship">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="733" column="33" lean-forward="false" selection-start-line="733" selection-start-column="33" selection-end-line="733" selection-end-column="33" />
+          <folding>
+            <marker date="1495872329815" expanded="true" signature="13147:13188" ph="SELECT pictu... member" />
+            <marker date="1495872329815" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
+            <marker date="1495872329815" expanded="true" signature="16672:16867" ph="SELECT membe... friendship" />
+            <marker date="1495872329815" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
+            <marker date="1495872329815" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
+            <marker date="1495872329815" expanded="true" signature="20503:20596" ph="SELECT membe... blocked" />
           </folding>
         </state>
       </provider>
