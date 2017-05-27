@@ -1790,10 +1790,7 @@
             }
 
         };
-        var insertMapData = function (mem_id,obj) {
-            var temp = msgMap.get(mem_id);
 
-        };
 
         $scope.showAdvanced = function(ev,user) {
             var mem_id = user.mem_id;
@@ -1955,7 +1952,7 @@
                 }
             });
             $scope.onEmojiClick = function (item) {
-
+                console.log("emoji click")
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
