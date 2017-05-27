@@ -61,7 +61,7 @@ use Carbon\Carbon;
         $this->LoginModel->loadIndex(4);
       }
       public function restoreSession()      {
-        if ($this->session->has_userdata('SESS_MEMBER_ID')) {
+        if ($this->session->has_userdata('fb_acces_token')) {
            $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
         }else {
           redirect(base_url());
@@ -101,30 +101,30 @@ use Carbon\Carbon;
 
       public function pageSelection($value)      {
 
-        if($value == 0){
-            $this->pageHome();
-        }
-        elseif ($value == 1) {
-          $this->pageSearch();
-        }
-        elseif ($value == 2) {
-          $this->pageMessages();
-        }
-        elseif ($value == 3) {
-          $this->pageRequests();
-        }
-        elseif ($value == 4) {
-          $this->pageSettings();
-        }
-        elseif ($value == 5) {
-          $this->pageTBS();
-        }
-        elseif ($value == 6) {
-          $this->pageMyPostRating();
-        }
-        else {
-          echo "invalid page selection";
-        }
+            if($value == 0){
+                $this->pageHome();
+            }
+            elseif ($value == 1) {
+              $this->pageSearch();
+            }
+            elseif ($value == 2) {
+              $this->pageMessages();
+            }
+            elseif ($value == 3) {
+              $this->pageRequests();
+            }
+            elseif ($value == 4) {
+              $this->pageSettings();
+            }
+            elseif ($value == 5) {
+              $this->pageTBS();
+            }
+            elseif ($value == 6) {
+              $this->pageMyPostRating();
+            }
+            else {
+              echo "invalid page selection";
+            }
 
 
 

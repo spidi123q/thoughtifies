@@ -38,8 +38,8 @@
             else if ($sel === 4) {
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
-           if (isset($_SESSION['fb_access_token']) && isset($this->session->SESS_MEMBER_ID)) {
-               $accessToken =  new Facebook\Authentication\AccessToken($_SESSION['fb_access_token']);
+           if (isset($this->session->fb_acces_token) && isset($this->session->SESS_MEMBER_ID)) {
+               $accessToken =  new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
                if (!$accessToken->isExpired()){
                    redirect(base_url()."login/1");
                }
@@ -127,8 +127,8 @@
           'picture' =>  $this->session->SESS_USERIMAGE,
             'chat_url' =>$_SERVER['CHAT_URL'],
          );
-         if ($this->session->has_userdata('fb_access_token')) {
-             $accessToken = new Facebook\Authentication\AccessToken($_SESSION['fb_access_token']);
+         if ( isset($_SESSION['fb_acces_token']) ) {
+             $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
             if (!$accessToken->isExpired()){
                 $this->load->view('home/index',$data);
                 $this->db->set('last_login',"NOW()",FALSE);
@@ -143,7 +143,7 @@
 
       private function loginFacebook()    {
         $fb = $this->fb;
-        $accessToken = new Facebook\Authentication\AccessToken($_SESSION['fb_access_token']);
+        $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
         $accessToken = $accessToken->getValue();
         try {
              // Get the \Facebook\GraphNodes\GraphUser object for the current user.
@@ -168,12 +168,12 @@
           } catch(\Facebook\Exceptions\FacebookResponseException $e) {
            // When Graph returns an error
            echo 'Graph returned an error: ' . $e->getMessage();
-           redirect(base_url());
+           //redirect(base_url());
            exit;
           } catch(\Facebook\Exceptions\FacebookSDKException $e) {
            // When validation fails or other local issues
            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            redirect(base_url());
+            //redirect(base_url());
            exit;
           }
       }
@@ -314,7 +314,7 @@
                   echo '<h3>Long-lived</h3>';
                   var_dump($accessToken->getValue());
                 }
-                $_SESSION['fb_access_token'] = $accessToken;
+              $_SESSION['fb_acces_token'] = $accessToken;
                 $this->loginFacebook();
 
                 // User is logged in with a long-lived access token.
