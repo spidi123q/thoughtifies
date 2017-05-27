@@ -1885,6 +1885,7 @@
                 $mdDialog.cancel();
                 notiService.setDialog(null,false);
                 chatButton.showButton();
+                EmojiService.stop();
             };
 
             $scope.answer = function() {

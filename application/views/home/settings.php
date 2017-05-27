@@ -132,6 +132,6 @@
     </md-content>
   </div>
 </div>
-<div ng-hide="!hideProfile()" layout="row" layout-align="center center">
+<div ng-if="!hideProfile()" layout="row" layout-align="center center">
   <h1>Sorry,you cant view this profile</h1>
 </div>
