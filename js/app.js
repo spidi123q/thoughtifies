@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     /*global Map Map:true*/
-    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie','ngTouch']);
+    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
 
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
