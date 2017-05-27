@@ -864,6 +864,7 @@
                 emojilist[top] = uni;
             }
             //emojilist.push(uni);
+            //ghjg
 
         };
 
