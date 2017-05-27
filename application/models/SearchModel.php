@@ -68,6 +68,7 @@
         union
         SELECT sender as users FROM blocked
         where receiver={$this->session->SESS_MEMBER_ID})");
+        $this->db->where('member_details.mem_id !=',$this->session->SESS_MEMBER_ID);
         $this->db->limit(10,$data->offset);
 
         //$advQry = $this->db->get_compiled_select('member_details');
@@ -118,7 +119,9 @@
         }
         $this->advQry = $this->db;
         $this->db->limit(10,$data->offset);
+        $this->db->where('member_details.mem_id !=',$this->session->SESS_MEMBER_ID);
         //$advQry = $this->db->get_compiled_select('member_details');
+
         $advQry = $this->db->select("COUNT(*) as count")->get('member_details');
         echo json_encode($advQry->row());
 
@@ -138,6 +141,7 @@
         $this->db->distinct();
         $this->db->select('CONCAT_WS( " ",fname, lname) as label');
         $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
+        $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
         $this->db->limit(10, 0);
         $query = $this->db->get('member');
         return $query->result();

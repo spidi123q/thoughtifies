@@ -12,9 +12,9 @@
                   </md-list>
               </md-content>
             <md-content class="chat_dialog_content" ng-hide="!view">
-                <span ng-repeat="item in emojilist" ng-click="onEmojiClick(item)">
-                  <span ng-bind-html="item"></span>
-                </span>
+                <md-content ng-repeat="item in emojilist" ng-click="onEmojiClick(item)">
+                  <md-content ng-bind-html="item"></md-content>
+                </md-content>
 
             </md-content>
             <div class="typing-warn" ng-show="isTyping">
@@ -39,7 +39,7 @@
    <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
     <md-button class="md-icon-button" aria-label="More">
-        <md-icon md-font-library="material-icons" class="md-light md-48">tag_faces</md-icon>
+        <i class="material-icons ">tag_faces</i>
     </md-button>
   </md-switch>
 
