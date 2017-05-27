@@ -365,8 +365,10 @@
                 $scope.view = false;
                 $scope.changeEmojiView = function () {
 
-                    //$scope.view = !$scope.view;
-                    if ($scope.view && $scope.emojilist.length === 0) {
+                    if(!$scope.view){
+                        EmojiService.stop();
+                    }
+                    if ($scope.view) {
 
                         $scope.emojilist = EmojiService.get();
                     }else {
@@ -846,7 +848,7 @@
 
     app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
 
-        var emojilist = [],list_code;
+        var emojilist = [],list_code,active;
         var makeEmoji = function (item) {
             list_code = item.list_code.split(/\s*\b\s*/);
             var uni = '';
@@ -877,7 +879,12 @@
                 response.data.forEach(makeEmoji);
                 //1791
                 if( index <= 1791){
-                    listEmoji(index+10);
+                    if(active){
+                        listEmoji(index+10);
+                    }
+                    else {
+                        return;
+                    }
                 }
 
 
@@ -887,12 +894,18 @@
         };
 
         var get = function () {
+            active = true;
+            emojilist = [];
             listEmoji(0);
             return emojilist;
         };
+        var stopLoading = function () {
+            active = false;
+        }
 
         return {
             get : get,
+            stop : stopLoading,
         };
 
     }]);
@@ -1402,7 +1415,10 @@
             $scope.changeEmojiView = function () {
 
                 //$scope.view = !$scope.view;
-                if ($scope.view && $scope.emojilist.length === 0) {
+                if(!$scope.view){
+                    EmojiService.stop();
+                }
+                if ($scope.view ) {
 
                     $scope.emojilist = EmojiService.get();
                 }else {
@@ -1907,7 +1923,10 @@
             $scope.view = false;
             $scope.changeEmojiView = function () {
                 //$scope.view = !$scope.view;
-                if ( $scope.emojilist.length === 0) {
+                if (!$scope.view){
+                    EmojiService.stop();
+                }
+                if ( $scope.view) {
 
                     $scope.emojilist = EmojiService.get();
                 }else {
