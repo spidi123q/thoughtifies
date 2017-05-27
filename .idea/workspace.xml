@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="test">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/angular-touch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/angular-touch.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/angular-touch.min.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/angular-touch/package.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/angular-material/.pleeeaserc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/angular-material/angular-material.fixed.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home/index.php" afterPath="$PROJECT_DIR$/application/views/home/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" afterPath="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
+=======
+    <list default="true" id="4272cc09-c434-46c2-b0f4-d76c8c272d9a" name="Default" comment="">
+>>>>>>> master
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -158,13 +181,24 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="200">
               <caret line="866" column="18" lean-forward="false" selection-start-line="866" selection-start-column="18" selection-end-line="866" selection-end-column="18" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="132">
+              <caret line="1954" column="34" lean-forward="false" selection-start-line="1954" selection-start-column="34" selection-end-line="1954" selection-end-column="34" />
+=======
+            <state relative-caret-position="212">
+              <caret line="876" column="22" lean-forward="false" selection-start-line="876" selection-start-column="22" selection-end-line="876" selection-end-column="22" />
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="SubscribeModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/SubscribeModel.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -208,10 +242,30 @@
             <state relative-caret-position="220">
               <caret line="11" column="68" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="11" selection-end-column="68" />
               <folding />
+=======
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="161">
+              <caret line="205" column="87" lean-forward="false" selection-start-line="205" selection-start-column="87" selection-end-line="205" selection-end-column="87" />
+              <folding />
+=======
+            <state relative-caret-position="121">
+              <caret line="203" column="0" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+              <folding>
+                <marker date="1495904240206" expanded="true" signature="11519:11537" ph="..." />
+                <marker date="1495904240206" expanded="true" signature="11686:11704" ph="..." />
+                <marker date="1495904240206" expanded="true" signature="11892:11910" ph="..." />
+                <marker date="1495904240206" expanded="true" signature="12007:12025" ph="..." />
+              </folding>
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="postcard.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/template/postcard.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -228,6 +282,24 @@
             <state relative-caret-position="180">
               <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
               <folding />
+=======
+      <file leaf-file-name="chat_box.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="86">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+              <folding />
+=======
+            <state relative-caret-position="46">
+              <caret line="14" column="84" lean-forward="false" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
+              <folding>
+                <marker date="1495904240206" expanded="true" signature="1805:2032" ph="..." />
+                <marker date="1495904240206" expanded="true" signature="1868:2008" ph="..." />
+                <marker date="1495904240206" expanded="true" signature="1927:1993" ph="..." />
+              </folding>
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
             </state>
           </provider>
         </entry>
@@ -266,10 +338,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getDetails</find>
-      <find>Setti</find>
-      <find>getMyD</find>
-      <find>inde</find>
       <find>msgC</find>
       <find>$GLOBALS['FB_APP_ID']</find>
       <find>ws:</find>
@@ -295,7 +363,11 @@
       <find>login/1</find>
       <find>onRating</find>
       <find>onClick</find>
+      <find>chatIn</find>
       <find>EmojiS</find>
+      <find>changeE</find>
+      <find>emojiser</find>
+      <find>onemojicl</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;session-&gt;fb_acces_token</replace>
@@ -309,7 +381,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="production" />
       </map>
     </option>
   </component>
@@ -349,13 +421,16 @@
         <option value="$PROJECT_DIR$/.pleeeaserc" />
         <option value="$PROJECT_DIR$/application/models/LoginModel.php" />
         <option value="$PROJECT_DIR$/application/models/DebugFile.php" />
-        <option value="$PROJECT_DIR$/application/views/home/index.php" />
         <option value="$PROJECT_DIR$/application/models/SessionModel.php" />
         <option value="$PROJECT_DIR$/application/controllers/Login.php" />
         <option value="$PROJECT_DIR$/application/views/template/email/new_rating.html" />
         <option value="$PROJECT_DIR$/application/models/SubscribeModel.php" />
         <option value="$PROJECT_DIR$/application/views/login/index.php" />
         <option value="$PROJECT_DIR$/application/models/SearchModel.php" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/application/views/home/index.php" />
+=======
+>>>>>>> master
         <option value="$PROJECT_DIR$/application/views/template/dialog/chat_box.php" />
         <option value="$PROJECT_DIR$/js/app.js" />
       </list>
@@ -456,8 +531,30 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-material" />
+              <option name="myItemId" value="angular-touch" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-touch" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-touch.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1038,11 +1135,40 @@
       <option name="project" value="LOCAL" />
       <updated>1495899102781</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="span fix">
+      <created>1495899176672</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899176672</updated>
+    </task>
+    <task id="LOCAL-00026" summary="test">
+      <created>1495899386635</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899386635</updated>
+    </task>
+    <task id="LOCAL-00027" summary="test">
+      <created>1495899781028</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1495899781028</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="149876000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="152819000" />
+=======
+    <option name="totallyTimeSpent" value="150850000" />
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1057,18 +1183,40 @@
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25354213" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39800996" sideWeight="0.509687" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Database" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3327787" sideWeight="0.49739" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+=======
+<<<<<<< HEAD
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33610648" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.327787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33610648" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+>>>>>>> master
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25354213" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3327787" sideWeight="0.49739" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33777037" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25428784" sideWeight="0.5111732" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37104824" sideWeight="0.49031296" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25428784" sideWeight="0.5111732" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37104824" sideWeight="0.49031296" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1141,6 +1289,7 @@
     <MESSAGE value="redirection bug fix" />
     <MESSAGE value="email on new rating" />
     <MESSAGE value="new min files" />
+    <MESSAGE value="span fix" />
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
@@ -1449,6 +1598,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/SearchModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1280">
+          <caret line="144" column="8" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+          <folding>
+            <marker date="1495897999313" expanded="true" signature="45:7691" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="804:2132" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="4379:4497" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="4546:4795" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="4842:5506" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="5071:5474" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="5574:6404" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="5961:6312" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="6028:6140" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="6035:6139" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="6468:6717" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="6782:7388" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="6994:7345" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="7061:7173" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="7068:7172" ph="..." />
+            <marker date="1495897999313" expanded="true" signature="7449:7684" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/SessionModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12060">
@@ -1458,7 +1632,6 @@
             <marker date="1495897999313" expanded="true" signature="13343:13395" ph="UPDATE membe... " />
             <marker date="1495897999313" expanded="true" signature="16672:16867" ph="SELECT membe... friendship" />
             <marker date="1495897999313" expanded="true" signature="17110:17287" ph="SELECT COUNT... friendship" />
-            <marker date="1495897999313" expanded="true" signature="19896:20142" ph="..." />
             <marker date="1495897999313" expanded="true" signature="19913:20098" ph="INSERT INTO rating... " />
           </folding>
         </state>
@@ -1472,11 +1645,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
+    <entry file="file://$PROJECT_DIR$/application/views/template/postcard.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2540">
           <caret line="127" column="103" lean-forward="false" selection-start-line="127" selection-start-column="103" selection-end-line="127" selection-end-column="103" />
           <folding />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="160">
+          <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="59" />
+          <folding />
+=======
+        <state relative-caret-position="121">
+          <caret line="203" column="0" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+          <folding>
+            <marker date="1495904240206" expanded="true" signature="11519:11537" ph="..." />
+            <marker date="1495904240206" expanded="true" signature="11686:11704" ph="..." />
+            <marker date="1495904240206" expanded="true" signature="11892:11910" ph="..." />
+            <marker date="1495904240206" expanded="true" signature="12007:12025" ph="..." />
+          </folding>
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
         </state>
       </provider>
     </entry>
@@ -1488,40 +1678,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/template/postcard.php">
+    <entry file="file://$PROJECT_DIR$/application/views/home/index.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="520">
-          <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="59" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="161">
+          <caret line="205" column="87" lean-forward="false" selection-start-line="205" selection-start-column="87" selection-end-line="205" selection-end-column="87" />
           <folding />
+=======
+        <state relative-caret-position="160">
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
+          <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="59" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/SearchModel.php">
+    <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2880">
           <caret line="144" column="8" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
           <folding>
             <marker date="1495897999313" expanded="true" signature="804:2132" ph="..." />
             <marker date="1495897999313" expanded="true" signature="4379:4497" ph="..." />
           </folding>
+=======
+        <state relative-caret-position="86">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding />
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="180">
           <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="132">
+          <caret line="1954" column="34" lean-forward="false" selection-start-line="1954" selection-start-column="34" selection-end-line="1954" selection-end-column="34" />
+=======
+        <state relative-caret-position="212">
+          <caret line="876" column="22" lean-forward="false" selection-start-line="876" selection-start-column="22" selection-end-line="876" selection-end-column="22" />
+>>>>>>> master
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="866" column="18" lean-forward="false" selection-start-line="866" selection-start-column="18" selection-end-line="866" selection-end-column="18" />
           <folding />
+=======
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/application/views/template/dialog/chat_box.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="14" column="84" lean-forward="false" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
+          <folding>
+            <marker date="1495904240206" expanded="true" signature="1805:2032" ph="..." />
+            <marker date="1495904240206" expanded="true" signature="1868:2008" ph="..." />
+            <marker date="1495904240206" expanded="true" signature="1927:1993" ph="..." />
+          </folding>
+>>>>>>> 8a7d9d3d286c3f3f645b716643e881f473a54cf4
         </state>
       </provider>
     </entry>
+>>>>>>> master
   </component>
 </project>

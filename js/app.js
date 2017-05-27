@@ -868,14 +868,15 @@
 
         };
 
-        var listEmoji = function (index) {
+        var listEmoji = function (index,switchVal) {
             $http({
                 method: 'GET',
                 url: 'msg/emoji/'+index,
             }).then(function successCallback(response) {
                 //
                 response.data.forEach(makeEmoji);
-                if( index <= 1791){
+                //1791
+                if( index <= 10){
                     listEmoji(index+10);
                 }
 
@@ -933,7 +934,7 @@
         socket = $websocket(CHAT_URL);
         socket.onOpen(function () {
             $interval(function () {
-                socket = $websocket(CHAT_URL);
+                //socket = $websocket(CHAT_URL);
             },100);
         })
 
@@ -1952,8 +1953,8 @@
                     }, 2000);
                 }
             });
-            $scope.onEmojiClick = function (item) {
-                console.log("emoji click")
+            $scope.onEmojiClick = function (item,$event) {
+                console.log($event);
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
