@@ -876,7 +876,7 @@
                 //
                 response.data.forEach(makeEmoji);
                 //1791
-                if( index <= 10){
+                if( index <= 1791){
                     listEmoji(index+10);
                 }
 
