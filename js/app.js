@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     /*global Map Map:true*/
-    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
+    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
 
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -348,7 +348,7 @@
             scope : {
                 adapter : '=adapter'
             },
-            controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
+            controller: ['$scope','$http','FileUploader','EmojiService', function ($scope,$http,FileUploader,EmojiService) {
 
                 $scope.picture = SESS_USERIMAGE;
                 console.log($scope.picture);
@@ -441,8 +441,6 @@
                 };
                 uploader.onCancelItem = function(fileItem, response, status, headers) {
                     console.info('onCancelItem', fileItem, response, status, headers);
-                    $scope.upload.progress = true;
-                    $scope.upload.button = false;
                 };
                 uploader.onCompleteItem = function(fileItem, response, status) {
                     //console.info('onCompleteItem', fileItem, response, status, headers);

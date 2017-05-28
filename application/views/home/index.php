@@ -182,7 +182,7 @@
 
 
   <!-- Angular Material requires Angular.js Libraries -->
-  <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.jss"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-aria/angular-aria.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-messages/angular-messages.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-route/angular-route.min.js" charset="utf-8"></script>
