@@ -3394,10 +3394,13 @@
 
     });
     app.controller('FbUsers',function ($scope,$http) {
+        $scope.fbFriends = [];
+        $scope.isLoading = true;
         $http({
             method: 'GET',
             url: 'fb/friends'
         }).then(function successCallback(response) {
+            $scope.isLoading = false;
             $scope.fbFriends =  response.data;
         }, function errorCallback() {
         });

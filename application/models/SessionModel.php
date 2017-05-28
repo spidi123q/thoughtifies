@@ -801,8 +801,7 @@ use Carbon\Carbon;
       public function getFbFriends(){
           $fb = $this->fb;
           try {
-              $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_access_token);
-              $response = $fb->get("me/friends", $this->session->fb_access_token);
+              $response = $fb->get("me/friends", $this->session->fb_acces_token_val);
               $friends = $response->getGraphEdge();
               if ($fb->next($friends)) {
                   $allFriends = array();

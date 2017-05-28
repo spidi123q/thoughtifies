@@ -144,6 +144,7 @@
          if ( $this->session->has_userdata('fb_acces_token') ) {
              $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
             if (!$accessToken->isExpired()){
+                $this->session->set_userdata('fb_acces_token_val',(String)$accessToken->getValue());
                 $this->load->view('home/index',$data);
                 $this->db->set('last_login',"NOW()",FALSE);
                 $this->db->where('mem_id', $this->session->SESS_MEMBER_ID);
