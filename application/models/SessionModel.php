@@ -59,6 +59,8 @@ use Carbon\Carbon;
           }
         }
         else {
+            $newFile = $data->data('file_path').$data->data('raw_name').'.jpg';
+            rename($data->data('full_path'),$newFile);
           return true;
         }
       }
@@ -116,7 +118,7 @@ use Carbon\Carbon;
 
           public function postImageUpload()      {
             $config['upload_path']          = 'images/userimages/posts';
-            $config['allowed_types']        = 'gif|jpg|png';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
             $config['max_size']             = 10000;
             $config['max_width']            = 3000;
             $config['max_height']           = 3000;
@@ -148,7 +150,7 @@ use Carbon\Carbon;
 
       public function dpUpload()      {
         $config['upload_path']          = 'images/userimages';
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
         $config['max_size']             = 10000;
         $config['max_width']            = 3000;
         $config['max_height']           = 3000;
