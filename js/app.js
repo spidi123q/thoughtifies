@@ -441,6 +441,8 @@
                 };
                 uploader.onCancelItem = function(fileItem, response, status, headers) {
                     console.info('onCancelItem', fileItem, response, status, headers);
+                    $scope.upload.progress = true;
+                    $scope.upload.button = false;
                 };
                 uploader.onCompleteItem = function(fileItem, response, status) {
                     //console.info('onCompleteItem', fileItem, response, status, headers);

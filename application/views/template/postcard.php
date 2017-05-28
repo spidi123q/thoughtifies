@@ -28,7 +28,7 @@
           </span>
         </span>
         <div ng-show="fileView" layout="row" layout-align="center center">
-            <input class="ng-hide" id="input-file-id"  type="file" nv-file-select="" uploader="uploader" />
+            <input class="ng-hide" id="input-file-id"  type="file" accept="image/*" size="100" nv-file-select="" uploader="uploader" />
             <label for="input-file-id" class="md-button md-primary" style="width: inherit">
                   Choose file
             </label>
