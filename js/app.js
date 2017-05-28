@@ -362,6 +362,7 @@
                 $scope.progress = false;
                 $scope.fileView = false;
                 $scope.clearButtonView = false;
+                $scope.error = '';
                 $scope.onUploadButtonClick = function () {
                     $scope.fileView = !$scope.fileView;
                     if ($scope.fileView){
@@ -427,11 +428,19 @@
                     $scope.upload.status = progress;
                 };
                 uploader.onSuccessItem = function(fileItem, response, status, headers) {
-                    console.info('onSuccessItem', fileItem, response, status, headers);
+                   // console.info('onSuccessItem', fileItem, response, status, headers);
                     $scope.upload.progress = true;
                     $scope.upload.button = false;
-                    if (response.status) {
-                        $scope.upload.response = response;
+                   // console.log(response.error+"rge");
+                    if (response.error !== undefined) {
+                        $scope.error = response.error;
+                        uploader.clearQueue();
+                    }
+                    else {
+                        $scope.error = '';
+                        if (response.status) {
+                            $scope.upload.response = response;
+                        }
                     }
 
 

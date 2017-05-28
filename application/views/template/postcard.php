@@ -29,7 +29,7 @@
         </span>
         <div ng-show="fileView" layout="row" layout-align="center center">
             <input class="ng-hide" id="input-file-id"  type="file" accept="image/*" size="100" nv-file-select="" uploader="uploader" />
-            <label for="input-file-id" class="md-button md-primary" style="width: inherit">
+            <label ng-click="uploader.clearQueue();" for="input-file-id" class="md-button md-primary" style="width: inherit">
                   Choose file
             </label>
             <md-button ng-show="clearButtonView" ng-click="onClearButtonClick()">
@@ -37,12 +37,13 @@
             </md-button>
         </div>
         <div layout="row" layout-align="center center">
-            <div ng-repeat="item in uploader.queue">
+            <div ng-if="error == ''" ng-repeat="item in uploader.queue">
                 <span layout="column">
                   <div  ng-thumb="{ file: item._file, height: 100 }"></div>
                   <md-progress-linear ng-hide="upload.progress" md-mode="determinate" value="{{upload.status}}" class="md-warn"></md-progress-linear>
                 </span>
             </div>
+            <span style="padding: 10px" ng-bind-html="error"></span>
 
         </div>
         <md-content class="blue-slow"  ng-show="view" style="height:100%;background-color: ">

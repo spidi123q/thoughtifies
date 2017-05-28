@@ -117,7 +117,7 @@ use Carbon\Carbon;
           public function postImageUpload()      {
             $config['upload_path']          = 'images/userimages/posts';
             $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 2000;
+            $config['max_size']             = 10000;
             $config['max_width']            = 3000;
             $config['max_height']           = 3000;
             $config['encrypt_name']       = TRUE;
@@ -127,8 +127,7 @@ use Carbon\Carbon;
             if ( ! $this->upload->do_upload('file'))
             {
                     $error = array('error' => $this->upload->display_errors());
-
-                    print_r($error);
+                     echo json_encode($error);
             }
             else
             {
@@ -150,7 +149,7 @@ use Carbon\Carbon;
       public function dpUpload()      {
         $config['upload_path']          = 'images/userimages';
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 2000;
+        $config['max_size']             = 10000;
         $config['max_width']            = 3000;
         $config['max_height']           = 3000;
         $config['encrypt_name']       = TRUE;
