@@ -320,4 +320,8 @@ a {
 .hash-tag {
   color: darkcyan; }
 
+.enter {
+  opacity: 0;
+  transition: all linear .5s; }
+
 /*# sourceMappingURL=index.css.map */

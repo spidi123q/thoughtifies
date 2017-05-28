@@ -182,10 +182,10 @@
 
 
   <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.jss"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-messages/angular-messages.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-route/angular-route.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
@@ -210,7 +210,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
 
 
 </body>

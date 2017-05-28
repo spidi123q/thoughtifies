@@ -1,5 +1,5 @@
 {
-  "in": "css/index.css",
+  "in": "css/index.scss",
   "out": "css/index.fixed.css",
   "sass": true
 }
