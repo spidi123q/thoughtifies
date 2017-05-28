@@ -62,12 +62,12 @@
                         </div>
                         <md-divider md-inset></md-divider>
                       </md-list-item>
-                      <md-list-item  class="md-3-line"  >
+                      <md-list-item ng-if="settingsData.config"  class="md-3-line"  >
                         <img ng-src="<?php echo base_url(); ?>images/flaticons/svg/001-hand-shake.svg" class="md-avatar" alt="{{item.who}}" >
                         <div class="md-list-item-text">
                           <p>
                             FRIENDS
-                            <md-button ng-if="settingsData.config" class="md-secondary md-icon-button" href="#/request/1" aria-label="call">
+                            <md-button  class="md-secondary md-icon-button" href="#/request/1" aria-label="call">
                               <md-icon md-font-library="material-icons" class="md-light md-48">remove_red_eye</md-icon>
                             </md-button>
                           </p>
