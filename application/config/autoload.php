@@ -133,4 +133,4 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
-$autoload['libraries'] = array('database','session','parser','email');
+$autoload['libraries'] = array('database','session','parser','user_agent');

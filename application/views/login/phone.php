@@ -18,3 +18,8 @@
 
   </script>
 </div>
+<div class="chrome-button {chromebutton}">
+    <span onclick="toggleBlur()">
+        Add to Home Screen
+    </span>
+</div>

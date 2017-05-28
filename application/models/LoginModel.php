@@ -24,7 +24,13 @@
             );
 
             if ($sel === 0) {
-              $data['content'] =  $this->load->view('login/phone','',TRUE);
+                if($this->agent->is_mobile() && ($this->agent->browser() == 'Chrome')){
+                    $buttonChrome['chromebutton'] =  '';
+                }
+                else{
+                    $buttonChrome['chromebutton'] =  'hide';
+                }
+              $data['content'] =  $this->parser->parse('login/phone',$buttonChrome,TRUE);
             }
             else if ($sel === 1) {
               $data['content'] =  $this->load->view('login/license','',TRUE);
@@ -38,6 +44,14 @@
             else if ($sel === 4) {
               $data['content'] =  $this->load->view('login/contact','',TRUE);
             }
+           if($this->agent->is_mobile() && ($this->agent->browser() == 'Chrome')){
+               $data['chrome_home'] =  $this->load->view('login/chrome_home','',TRUE);
+            }
+            else{
+                $data['chrome_home'] = '';
+            }
+
+
            if (isset($this->session->fb_acces_token) && isset($this->session->SESS_MEMBER_ID)) {
                $accessToken =  new Facebook\Authentication\AccessToken($this->session->fb_acces_token);
                if (!$accessToken->isExpired()){
