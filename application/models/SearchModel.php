@@ -138,10 +138,24 @@
         return $query->result();
       }
       public function searchByName($value)      {
+          $this->db->select('receiver as users');
+          $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+          $qry1 = $this->db->get_compiled_select('blocked');
+          $this->db->select('sender as users');
+          $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+          $qry2 = $this->db->get_compiled_select('blocked');
+          $qry = "($qry1) UNION ($qry2)";
+          $query = $this->db->query($qry);
+          $blockedUser = array();
+          foreach ($query->result() as $row){
+              array_push($blockedUser,$row->users);
+          }
+
         $this->db->distinct();
         $this->db->select('CONCAT_WS( " ",fname, lname) as label');
         $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
         $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
+        $this->db->where_not_in('mem_id',$blockedUser);
         $this->db->limit(10, 0);
         $query = $this->db->get('member');
         return $query->result();
