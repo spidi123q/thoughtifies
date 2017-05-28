@@ -360,6 +360,18 @@
                     }
                 };
                 $scope.progress = false;
+                $scope.fileView = false;
+                $scope.clearButtonView = false;
+                $scope.onUploadButtonClick = function () {
+                    $scope.fileView = !$scope.fileView;
+                    if ($scope.fileView){
+                        $scope.classUploadButton = 'md-warn';
+                    }else {
+                        $scope.classUploadButton = '';
+                    }
+                };
+                $scope.classUploadButton = '';
+
 
                 $scope.emojilist = [];
                 $scope.view = false;
@@ -395,6 +407,7 @@
                 };
                 uploader.onAfterAddingFile = function(fileItem) {
                     console.info('onAfterAddingFile', fileItem);
+                    $scope.clearButtonView = true;
                 };
                 uploader.onAfterAddingAll = function() {
                     //console.info('onAfterAddingAll', addedFileItems);
@@ -464,13 +477,13 @@
                     // Twitter
                     // Must use $sce.trustAsHtml() as of Angular 1.2.x
 
-
-
-
                 };
-                $scope.focus = function () {
-                };
-                $scope.unfocus = function () {
+                $scope.onClearButtonClick = function () {
+                    uploader.clearQueue();
+                    $scope.upload.response = {
+                        file : false,
+                    };
+                    $scope.clearButtonView = false;
                 };
 
 
