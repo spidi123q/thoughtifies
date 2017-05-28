@@ -1,4 +1,4 @@
-<div layout="column" ng-hide="hideProfile()">
+<div layout="column" ng-if="!hideProfile()">
   <div flex="35"  layout="column"  layout-align="center center" layout-align="space-between center" layout-margin>
 
         <div layout="row" >
@@ -132,6 +132,6 @@
     </md-content>
   </div>
 </div>
-<div ng-if="!hideProfile()" layout="row" layout-align="center center">
+<div ng-if="hideProfile()" layout="row" layout-align="center center">
   <h1>Sorry,you cant view this profile</h1>
 </div>
