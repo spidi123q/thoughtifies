@@ -550,7 +550,20 @@ use Carbon\Carbon;
         'receiver' => $id,
         );
         $this->db->set('date_time', 'NOW()', FALSE);
-        echo $this->db->insert('blocked', $data);
+        $this->db->insert('blocked', $data);
+        $this->db->group_start();
+        $this->db->where(array(
+            'sender' => $this->session->SESS_MEMBER_ID,
+            'receiver' => $id
+        ));
+        $this->db->group_end();
+          $this->db->or_group_start();
+          $this->db->where(array(
+              'sender' => $id,
+              'receiver' => $this->session->SESS_MEMBER_ID
+          ));
+          $this->db->group_end();
+          echo $this->db->delete('friendship');
       }
       public function reportPost($data)      {
         echo $this->db->insert('report_post',$data);
