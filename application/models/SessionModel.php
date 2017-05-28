@@ -37,7 +37,11 @@ use Carbon\Carbon;
         $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
         $this->db->where('status',1);
         $table2 = $this->db->get_compiled_select('friendship');
-        return "($table1 UNION $table2) as t";
+        $qry = "($table1 )UNION ($table2)";
+        $this->db->select('*');
+        $this->db->from("($qry)");
+        $qry = $this->db->get_compiled_select();
+        return "($qry as u) as t";
       }
       private function convertToJPEG($data)      {
 
@@ -51,7 +55,7 @@ use Carbon\Carbon;
                imagejpeg($image,$newFile,100);
                 if (unlink($data->data('full_path'))) {
                   //echo "deleted";
-                  return true;;
+                  return true;
                 }
                 else {
                   return false;

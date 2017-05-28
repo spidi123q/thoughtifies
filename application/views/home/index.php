@@ -144,6 +144,9 @@
              </div>
            </md-list-item>
         </md-list>
+           <div class="empty_msg" style="margin: 5px">
+               Online users
+           </div>
         <div class="empty_msg" ng-if="list[0].length === 0 || list === undefined">
               No online users
         </div>

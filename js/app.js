@@ -3455,7 +3455,7 @@
             var flag = localStorage.getItem('hasInvited');
             if (flag === null){
                 $mdToast.show({
-                    hideDelay   : 3000,
+                    hideDelay   : 30000,
                     position    : 'bottom right',
                     controller  : ToastController,
                     templateUrl : 'toast/0'
