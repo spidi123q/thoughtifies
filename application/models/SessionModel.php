@@ -37,7 +37,11 @@ use Carbon\Carbon;
         $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
         $this->db->where('status',1);
         $table2 = $this->db->get_compiled_select('friendship');
-        return "($table1 UNION $table2) as t";
+        $qry = "($table1 )UNION ($table2)";
+        $this->db->select('*');
+        $this->db->from("($qry)");
+        $qry = $this->db->get_compiled_select();
+        return "($qry as u) as t";
       }
       private function convertToJPEG($data)      {
 
@@ -51,7 +55,7 @@ use Carbon\Carbon;
                imagejpeg($image,$newFile,100);
                 if (unlink($data->data('full_path'))) {
                   //echo "deleted";
-                  return true;;
+                  return true;
                 }
                 else {
                   return false;
@@ -59,6 +63,8 @@ use Carbon\Carbon;
           }
         }
         else {
+            $newFile = $data->data('file_path').$data->data('raw_name').'.jpg';
+            rename($data->data('full_path'),$newFile);
           return true;
         }
       }
@@ -116,8 +122,8 @@ use Carbon\Carbon;
 
           public function postImageUpload()      {
             $config['upload_path']          = 'images/userimages/posts';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 2000;
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 10000;
             $config['max_width']            = 3000;
             $config['max_height']           = 3000;
             $config['encrypt_name']       = TRUE;
@@ -127,8 +133,7 @@ use Carbon\Carbon;
             if ( ! $this->upload->do_upload('file'))
             {
                     $error = array('error' => $this->upload->display_errors());
-
-                    print_r($error);
+                     echo json_encode($error);
             }
             else
             {
@@ -149,8 +154,8 @@ use Carbon\Carbon;
 
       public function dpUpload()      {
         $config['upload_path']          = 'images/userimages';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 2000;
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10000;
         $config['max_width']            = 3000;
         $config['max_height']           = 3000;
         $config['encrypt_name']       = TRUE;
@@ -232,7 +237,7 @@ use Carbon\Carbon;
           $imgUrl = "images/userimages/".$data['picture'].'.jpg';
           $imgUrl = $this->createThumb($imgUrl,150,$data['picture']);
           /*
-          $im = file_get_contents($imgUrl);
+          $im = file_get_contents($imgUrl);//
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
           */
@@ -545,7 +550,20 @@ use Carbon\Carbon;
         'receiver' => $id,
         );
         $this->db->set('date_time', 'NOW()', FALSE);
-        echo $this->db->insert('blocked', $data);
+        $this->db->insert('blocked', $data);
+        $this->db->group_start();
+        $this->db->where(array(
+            'sender' => $this->session->SESS_MEMBER_ID,
+            'receiver' => $id
+        ));
+        $this->db->group_end();
+          $this->db->or_group_start();
+          $this->db->where(array(
+              'sender' => $id,
+              'receiver' => $this->session->SESS_MEMBER_ID
+          ));
+          $this->db->group_end();
+          echo $this->db->delete('friendship');
       }
       public function reportPost($data)      {
         echo $this->db->insert('report_post',$data);
@@ -571,6 +589,7 @@ use Carbon\Carbon;
           $query = $this->db->get("rating");
           $result2 = $query->row();
           $result["$key"]["my_rating"] = isset($result2)?$result2->rating:null;
+
         }
         echo json_encode($result);
       }
@@ -783,8 +802,7 @@ use Carbon\Carbon;
       public function getFbFriends(){
           $fb = $this->fb;
           try {
-              $accessToken = new Facebook\Authentication\AccessToken($this->session->fb_access_token);
-              $response = $fb->get("me/friends", $this->session->fb_access_token);
+              $response = $fb->get("me/friends", $this->session->fb_acces_token_val);
               $friends = $response->getGraphEdge();
               if ($fb->next($friends)) {
                   $allFriends = array();

@@ -4,9 +4,12 @@
       <div  layout="row" layout-align="center center" style="margin-top:20px">
           <div  md-whiteframe="1" class="recent_visitors">
               <div class="rv_header">
-                  Your Facebook friends <span ng-if="recentVisitors.length === 0"><div class="empty_msg" >
-                No friends
-              </div> </span>
+                  Your Facebook friends
+                  <span ng-if="fbFriends.length === 0">
+                      <div ng-hide="isLoading" class="empty_msg" >
+                        No friends
+                      </div>
+                  </span>
               </div>
               <div  layout="row" style="overflow-x:auto">
                   <div layout="column" layout-align="center center" ng-repeat="item in fbFriends">
@@ -17,8 +20,9 @@
                       </friendpanel>
 
                   </div>
-              </div>
 
+              </div>
+              <md-progress-linear ng-show="isLoading" md-mode="indeterminate"></md-progress-linear>
 
           </div>
       </div>

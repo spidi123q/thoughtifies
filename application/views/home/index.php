@@ -2,7 +2,6 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#26A69A" />
-    <link rel="prefetch" href="<?php echo base_url(); ?>images/ripple.gif" as="image">
     <style rel="prefetch">
         body{
             background-image: url("<?php echo base_url(); ?>images/ripple.gif");
@@ -137,6 +136,9 @@
              </md-button>
            </div>
          </div>
+           <div class="empty_msg" style="margin: 5px">
+               Online users
+           </div>
          <md-list flex>
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user)">
              <img image-fetch img-src="{{user.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
@@ -145,8 +147,9 @@
              </div>
            </md-list-item>
         </md-list>
-        <div class="empty_msg" ng-if="list[0].length === 0 || list === undefined">
-              No online users
+
+        <div class="empty_msg" ng-if="list[0].length === 0 || list === undefined" style="font-size: smaller">
+              Empty
         </div>
           <audio-fetch><audio-fetch>
       </md-content>
@@ -183,10 +186,10 @@
 
 
   <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" charset="utf-8"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-messages/angular-messages.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-route/angular-route.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
@@ -203,14 +206,15 @@
   <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
   <script src="<?php echo base_url(); ?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
   <!-- Your application bootstrap  -->
   <script type="text/javascript" src="<?php echo base_url(); ?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.fixed.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
 
 
 </body>

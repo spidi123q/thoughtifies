@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     /*global Map Map:true*/
-    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','linkify','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
+    var app = angular.module('BlankApp', ['rzModule','ngMaterial','ngRoute','ui.scroll', 'ui.scroll.grid','ngWebSocket','angularFileUpload','luegg.directives','contenteditable','jkAngularRatingStars','ngSanitize', 'ngAnimate','angular-loading-bar','ngCroppie']);
 
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -348,7 +348,7 @@
             scope : {
                 adapter : '=adapter'
             },
-            controller: ['$scope','$http','FileUploader','linkify','EmojiService', function ($scope,$http,FileUploader,linkify,EmojiService) {
+            controller: ['$scope','$http','FileUploader','EmojiService', function ($scope,$http,FileUploader,EmojiService) {
 
                 $scope.picture = SESS_USERIMAGE;
                 console.log($scope.picture);
@@ -360,13 +360,28 @@
                     }
                 };
                 $scope.progress = false;
+                $scope.fileView = false;
+                $scope.clearButtonView = false;
+                $scope.error = '';
+                $scope.onUploadButtonClick = function () {
+                    $scope.fileView = !$scope.fileView;
+                    if ($scope.fileView){
+                        $scope.classUploadButton = 'md-warn';
+                    }else {
+                        $scope.classUploadButton = '';
+                    }
+                };
+                $scope.classUploadButton = '';
+
 
                 $scope.emojilist = [];
                 $scope.view = false;
                 $scope.changeEmojiView = function () {
 
-                    //$scope.view = !$scope.view;
-                    if ($scope.view && $scope.emojilist.length === 0) {
+                    if(!$scope.view){
+                        EmojiService.stop();
+                    }
+                    if ($scope.view) {
 
                         $scope.emojilist = EmojiService.get();
                     }else {
@@ -393,6 +408,7 @@
                 };
                 uploader.onAfterAddingFile = function(fileItem) {
                     console.info('onAfterAddingFile', fileItem);
+                    $scope.clearButtonView = true;
                 };
                 uploader.onAfterAddingAll = function() {
                     //console.info('onAfterAddingAll', addedFileItems);
@@ -412,11 +428,19 @@
                     $scope.upload.status = progress;
                 };
                 uploader.onSuccessItem = function(fileItem, response, status, headers) {
-                    console.info('onSuccessItem', fileItem, response, status, headers);
+                   // console.info('onSuccessItem', fileItem, response, status, headers);
                     $scope.upload.progress = true;
                     $scope.upload.button = false;
-                    if (response.status) {
-                        $scope.upload.response = response;
+                   // console.log(response.error+"rge");
+                    if (response.error !== undefined) {
+                        $scope.error = response.error;
+                        uploader.clearQueue();
+                    }
+                    else {
+                        $scope.error = '';
+                        if (response.status) {
+                            $scope.upload.response = response;
+                        }
                     }
 
 
@@ -462,13 +486,13 @@
                     // Twitter
                     // Must use $sce.trustAsHtml() as of Angular 1.2.x
 
-
-
-
                 };
-                $scope.focus = function () {
-                };
-                $scope.unfocus = function () {
+                $scope.onClearButtonClick = function () {
+                    uploader.clearQueue();
+                    $scope.upload.response = {
+                        file : false,
+                    };
+                    $scope.clearButtonView = false;
                 };
 
 
@@ -496,6 +520,7 @@
                 $scope.openMenu = function($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
+                console.log($scope.item);
                 $scope.showPrompt = function(ev) {
                     // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.prompt()
@@ -529,6 +554,9 @@
 
                 $scope.onRating = function(rating,id){
 
+                    if($scope.my_rating === null){
+                        $scope.item.no_rating++;
+                    }
                     $http({
                         method: 'GET',
                         url: 'post/onrating/'+id+'/'+rating,
@@ -846,7 +874,7 @@
 
     app.factory('EmojiService',['$http','$rootScope',function($http,$rootScope) {
 
-        var emojilist = [],list_code;
+        var emojilist = [],list_code,active;
         var makeEmoji = function (item) {
             list_code = item.list_code.split(/\s*\b\s*/);
             var uni = '';
@@ -865,6 +893,7 @@
             }
             //
             //emojilist.push(uni);
+            //ghjg
 
         };
 
@@ -876,8 +905,13 @@
                 //
                 response.data.forEach(makeEmoji);
                 //1791
-                if( index <= 10){
-                    listEmoji(index+10);
+                if( index <= 1791){
+                    if(active){
+                        listEmoji(index+10);
+                    }
+                    else {
+                        return;
+                    }
                 }
 
 
@@ -887,12 +921,18 @@
         };
 
         var get = function () {
+            active = true;
+            emojilist = [];
             listEmoji(0);
             return emojilist;
         };
+        var stopLoading = function () {
+            active = false;
+        }
 
         return {
             get : get,
+            stop : stopLoading,
         };
 
     }]);
@@ -1402,7 +1442,10 @@
             $scope.changeEmojiView = function () {
 
                 //$scope.view = !$scope.view;
-                if ($scope.view && $scope.emojilist.length === 0) {
+                if(!$scope.view){
+                    EmojiService.stop();
+                }
+                if ($scope.view ) {
 
                     $scope.emojilist = EmojiService.get();
                 }else {
@@ -1869,6 +1912,7 @@
                 $mdDialog.cancel();
                 notiService.setDialog(null,false);
                 chatButton.showButton();
+                EmojiService.stop();
             };
 
             $scope.answer = function() {
@@ -1907,7 +1951,10 @@
             $scope.view = false;
             $scope.changeEmojiView = function () {
                 //$scope.view = !$scope.view;
-                if ( $scope.emojilist.length === 0) {
+                if (!$scope.view){
+                    EmojiService.stop();
+                }
+                if ( $scope.view) {
 
                     $scope.emojilist = EmojiService.get();
                 }else {
@@ -1953,8 +2000,8 @@
                     }, 2000);
                 }
             });
-            $scope.onEmojiClickChat = function (item) {
-                console.log("emoji click");
+            $scope.onEmojiClick = function (item,$event) {
+                console.log($event);
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
@@ -3352,10 +3399,13 @@
 
     });
     app.controller('FbUsers',function ($scope,$http) {
+        $scope.fbFriends = [];
+        $scope.isLoading = true;
         $http({
             method: 'GET',
             url: 'fb/friends'
         }).then(function successCallback(response) {
+            $scope.isLoading = false;
             $scope.fbFriends =  response.data;
         }, function errorCallback() {
         });
@@ -3413,7 +3463,7 @@
             var flag = localStorage.getItem('hasInvited');
             if (flag === null){
                 $mdToast.show({
-                    hideDelay   : 3000,
+                    hideDelay   : 30000,
                     position    : 'bottom right',
                     controller  : ToastController,
                     templateUrl : 'toast/0'
