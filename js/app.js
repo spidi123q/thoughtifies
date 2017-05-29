@@ -968,8 +968,8 @@
         socket = $websocket(CHAT_URL);
         socket.onOpen(function () {
             $interval(function () {
-                //socket = $websocket(CHAT_URL);
-            },100);
+                socket = $websocket(CHAT_URL);
+            },3600);
         })
 
 
