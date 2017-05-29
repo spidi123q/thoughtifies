@@ -237,7 +237,7 @@ use Carbon\Carbon;
           $imgUrl = "images/userimages/".$data['picture'].'.jpg';
           $imgUrl = $this->createThumb($imgUrl,150,$data['picture']);
           /*
-          $im = file_get_contents($imgUrl);
+          $im = file_get_contents($imgUrl);//
           $im = base64_encode($im);
           $im = 'data: '.mime_content_type($imgUrl).';base64,'.$im;
           */
