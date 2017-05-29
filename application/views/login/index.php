@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

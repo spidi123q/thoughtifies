@@ -1,0 +1,4 @@
+{
+  "in": "build/loading-bar.css",
+  "out": "build/loading-bar.min.css"
+}

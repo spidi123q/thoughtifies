@@ -193,28 +193,26 @@
   <script src="<?php echo base_url(); ?>node_modules/angular-websocket/dist/angular-websocket.min.js" charset="utf-8"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-ui-scroll/dist/ui-scroll-grid.min.js"></script>
-  <script src="<?php echo base_url(); ?>js/angular-file-upload.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
+  <script src="<?php echo base_url(); ?>js/angular-file-upload.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angularjs-scroll-glue/src/scrollglue.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.js"></script>
-  <script src="<?php echo base_url(); ?>node_modules/angular-linkify/angular-linkify.js"></script>
+  <script src="<?php echo base_url(); ?>js/jk-rating-stars/dist/jk-rating-stars.min.js"></script>
     <script src="<?php echo base_url(); ?>js/twemoji.min.js"></script>
   <script src="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/angularjs-slider/dist/rzslider.min.css"/>
   <script src="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.css"/>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/angular-loading-bar-master/build/loading-bar.min.css"/>
   <script src="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>node_modules/ng-croppie/minified/ng-croppie.min.css"/>
-  <script src="<?php echo base_url(); ?>node_modules/angular-contenteditable/angular-contenteditable.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/angular-contenteditable/angular-contenteditable.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="<?php echo base_url(); ?>node_modules/angular-material/angular-material.min.js"></script>
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript" src="<?php echo base_url(); ?>js/app.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.fixed.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
+  <script type="text/javascript" src="<?php echo base_url(); ?>js/app.fixed-0.0.1.js"></script>
 
 
 </body>

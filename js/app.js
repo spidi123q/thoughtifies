@@ -83,8 +83,7 @@
         return function() {
             var view = document.querySelector( '#scrollview' );
             angular.element(view).bind('scroll', function() {
-                //
-                //
+
                 //scope.chatButton = true;
                 if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
                     // you're at the bottom of the page
@@ -351,7 +350,6 @@
             controller: ['$scope','$http','FileUploader','EmojiService', function ($scope,$http,FileUploader,EmojiService) {
 
                 $scope.picture = SESS_USERIMAGE;
-                console.log($scope.picture);
                 $scope.upload = {
                     progress : true,
                     button : false,
@@ -431,7 +429,7 @@
                    // console.info('onSuccessItem', fileItem, response, status, headers);
                     $scope.upload.progress = true;
                     $scope.upload.button = false;
-                   // console.log(response.error+"rge");
+                   //
                     if (response.error !== undefined) {
                         $scope.error = response.error;
                         uploader.clearQueue();
@@ -520,7 +518,6 @@
                 $scope.openMenu = function($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
-                console.log($scope.item);
                 $scope.showPrompt = function(ev) {
                     // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.prompt()
@@ -554,9 +551,7 @@
 
                 $scope.onRating = function(rating,id){
 
-                    if($scope.my_rating === null){
-                        $scope.item.no_rating++;
-                    }
+
                     $http({
                         method: 'GET',
                         url: 'post/onrating/'+id+'/'+rating,
@@ -2000,7 +1995,6 @@
                 }
             });
             $scope.onEmojiClick = function (item,$event) {
-                console.log($event);
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
@@ -2145,7 +2139,6 @@
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            console.log(response.data);
 
             $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
             $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
@@ -2157,7 +2150,6 @@
             $scope.settingsData.lname = response.data.lname;
             $scope.settingsData.tag = response.data.tag;
             $scope.settingsData.dp = response.data.picture;
-            console.log(response.data.picture);
             $scope.settingsData.friend_count = response.data.friend_count;
 
 
@@ -2168,12 +2160,10 @@
                 $scope.settingsData.tabs.profile.info.gender.data = 'Female';
                 $scope.settingsData.tabs.profile.info.gender.icon = 'flaticons/svg/femenine.svg';
             }
-            console.log($scope.settingsData);
 
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            console.log(response);
 
         });
 
@@ -2648,7 +2638,6 @@
             if (response.data === '0') {
                 $scope.settingsData.blocked = true;
             }else {
-                console.log(response.data);
                 $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
                 $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
                 if (response.data.about_partner === null) {
@@ -3425,7 +3414,7 @@
 
         $scope.toggleLeft = buildToggler('left');
         function buildToggler(componentId) {
-            //console.log($location.path());
+            //
             var currentUrl = $location.path();
             return function() {
                 if ( currentUrl == '/messages') {
