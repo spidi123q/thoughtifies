@@ -554,7 +554,9 @@
 
                 $scope.onRating = function(rating,id){
 
-                    $scope.item.no_rating++;
+                    if($scope.my_rating === null){
+                        $scope.item.no_rating++;
+                    }
                     $http({
                         method: 'GET',
                         url: 'post/onrating/'+id+'/'+rating,

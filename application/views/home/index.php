@@ -136,6 +136,9 @@
              </md-button>
            </div>
          </div>
+           <div class="empty_msg" style="margin: 5px">
+               Online users
+           </div>
          <md-list flex>
            <md-list-item class="md-1-line" ng-repeat="user in list[0]" ng-click="showAdvanced($event,user)">
              <img image-fetch img-src="{{user.picture}}" ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" size="60" class="badge1 md-avatar" alt="{{user.fname}}" data-badge="27" />
@@ -144,11 +147,9 @@
              </div>
            </md-list-item>
         </md-list>
-           <div class="empty_msg" style="margin: 5px">
-               Online users
-           </div>
-        <div class="empty_msg" ng-if="list[0].length === 0 || list === undefined">
-              No online users
+
+        <div class="empty_msg" ng-if="list[0].length === 0 || list === undefined" style="font-size: smaller">
+              Empty
         </div>
           <audio-fetch><audio-fetch>
       </md-content>
