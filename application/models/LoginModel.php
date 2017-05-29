@@ -128,7 +128,7 @@
         $this->db->where('mem_id',$mem_id);
         $query = $this->db->get('member');
         $row = $query->row();
-        $data = array('SESS_USERNAME' => $row->username,
+        $data = array(
          'SESS_MEMBER_ID' => $row->mem_id,
          'SESS_FIRST_NAME' => $row->fname,
          'SESS_LAST_NAME' => $row->lname,
