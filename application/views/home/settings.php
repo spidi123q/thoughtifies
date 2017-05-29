@@ -25,8 +25,8 @@
               <div ng-if="!settingsData.config" class="empty_msg" layout="row" layout-align="start center">
                   <h6 layout="row" layout-align="center center" >
                       <i class="material-icons">access_time</i>
-                      <p >
-                          &nbsp;&nbsp;Last login {{settingsData.last_login}}
+                      <p flex-offset="3" style="padding-left: 5px">
+                          Last login {{settingsData.last_login}}
                       </p>
                   </h6>
               </div>
