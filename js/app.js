@@ -863,6 +863,7 @@
             if (emojilist[top] === undefined){
                 emojilist[top] = uni;
             }
+            //
             //emojilist.push(uni);
 
         };
