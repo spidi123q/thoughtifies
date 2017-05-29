@@ -452,7 +452,7 @@ use Carbon\Carbon;
          $data2 = array('sender' => $this->session->SESS_MEMBER_ID,
           'receiver' => $value);
         $query = $this->db->select('sender,receiver,status')->from('friendship');
-                  $this->db->group_start();
+                  $this->db->group_wt();
                             $this->db->where($data);
                   $this->db->group_end();
                   $this->db->or_group_start();
@@ -589,6 +589,7 @@ use Carbon\Carbon;
           $query = $this->db->get("rating");
           $result2 = $query->row();
           $result["$key"]["my_rating"] = isset($result2)?$result2->rating:null;
+
         }
         echo json_encode($result);
       }

@@ -26,7 +26,7 @@
                   <h6 layout="row" layout-align="center center" >
                       <i class="material-icons">access_time</i>
                       <p >
-                          &nbsp;&nbsp;{{settingsData.last_login}}
+                          &nbsp;&nbsp;Last login {{settingsData.last_login}}
                       </p>
                   </h6>
               </div>

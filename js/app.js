@@ -520,6 +520,7 @@
                 $scope.openMenu = function($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
+                console.log($scope.item);
                 $scope.showPrompt = function(ev) {
                     // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.prompt()
@@ -553,6 +554,7 @@
 
                 $scope.onRating = function(rating,id){
 
+                    $scope.item.no_rating++;
                     $http({
                         method: 'GET',
                         url: 'post/onrating/'+id+'/'+rating,

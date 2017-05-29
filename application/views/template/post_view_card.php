@@ -38,6 +38,14 @@
          <md-card-actions layout="row" layout-align="start center">
            <jk-rating-stars max-rating="5" rating="item.my_rating" read-only="false" on-rating="onRating(rating,item.id)" >
            </jk-rating-stars>
+             <div ng-if="item.no_rating != 0" flex-offset="5" class="empty_msg">
+                <span ng-if="item.my_rating === null">
+                     {{item.no_rating}} other
+                </span>
+                 <span ng-if="(item.my_rating !== null) &&( (item.no_rating -1) > 0) ">
+                     {{item.no_rating -1}} other
+                </span>
+             </div>
            <md-card-icon-actions>
            </md-card-icon-actions>
          </md-card-actions>
