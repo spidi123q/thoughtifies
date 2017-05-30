@@ -155,7 +155,10 @@
         $this->db->select('CONCAT_WS( " ",fname, lname) as label');
         $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
         $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
-        $this->db->where_not_in('mem_id',$blockedUser);
+        if ( sizeof($blockedUser) > 0){
+            $this->db->where_not_in('mem_id',$blockedUser);
+        }
+
         $this->db->limit(10, 0);
         $query = $this->db->get('member');
         return $query->result();
