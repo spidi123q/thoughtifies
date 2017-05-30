@@ -68,7 +68,7 @@ use Carbon\Carbon;
         }
 
       }
-
+/*
       public function loginUser()      {
 
         $data = array(
@@ -93,7 +93,7 @@ use Carbon\Carbon;
          }
 
       }
-
+*/
       public function loginFacebook() {
         $this->LoginModel->initFacebook();
       }

@@ -400,29 +400,29 @@
                 });
                 uploader.filters.queueLimit = 1;
                 uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-                    console.info('onWhenAddingFileFailed', item, filter, options);
+                    //console.info('onWhenAddingFileFailed', item, filter, options);
                     uploader.clearQueue();
                     uploader.addToQueue(item);
                 };
                 uploader.onAfterAddingFile = function(fileItem) {
-                    console.info('onAfterAddingFile', fileItem);
+                    //console.info('onAfterAddingFile', fileItem);
                     $scope.clearButtonView = true;
                 };
                 uploader.onAfterAddingAll = function() {
                     //console.info('onAfterAddingAll', addedFileItems);
                 };
                 uploader.onBeforeUploadItem = function(item) {
-                    console.info('onBeforeUploadItem', item);
+                    //console.info('onBeforeUploadItem', item);
                     $scope.upload.progress = false;
                     $scope.upload.button = true;
 
                 };
                 uploader.onProgressItem = function(fileItem, progress) {
-                    console.info('onProgressItem', fileItem, progress);
+                    //console.info('onProgressItem', fileItem, progress);
 
                 };
                 uploader.onProgressAll = function(progress) {
-                    console.info('onProgressAll', progress);
+                    //console.info('onProgressAll', progress);
                     $scope.upload.status = progress;
                 };
                 uploader.onSuccessItem = function(fileItem, response, status, headers) {
@@ -444,16 +444,16 @@
 
                 };
                 uploader.onErrorItem = function(fileItem, response, status, headers) {
-                    console.info('onErrorItem', fileItem, response, status, headers);
+                    //console.info('onErrorItem', fileItem, response, status, headers);
                 };
                 uploader.onCancelItem = function(fileItem, response, status, headers) {
-                    console.info('onCancelItem', fileItem, response, status, headers);
+                    //console.info('onCancelItem', fileItem, response, status, headers);
                 };
                 uploader.onCompleteItem = function(fileItem, response, status) {
                     //console.info('onCompleteItem', fileItem, response, status, headers);
                 };
                 uploader.onCompleteAll = function() {
-                    console.info('onCompleteAll');
+                    //console.info('onCompleteAll');
                 };
 
                 $scope.post = function () {
@@ -2248,12 +2248,12 @@
             // CALLBACKS
 
             uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-                console.info('onWhenAddingFileFailed', item, filter, options);
+               // console.info('onWhenAddingFileFailed', item, filter, options);
                 uploader.clearQueue();
                 uploader.addToQueue(item);
             };
             uploader.onAfterAddingFile = function(fileItem) {
-                console.info('onAfterAddingFile', fileItem);
+               // console.info('onAfterAddingFile', fileItem);
             };
             uploader.onAfterAddingAll = function() {
                 //console.info('onAfterAddingAll', addedFileItems);
@@ -2261,16 +2261,16 @@
 
             };
             uploader.onBeforeUploadItem = function(item) {
-                console.info('onBeforeUploadItem', item);
+                //console.info('onBeforeUploadItem', item);
                 $scope.upload.progress = false;
 
             };
             uploader.onProgressItem = function(fileItem, progress) {
-                console.info('onProgressItem', fileItem, progress);
+               // console.info('onProgressItem', fileItem, progress);
 
             };
             uploader.onProgressAll = function(progress) {
-                console.info('onProgressAll', progress);
+               // console.info('onProgressAll', progress);
                 $scope.upload.status = progress;
             };
             uploader.onSuccessItem = function(fileItem, response, status ) {
@@ -2291,20 +2291,18 @@
 
             };
             uploader.onErrorItem = function(fileItem, response, status, headers) {
-                console.info('onErrorItem', fileItem, response, status, headers);
+               // console.info('onErrorItem', fileItem, response, status, headers);
             };
             uploader.onCancelItem = function(fileItem, response, status, headers) {
-                console.info('onCancelItem', fileItem, response, status, headers);
+               // console.info('onCancelItem', fileItem, response, status, headers);
             };
             uploader.onCompleteItem = function(fileItem, response, status, headers) {
                 //$mdDialog.cancel();
 
             };
             uploader.onCompleteAll = function() {
-                console.info('onCompleteAll');
+               // console.info('onCompleteAll');
             };
-
-            console.info('uploader', uploader);
 
 
 

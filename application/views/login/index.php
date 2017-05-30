@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#26A69A" />
     <meta property="fb:app_id" content="<?php echo $_SERVER['FB_APP_ID'] ?>">
-    <meta property="og:image" content="https://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+    <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
@@ -22,48 +22,12 @@
 	ga('create', 'UA-97318105-1', 'auto');
 	ga('send', 'pageview');
 
-</script> 
-	<!--
-	<script type="text/javascript">
-						if ('serviceWorker' in navigator) {
-					window.addEventListener('load', function() {
-						navigator.serviceWorker.register('sw.js').then(function(registration) {
-							// Registration was successful
-							console.log('ServiceWorker registration successful with scope: ', registration.scope);
-						}).catch(function(err) {
-							// registration failed :(
-							console.log('ServiceWorker registration failed: ', err);
-						});
-					});
-					}
-	</script>
--->
+</script>
 <title>Thoughtifies | Advertising your thoughts</title>
 </head>
 	<body class="login_body" >
         <div class="blur-content">
             <div  class="title flex-container" style="">
-                <h5>Alpha testing... will open soon</h5>
-                <form class="" name="loginform" action="data/1" method="post" >
-                    <div class="container-fluid row-fluid">
-                        <div id="fdf" class="col-sm-7">L social network</div>
-                        <div class="col-sm-2">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" name="username" type="text"/>
-                                <label class="mdl-textfield__label" for="sample3">username</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" name="password" type="password"/>
-                                <label class="mdl-textfield__label" for="sample3">password</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <button class="" name="" type="submit">login</button>
-                        </div>
-                    </div>
-                </form>
                 <div>
                     <a href="index">
                         <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
