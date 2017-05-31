@@ -278,7 +278,9 @@ use Carbon\Carbon;
                 $timeNow->getTimezone()
             );
           $data['last_login'] = $dt->diffForHumans($timeNow);
-            //$data['last_login'] = $result->time;
+          if($id != $this->session->SESS_MEMBER_ID){
+              $data['email'] = null;
+          }
 
           echo json_encode($data);
         }else {

@@ -2631,14 +2631,17 @@
             }else {
                 $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
                 $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+                $scope.settingsData.tabs.profile.info.email.data = response.data.email;
                 if (response.data.about_partner === null) {
                     delete $scope.settingsData.tabs.profile.info.mypre;
                 }
                 if (response.data.about_me === null) {
                     delete $scope.settingsData.tabs.profile.info.aboutme;
                 }
+                if(response.data.email === null){
+                    delete $scope.settingsData.tabs.profile.info.email;
+                }
                 $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
-                $scope.settingsData.tabs.profile.info.email.data = response.data.email;
                 $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
                 $scope.settingsData.tabs.profile.info.country.icon = 'flags/1x1/'+response.data.country.toLowerCase()+'.svg';
                 $scope.settingsData.fname = response.data.fname;
