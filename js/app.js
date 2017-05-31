@@ -1582,7 +1582,6 @@
 
             if(index2 > big){
                 big = (big === -1)? 0 : big+10;
-                console.log(big);
 
 
 
