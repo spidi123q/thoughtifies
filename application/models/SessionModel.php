@@ -219,6 +219,10 @@ use Carbon\Carbon;
 
 
       public function getDetails($id)      {
+          if(!isset($id) || !isset($this->session->SESS_MEMBER_ID)){
+              $this->session->sess_destroy();
+              redirect('404_override');
+          }
         $this->db->select('*');
         $qry = "NOT EXISTS (SELECT receiver as users FROM blocked
         where sender=$id and receiver={$this->session->SESS_MEMBER_ID}
