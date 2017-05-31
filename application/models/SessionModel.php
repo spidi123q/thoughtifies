@@ -823,7 +823,10 @@ use Carbon\Carbon;
               foreach ($allFriends as $key) {
                   array_push($allFriendsFbId,$key['id']);
               }
-
+              if( sizeof($allFriendsFbId) == 0){
+                  echo json_encode($allFriendsFbId);
+                  return;
+              }
               $this->db->select("mem_id");
               $this->db->where_in("id",$allFriendsFbId);
               $query = $this->db->get("facebook_member");
