@@ -1101,7 +1101,6 @@
             var get = function (index, count, success) {
 
 
-                $timeout(function () {
 
                     index = index-1;
                     setBig(index).then(
@@ -1127,9 +1126,6 @@
                         }
                     );
 
-
-
-                },100);
 
             };
 
@@ -1582,10 +1578,11 @@
         var setBig = function(index){
             var index2;
             var deferred = $q.defer();
-            index2 = index-1;
+            index2 = Math.abs(index) -1;
 
             if(index2 > big){
-                big = index2;
+                big = (big === -1)? 0 : big+10;
+                console.log(big);
 
 
 
@@ -1623,7 +1620,6 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
 
                 setBig(index).then(function () {
                     var result = [];
@@ -1639,8 +1635,6 @@
                 },function () {
 
                 });
-
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -2759,8 +2753,6 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
-
 
                 setBig(index).then(function () {
                     var result = [];
@@ -2777,7 +2769,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -3148,7 +3139,7 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
+
 
                 //
                 setBig(index).then(function () {
@@ -3167,7 +3158,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -3314,7 +3304,7 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
+
 
                 //
                 setBig(index).then(function () {
@@ -3333,7 +3323,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
