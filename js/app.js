@@ -347,7 +347,7 @@
             scope : {
                 adapter : '=adapter'
             },
-            controller: ['$scope','$http','FileUploader','EmojiService', function ($scope,$http,FileUploader,EmojiService) {
+            controller: ['$scope','$http','FileUploader','EmojiService','$mdToast', function ($scope,$http,FileUploader,EmojiService,$mdToast) {
 
                 $scope.picture = SESS_USERIMAGE;
                 $scope.upload = {
@@ -457,6 +457,15 @@
                 };
 
                 $scope.post = function () {
+                    if( ($scope.data === undefined) && !($scope.upload.response.file)){
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('can\'t publish empty thought')
+                                .position('bottom right' )
+                                .hideDelay(3000)
+                        );
+                        return false;
+                    }
                     $scope.data = ($scope.data === undefined)?'':$scope.data;
                     $scope.progress = true;
                     $http({
@@ -471,7 +480,8 @@
                         $scope.progress = false;
                         $scope.adapter.prepend([response.data]);
                         uploader.clearQueue();
-                        $scope.data = '';
+                        $scope.data = undefined;
+                        $scope.upload.response.file = false;
 
 
                     }, function errorCallback() {
