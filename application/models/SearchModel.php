@@ -26,7 +26,7 @@
       }
 
       public function advancedSearch($data)      {
-
+        $this->db->select('mem_id,fname,lname,picture');
 
         $obj = array(
           'member_details.yy <=' => date("Y") - $data->l_age,
