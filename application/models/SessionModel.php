@@ -43,6 +43,15 @@ use Carbon\Carbon;
         $qry = $this->db->get_compiled_select();
         return "($qry as u) as t";
       }
+      private function existRealation(){
+          $this->db->select('receiver AS user');
+          $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+          $table1 = $this->db->get_compiled_select('friendship');
+          $this->db->select('sender AS user');
+          $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+          $table2 = $this->db->get_compiled_select('friendship');
+          return "($table1) UNION ($table2)";
+      }
       private function convertToJPEG($data)      {
 
         $fileType = $data->data('file_type');
@@ -840,7 +849,7 @@ use Carbon\Carbon;
               foreach ($query->result() as $row) {
                   array_push($fbAppUsers,$row->mem_id);
               }
-              $qry = $this->MessageModel->friendsListQuery();
+              $qry = $this->existRealation();
               $query = $this->db->query($qry);
               $myFriends = array();
               foreach ($query->result() as $row) {
@@ -848,7 +857,10 @@ use Carbon\Carbon;
               }
               array_push($myFriends,$this->session->SESS_MEMBER_ID);
               $this->db->select("mem_id,picture");
-              $this->db->where_not_in("mem_id",$myFriends);
+              if (sizeof($myFriends) > 0){
+                  $this->db->where_not_in("mem_id",$myFriends);
+              }
+
               $this->db->where_in('mem_id',$fbAppUsers);
               $this->db->order_by("join_date","DESC");
               $this->db->limit(10);
