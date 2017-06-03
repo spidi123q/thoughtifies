@@ -1081,7 +1081,6 @@
                         }).then(function successCallback(response) {
                             // this callback will be called asynchronously
                             // when the response is available
-                            console.log(response.data)
 
 
                             for (var i = 0; i < response.data.length; i++) {
@@ -1272,7 +1271,10 @@
             var getCount = function (big) {
                 var deferred = $q.defer();
                 if (big === 0) {
-
+                        if($scope.msgUser === undefined){
+                            deferred.reject({ message: 'Really bad' });
+                            return deferred.promise;
+                        }
                     $http({
                         method: 'GET',
                         url: 'msg/count/'+$scope.msgUser,
@@ -1426,7 +1428,7 @@
             };
 
             $scope.bgList = function (val) {
-                if (val) {
+                if (val === SESS_MEMBER_ID) {
                     return {
                         'background-color':'#80CBC4',
 
