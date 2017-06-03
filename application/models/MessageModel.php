@@ -100,7 +100,7 @@
 
       public function listMessengers($offset)      {
 
-            $qry = "SELECT DISTINCT sender
+            $qry = "select mem_id,fname,lname,picture from (SELECT DISTINCT sender
             FROM (
 
             SELECT result.sender, result.date_time
@@ -124,7 +124,8 @@
             ORDER BY date_time DESC
             )result
             ORDER BY date_time DESC
-          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,10";
+          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,10)as p,member WHERE 
+          p.sender=member.mem_id";
 
           $result = $this->db->query($qry, array(
             $this->session->SESS_MEMBER_ID,
@@ -137,21 +138,7 @@
             $this->session->SESS_MEMBER_ID,
             $this->session->SESS_MEMBER_ID,
           ));
-          $listMemid = array( );
-          $senders =  $result->result_array();
-          foreach ($senders as $key ) {
-            array_push($listMemid,$key['sender']);
-          }
-          //print_r($listMemid);
-
-
-          if ( sizeof($listMemid) > 0 ) {
-            $this->db->select('*')->from('member');
-            $this->db->where_in('mem_id', $listMemid);
-            $result = $this->db->get();
-            echo json_encode($result->result());
-          }
-
+          echo json_encode($result->result());
 
           }
 
