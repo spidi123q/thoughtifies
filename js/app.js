@@ -979,7 +979,7 @@
         socket.onOpen(function () {
             $interval(function () {
                 socket = $websocket(CHAT_URL);
-            },3600);
+            },3600000);
         })
 
 

@@ -212,7 +212,7 @@
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.fixed.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
-  <script type="text/javascript" src="<?php echo base_url(); ?>js/app.fixed-0.0.4.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>js/app.fixed-0.0.5.js"></script>
 
 
 </body>
