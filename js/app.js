@@ -1081,6 +1081,7 @@
                         }).then(function successCallback(response) {
                             // this callback will be called asynchronously
                             // when the response is available
+                            console.log(response.data)
 
 
                             for (var i = 0; i < response.data.length; i++) {
