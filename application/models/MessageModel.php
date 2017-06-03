@@ -124,7 +124,7 @@
             ORDER BY date_time DESC
             )result
             ORDER BY date_time DESC
-          )r WHERE sender !=  ? ORDER BY r.date_time DESC LIMIT $offset,10";
+          )r WHERE sender !=  ? ORDER BY r.date_time ASC LIMIT $offset,10";
 
           $result = $this->db->query($qry, array(
             $this->session->SESS_MEMBER_ID,
