@@ -32,6 +32,9 @@
                     <a href="index">
                         <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
                     </a>
+                    <span style="font-size: 10pt;
+                    text-shadow: 0px 0px 6px black;
+                    ">&beta;eta</span>
                 </div>
 
                 <div class="">

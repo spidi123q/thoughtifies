@@ -74,7 +74,7 @@
                         No user selected
                       </div>
                           <md-list>
-                                <md-list-item class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
+                                <md-list-item  class="md-long-text"  ui-scroll="item in datasource"  adapter="msgUserAdapter on msgController" style="padding: 10px; ">
                                 <img ng-if="dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{myDp}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                                 <img ng-if="!dpDisplay.get(item.receiver)" image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{msgUserName.picture}}" size="60" class="md-avatar" alt="{{todos[0].who}}" />
                                 <div class="md-list-item-text" ng-style="bgList(item.receiver)" style="border-radius: 10px;padding: 5px;overflow-x: hidden;">
