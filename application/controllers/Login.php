@@ -1,7 +1,5 @@
 <?php
 /** @var Facebook\Authentication\AccessToken $id_token */
-//require APPPATH.'third_party/aws.phar';
-use Minishlink\WebPush\WebPush;
    class Login extends CI_Controller {
 
      function __construct() {
@@ -46,36 +44,7 @@ use Minishlink\WebPush\WebPush;
 
 
       public function index() {
-
-
           $this->LoginModel->loadIndex(0);
-          $notifications = array(
-              array(
-                  'endpoint' => 'https://fcm.googleapis.com/fcm/send/cvnHSu550_k:APA91bG3xfxAtkwrQfYt3CaIkqCwexIWZSITga5i-hT-UsnskUhZvCCQkaLSId8KFq13eNI9wZdh9TC3E81TEYF3uqdvVvBRxJw0OGSV6P8wsjWkd159c6qHs4eNyMZgQIwwm91DCNVf', // Chrome
-                  'payload' => "gfdgdfgdf hellow",
-                  'userPublicKey' => null,
-                  'userAuthToken' => null,
-              )
-          );
-          $auth = array(
-              'VAPID' => array(
-                  'subject' => 'website.com', // can be a mailto: or your website address
-                  'publicKey' => 'BO___6QnI00BCjCSf8xtjWwdvB_4ytzlHyuPEB4PV6eddcrk97C6NuVZqpf2vsMdjrRAE2gF3Ad3q0HSUsoYgtc', // (recommended) uncompressed public key P-256 encoded in Base64-URL
-                  'privateKey' => 'Jeh9e7gflU8lOlA_EKtayhuLc8omXKJLerxxxiqpI3Y', // (recommended) in fact the secret multiplier of the private key encoded in Base64-URL
-              ),
-          );
-          $webPush = new WebPush($auth);
-
-// send multiple notifications with payload
-          foreach ($notifications as $notification) {
-              $webPush->sendNotification(
-                  $notification['endpoint'],
-                  $notification['payload'], // optional (defaults null)
-                  $notification['userPublicKey'], // optional (defaults null)
-                  $notification['userAuthToken'] // optional (defaults null)
-              );
-          }
-          $webPush->flush();
       }
       public function license()    {
         $this->LoginModel->loadIndex(1);
@@ -516,6 +485,12 @@ use Minishlink\WebPush\WebPush;
         }
         public function getFbFriends(){
             $this->SessionModel->getFbfriends();
+        }
+        public function subscribeWebPush(){
+            $data = $this->input->raw_input_stream;
+            $data = json_decode($data);
+            $this->SessionModel->subscribeWebPush($data);
+
         }
 
 

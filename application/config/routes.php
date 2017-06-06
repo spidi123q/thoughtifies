@@ -129,3 +129,4 @@ $route['(:any)/globe/count']='Login/listPostRatingCount';
 $route['(:any)/friend/list/(:num)']='Login/friendsList/$2';
 $route['(:any)/friend/count']='Login/friendsCount';
 $route['(:any)/fb/friends']='Login/getFbFriends';
+$route['(:any)/subscribe/webpush']='Login/subscribeWebPush';

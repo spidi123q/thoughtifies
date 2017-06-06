@@ -875,6 +875,16 @@ use Carbon\Carbon;
           }
       }
 
+      public function subscribeWebPush($data){
+          $this->db->set('date_time','NOW()',false);
+          echo $this->db->insert('web_push',array(
+              'mem_id' => $this->session->SESS_MEMBER_ID,
+              'endpoint' => $data->endpoint,
+              'public_key'=> $data->keys->p256dh,
+              'auth_token'=> $data->keys->auth
+          ));
+      }
+
 
    }
 ?>
