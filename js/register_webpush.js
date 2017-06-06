@@ -23,19 +23,19 @@ function urlB64ToUint8Array(base64String) {
     return outputArray;
 }
 if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
+    //console.log('Service Worker and Push is supported');
 
     navigator.serviceWorker.register(BASE_URL+'sw.js')
         .then(function(swReg) {
-            console.log('Service Worker is registered', swReg);
+           // console.log('Service Worker is registered', swReg);
             swRegistration = swReg;
             initialiseUI();
         })
         .catch(function(error) {
-            console.error('Service Worker Error', error);
+           // console.error('Service Worker Error', error);
         });
 } else {
-    console.warn('Push messaging is not supported');
+    //console.warn('Push messaging is not supported');
     pushButton.textContent = 'Push Not Supported';
 }
 function initialiseUI() {
@@ -46,9 +46,9 @@ function initialiseUI() {
             isSubscribed = !(subscription === null);
 
             if (isSubscribed) {
-                console.log('User IS subscribed.');
+                //console.log('User IS subscribed.');
             } else {
-                console.log('User is NOT subscribed.');
+               // console.log('User is NOT subscribed.');
                 subscribeUser();
             }
 
@@ -62,7 +62,7 @@ function subscribeUser() {
         applicationServerKey: applicationServerKey
     })
         .then(function(subscription) {
-            console.log('User is subscribed.');
+           // console.log('User is subscribed.');
 
             updateSubscriptionOnServer(subscription);
 
@@ -71,7 +71,7 @@ function subscribeUser() {
 
         })
         .catch(function(err) {
-            console.log('Failed to subscribe the user: ', err);
+            //console.log('Failed to subscribe the user: ', err);
         });
 }
 function updateSubscriptionOnServer(subscription) {
@@ -81,12 +81,12 @@ function updateSubscriptionOnServer(subscription) {
     if (subscription) {
         //document.querySelector('body').innerText = JSON.stringify(subscription);
         var data = JSON.stringify(subscription);
-        console.log(data);
+        //console.log(data);
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "subscribe/webpush", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(data);
     } else {
-        console.log('Failed to subscribe the ');
+        //console.log('Failed to subscribe the ');
     }
 }

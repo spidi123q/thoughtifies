@@ -213,7 +213,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-material/angular-material.fixed.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>js/app.fixed-0.0.6.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>js/register_webpush.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>js/register_webpush-fixed-0.0.1.js"></script>
 
 
 </body>
