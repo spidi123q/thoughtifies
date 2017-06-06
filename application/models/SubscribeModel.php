@@ -43,6 +43,7 @@
                  'base_url' =>base_url()
              ), TRUE);
              $this->setBody($template);
+             $this->sendWebPushNotification($this->request['Message']['Subject']['Data']);
          }
 
          else if ($type === 1){
@@ -64,6 +65,7 @@
                  'base_url' =>base_url()
              ), TRUE);
              $this->setBody($template);
+             $this->sendWebPushNotification($this->request['Message']['Subject']['Data']);
          }
 
 
@@ -93,7 +95,7 @@
           foreach ($this->endpoints as $row) {
               $this->webPush->sendNotification(
                   $row->endpoint,
-                  'hai kunne',
+                  $payload,
                    $row->public_key,
                   $row->auth_token
               );
