@@ -43,6 +43,15 @@ use Carbon\Carbon;
         $qry = $this->db->get_compiled_select();
         return "($qry as u) as t";
       }
+      private function existRealation(){
+          $this->db->select('receiver AS user');
+          $this->db->where('sender',$this->session->SESS_MEMBER_ID);
+          $table1 = $this->db->get_compiled_select('friendship');
+          $this->db->select('sender AS user');
+          $this->db->where('receiver',$this->session->SESS_MEMBER_ID);
+          $table2 = $this->db->get_compiled_select('friendship');
+          return "($table1) UNION ($table2)";
+      }
       private function convertToJPEG($data)      {
 
         $fileType = $data->data('file_type');
@@ -219,6 +228,10 @@ use Carbon\Carbon;
 
 
       public function getDetails($id)      {
+          if(!isset($id) || !isset($this->session->SESS_MEMBER_ID)){
+              $this->session->sess_destroy();
+              redirect('404_override');
+          }
         $this->db->select('*');
         $qry = "NOT EXISTS (SELECT receiver as users FROM blocked
         where sender=$id and receiver={$this->session->SESS_MEMBER_ID}
@@ -274,7 +287,9 @@ use Carbon\Carbon;
                 $timeNow->getTimezone()
             );
           $data['last_login'] = $dt->diffForHumans($timeNow);
-            //$data['last_login'] = $result->time;
+          if($id != $this->session->SESS_MEMBER_ID){
+              $data['email'] = null;
+          }
 
           echo json_encode($data);
         }else {
@@ -823,7 +838,10 @@ use Carbon\Carbon;
               foreach ($allFriends as $key) {
                   array_push($allFriendsFbId,$key['id']);
               }
-
+              if( sizeof($allFriendsFbId) == 0){
+                  echo json_encode($allFriendsFbId);
+                  return;
+              }
               $this->db->select("mem_id");
               $this->db->where_in("id",$allFriendsFbId);
               $query = $this->db->get("facebook_member");
@@ -831,7 +849,7 @@ use Carbon\Carbon;
               foreach ($query->result() as $row) {
                   array_push($fbAppUsers,$row->mem_id);
               }
-              $qry = $this->MessageModel->friendsListQuery();
+              $qry = $this->existRealation();
               $query = $this->db->query($qry);
               $myFriends = array();
               foreach ($query->result() as $row) {
@@ -839,7 +857,10 @@ use Carbon\Carbon;
               }
               array_push($myFriends,$this->session->SESS_MEMBER_ID);
               $this->db->select("mem_id,picture");
-              $this->db->where_not_in("mem_id",$myFriends);
+              if (sizeof($myFriends) > 0){
+                  $this->db->where_not_in("mem_id",$myFriends);
+              }
+
               $this->db->where_in('mem_id',$fbAppUsers);
               $this->db->order_by("join_date","DESC");
               $this->db->limit(10);
@@ -852,6 +873,16 @@ use Carbon\Carbon;
               echo 'Error: ' . $e->getMessage();
               exit;
           }
+      }
+
+      public function subscribeWebPush($data){
+          $this->db->set('date_time','NOW()',false);
+          echo $this->db->insert('web_push',array(
+              'mem_id' => $this->session->SESS_MEMBER_ID,
+              'endpoint' => $data->endpoint,
+              'public_key'=> $data->keys->p256dh,
+              'auth_token'=> $data->keys->auth
+          ));
       }
 
 

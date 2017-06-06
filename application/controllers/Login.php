@@ -1,7 +1,5 @@
 <?php
 /** @var Facebook\Authentication\AccessToken $id_token */
-require APPPATH.'third_party/aws.phar';
-use Carbon\Carbon;
    class Login extends CI_Controller {
 
      function __construct() {
@@ -68,7 +66,7 @@ use Carbon\Carbon;
         }
 
       }
-
+/*
       public function loginUser()      {
 
         $data = array(
@@ -93,7 +91,7 @@ use Carbon\Carbon;
          }
 
       }
-
+*/
       public function loginFacebook() {
         $this->LoginModel->initFacebook();
       }
@@ -487,6 +485,12 @@ use Carbon\Carbon;
         }
         public function getFbFriends(){
             $this->SessionModel->getFbfriends();
+        }
+        public function subscribeWebPush(){
+            $data = $this->input->raw_input_stream;
+            $data = json_decode($data);
+            $this->SessionModel->subscribeWebPush($data);
+
         }
 
 

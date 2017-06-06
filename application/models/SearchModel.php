@@ -3,30 +3,30 @@
 
       private $advQry,$resultCount;
 
-      private function createThumb($imgUrl,$size,$picture)      {
-        $config['image_library'] = 'gd2';
-        $config['source_image'] = $imgUrl;
-        $config['create_thumb'] = TRUE;
-        $config['maintain_ratio'] = FALSE;
-        $config['quality'] = 100;
-        $config['width']         = $size;
-        $config['height']       = $size;
-        $this->load->library('image_lib', $config);
-        $this->image_lib->resize();
-        $imgUrl = "images/userimages/".$picture.'_thumb.jpg';
-        return $imgUrl;
-      }
+
 
       function __construct() {
          parent::__construct();
+          $this->load->library('country_iso');
       }
+       private function createThumb($imgUrl,$size,$picture)      {
+           $config['image_library'] = 'gd2';
+           $config['source_image'] = $imgUrl;
+           $config['create_thumb'] = TRUE;
+           $config['maintain_ratio'] = FALSE;
+           $config['quality'] = 100;
+           $config['width']         = $size;
+           $config['height']       = $size;
+           $this->load->library('image_lib', $config);
+           $this->image_lib->resize();
+           $imgUrl = "images/userimages/".$picture.'_thumb.jpg';
+           return $imgUrl;
+       }
 
-      public function t()      {
-        echo $advQry;
-      }
 
       public function advancedSearch($data)      {
-
+        $this->db->select('member_details.mem_id,
+        member_details.fname,member_details.lname,member_details.picture');
 
         $obj = array(
           'member_details.yy <=' => date("Y") - $data->l_age,
@@ -36,7 +36,8 @@
           $obj['picture !='] = 'photo';
         }
         if ($data->country != 'Any') {
-          $obj['country'] = $data->country;
+            $countryNames = array_flip( $this->country_iso->countries);
+            $obj['country'] = $countryNames["$data->country"];
         }
 
 
@@ -91,7 +92,8 @@
           $obj['picture !='] = 'photo';
         }
         if ($data->country != 'Any') {
-          $obj['country'] = $data->country;
+            $countryNames = array_flip( $this->country_iso->countries);
+            $obj['country'] = $countryNames["$data->country"];
         }
 
 
@@ -155,7 +157,10 @@
         $this->db->select('CONCAT_WS( " ",fname, lname) as label');
         $this->db->like('CONCAT_WS( " ",fname, lname)', $value,'after');
         $this->db->where('mem_id !=',$this->session->SESS_MEMBER_ID);
-        $this->db->where_not_in('mem_id',$blockedUser);
+        if ( sizeof($blockedUser) > 0){
+            $this->db->where_not_in('mem_id',$blockedUser);
+        }
+
         $this->db->limit(10, 0);
         $query = $this->db->get('member');
         return $query->result();

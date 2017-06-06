@@ -83,8 +83,7 @@
         return function() {
             var view = document.querySelector( '#scrollview' );
             angular.element(view).bind('scroll', function() {
-                //
-                //
+
                 //scope.chatButton = true;
                 if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
                     // you're at the bottom of the page
@@ -348,10 +347,9 @@
             scope : {
                 adapter : '=adapter'
             },
-            controller: ['$scope','$http','FileUploader','EmojiService', function ($scope,$http,FileUploader,EmojiService) {
+            controller: ['$scope','$http','FileUploader','EmojiService','$mdToast', function ($scope,$http,FileUploader,EmojiService,$mdToast) {
 
                 $scope.picture = SESS_USERIMAGE;
-                console.log($scope.picture);
                 $scope.upload = {
                     progress : true,
                     button : false,
@@ -402,36 +400,36 @@
                 });
                 uploader.filters.queueLimit = 1;
                 uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-                    console.info('onWhenAddingFileFailed', item, filter, options);
+                    //console.info('onWhenAddingFileFailed', item, filter, options);
                     uploader.clearQueue();
                     uploader.addToQueue(item);
                 };
                 uploader.onAfterAddingFile = function(fileItem) {
-                    console.info('onAfterAddingFile', fileItem);
+                    //console.info('onAfterAddingFile', fileItem);
                     $scope.clearButtonView = true;
                 };
                 uploader.onAfterAddingAll = function() {
                     //console.info('onAfterAddingAll', addedFileItems);
                 };
                 uploader.onBeforeUploadItem = function(item) {
-                    console.info('onBeforeUploadItem', item);
+                    //console.info('onBeforeUploadItem', item);
                     $scope.upload.progress = false;
                     $scope.upload.button = true;
 
                 };
                 uploader.onProgressItem = function(fileItem, progress) {
-                    console.info('onProgressItem', fileItem, progress);
+                    //console.info('onProgressItem', fileItem, progress);
 
                 };
                 uploader.onProgressAll = function(progress) {
-                    console.info('onProgressAll', progress);
+                    //console.info('onProgressAll', progress);
                     $scope.upload.status = progress;
                 };
                 uploader.onSuccessItem = function(fileItem, response, status, headers) {
                    // console.info('onSuccessItem', fileItem, response, status, headers);
                     $scope.upload.progress = true;
                     $scope.upload.button = false;
-                   // console.log(response.error+"rge");
+                   //
                     if (response.error !== undefined) {
                         $scope.error = response.error;
                         uploader.clearQueue();
@@ -446,19 +444,28 @@
 
                 };
                 uploader.onErrorItem = function(fileItem, response, status, headers) {
-                    console.info('onErrorItem', fileItem, response, status, headers);
+                    //console.info('onErrorItem', fileItem, response, status, headers);
                 };
                 uploader.onCancelItem = function(fileItem, response, status, headers) {
-                    console.info('onCancelItem', fileItem, response, status, headers);
+                    //console.info('onCancelItem', fileItem, response, status, headers);
                 };
                 uploader.onCompleteItem = function(fileItem, response, status) {
                     //console.info('onCompleteItem', fileItem, response, status, headers);
                 };
                 uploader.onCompleteAll = function() {
-                    console.info('onCompleteAll');
+                    //console.info('onCompleteAll');
                 };
 
                 $scope.post = function () {
+                    if( ($scope.data === undefined) && !($scope.upload.response.file)){
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('can\'t publish empty thought')
+                                .position('bottom right' )
+                                .hideDelay(3000)
+                        );
+                        return false;
+                    }
                     $scope.data = ($scope.data === undefined)?'':$scope.data;
                     $scope.progress = true;
                     $http({
@@ -473,7 +480,8 @@
                         $scope.progress = false;
                         $scope.adapter.prepend([response.data]);
                         uploader.clearQueue();
-                        $scope.data = '';
+                        $scope.data = undefined;
+                        $scope.upload.response.file = false;
 
 
                     }, function errorCallback() {
@@ -520,7 +528,6 @@
                 $scope.openMenu = function($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
-                console.log($scope.item);
                 $scope.showPrompt = function(ev) {
                     // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.prompt()
@@ -554,9 +561,7 @@
 
                 $scope.onRating = function(rating,id){
 
-                    if($scope.my_rating === null){
-                        $scope.item.no_rating++;
-                    }
+
                     $http({
                         method: 'GET',
                         url: 'post/onrating/'+id+'/'+rating,
@@ -974,8 +979,8 @@
         socket = $websocket(CHAT_URL);
         socket.onOpen(function () {
             $interval(function () {
-                //socket = $websocket(CHAT_URL);
-            },100);
+                socket = $websocket(CHAT_URL);
+            },3600000);
         })
 
 
@@ -1107,7 +1112,6 @@
             var get = function (index, count, success) {
 
 
-                $timeout(function () {
 
                     index = index-1;
                     setBig(index).then(
@@ -1133,9 +1137,6 @@
                         }
                     );
 
-
-
-                },100);
 
             };
 
@@ -1271,7 +1272,10 @@
             var getCount = function (big) {
                 var deferred = $q.defer();
                 if (big === 0) {
-
+                        if($scope.msgUser === undefined){
+                            deferred.reject({ message: 'Really bad' });
+                            return deferred.promise;
+                        }
                     $http({
                         method: 'GET',
                         url: 'msg/count/'+$scope.msgUser,
@@ -1425,7 +1429,7 @@
             };
 
             $scope.bgList = function (val) {
-                if (val) {
+                if (val === SESS_MEMBER_ID) {
                     return {
                         'background-color':'#80CBC4',
 
@@ -1588,10 +1592,10 @@
         var setBig = function(index){
             var index2;
             var deferred = $q.defer();
-            index2 = index-1;
+            index2 = Math.abs(index) -1;
 
             if(index2 > big){
-                big = index2;
+                big = (big === -1)? 0 : big+10;
 
 
 
@@ -1629,7 +1633,6 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
 
                 setBig(index).then(function () {
                     var result = [];
@@ -1645,8 +1648,6 @@
                 },function () {
 
                 });
-
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -2001,7 +2002,6 @@
                 }
             });
             $scope.onEmojiClick = function (item,$event) {
-                console.log($event);
                 if ($scope.msg === undefined) {
                     $scope.msg = '';
                 }
@@ -2146,7 +2146,6 @@
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            console.log(response.data);
 
             $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
             $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
@@ -2158,7 +2157,6 @@
             $scope.settingsData.lname = response.data.lname;
             $scope.settingsData.tag = response.data.tag;
             $scope.settingsData.dp = response.data.picture;
-            console.log(response.data.picture);
             $scope.settingsData.friend_count = response.data.friend_count;
 
 
@@ -2169,12 +2167,10 @@
                 $scope.settingsData.tabs.profile.info.gender.data = 'Female';
                 $scope.settingsData.tabs.profile.info.gender.icon = 'flaticons/svg/femenine.svg';
             }
-            console.log($scope.settingsData);
 
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            console.log(response);
 
         });
 
@@ -2259,12 +2255,12 @@
             // CALLBACKS
 
             uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-                console.info('onWhenAddingFileFailed', item, filter, options);
+               // console.info('onWhenAddingFileFailed', item, filter, options);
                 uploader.clearQueue();
                 uploader.addToQueue(item);
             };
             uploader.onAfterAddingFile = function(fileItem) {
-                console.info('onAfterAddingFile', fileItem);
+               // console.info('onAfterAddingFile', fileItem);
             };
             uploader.onAfterAddingAll = function() {
                 //console.info('onAfterAddingAll', addedFileItems);
@@ -2272,16 +2268,16 @@
 
             };
             uploader.onBeforeUploadItem = function(item) {
-                console.info('onBeforeUploadItem', item);
+                //console.info('onBeforeUploadItem', item);
                 $scope.upload.progress = false;
 
             };
             uploader.onProgressItem = function(fileItem, progress) {
-                console.info('onProgressItem', fileItem, progress);
+               // console.info('onProgressItem', fileItem, progress);
 
             };
             uploader.onProgressAll = function(progress) {
-                console.info('onProgressAll', progress);
+               // console.info('onProgressAll', progress);
                 $scope.upload.status = progress;
             };
             uploader.onSuccessItem = function(fileItem, response, status ) {
@@ -2302,20 +2298,18 @@
 
             };
             uploader.onErrorItem = function(fileItem, response, status, headers) {
-                console.info('onErrorItem', fileItem, response, status, headers);
+               // console.info('onErrorItem', fileItem, response, status, headers);
             };
             uploader.onCancelItem = function(fileItem, response, status, headers) {
-                console.info('onCancelItem', fileItem, response, status, headers);
+               // console.info('onCancelItem', fileItem, response, status, headers);
             };
             uploader.onCompleteItem = function(fileItem, response, status, headers) {
                 //$mdDialog.cancel();
 
             };
             uploader.onCompleteAll = function() {
-                console.info('onCompleteAll');
+               // console.info('onCompleteAll');
             };
-
-            console.info('uploader', uploader);
 
 
 
@@ -2649,17 +2643,19 @@
             if (response.data === '0') {
                 $scope.settingsData.blocked = true;
             }else {
-                console.log(response.data);
                 $scope.settingsData.tabs.profile.info.aboutme.data = response.data.about_me;
                 $scope.settingsData.tabs.profile.info.mypre.data = response.data.about_partner;
+                $scope.settingsData.tabs.profile.info.email.data = response.data.email;
                 if (response.data.about_partner === null) {
                     delete $scope.settingsData.tabs.profile.info.mypre;
                 }
                 if (response.data.about_me === null) {
                     delete $scope.settingsData.tabs.profile.info.aboutme;
                 }
+                if(response.data.email === null){
+                    delete $scope.settingsData.tabs.profile.info.email;
+                }
                 $scope.settingsData.tabs.profile.info.bday.data = response.data.yy;
-                $scope.settingsData.tabs.profile.info.email.data = response.data.email;
                 $scope.settingsData.tabs.profile.info.country.data = response.data.c_name;
                 $scope.settingsData.tabs.profile.info.country.icon = 'flags/1x1/'+response.data.country.toLowerCase()+'.svg';
                 $scope.settingsData.fname = response.data.fname;
@@ -2773,8 +2769,6 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
-
 
                 setBig(index).then(function () {
                     var result = [];
@@ -2791,7 +2785,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -3162,7 +3155,7 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
+
 
                 //
                 setBig(index).then(function () {
@@ -3181,7 +3174,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -3328,7 +3320,7 @@
         };
 
         datasource.get = function (index, count, success) {
-            $timeout(function () {
+
 
                 //
                 setBig(index).then(function () {
@@ -3347,7 +3339,6 @@
 
                 });
 
-            }, 100);
         };
 
         $scope.datasource = datasource;
@@ -3426,7 +3417,7 @@
 
         $scope.toggleLeft = buildToggler('left');
         function buildToggler(componentId) {
-            //console.log($location.path());
+            //
             var currentUrl = $location.path();
             return function() {
                 if ( currentUrl == '/messages') {

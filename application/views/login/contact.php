@@ -3,14 +3,6 @@
   <ul>
     <li>
       <h5>
-        PHONE :
-      </h5>
-      <span>
-        +91 9496437159
-      </span>
-    </li>
-    <li>
-      <h5>
         EMAIL :
       </h5>
       <span>

@@ -8,14 +8,23 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
         'cf150f72bd303a2ff07711c9a70f2d53' => __DIR__ . '/..' . '/google/apiclient/src/Google/autoload.php',
+        '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Debug\\' => 24,
@@ -27,24 +36,54 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Cache\\' => 10,
+        ),
+        'M' => 
+        array (
+            'Minishlink\\WebPush\\' => 19,
+            'Mdanter\\Ecc\\' => 12,
+        ),
+        'J' => 
+        array (
+            'Jose\\' => 5,
+            'JmesPath\\' => 9,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Stream\\' => 18,
             'GuzzleHttp\\Ring\\' => 16,
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
             'Facebook\\' => 9,
+            'FG\\' => 3,
         ),
         'C' => 
         array (
             'Carbon\\' => 7,
         ),
+        'B' => 
+        array (
+            'Base64Url\\' => 10,
+        ),
+        'A' => 
+        array (
+            'Aws\\' => 4,
+            'Assert\\' => 7,
+            'AESKW\\' => 6,
+            'AESGCM\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php70\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -65,6 +104,30 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Minishlink\\WebPush\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/minishlink/web-push/src',
+        ),
+        'Mdanter\\Ecc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdanter/ecc/src',
+        ),
+        'Jose\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/jose/src',
+        ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
+        ),
         'GuzzleHttp\\Stream\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
@@ -72,6 +135,14 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         'GuzzleHttp\\Ring\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
         'GuzzleHttp\\' => 
         array (
@@ -81,9 +152,33 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
+        'FG\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fgrosse/phpasn1/lib',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
+        'Base64Url\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/base64url/src',
+        ),
+        'Aws\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
+        'Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
+        ),
+        'AESKW\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/aes-key-wrap/src',
+        ),
+        'AESGCM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/php-aes-gcm/src',
         ),
     );
 
@@ -135,8 +230,14 @@ class ComposerStaticInit989e6c8638d7ded9e0cd7c8beb6da23f
     );
 
     public static $classMap = array (
+        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
+        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
+        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
+        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
         'Symfony\\Component\\HttpFoundation\\Resources\\stubs\\FakeFile' => __DIR__ . '/..' . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/FakeFile.php',
+        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

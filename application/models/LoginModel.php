@@ -128,6 +128,10 @@
         $this->db->where('mem_id',$mem_id);
         $query = $this->db->get('member');
         $row = $query->row();
+        if ($query->num_rows() === 0){
+            $this->session->sess_destroy();
+            redirect( base_url());
+        }
         $data = array(
          'SESS_MEMBER_ID' => $row->mem_id,
          'SESS_FIRST_NAME' => $row->fname,
@@ -151,6 +155,7 @@
                 $this->db->update('member');
             }
          }else {
+             $this->session->sess_destroy();
            redirect( base_url());
          }
 
@@ -183,12 +188,14 @@
           } catch(\Facebook\Exceptions\FacebookResponseException $e) {
            // When Graph returns an error
            echo 'Graph returned an error: ' . $e->getMessage();
-           //redirect(base_url());
+            $this->session->sess_destroy();
+           redirect(base_url());
            exit;
           } catch(\Facebook\Exceptions\FacebookSDKException $e) {
            // When validation fails or other local issues
            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            //redirect(base_url());
+            $this->session->sess_destroy();
+            redirect(base_url());
            exit;
           }
       }
@@ -276,11 +283,13 @@
                 } catch(Facebook\Exceptions\FacebookResponseException $e) {
                   // When Graph returns an error
                   echo 'Graph returned an error: ' . $e->getMessage();
+                    $this->session->sess_destroy();
                   redirect(base_url());
                   exit;
                 } catch(Facebook\Exceptions\FacebookSDKException $e) {
                   // When validation fails or other local issues
                   echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                    $this->session->sess_destroy();
                   redirect(base_url());
                   exit;
                 }
