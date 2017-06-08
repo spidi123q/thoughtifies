@@ -12,7 +12,7 @@
     <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -52,40 +52,94 @@
                 {content}
             </div>
 
-
-
-
-            <div class="simple-flex-container footer">
-                <div class="simple-flex-container">
-                    <div class="">
-                        <a href="credits">
-                            Credits
-                        </a>
-
-                    </div>
-                    <div class="">
-                        <a href="privacy">
-                            Privacy
-                        </a>
-                    </div>
-                    <div class="">
-                        <a href="license">
-                            Terms
-                        </a>
-                    </div>
-                </div>
-                <div class="contact">
-                    <a href="contact">
-                        Contact
-                    </a>
-                </div>
-            </div>
-
-
         </div>
     <div id="chromebutton" class="flex-container hide" style="text-align: center" onclick="hideBlur()">
             {chrome_home}
     </div>
+
+        <div class="fullscreen-page">
+            <div class="simple-flex-container mobile_flex ">
+                <div class="">
+                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/hand-star.svg">
+                    </object>
+                </div>
+                <div class="content-title">
+                    <div class="quotes">
+                        rating
+                    </div>
+                    <div>
+                        sdfsd
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fullscreen-page">
+            <div class="simple-flex-container mobile_flex ">
+                <div class="">
+                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/7.svg">
+                    </object>
+                </div>
+                <div class="content-title">
+                    <div class="quotes">
+                        search
+                    </div>
+                    <div>
+                        sdfsd
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fullscreen-page">
+            <div class="simple-flex-container mobile_flex ">
+                <div class="">
+                    <object style="width: 400px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/51.svg">
+                    </object>
+                </div>
+                <div class="content-title">
+                    <div class="quotes">
+                        chat
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fullscreen-page">
+            <div class="simple-flex-container mobile_flex ">
+                <div class="">
+                    <object style="width: 400px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/33.svg">
+                    </object>
+                </div>
+                <div class="content-title">
+                   <div class="quotes">
+                       privacy
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="simple-flex-container footer">
+            <div class="simple-flex-container">
+                <div class="">
+                    <a href="credits">
+                        Credits
+                    </a>
+
+                </div>
+                <div class="">
+                    <a href="privacy">
+                        Privacy
+                    </a>
+                </div>
+                <div class="">
+                    <a href="license">
+                        Terms
+                    </a>
+                </div>
+            </div>
+            <div class="contact">
+                <a href="contact">
+                    Contact
+                </a>
+            </div>
+        </div>
 
 	</body>
 <script src="<?php echo base_url(); ?>js/login_index.js"></script>
