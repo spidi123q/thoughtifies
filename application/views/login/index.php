@@ -70,7 +70,7 @@
                     <div class="content-text">
                         Introduces a new way of interacting with user content and posting your thought. <br>
                         Using thoughtifies you can rate user posts just like rating a movies.<br>
-                        The most trending posts around the world  will appear on your wall.
+                        The most trending posts around the world  will appear on your wall.<br>
                         For additional flexibility
                         your can also choose to view thoughts of your friends only.
                     </div>
@@ -108,7 +108,7 @@
                         Stay connected with people you want
                     </div>
                     <div class="content-text">
-                        Thoughtifies provides full featured social networking.
+                        Thoughtifies provides full featured social networking.<br>
                         You can chat with your friends, send offline messages etc. <br>
                         1700+ emoji's for you
                     </div>
@@ -126,7 +126,7 @@
                       Absolute privacy for you
                    </div>
                     <div class="content-text">
-                        Unlike Facebook, Google , Thoughtifies don't show any ads nor share your personal
+                        Unlike Facebook, Google , Thoughtifies don't show any ads nor<br> share your personal
                         data with advertisers.<br>
                         Also we don't track your usage behaviour or anything else for any means.
                     </div>
