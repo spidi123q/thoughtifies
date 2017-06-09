@@ -17,7 +17,7 @@ function toggleBlur() {
     else {
         chrome.className += ' hide';
     }
-    window.scrollTo(0,document.body.scrollHeight);
+    //window.scrollTo(0,document.body.scrollHeight);
 
 }
 function hideBlur() {

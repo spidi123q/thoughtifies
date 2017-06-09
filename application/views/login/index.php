@@ -12,7 +12,7 @@
     <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.2.css">
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,12 +25,12 @@
 </script>
 <title>Thoughtifies | Advertising your thoughts</title>
 </head>
-	<body class="login_body" >
+	<body class="login_body" style="">
         <div class="blur-content">
             <div  class="title flex-container" style="">
                 <div>
                     <a href="index">
-                        <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
+                        <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt="logo"/>
                     </a>
                     <span style="font-size: 10pt;
                     text-shadow: 0px 0px 6px black;
@@ -56,62 +56,80 @@
     <div id="chromebutton" class="flex-container hide" style="text-align: center" onclick="hideBlur()">
             {chrome_home}
     </div>
-
-        <div class="fullscreen-page">
-            <div class="simple-flex-container mobile_flex ">
+<br><br>
+        <div class="content-block" >
+            <div class="simple-flex-container mobile_flex " >
                 <div class="">
-                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/hand-star.svg">
+                    <object style="width: 270px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/hand-star.svg" alt="image">
                     </object>
                 </div>
                 <div class="content-title">
                     <div class="quotes">
-                        rating
+                        Rate the contents
                     </div>
-                    <div>
-                        sdfsd
+                    <div class="content-text">
+                        Introduces a new way of interacting with user content and posting your thought. <br>
+                        Using thoughtifies you can rate user posts just like rating a movies.<br>
+                        The most trending posts around the world  will appear on your wall.
+                        For additional flexibility
+                        your can also choose to view thoughts of your friends only.
                     </div>
                 </div>
             </div>
         </div>
-        <div class="fullscreen-page">
+        <div class="content-block">
             <div class="simple-flex-container mobile_flex ">
                 <div class="">
-                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/7.svg">
+                    <object style="width: 280px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/7.svg" alt="image">
                     </object>
                 </div>
                 <div class="content-title">
                     <div class="quotes">
-                        search
+                        Finding content in a different way
                     </div>
-                    <div>
-                        sdfsd
+                    <div class="content-text">
+                        Thoughtifies introduces most requsted feature . . .
+                        now you can find who all visited your profile.<br>
+                        Search users users based on their peer group,online
+                        status, country, keywords.<br>
+                        Search posts with keywords,hastags etc
                     </div>
                 </div>
             </div>
         </div>
-        <div class="fullscreen-page">
+        <div class="content-block">
             <div class="simple-flex-container mobile_flex ">
                 <div class="">
-                    <object style="width: 400px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/51.svg">
+                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/51.svg" alt="image">
                     </object>
                 </div>
                 <div class="content-title">
                     <div class="quotes">
-                        chat
+                        Stay connected with people you want
+                    </div>
+                    <div class="content-text">
+                        Thoughtifies provides full featured social networking.
+                        You can chat with your friends, send offline messages etc. <br>
+                        1700+ emoji's for you
                     </div>
                 </div>
             </div>
         </div>
-        <div class="fullscreen-page">
+        <div class="content-block">
             <div class="simple-flex-container mobile_flex ">
                 <div class="">
-                    <object style="width: 400px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/33.svg">
+                    <object style="width: 300px;height: auto;" type="image/svg+xml" data="<?php echo base_url(); ?>images/33.svg" alt="image">
                     </object>
                 </div>
                 <div class="content-title">
                    <div class="quotes">
-                       privacy
+                      Absolute privacy for you
                    </div>
+                    <div class="content-text">
+                        Unlike Facebook, Google , Thoughtifies don't show any ads nor share your personal
+                        data with advertisers.<br>
+                        Also we don't track your usage behaviour or anything else for any means.
+                    </div>
                 </div>
             </div>
         </div>

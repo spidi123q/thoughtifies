@@ -18,7 +18,7 @@
             $helper = $fb->getRedirectLoginHelper();
             $permissions = ['email','public_profile','user_birthday','user_friends','user_hometown','user_location']; // Optional permissions
             $loginUrl = $helper->getLoginUrl(base_url().'data/4', $permissions);
-            $img = "<img src='".base_url()."images/fb_button.jpg' class='fb-login-button' />";
+            $img = "<img src='".base_url()."images/fb_button.jpg' class='fb-login-button' alt='fb'/>";
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
             );
