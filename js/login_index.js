@@ -33,3 +33,4 @@ function hideChrome() {
         chrome.className = 'flex-container hide';
     }
 }
+
