@@ -447,9 +447,9 @@ use Carbon\Carbon;
           'status' => 0
           );
           $this->db->set('date_time', 'NOW()', FALSE);
-          $this->SubscribeModel->initFlush();
+          //$this->SubscribeModel->initFlush();
           echo $this->db->insert('friendship', $data);
-          $this->SubscribeModel->closeFlush();
+          //$this->SubscribeModel->closeFlush();
           $this->SubscribeModel->addFriend($receiver);
       }
 

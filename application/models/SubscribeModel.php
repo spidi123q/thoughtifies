@@ -93,7 +93,7 @@
       private function sendWebPushNotification($payload){
           // send multiple notifications with payload
           foreach ($this->endpoints as $row) {
-              $this->webPush->sendNotification(
+               echo $this->webPush->sendNotification(
                   $row->endpoint,
                   $payload,
                    $row->public_key,
