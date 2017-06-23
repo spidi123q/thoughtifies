@@ -635,6 +635,9 @@ use Carbon\Carbon;
               ON DUPLICATE KEY UPDATE
                 rating = VALUES(rating)";
           $this->db->query($qry,$data);
+          $this->SubscribeModel->initFlush();
+          $this->SubscribeModel->newRating($data);
+          $this->SubscribeModel->closeFlush();
 
 
       }
@@ -884,6 +887,13 @@ use Carbon\Carbon;
               'auth_token'=> $data->keys->auth
           ));
       }
+    public function subscribeFcmPush($data){
+        $this->db->set('date_time','NOW()',false);
+        echo $this->db->insert('fcm_push',array(
+            'mem_id' => $this->session->SESS_MEMBER_ID,
+            'endpoint' => $data->token,
+        ));
+    }
 
 
    }

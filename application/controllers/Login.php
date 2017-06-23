@@ -44,6 +44,7 @@
 
 
       public function index() {
+
           $this->LoginModel->loadIndex(0);
       }
       public function license()    {
@@ -95,6 +96,7 @@
       public function loginFacebook() {
         $this->LoginModel->initFacebook();
       }
+
 
 
       public function pageSelection($value)      {
@@ -395,9 +397,6 @@
             $id,$val
           );
           $this->SessionModel->onRating($data);
-          $this->SubscribeModel->initFlush();
-          $this->SubscribeModel->newRating($data);
-          $this->SubscribeModel->closeFlush();
 
         }
         public function getMyRating($value)      {
@@ -491,6 +490,11 @@
             $data = json_decode($data);
             $this->SessionModel->subscribeWebPush($data);
 
+        }
+        public function subscribeFcmPush(){
+            $data = $this->input->raw_input_stream;
+            $data = json_decode($data);
+            $this->SessionModel->subscribeFcmPush($data);
         }
 
 
