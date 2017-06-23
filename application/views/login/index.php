@@ -13,6 +13,20 @@
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.2.css">
+    <script>
+        var FCM_TOKEN = <?php
+                if(isset($_GET['fcm'])){
+                    echo "'".$_GET['fcm']."'";
+                }
+                else{
+                    echo "0";
+                }
+            ?>;
+        if(FCM_TOKEN !== 0){
+            localStorage.setItem('fcmToken',FCM_TOKEN);
+            localStorage.setItem('fcmIsUpdated','0');
+        }
+    </script>
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
