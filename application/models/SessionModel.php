@@ -830,10 +830,7 @@ use Carbon\Carbon;
                       $friendsArray = $friends->asArray();
                       $allFriends = array_merge($friendsArray, $allFriends);
                   }
-                  foreach ($allFriends as $key) {
-                      echo $key['name'] . "<br>";
-                  }
-                  echo count($allFriends);
+
               } else {
                   $allFriends = $friends->asArray();
               }
