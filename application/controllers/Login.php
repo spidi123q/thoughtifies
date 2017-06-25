@@ -44,7 +44,6 @@
 
 
       public function index() {
-
           $this->LoginModel->loadIndex(0);
       }
       public function license()    {
@@ -58,6 +57,9 @@
       }
       public function contact()    {
         $this->LoginModel->loadIndex(4);
+      }
+      public function appView(){
+          $this->LoginModel->loadIndex(5);
       }
       public function restoreSession()      {
         if ($this->session->has_userdata('fb_acces_token')) {

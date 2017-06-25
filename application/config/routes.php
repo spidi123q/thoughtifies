@@ -62,6 +62,7 @@ $route['license']='Login/license';
 $route['privacy']='Login/privacy';
 $route['credits']='Login/credits';
 $route['contact']='Login/contact';
+$route['appview']='Login/appView';
 $route['(:any)/logout']='Login/logout';
 $route['(:any)/p/(:num)']='Login/pageSelection/$2';
 $route['(:any)/settings/(:num)']='Login/changeSettings/$2';

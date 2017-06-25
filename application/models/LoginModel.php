@@ -22,6 +22,7 @@
             $u = '<a class="fb_button" href="' . htmlspecialchars($loginUrl) . '">'.$img.'</a>';
             $data = array('fb' => $u,
             );
+           $data['description'] =  $this->load->view('login/description','',TRUE);
 
             if ($sel === 0) {
                 if($this->agent->is_mobile() && ($this->agent->browser() == 'Chrome')){
@@ -43,6 +44,12 @@
             }
             else if ($sel === 4) {
               $data['content'] =  $this->load->view('login/contact','',TRUE);
+            }
+            else if ($sel === 5) {
+
+                $buttonChrome['chromebutton'] =  'hide';
+                $data['content'] =  $this->parser->parse('login/phone',$buttonChrome,TRUE);
+                $data['description'] = '';
             }
            if($this->agent->is_mobile() && ($this->agent->browser() == 'Chrome')){
                $data['chrome_home'] =  $this->load->view('login/chrome_home','',TRUE);
