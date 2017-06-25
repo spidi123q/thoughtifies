@@ -91,7 +91,7 @@
             </md-content>
           <span layout="column" ng-hide="msgUser === undefined" layout-align="center start">
             <div layout="column" style="width:100%;padding-top:10px;">
-              <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="height:40px;"
+              <div class="msg_placeholder msg_dialog_contenteditable" contenteditable="true" placeholder="Type your message" ng-model="msg" md-whiteframe="4" style="height:40px;min-height: 40px;"
                    ng-keypress="checkIfEnterKeyWasPressed($event,this)"
               ></div>
             </div>

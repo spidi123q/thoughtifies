@@ -133,14 +133,14 @@
                        "to" => $row->endpoint,
                        "priority" => "high",
                        "restricted_package_name" => "",
-                       'data' => ['title'=>'fsd'],
-                       'notification' => [
-                           "title" => $payload['title'],
-                           "body" => $payload['body'],
-                           "sound" => "default",
-                           "click_action" => "FCM_PLUGIN_ACTIVITY",
-                           "icon" => "fcm_push_icon"
-                       ]
+                       'data' => [
+                           'title'=>'fsd',
+                           'message' => 'dsdsada',
+                           'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Square_on_hyperbolic_plane.png/200px-Square_on_hyperbolic_plane.png',
+                           'picture' => 'https://i.ytimg.com/vi/IF09XbGfOu8/maxresdefault.jpg',
+                           'summaryText' => 'The internet is built on cat pictures',
+                           'style' => 'picture',
+                           ]
                    ]
                ]);
            }
