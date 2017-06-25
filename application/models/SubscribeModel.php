@@ -130,7 +130,7 @@
                        'Authorization' => 'key=AIzaSyBWziS6HabUQVyIpZhE89fKe5p70DklQzg',
                    ],
                    'json' => [
-                       "to" => $row->endpoint,
+                       "to" => $row->endpoint, ///topics/topicExample
                        "priority" => "high",
                        "restricted_package_name" => "",
                        'data' => [
