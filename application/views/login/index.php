@@ -12,7 +12,7 @@
     <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.2.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.3.css">
     <script>
         var FCM_TOKEN = <?php
                 if(isset($_GET['fcm'])){
