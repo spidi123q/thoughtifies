@@ -96,7 +96,7 @@
               ></div>
             </div>
             <div layout="row" flex-offset="10">
-              <span layout="row" layout-align="end center">
+              <span class="msg-toolbox" layout="row" layout-align="center center">
                 <md-switch ng-change="changeEmojiView()" class="md-warn"  ng-model="view" >
 
                  <md-button class="md-icon-button" aria-label="More">
@@ -107,10 +107,10 @@
                 <label for="input-file-id" class="md-icon-button">
                       <i class="material-icons">insert_photo</i>
                 </label>-->
-              </span>
-              <md-button ng-click="sendMsg()" class="md-warn">
-                <md-icon md-font-library="material-icons" class="md-light md-48">send</md-icon>
+                  <md-button ng-click="sendMsg()" class="md-warn">
+                    <md-icon md-font-library="material-icons" class="md-light md-48">send</md-icon>
               </md-button>
+              </span>
             </div>
           </span>
 

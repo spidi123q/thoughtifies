@@ -423,3 +423,8 @@ a {
 .content-block{
 
 }
+@media only screen and (max-height: 425px) {
+  .msg-toolbox {
+    margin-top: 40px;
+  }
+}
