@@ -134,12 +134,9 @@
                        "priority" => "high",
                        "restricted_package_name" => "",
                        'data' => [
-                           'title'=>'fsd',
-                           'message' => 'dsdsada',
-                           'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Square_on_hyperbolic_plane.png/200px-Square_on_hyperbolic_plane.png',
-                           'picture' => 'https://i.ytimg.com/vi/IF09XbGfOu8/maxresdefault.jpg',
-                           'summaryText' => 'The internet is built on cat pictures',
-                           'style' => 'picture',
+                           'title'=>$payload['title'],
+                           'message' => $payload['body'],
+                           'image' => 'https://thoughtifies.com/images/touch/logo192.png',
                            ]
                    ]
                ]);
