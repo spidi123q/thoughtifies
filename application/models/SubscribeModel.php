@@ -171,8 +171,8 @@
       }
 
        public function newMessage($info){
-          $this->msg = $info['message'];
-           $this->getReceiverDetails($info['receiver']);
+           $this->msg = $info->message;
+           $this->getReceiverDetails($info->receiver);
            $this->setType(1);
        }
 
