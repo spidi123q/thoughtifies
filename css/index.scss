@@ -406,3 +406,25 @@ a {
   filter: blur(3px);
   transition-delay: 500ms;
 }
+.fullscreen-page{
+  height: 100vh;
+}
+.content-title{
+  align-self: center;
+}
+.content-text{
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black;
+  color: white;
+  font-size: large;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+.content-block{
+
+}
+@media only screen and (max-height: 425px) {
+  .msg-toolbox {
+    margin-top: 40px;
+  }
+}

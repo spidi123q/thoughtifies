@@ -2,7 +2,7 @@
 
    class SubscribeModel extends CI_Model {
 
-      private $request,$client,$data,$webPushAuth,$webPush,$endpoints;
+      private $request,$client,$data,$webPushAuth,$webPush,$endpoints,$clientHTTP,$endpointsFcm,$msg;
       function __construct() {
          parent::__construct();
          $this->request = array();
@@ -20,6 +20,7 @@
           );
           $this->webPush = new \Minishlink\WebPush\WebPush($this->webPushAuth);
           $this->endpoints = array();
+          $this->clientHTTP = new \GuzzleHttp\Client();
       }
 
       private function setDestination(){
@@ -30,6 +31,12 @@
          if($query->num_rows() > 0){
              $this->endpoints = $query->result();
          }
+          $this->db->select('endpoint');
+          $this->db->where('mem_id',$this->data->mem_id);
+          $query = $this->db->get('fcm_push');
+          if($query->num_rows() > 0){
+              $this->endpointsFcm = $query->result();
+          }
       }
 
       private function setType($type){
@@ -44,6 +51,10 @@
              ), TRUE);
              $this->setBody($template);
              $this->sendWebPushNotification($this->request['Message']['Subject']['Data']);
+             $this->sendFcmPushNotification(array(
+                 'title' => 'New friend request received',
+                 'body' => $this->request['Message']['Subject']['Data']
+             ));
          }
 
          else if ($type === 1){
@@ -55,6 +66,10 @@
              ), TRUE);
              $this->setBody($template);
              $this->sendWebPushNotification($this->request['Message']['Subject']['Data']);
+             $this->sendFcmPushNotification(array(
+                 'title' => 'New message received',
+                 'body' => $this->session->SESS_FIRST_NAME." ".$this->session->SESS_LAST_NAME." : ".$this->msg
+             ));
          }
 
          else if ($type === 2){
@@ -66,6 +81,10 @@
              ), TRUE);
              $this->setBody($template);
              $this->sendWebPushNotification($this->request['Message']['Subject']['Data']);
+             $this->sendFcmPushNotification(array(
+                 'title' => $this->request['Message']['Subject']['Data'],
+                 'body' => 'Given '.$this->msg.' rating'
+             ));
          }
 
 
@@ -103,6 +122,27 @@
           $this->webPush->flush();
 
       }
+       private function sendFcmPushNotification($payload){
+           // send multiple notifications with payload
+           foreach ($this->endpointsFcm as $row) {
+                $this->clientHTTP->request('POST', 'https://fcm.googleapis.com/fcm/send', [
+                   'headers' => [
+                       'Authorization' => 'key=AIzaSyBWziS6HabUQVyIpZhE89fKe5p70DklQzg',
+                   ],
+                   'json' => [
+                       "to" => $row->endpoint, ///topics/topicExample
+                       "priority" => "high",
+                       "restricted_package_name" => "",
+                       'data' => [
+                           'title'=>$payload['title'],
+                           'message' => $payload['body'],
+                           'image' => 'https://thoughtifies.com/images/touch/logo192.png',
+                           ]
+                   ]
+               ]);
+           }
+
+       }
 
       private function getReceiverDetails($memId){
          $this->db->select("email,mem_id");
@@ -118,6 +158,7 @@
               $query =  $this->db->get('posts');
               $result = $query->row();
               if ($result->mem_id != $this->session->SESS_MEMBER_ID){
+                  $this->msg = $data[2];
                   $this->getReceiverDetails($result->mem_id);
                   $this->setType(2);
               }
@@ -129,8 +170,9 @@
          $this->setType(0);
       }
 
-       public function newMessage($receiver){
-           $this->getReceiverDetails($receiver);
+       public function newMessage($info){
+           $this->msg = $info->message;
+           $this->getReceiverDetails($info->receiver);
            $this->setType(1);
        }
 

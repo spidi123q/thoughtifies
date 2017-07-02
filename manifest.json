@@ -6,6 +6,7 @@
   "display": "standalone",
   "description": "Advertising your thoughts.",
   "start_url": ".",
+  "scope" : "https://www.facebook.com",
   "mjs_access_whitelist": [
     { "url": "https://www.facebook.com" },
     { "url": "https://www.facebook.com/*" }

@@ -155,7 +155,7 @@
               $this->SubscribeModel->initFlush();
               echo  $this->db->insert('myMessages',$info);
               $this->SubscribeModel->closeFlush();
-              $this->SubscribeModel->newMessage($data->receiver);
+              $this->SubscribeModel->newMessage($data);
 
           }
           else{

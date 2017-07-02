@@ -1,7 +1,9 @@
 <md-card>
+    <md-card-title-media>
     <a href="#/users/{{user.mem_id}}">
-        <img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{user.picture}}" size="400" class="md-card-image" alt="Washed Out">
+        <img image-fetch ng-src="<?php echo base_url(); ?>images/dp_bg.jpg" img-src="{{user.picture}}" size="300" class="md-card-image" alt="Washed Out">
     </a>
+    </md-card-title-media>
         <md-card-title>
           <md-card-title-text>
               <a href="#/users/{{user.mem_id}}">

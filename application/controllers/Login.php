@@ -58,6 +58,9 @@
       public function contact()    {
         $this->LoginModel->loadIndex(4);
       }
+      public function appView(){
+          $this->LoginModel->loadIndex(5);
+      }
       public function restoreSession()      {
         if ($this->session->has_userdata('fb_acces_token')) {
            $this->LoginModel->startSession($this->session->SESS_MEMBER_ID);
@@ -95,6 +98,7 @@
       public function loginFacebook() {
         $this->LoginModel->initFacebook();
       }
+
 
 
       public function pageSelection($value)      {
@@ -395,9 +399,6 @@
             $id,$val
           );
           $this->SessionModel->onRating($data);
-          $this->SubscribeModel->initFlush();
-          $this->SubscribeModel->newRating($data);
-          $this->SubscribeModel->closeFlush();
 
         }
         public function getMyRating($value)      {
@@ -491,6 +492,11 @@
             $data = json_decode($data);
             $this->SessionModel->subscribeWebPush($data);
 
+        }
+        public function subscribeFcmPush(){
+            $data = $this->input->raw_input_stream;
+            $data = json_decode($data);
+            $this->SessionModel->subscribeFcmPush($data);
         }
 
 

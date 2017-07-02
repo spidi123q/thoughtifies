@@ -3402,7 +3402,7 @@
         });
     });
 
-    app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil,$location) {
+    app.controller('AppCtrl', function ($scope, $mdSidenav,$log,MyWebSocket,notiService,$interval,$mdToast,$mdUtil,$location,$http) {
         $scope.bootscreen = false;
         $scope.chatButton = false;
         $scope.bootscreen = true;
@@ -3424,7 +3424,7 @@
                     $mdSidenav('jam')
                         .close()
                         .then(function(){
-                            
+
                         });
                 }
                 $scope.total = 0;
@@ -3434,7 +3434,7 @@
 
         $interval(function() {
             $scope.totalNoti = notiService.getTotalNoti();
-        },1000);
+        },5000);
         window.addEventListener('offline', function() {
             $scope.disabledClass = 'disabled_content';
             $mdToast.show(
@@ -3464,7 +3464,7 @@
         }
         appInviteToast();
 
-    
+
 
 
         function ToastController($scope) {
@@ -3476,8 +3476,27 @@
             };
             $scope.onClickShare = function () {
                 localStorage.setItem('hasInvited', '1');
+            };
+        }
+        function fcmSubscribe() {
+            if(localStorage.fcmIsUpdated && localStorage.fcmIsUpdated === '0'){
+                $http({
+                    method: 'POST',
+                    url: 'subscribe/fcmpush',
+                    data : {
+                        token : localStorage.fcmToken
+                    }
+                }).then(function successCallback(response) {
+                    localStorage.setItem('fcmIsUpdated','1');
+                }, function errorCallback() {
+                });
+            }
+            else {
+                console.log("errrr");
             }
         }
+
+        fcmSubscribe();
 
 
     });

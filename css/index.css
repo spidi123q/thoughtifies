@@ -39,7 +39,7 @@
   height: 416px;
   position: relative; }
   .myVideo video {
-    top: 43px;
+    top: 40px;
     left: 8px;
     position: absolute;
     height: 326px; }
@@ -323,5 +323,48 @@ a {
 .enter {
   opacity: 0;
   transition: all linear .5s; }
+
+.leave {
+  opacity: 0;
+  transition: all linear .5s; }
+
+.ng-show {
+  opacity: 0;
+  transition: all linear .5s; }
+
+.chrome-button {
+  text-align: center; }
+  .chrome-button span {
+    font-family: 'Raleway', sans-serif;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 4px;
+    color: white; }
+
+.blur {
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  -webkit-filter: url(#blur-filter);
+  filter: url(#blur-filter);
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+  transition-delay: 500ms; }
+
+.fullscreen-page {
+  height: 100vh; }
+
+.content-title {
+  align-self: center; }
+
+.content-text {
+  font-family: 'Raleway', sans-serif;
+  text-shadow: 0px 0px 6px black;
+  color: white;
+  font-size: large;
+  line-height: 1.5;
+  word-wrap: break-word; }
+
+@media only screen and (max-height: 425px) {
+  .msg-toolbox {
+    margin-top: 40px; } }
 
 /*# sourceMappingURL=index.css.map */

@@ -12,7 +12,7 @@
     <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.1.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/index.fixed-0.0.3.css">
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,12 +25,12 @@
 </script>
 <title>Thoughtifies | Advertising your thoughts</title>
 </head>
-	<body class="login_body" >
+	<body class="login_body" style="">
         <div class="blur-content">
             <div  class="title flex-container" style="">
                 <div>
                     <a href="index">
-                        <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt=""/>
+                        <img class="logo" src="<?php echo base_url(); ?>images/logo.png" alt="logo"/>
                     </a>
                     <span style="font-size: 10pt;
                     text-shadow: 0px 0px 6px black;
@@ -52,41 +52,8 @@
                 {content}
             </div>
 
-
-
-
-            <div class="simple-flex-container footer">
-                <div class="simple-flex-container">
-                    <div class="">
-                        <a href="credits">
-                            Credits
-                        </a>
-
-                    </div>
-                    <div class="">
-                        <a href="privacy">
-                            Privacy
-                        </a>
-                    </div>
-                    <div class="">
-                        <a href="license">
-                            Terms
-                        </a>
-                    </div>
-                </div>
-                <div class="contact">
-                    <a href="contact">
-                        Contact
-                    </a>
-                </div>
-            </div>
-
-
         </div>
-    <div id="chromebutton" class="flex-container hide" style="text-align: center" onclick="hideBlur()">
-            {chrome_home}
-    </div>
-
+        {description}
 	</body>
 <script src="<?php echo base_url(); ?>js/login_index.js"></script>
 
