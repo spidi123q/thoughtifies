@@ -1,6 +1,11 @@
 <div id="chromebutton" class="flex-container hide" style="text-align: center" onclick="hideBlur()">
     {chrome_home}
 </div>
+<div style="text-align: center">
+    <a href="https://play.google.com/store/apps/details?id=com.thoughtifies.webapp&rdid=com.thoughtifies.webapp">
+    <img src="<?php echo base_url(); ?>images/google-play-badge.png" style="height: 70px">
+    </a>
+</div>
 <br><br>
 <div class="content-block" >
     <div class="simple-flex-container mobile_flex " >
