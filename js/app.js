@@ -1272,10 +1272,12 @@
             var getCount = function (big) {
                 var deferred = $q.defer();
                 if (big === 0) {
+                    page = [];
                         if($scope.msgUser === undefined){
                             deferred.reject({ message: 'Really bad' });
                             return deferred.promise;
                         }
+
                     $http({
                         method: 'GET',
                         url: 'msg/count/'+$scope.msgUser,
@@ -1417,6 +1419,7 @@
 
             $scope.selectMsgUser = function (user) {
                 $scope.msgUser = user.mem_id;
+                $scope.msgUserAdapter.applyUpdates([]);
 
                 $scope.msgUserName = {
                     fname : user.fname,
