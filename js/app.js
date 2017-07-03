@@ -1265,7 +1265,7 @@
 
 
             $scope.removeFromList1 = function() {
-//
+
                 return $scope.msgUserListAdapter.reload(0);
             };
 
