@@ -22,7 +22,7 @@
 	ga('create', 'UA-97318105-1', 'auto');
 	ga('send', 'pageview');
 
-</script>
+    </script>
 <title>Thoughtifies | Advertising your thoughts</title>
 </head>
 	<body class="login_body" style="">
