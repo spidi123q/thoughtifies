@@ -7,7 +7,6 @@
 .elasticbeanstalk/
 application/vendor/bin/
 application/vendor/twig/
-application/vendor/silex/
 node_modules/amdefine/
 node_modules/angular-simple-chat-master/
 node_modules/angular-ui-chat/
