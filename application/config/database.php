@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $_ENV['RDS_HOSTNAME'],
-	'username' => $_ENV['RDS_USERNAME'],
-	'password' => $_ENV['RDS_PASSWORD'],
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'fuck123q',
 	'database' => 'simple_login',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
