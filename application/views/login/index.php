@@ -8,7 +8,7 @@
 	<meta name="msvalidate.01" content="AC7559ADA74AA6F34319B5A26EBF3C41" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#26A69A" />
-    <meta property="fb:app_id" content="<?php echo $_SERVER['FB_APP_ID'] ?>">
+    <meta property="fb:app_id" content="<?php echo '1789323091320402' ?>">
     <meta property="og:image" content="<?php echo base_url(); ?>images/coverWideNew.jpg" />
 	<link rel="icon" href="<?php echo base_url(); ?>images/fav.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json">
