@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://ec2-52-32-227-113.us-west-2.compute.amazonaws.com/thoughtifies/';
+$config['base_url'] = 'http://thoughtifies.com/';
 
 /*
 |--------------------------------------------------------------------------
