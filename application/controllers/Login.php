@@ -4,8 +4,8 @@
 
      function __construct() {
         parent::__construct();
-        $GLOBALS['FB_APP_ID'] = '1838531036399607';
-        $GLOBALS['FB_APP_SECRET'] = '878b5530b283d6b9f8b1cba69bf0619d';
+        $GLOBALS['FB_APP_ID'] = '1789323091320402';
+        $GLOBALS['FB_APP_SECRET'] = 'b60c05bf4115283ec3e33d5c2d92b8f0';
         $this->load->helper(array('form', 'url','file'));
         $this->load->model('MessageModel');
         $this->load->model('SessionModel');
