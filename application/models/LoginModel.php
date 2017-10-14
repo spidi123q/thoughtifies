@@ -4,8 +4,8 @@
        function __construct() {
          parent::__construct();
          $this->fb = new Facebook\Facebook([
-                   'app_id' => $_SERVER['FB_APP_ID'],
-                   'app_secret' => $_SERVER['FB_APP_SECRET'],
+                   'app_id' => '1789323091320402',
+                   'app_secret' => 'b60c05bf4115283ec3e33d5c2d92b8f0',
                    'default_graph_version' => 'v2.8',
                    ]);
       }
